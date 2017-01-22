@@ -4,7 +4,7 @@
 Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
 @author Arnold Koh <arnold@kohded.com>
 @author Chris Knoll <>
-@author Peter Kim <>
+@author Peter Kim <peterlk.dev@gmail.com>
 @version 1.0, developed 1/17/17
 @url http://rbh.greenrivertech.net
 -->
