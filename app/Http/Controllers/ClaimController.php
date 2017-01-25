@@ -9,7 +9,7 @@ class ClaimController extends Controller
 {
     public function index()
     {
-        $title = 'All Claim';
+        $title = 'All Claims';
 
         $claims = DB::table('claim')->get();
 

@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function getProductView()
+    public function index()
     {
-        $title = 'Product';
+        $title = 'All Products';
 
-        return view('product', ['title' => $title]);
+        $products = DB::table('product')->get();
+
+        return view('product.index', [
+        	'title' => $title,
+        	'products' => $products
+        ]);
+    }
+
+    public function create()
+    {
+    	$title = 'Create Product';
+
+    	return view('product.product-form', [
+    		'title' => $title
+    	]);
     }
 }

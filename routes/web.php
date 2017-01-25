@@ -20,7 +20,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
     Route::get('/customer', 'CustomerController@getCustomerView')->name('customer');
     Route::get('/part-order', 'PartOrderController@getPartOrderView')->name('part-order');
-    Route::get('/product', 'ProductController@getProductView')->name('product');
+
+    Route::get('/product', 'ProductController@index')->name('product-index');
+    Route::get('/product/create', 'ProductController@create')->name('product-create');
+
     Route::get('/repair-center', 'RepairCenterController@getRepairCenterView')->name('repair-center');
 });
 
