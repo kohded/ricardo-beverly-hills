@@ -6,3 +6,24 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+html {
+  min-height: 100%; // Sticky footer
+  position: relative; // Sticky footer
+}
+
+body {
+  margin-bottom: 88px; // Sticky footer
+}
+
+footer {
+  bottom: 0;
+  height: 44px;
+  margin-top: 44px;
+  position: absolute;
+  width: 100%;
+  
+  p {
+    margin-top: 11px;
+  }
+}

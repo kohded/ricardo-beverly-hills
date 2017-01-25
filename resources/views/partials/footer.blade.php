@@ -1,4 +1,4 @@
-<footer class="navbar-fixed-bottom">
+<footer>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
