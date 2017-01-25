@@ -21,7 +21,7 @@
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
                 @else
-                    <li><a href="{{ route('claim') }}">Claim</a></li>
+                    <li><a href="{{ route('claim-index') }}">Claim</a></li>
                     <li><a href="{{ route('customer') }}">Customer</a></li>
                     <li><a href="{{ route('part-order') }}">Part Order</a></li>
                     <li><a href="{{ route('product') }}">Product</a></li>

@@ -14,7 +14,9 @@
 Route::get('/', 'HomeController@getHomeView')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/claim', 'ClaimController@getClaimView')->name('claim');
+    Route::get('/claim', 'ClaimController@index')->name('claim-index');
+    Route::get('/claim/create', 'ClaimController@create')->name('claim-create');
+
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
     Route::get('/customer', 'CustomerController@getCustomerView')->name('customer');
     Route::get('/part-order', 'PartOrderController@getPartOrderView')->name('part-order');

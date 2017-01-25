@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 
 class ClaimController extends Controller
 {
-    public function getClaimView()
+    public function index()
     {
-        $title = 'Claim';
+        $title = 'All Claim';
 
-        return view('claim', ['title' => $title]);
+        $claims = DB::table('claim')->get();
+
+        return view('claim.index', [
+        	'title' => $title,
+        	'claims' => $claims
+        ]);
+    }
+
+    public function create()
+    {
+    	$title = 'Create Claim';
+
+    	return view('claim.claim-form', [
+    		'title' => $title
+    	]);
     }
 }
