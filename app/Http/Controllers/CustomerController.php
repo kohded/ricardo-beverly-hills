@@ -11,7 +11,7 @@ class CustomerController extends Controller
     {
         $customersModel = new CustomerModel();
 
-        $title = 'Customer';
+        $title = 'Customers';
 
         $customers = $customersModel->getCustomerData();
 
