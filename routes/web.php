@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
     Route::get('/customer', 'CustomerController@getCustomerView')->name('customer');
+    Route::get('/customer/create', 'CustomerController@create')->name('customer-create');
 
     Route::get('/part-order', 'PartOrderController@index')->name('part-order-index');
     Route::get('/part-order/create', 'PartOrderController@create')->name('part-order-create');

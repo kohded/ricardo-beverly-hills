@@ -7,14 +7,14 @@
 
 	<table class="table">
 		<thead>
-			<tr>
-				<th>Claim ID</th>
-				<th>Customer</th>
-				<th>Product Style</th>
-				<th>Repair Center</th>
-				<th>Date Opened</th>
-				<th>Date Closed</th>
-			</tr>
+		<tr>
+			<th>Claim ID</th>
+			<th>Customer</th>
+			<th>Product Style</th>
+			<th>Repair Center</th>
+			<th>Date Opened</th>
+			<th>Date Closed</th>
+		</tr>
 		</thead>
 
 		<tbody>

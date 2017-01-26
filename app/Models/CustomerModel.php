@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class CustomerModel
 {
 
+    public function getCustomerData()
+    {
+        return DB::table('customer')->get();
+    }
 }
