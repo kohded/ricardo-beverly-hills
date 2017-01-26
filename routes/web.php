@@ -26,7 +26,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/product', 'ProductController@index')->name('product-index');
     Route::get('/product/create', 'ProductController@create')->name('product-create');
 
-    Route::get('/repair-center', 'RepairCenterController@getRepairCenterView')->name('repair-center');
+    // Repair Center
+    Route::group(['prefix' => 'repair-center'], function() {
+        // List
+        Route::get('/',
+            'RepairCenterController@getListView')->name('repair-center');
+        // Add
+        Route::get('/create',
+            'RepairCenterController@getCreateView')->name('repair-center.create');
+        Route::post('/create',
+            'RepairCenterController@createRepairCenter')->name('repair-center.create');
+        // Edit
+        Route::get('/edit/{id}',
+            'RepairCenterController@getEditView')->name('repair-center.edit');
+        Route::post('/edit',
+            'RepairCenterController@editRepairCenter')->name('repair-center.edit-post');
+        // Delete
+        Route::get('/delete/{id}/{name}',
+            'RepairCenterController@deleteRepairCenter')->name('repair-center.delete');
+    });
 });
 
 // /login, /logout, /register, /password/reset, /password/email
