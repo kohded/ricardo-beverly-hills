@@ -18,11 +18,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/claim/create', 'ClaimController@create')->name('claim-create');
 
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
-    Route::get('/customer', 'CustomerController@getCustomerView')->name('customer');
-    Route::get('/customer/create', 'CustomerController@create')->name('customer-create');
 
     Route::get('/part-order', 'PartOrderController@index')->name('part-order-index');
     Route::get('/part-order/create', 'PartOrderController@create')->name('part-order-create');
+
+    // Customer
+    Route::group(['prefix' => 'customer'], function() {
+        // List / Index
+        Route::get('/', 'CustomerController@getCustomerView')->name('customer');
+        // Add
+        Route::get('/create', 'CustomerController@getCreateView')->name('customer-create');
+        Route::post('/create', 'CustomerController@addCustomer')->name('customer-create');
+    });
 
     // Product
     Route::group(['prefix' => 'product'], function() {

@@ -3,7 +3,18 @@
 @section('content')
    <h1 class="text-center">{{$title}}</h1>
 
-    <form class="insertion-form">
+   @if(count($errors->all()))
+       <div class="col-xs-offset-3 col-xs-6 alert alert-danger">
+           <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error  }}</li>
+               @endforeach
+           </ul>
+       </div>
+   @endif
+
+
+    <form class="insertion-form" action="{{ URL::route('customer-create') }}" method="post">
         <div class="form-group col-xs-offset-3 col-xs-6">
             <label for="inputCustomerName">Customer Name</label>
             <input type="text" class="form-control" id="inputCustomerName" name="name" placeholder="Customer Name">
@@ -53,6 +64,8 @@
             <label for="inputCustomerComment">Comments</label>
             <textarea class="col-xs-12" id="inputCustomerComment" name="comments">Other information that is important to know.</textarea>
         </div>
+
+        {{ csrf_field() }}
 
         <input class="btn btn-primary col-xs-offset-3 col-xs-6" type="submit" name="submit" value="Submit">
     </form>
