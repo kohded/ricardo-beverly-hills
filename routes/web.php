@@ -24,8 +24,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/part-order', 'PartOrderController@index')->name('part-order-index');
     Route::get('/part-order/create', 'PartOrderController@create')->name('part-order-create');
 
-    Route::get('/product', 'ProductController@index')->name('product-index');
-    Route::get('/product/create', 'ProductController@create')->name('product-create');
+    // Product
+    Route::group(['prefix' => 'product'], function() {
+        // List / Index
+        Route::get('/', 'ProductController@index')->name('product');
+        // Add
+        Route::get('/create', 'ProductController@getCreateView')->name('product.create');
+        Route::post('/create', 'ProductController@createProduct')->name('product.create');
+        // Edit
+        Route::get('/edit/{style}', 'ProductController@getEditView')->name('product.edit');
+        Route::post('/edit', 'ProductController@editProduct')->name('product.edit-post');
+        // Delete
+        Route::get('/delete/{style}/{description}', 'ProductController@deleteProduct')->name('product.delete');
+    });
+
 
     // Repair Center
     Route::group(['prefix' => 'repair-center'], function() {
