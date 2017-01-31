@@ -55,11 +55,6 @@
                         <input type="text" class="form-control" id="product-discontinued" name="discontinued" placeholder="mm/dd/yyyy">
                     </div>
 
-                    <div class="form-group col-xs-4">
-                        <label for="product-wholesale">Approximate Wholesale Price</label>
-                        <input type="text" class="form-control" id="product-wholesale" name="wholesale" placeholder="">
-                    </div>
-
                     <button type="submit" class="btn btn-primary col-xs-12">Submit</button>
                     {{--Token--}}
                     {{ csrf_field() }}

@@ -23,7 +23,7 @@ class ProductModel
 	}
 
 	// Insert new product
-	public function createProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued, $wholesale)
+	public function createProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued)
 	{
 		DB::table('product')->insert([
 			'style' 		       => $style,
@@ -34,8 +34,7 @@ class ProductModel
             'class'                => $class,
             'class_description'    => $class_desc,
             'launch_date'          => $launch,
-            'discontinued'         => $discontinued,
-            'wholesale'            => $wholesale
+            'discontinued'         => $discontinued
 		]);
 	}
 

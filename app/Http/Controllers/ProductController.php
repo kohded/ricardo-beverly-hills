@@ -47,8 +47,7 @@ class ProductController extends Controller
             'color'         => 'required',
             'class'         => 'required',
             'class-desc'    => 'required',
-            'launch'        => 'required',
-            'wholesale'     => 'required|numeric'
+            'launch'        => 'required'
         ]);
 
         // Create a Carbon object for the launch date
@@ -68,8 +67,7 @@ class ProductController extends Controller
             $request->input('class'),
             $request->input('class-desc'),
             $launch_date,
-            $discontinued_date,
-            $request->input('wholesale')
+            $discontinued_date
         );
 
         return redirect()->route('product.create')
@@ -95,8 +93,7 @@ class ProductController extends Controller
             'color'         => 'required',
             'class'         => 'required',
             'class-desc'    => 'required',
-            'launch'        => 'required',
-            'wholesale'     => 'required|numeric'
+            'launch'        => 'required'
         ]);
 
         // Create a Carbon object for the launch date
@@ -115,8 +112,7 @@ class ProductController extends Controller
             $request->input('class'),
             $request->input('class-desc'),
             $launch_date,
-            $discontinued_date,
-            $request->input('wholesale')
+            $discontinued_date
         );
 
         return redirect()->route('product.edit', ['style' => $request->input('style')])
