@@ -27,4 +27,9 @@ class CustomerModel
             'comments' => $comments
         ]);
     }
+
+    public function getCustomerDetailedData($customerId)
+    {
+        return DB::table('customer')->where('id', '=', $customerId)->get();
+    }
 }

@@ -64,8 +64,13 @@ class CustomerController extends Controller
 
         }
 
+    }
 
+    public function getCustomerDetails($customerId){
+        $getCustomerDetail = new CustomerModel();
 
+        $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId);
 
+        return view('customer.more-detail', ['customerDetail' => $customerDetail] );
     }
 }

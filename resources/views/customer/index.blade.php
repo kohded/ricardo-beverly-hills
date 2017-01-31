@@ -11,14 +11,11 @@
             <th>Customer ID</th>
             <th>Customer Name</th>
             <th>Address</th>
-            <th>Address 2</th>
             <th>City</th>
             <th>State</th>
             <th>Zip</th>
-            <th>Phone</th>
-            <th>Extension</th>
             <th>email</th>
-            <th>comments</th>
+
 
         </tr>
         </thead>
@@ -29,14 +26,14 @@
                 <td>{{ $customer->id }}</td>
                 <td>{{ $customer->name }}</td>
                 <td>{{ $customer->address }}</td>
-                <td>{{ $customer->address_2 }}</td>
                 <td>{{ $customer->city }}</td>
                 <td>{{ $customer->state }}</td>
                 <td>{{ $customer->zip }}</td>
-                <td>{{ $customer->phone }}</td>
-                <td>{{ $customer->extension }}</td>
                 <td>{{ $customer->email }}</td>
-                <td>{{ $customer->comments }}</td>
+                <td><a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id]) }}" class="btn btn-default">More Detail</a></td>
+                <td><a href="" class="btn btn-success">Edit</a></td>
+                <td><a href="" class="btn btn-danger">Delete</a></td>
+
             </tr>
         @endforeach
         </tbody>

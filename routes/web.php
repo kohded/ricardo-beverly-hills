@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
         // Add
         Route::get('/create', 'CustomerController@getCreateView')->name('customer-create');
         Route::post('/create', 'CustomerController@addCustomer')->name('customer-create');
+
+        Route::get('/more-details/{customerId}', 'CustomerController@getCustomerDetails')->name('more-customer-details');
     });
 
     // Product
