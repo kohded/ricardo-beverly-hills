@@ -23,7 +23,6 @@
                 @else
                     <li><a href="{{ route('claim-index') }}">Claim</a></li>
                     <li><a href="{{ route('customer') }}">Customer</a></li>
-                    <li><a href="{{ route('part-order-index') }}">Part Order</a></li>
                     <li><a href="{{ route('product') }}">Product</a></li>
                     <li><a href="{{ route('repair-center') }}">Repair Center</a>
                     <li class="dropdown">

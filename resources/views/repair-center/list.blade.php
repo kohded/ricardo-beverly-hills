@@ -15,7 +15,7 @@
 
                 {{--Create button--}}
                 <a href="{{ route('repair-center.create') }}"
-                   class="btn btn-primary">Create
+                   class="btn btn-primary">Create Repair Center
                 </a>
             </div>
         </div>

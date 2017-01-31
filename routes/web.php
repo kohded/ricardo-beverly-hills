@@ -19,9 +19,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
 
-    Route::get('/part-order', 'PartOrderController@index')->name('part-order-index');
-    Route::get('/part-order/create', 'PartOrderController@create')->name('part-order-create');
-
     // Customer
     Route::group(['prefix' => 'customer'], function() {
         // List / Index

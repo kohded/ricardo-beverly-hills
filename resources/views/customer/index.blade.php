@@ -3,7 +3,7 @@
 @section('content')
     <h1>All {{$title}}</h1>
 
-    <a href="{{ URL::route('customer-create') }}" class="btn btn-lg btn-primary" role="button">Create New Customer</a>
+    <a href="{{ URL::route('customer-create') }}" class="btn btn-primary" role="button">Create New Customer</a>
 
     <table class="table">
         <thead>
