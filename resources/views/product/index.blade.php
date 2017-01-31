@@ -19,44 +19,48 @@
 		</div>
 
 		<div class="row">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Style</th>
-						<th>Description</th>
-						<th>Brand</th>
-						<th>Warranty</th>
-						<th>Class</th>
-						<th>Launched</th>
-					</tr>
-				</thead>
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Style</th>
+								<th>Description</th>
+								<th>Brand</th>
+								<th>Warranty</th>
+								<th>Class</th>
+								<th>Launched</th>
+							</tr>
+						</thead>
 
-				<tbody>
-				@foreach ($products as $product)
-					<tr>
-						<td>{{ $product->style }}</td>
-						<td>{{ $product->description }}</td>
-						<td>{{ $product->brand }}</td>
-						<td>{{ $product->warranty_years }}</td>
-						<td>{{ $product->class }} - {{ $product->class_description }}</td>
-						<td>{{ $product->launch_date }}</td>
-						<td>
-							<a href="{{ route('product.edit', [
-								'style' => $product->style
-								]) }}" class="btn btn-success">Edit
-							</a>
-						</td>
-						<td>
-							<a href="{{ route('product.delete', [
-								'style' => $product->style,
-								'description' => $product->description
-								]) }}" class="btn btn-danger">Delete
-							</a>
-						</td>
-					</tr>
-				@endforeach
-				</tbody>
-			</table>
+						<tbody>
+						@foreach ($products as $product)
+							<tr>
+								<td>{{ $product->style }}</td>
+								<td>{{ $product->description }}</td>
+								<td>{{ $product->brand }}</td>
+								<td>{{ $product->warranty_years }}</td>
+								<td>{{ $product->class }} - {{ $product->class_description }}</td>
+								<td>{{ $product->launch_date }}</td>
+								<td>
+									<a href="{{ route('product.edit', [
+										'style' => $product->style
+										]) }}" class="btn btn-success">Edit
+									</a>
+								</td>
+								<td>
+									<a href="{{ route('product.delete', [
+										'style' => $product->style,
+										'description' => $product->description
+										]) }}" class="btn btn-danger">Delete
+									</a>
+								</td>
+							</tr>
+						@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection
