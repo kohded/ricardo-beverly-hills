@@ -13,6 +13,17 @@
        </div>
    @endif
 
+   {{--Form successfully added product--}}
+   @if(Session::has('message'))
+       <div class="row">
+           <div class="col-xs-offset-3 col-xs-6">
+               <p class="alert alert-success text-center">
+                   {{ Session::get('message') }}
+               </p>
+           </div>
+       </div>
+   @endif
+
 
     <form class="insertion-form" action="{{ URL::route('customer-create') }}" method="post">
         <div class="form-group col-xs-offset-3 col-xs-6">
