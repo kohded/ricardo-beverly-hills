@@ -22,11 +22,11 @@
                     <input type="tel" class="form-control"
                            id="repair-center-phone" name="phone">
                 </div>
-                {{--Fax--}}
+                {{--Email--}}
                 <div class="form-group col-xs-6 col-sm-3">
-                    <label for="repair-center-fax">Fax #</label>
-                    <input type="tel" class="form-control"
-                           id="repair-center-fax" name="fax">
+                    <label for="repair-center-email">Email</label>
+                    <input type="email" class="form-control"
+                           id="repair-center-email" name="email">
                 </div>
                 {{--Address--}}
                 <div class="form-group col-xs-12 col-lg-6">
