@@ -32,4 +32,20 @@ class CustomerModel
     {
         return DB::table('customer')->where('id', '=', $customerId)->get();
     }
+
+    public function editCustomerData($customerId, $name, $address, $address_2, $city, $state, $zip, $phone, $extension, $email, $comments)
+    {
+        DB::table('customer')->where('id', '=', $customerId)->update([
+            'name' => $name,
+            'address' => $address,
+            'address_2' => $address_2,
+            'city' => $city,
+            'state' => $state,
+            'zip' => $zip,
+            'phone' => $phone,
+            'extension' => $extension,
+            'email' => $email,
+            'comments' => $comments
+        ]);
+    }
 }

@@ -30,8 +30,8 @@
                 <td>{{ $customer->state }}</td>
                 <td>{{ $customer->zip }}</td>
                 <td>{{ $customer->email }}</td>
-                <td><a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id]) }}" class="btn btn-default">More Detail</a></td>
-                <td><a href="" class="btn btn-success">Edit</a></td>
+                <td><a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id ]) }}" class="btn btn-default">More Detail</a></td>
+                <td><a href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}" class="btn btn-success">Edit</a></td>
                 <td><a href="" class="btn btn-danger">Delete</a></td>
 
             </tr>

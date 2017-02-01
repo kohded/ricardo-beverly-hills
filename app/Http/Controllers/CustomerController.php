@@ -25,8 +25,80 @@ class CustomerController extends Controller
         return view('customer.customer-form', ['title' => $title]);
     }
 
-    public function addCustomer(Request $request, \Illuminate\Validation\Factory $validator){
+    public function addCustomer(Request $request, \Illuminate\Validation\Factory $validator)
+    {
+        if ($this->dataIsNotValid($request, $validator)->fails()) {
+            return redirect()->back()->withErrors($this->dataIsNotValid($request, $validator));
+        } else {
+                $createCustomer = new CustomerModel();
 
+                $createCustomer->insertCustomerData(
+                    $request->input('name'),
+                    $request->input('address1'),
+                    $request->input('address2'),
+                    $request->input('city'),
+                    strtoupper($request->input('state')),
+                    $request->input('zip'),
+                    $request->input('phone'),
+                    $request->input('ext'),
+                    $request->input('email'),
+                    $request->input('comments')
+                );
+
+                return redirect()->route('customer-create')
+                    ->with('message', 'Added new customer: ' . $request->input('name'));
+
+            }
+
+    }
+
+    public function getEditView($customerId)
+    {
+        $getCustomerDetail = new CustomerModel();
+
+        $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId);
+
+        return view('customer.edit-form', ['customerDetail' => $customerDetail]);
+
+    }
+
+
+    public function editCustomer(Request $request, \Illuminate\Validation\Factory $validator)
+    {
+        if ($this->dataIsNotValid($request, $validator)->fails()) {
+            return redirect()->back()->withErrors($this->dataIsNotValid($request, $validator));
+        } else {
+
+            $editCustomer = new CustomerModel();
+
+            $editCustomer->editCustomerData(
+                $request->input('id'),
+                $request->input('name'),
+                $request->input('address1'),
+                $request->input('address2'),
+                $request->input('city'),
+                strtoupper($request->input('state')),
+                $request->input('zip'),
+                $request->input('phone'),
+                $request->input('ext'),
+                $request->input('email'),
+                $request->input('comments')
+            );
+
+
+            return redirect()->route('more-customer-details', ['customerId' => 1]);
+        }
+    }
+
+    public function getCustomerDetails($customerId){
+        $getCustomerDetail = new CustomerModel();
+
+        $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId);
+
+        return view('customer.more-detail', ['customerDetail' => $customerDetail]);
+    }
+
+    private function dataIsNotValid($request, $validator){
         $validation = $validator->make($request->all(), [
             'name' => 'required|min:2|max:40',
             'address1' => 'required|max:60',
@@ -40,37 +112,6 @@ class CustomerController extends Controller
             'comments' => 'nullable'
         ]);
 
-        if($validation->fails()) {
-            return redirect()->back()->withErrors($validation);
-        } else {
-
-            $createCustomer = new CustomerModel();
-
-            $createCustomer->insertCustomerData(
-                $request->input('name'),
-                $request->input('address1'),
-                $request->input('address2'),
-                $request->input('city'),
-                strtoupper($request->input('state')),
-                $request->input('zip'),
-                $request->input('phone'),
-                $request->input('ext'),
-                $request->input('email'),
-                $request->input('comments')
-            );
-
-            return redirect()->route('customer-create')
-                ->with('message', 'Added new customer: ' . $request->input('name'));
-
-        }
-
-    }
-
-    public function getCustomerDetails($customerId){
-        $getCustomerDetail = new CustomerModel();
-
-        $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId);
-
-        return view('customer.more-detail', ['customerDetail' => $customerDetail] );
+        return $validation;
     }
 }
