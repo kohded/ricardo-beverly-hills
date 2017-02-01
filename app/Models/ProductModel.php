@@ -39,11 +39,18 @@ class ProductModel
 	}
 
 	// Edit product by style
-	public function editProduct($style, $description)
+	public function editProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued)
 	{
 		DB::table('product')->where('style', $style)->update([
 			'style' => $style,
-			'description' => $description
+			'description' => $description,
+            'brand'                => $brand,
+            'warranty_years'       => $warranty,
+            'color'                => $color,
+            'class'                => $class,
+            'class_description'    => $class_desc,
+            'launch_date'          => $launch,
+            'discontinued'         => $discontinued
 		]);
 	}
 

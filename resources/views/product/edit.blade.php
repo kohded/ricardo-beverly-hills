@@ -12,7 +12,7 @@
 
                     <div class="form-group col-xs-6">
                         <label for="product-style">Style #</label>
-                        <input type="text" class="form-control" id="product-style" name="style" placeholder="" value="{{ $info->style }}" disabled>
+                        <input type="text" class="form-control" id="product-style" name="style" placeholder="" value="{{ $info->style }}">
                     </div>
 
                     <div class="form-group col-xs-6">
@@ -22,7 +22,8 @@
 
                     <div class="form-group col-xs-6">
                         <label for="product-brand">Brand</label>
-                        <input type="text" class="form-control" id="product-brand" name="brand" placeholder="">
+                        <input type="text" class="form-control"
+                               id="product-brand" name="brand" placeholder="" value="{{ $info->brand }}">
                     </div>
 
                     <div class="form-group col-xs-3">

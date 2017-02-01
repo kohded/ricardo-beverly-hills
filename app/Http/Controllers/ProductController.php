@@ -92,6 +92,7 @@ class ProductController extends Controller
     // Edit a product
     public function editProduct(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'description'   => 'required',
             'brand'         => 'required',
@@ -116,6 +117,7 @@ class ProductController extends Controller
 
         $editProduct = new ProductModel();
         $editProduct->editProduct(
+            $request->input('style'),
             $request->input('description'),
             $request->input('brand'),
             $request->input('warranty'),
