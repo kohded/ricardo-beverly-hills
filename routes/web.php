@@ -30,6 +30,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/create', 'CustomerController@getCreateView')->name('customer-create');
         Route::post('/create', 'CustomerController@addCustomer')->name('customer-create');
 
+        // Edit
+        Route::get('/edit/{customerId}', 'CustomerController@getEditView')->name('customer-get-edit');
+        Route::post('/edit', 'CustomerController@editCustomer')->name('customer-edit');
+
+        // Individual customer detail
         Route::get('/more-details/{customerId}', 'CustomerController@getCustomerDetails')->name('more-customer-details');
     });
 
