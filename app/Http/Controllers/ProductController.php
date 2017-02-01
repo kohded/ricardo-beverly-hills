@@ -47,15 +47,21 @@ class ProductController extends Controller
             'color'         => 'required',
             'class'         => 'required',
             'class-desc'    => 'required',
-            'launch'        => 'required'
+            'launch'        => 'required',
+            'discontinued'  => 'nullable'
         ]);
 
         // Create a Carbon object for the launch date
         $launch_date = Carbon::createFromFormat('m/d/Y', $request->input('launch'));
 
         // Create a Carbon object if there is a discontinued date
+        if($request->input('discontinued'))
+        {
             $discontinued_date = 
                 Carbon::createFromFormat('m/d/Y', $request->input('discontinued'));
+        } else {
+            $discontinued_date = NULL;
+        }
 
         $createProduct = new ProductModel();
         $createProduct->createProduct(
@@ -100,8 +106,13 @@ class ProductController extends Controller
         $launch_date = Carbon::createFromFormat('Y-m-d', $request->input('launch'));
 
         // Create a Carbon object if there is a discontinued date
+        if($request->input('discontinued'))
+        {
             $discontinued_date = 
                 Carbon::createFromFormat('Y-m-d', $request->input('discontinued'));
+        } else {
+            $discontinued_date = NULL;
+        }
 
         $editProduct = new ProductModel();
         $editProduct->editProduct(
