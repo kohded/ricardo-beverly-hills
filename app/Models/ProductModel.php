@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ProductModel
 {
@@ -18,6 +19,18 @@ class ProductModel
 	public function getProduct($style)
 	{
 		$product = DB::table('product')->where('style', $style)->get();
+
+		foreach($product as $key => $value)
+		{
+			if($value->launch_date)
+			{
+				$value->launch_date = Carbon::createFromFormat('Y-m-d', $value->launch_date)->format('m/d/Y');
+			}
+			if($value->discontinued)
+			{
+				$value->discontinued = Carbon::createFromFormat('Y-m-d', $value->discontinued)->format('m/d/Y');
+			}
+		}
 
 		return $product;
 	}

@@ -104,13 +104,13 @@ class ProductController extends Controller
         ]);
 
         // Create a Carbon object for the launch date
-        $launch_date = Carbon::createFromFormat('Y-m-d', $request->input('launch'));
+        $launch_date = Carbon::createFromFormat('m/d/Y', $request->input('launch'));
 
         // Create a Carbon object if there is a discontinued date
         if($request->input('discontinued'))
         {
             $discontinued_date = 
-                Carbon::createFromFormat('Y-m-d', $request->input('discontinued'));
+                Carbon::createFromFormat('m/d/Y', $request->input('discontinued'));
         } else {
             $discontinued_date = NULL;
         }
