@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ProductModel
 {
@@ -19,11 +20,23 @@ class ProductModel
 	{
 		$product = DB::table('product')->where('style', $style)->get();
 
+		foreach($product as $key => $value)
+		{
+			if($value->launch_date)
+			{
+				$value->launch_date = Carbon::createFromFormat('Y-m-d', $value->launch_date)->format('m/d/Y');
+			}
+			if($value->discontinued)
+			{
+				$value->discontinued = Carbon::createFromFormat('Y-m-d', $value->discontinued)->format('m/d/Y');
+			}
+		}
+
 		return $product;
 	}
 
 	// Insert new product
-	public function createProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued, $wholesale)
+	public function createProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued)
 	{
 		DB::table('product')->insert([
 			'style' 		       => $style,
@@ -34,17 +47,23 @@ class ProductModel
             'class'                => $class,
             'class_description'    => $class_desc,
             'launch_date'          => $launch,
-            'discontinued'         => $discontinued,
-            'wholesale'            => $wholesale
+            'discontinued'         => $discontinued
 		]);
 	}
 
 	// Edit product by style
-	public function editProduct($style, $description)
+	public function editProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued)
 	{
 		DB::table('product')->where('style', $style)->update([
 			'style' => $style,
-			'description' => $description
+			'description' => $description,
+            'brand'                => $brand,
+            'warranty_years'       => $warranty,
+            'color'                => $color,
+            'class'                => $class,
+            'class_description'    => $class_desc,
+            'launch_date'          => $launch,
+            'discontinued'         => $discontinued
 		]);
 	}
 

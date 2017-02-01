@@ -36,18 +36,18 @@ class RepairCenterModel
      *
      * @param $name
      * @param $phone
-     * @param $fax
+     * @param $email
      * @param $address
      * @param $city
      * @param $state
      * @param $zip
      */
-    public function createRepairCenter($name, $phone, $fax, $address, $city, $state, $zip)
+    public function createRepairCenter($name, $phone, $email, $address, $city, $state, $zip)
     {
         DB::table('repair_center')->insert([
             'name'    => $name,
             'phone'   => $phone,
-            'fax'     => $fax,
+            'email'   => $email,
             'address' => $address,
             'city'    => $city,
             'state'   => $state,
@@ -60,19 +60,19 @@ class RepairCenterModel
      *
      * @param $name
      * @param $phone
-     * @param $fax
+     * @param $email
      * @param $address
      * @param $city
      * @param $state
      * @param $zip
      * @param $id
      */
-    public function editRepairCenter($name, $phone, $fax, $address, $city, $state, $zip, $id)
+    public function editRepairCenter($name, $phone, $email, $address, $city, $state, $zip, $id)
     {
         DB::table('repair_center')->where('id', $id)->update([
             'name'    => $name,
             'phone'   => $phone,
-            'fax'     => $fax,
+            'email'   => $email,
             'address' => $address,
             'city'    => $city,
             'state'   => $state,

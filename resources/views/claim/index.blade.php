@@ -3,7 +3,7 @@
 @section('content')
 	<h1>All Claims</h1>
 
-	<a href="{{ URL::route('claim-create') }}" class="btn btn-lg btn-primary" role="button">Create New Claim</a>
+	<a href="{{ URL::route('claim-create') }}" class="btn btn-primary" role="button">Create New Claim</a>
 
 	<table class="table">
 		<thead>

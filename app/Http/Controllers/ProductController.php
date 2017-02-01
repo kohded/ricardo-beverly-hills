@@ -48,15 +48,20 @@ class ProductController extends Controller
             'class'         => 'required',
             'class-desc'    => 'required',
             'launch'        => 'required',
-            'wholesale'     => 'required|numeric'
+            'discontinued'  => 'nullable'
         ]);
 
         // Create a Carbon object for the launch date
         $launch_date = Carbon::createFromFormat('m/d/Y', $request->input('launch'));
 
         // Create a Carbon object if there is a discontinued date
+        if($request->input('discontinued'))
+        {
             $discontinued_date = 
                 Carbon::createFromFormat('m/d/Y', $request->input('discontinued'));
+        } else {
+            $discontinued_date = NULL;
+        }
 
         $createProduct = new ProductModel();
         $createProduct->createProduct(
@@ -68,8 +73,7 @@ class ProductController extends Controller
             $request->input('class'),
             $request->input('class-desc'),
             $launch_date,
-            $discontinued_date,
-            $request->input('wholesale')
+            $discontinued_date
         );
 
         return redirect()->route('product.create')
@@ -88,6 +92,7 @@ class ProductController extends Controller
     // Edit a product
     public function editProduct(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'description'   => 'required',
             'brand'         => 'required',
@@ -95,19 +100,24 @@ class ProductController extends Controller
             'color'         => 'required',
             'class'         => 'required',
             'class-desc'    => 'required',
-            'launch'        => 'required',
-            'wholesale'     => 'required|numeric'
+            'launch'        => 'required'
         ]);
 
         // Create a Carbon object for the launch date
-        $launch_date = Carbon::createFromFormat('Y-m-d', $request->input('launch'));
+        $launch_date = Carbon::createFromFormat('m/d/Y', $request->input('launch'));
 
         // Create a Carbon object if there is a discontinued date
+        if($request->input('discontinued'))
+        {
             $discontinued_date = 
-                Carbon::createFromFormat('Y-m-d', $request->input('discontinued'));
+                Carbon::createFromFormat('m/d/Y', $request->input('discontinued'));
+        } else {
+            $discontinued_date = NULL;
+        }
 
         $editProduct = new ProductModel();
         $editProduct->editProduct(
+            $request->input('style'),
             $request->input('description'),
             $request->input('brand'),
             $request->input('warranty'),
@@ -115,8 +125,7 @@ class ProductController extends Controller
             $request->input('class'),
             $request->input('class-desc'),
             $launch_date,
-            $discontinued_date,
-            $request->input('wholesale')
+            $discontinued_date
         );
 
         return redirect()->route('product.edit', ['style' => $request->input('style')])

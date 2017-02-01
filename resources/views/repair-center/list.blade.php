@@ -15,7 +15,7 @@
 
                 {{--Create button--}}
                 <a href="{{ route('repair-center.create') }}"
-                   class="btn btn-primary">Create
+                   class="btn btn-primary">Create Repair Center
                 </a>
             </div>
         </div>
@@ -28,7 +28,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Phone</th>
-                            <th>Fax</th>
+                            <th>Email</th>
                             <th>Address</th>
                             <th>City</th>
                             <th>State</th>
@@ -41,7 +41,7 @@
                             <tr>
                                 <td>{{ $repairCenter->name }}</td>
                                 <td>{{ $repairCenter->phone }}</td>
-                                <td>{{ $repairCenter->fax }}</td>
+                                <td>{{ $repairCenter->email }}</td>
                                 <td>{{ $repairCenter->address }}</td>
                                 <td>{{ $repairCenter->city }}</td>
                                 <td>{{ $repairCenter->zip }}</td>

@@ -69,7 +69,7 @@ class RepairCenterController extends Controller
         $createRepairCenter = new RepairCenterModel();
         $createRepairCenter->createRepairCenter(
             $request->input('name'), $request->input('phone'),
-            $request->input('fax'), $request->input('address'),
+            $request->input('email'), $request->input('address'),
             $request->input('city'), $request->input('state'),
             $request->input('zip')
         );
@@ -115,7 +115,7 @@ class RepairCenterController extends Controller
         $editRepairCenter = new RepairCenterModel();
         $editRepairCenter->editRepairCenter(
             $request->input('name'), $request->input('phone'),
-            $request->input('fax'), $request->input('address'),
+            $request->input('email'), $request->input('address'),
             $request->input('city'), $request->input('state'),
             $request->input('zip'), $request->input('id')
         );
