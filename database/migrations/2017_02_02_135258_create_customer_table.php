@@ -19,7 +19,7 @@ class CreateCustomerTable extends Migration
             $table->string('first_name', 30);
             $table->string('last_name', 30);
             $table->string('address', 60);
-            $table->string('address_2', 60);
+            $table->string('address_2', 60)->nullable();
             $table->string('city', 30);
             $table->string('state', 2);
             $table->string('zip', 5);
