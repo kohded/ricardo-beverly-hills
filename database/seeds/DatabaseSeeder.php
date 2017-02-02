@@ -23,6 +23,17 @@ class DatabaseSeeder extends Seeder
     		'password' => '$2y$10$qeSkJ/ubMrXtBn1vbGX9Fusf9R9O83.aRu813lbiPMFt4ZynBkDJK'
     	]);
 
+    	// Seed Claim Table
+        foreach (range(1,50) as $index) {
+        	DB::table('claim')->insert([
+        		'created_at' 	   => $faker->dateTime(),
+        		'customer_id'	   => $index,
+        		'product_style'    => $faker->regexify('[A-Z0-9]{11}'),
+        		'repair_center_id' => $faker->numberBetween($min = 1, $max = 15),
+        		'replaced'         => $faker->boolean($chanceOfGettingTrue = 20)
+        	]);
+        }
+
         // Seed Customer Table
         foreach (range(1,50) as $index) {
         	DB::table('customer')->insert([
