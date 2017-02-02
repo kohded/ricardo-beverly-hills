@@ -24,7 +24,7 @@
         @foreach ($customers as $customer)
             <tr>
                 <td>{{ $customer->id }}</td>
-                <td>{{ $customer->name }}</td>
+                <td>{{ $customer->first_name . " " . $customer->last_name }}</td>
                 <td>{{ $customer->address }}</td>
                 <td>{{ $customer->city }}</td>
                 <td>{{ $customer->state }}</td>
