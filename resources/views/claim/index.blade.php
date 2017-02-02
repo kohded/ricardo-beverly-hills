@@ -24,7 +24,7 @@
 				<td>{{ $claim->customer_id }}</td>
 				<td>{{ $claim->product_style }}</td>
 				<td>{{ $claim->repair_center_id }}</td>
-				<td>{{ $claim->date_opened }}</td>
+				<td>{{ $claim->created_at }}</td>
 				<td>{{ $claim->date_closed }}</td>
 			</tr>
 		@endforeach
