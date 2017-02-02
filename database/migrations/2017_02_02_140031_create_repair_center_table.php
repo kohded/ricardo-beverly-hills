@@ -22,6 +22,7 @@ class CreateRepairCenterTable extends Migration
             $table->string('zip', 5);
             $table->string('phone', 10);
             $table->string('email', 50);
+            $table->string('contact_name', 50);
         });
     }
 

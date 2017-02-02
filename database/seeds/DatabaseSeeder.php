@@ -73,13 +73,14 @@ class DatabaseSeeder extends Seeder
         // Seed Repair Center Table
         foreach (range(1,15) as $index) {
 	    	DB::table('repair_center')->insert([
-	    		'name'		 => $faker->lastName . ' ' . $faker->city,
-	    		'address'    => $faker->streetAddress,
-	    		'city'       => $faker->city,
-	    		'state'      => $faker->stateAbbr,
-	    		'zip'        => substr($faker->postcode, 0, 5),
-	    		'phone'      => $faker->numberBetween($min = 1000000000, $max = 9999999999),
-	    		'email'      => $faker->email
+	    		'name'		   => $faker->lastName . ' ' . $faker->city,
+	    		'address'      => $faker->streetAddress,
+	    		'city'         => $faker->city,
+	    		'state'        => $faker->stateAbbr,
+	    		'zip'          => substr($faker->postcode, 0, 5),
+	    		'phone'        => $faker->numberBetween($min = 1000000000, $max = 9999999999),
+	    		'email'        => $faker->email,
+	    		'contact_name' => $faker->firstName
 	    	]);
     	}
 
