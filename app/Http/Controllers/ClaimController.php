@@ -26,8 +26,15 @@ class ClaimController extends Controller
     {
     	$title = 'Create Claim';
 
+        $damage_codes = DB::table('damage_code')->get();
+        $repair_centers = DB::table('repair_center')->get();
+        $products = DB::table('product')->orderBy('style', 'asc')->get();
+
     	return view('claim.claim-form', [
-    		'title' => $title
+    		'title'          => $title,
+            'damage_codes'   => $damage_codes,
+            'repair_centers' => $repair_centers,
+            'products'       => $products
     	]);
     }
 }

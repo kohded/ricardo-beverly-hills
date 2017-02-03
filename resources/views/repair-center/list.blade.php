@@ -44,7 +44,7 @@
                                 <td>{{ $repairCenter->email }}</td>
                                 <td>{{ $repairCenter->address }}</td>
                                 <td>{{ $repairCenter->city }}</td>
-                                <td>{{ $repairCenter->zip }}</td>
+                                <td>{{ $repairCenter->state }}</td>
                                 <td>
                                     <a href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
