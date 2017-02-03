@@ -10,7 +10,7 @@ class ProductModel
 	// Select all products
 	public function getProducts()
 	{
-		$products = DB::table('product')->get();
+		$products = DB::table('product')->paginate(20);
 
 		return $products;
 	}

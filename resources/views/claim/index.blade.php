@@ -20,14 +20,18 @@
 		<tbody>
 		@foreach ($claims as $claim)
 			<tr>
-				<td>{{ $claim->id }}</td>
-				<td>{{ $claim->first_name . ' ' . $claim->last_name }}</td>
-				<td>{{ $claim->product_style }}</td>
-				<td>{{ $claim->name }}</td>
+				<td>{{ $claim->claim_id }}</td>
+				<td>{{ $claim->first . ' ' . $claim->last }}</td>
+				<td>{{ $claim->style }}</td>
+				<td>{{ $claim->repair_center }}</td>
 				<td>{{ $claim->created_at }}</td>
-				<td>{{ $claim->date_closed }}</td>
+				<td>{{ $claim->closed_at }}</td>
 			</tr>
 		@endforeach
 		</tbody>
 	</table>
+	
+	<div class="col-xs-12 text-center">
+		{{ $claims->links() }}
+	</div>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use App\Models\ClaimModel;
 
 class ClaimController extends Controller
 {
@@ -11,10 +12,8 @@ class ClaimController extends Controller
     {
         $title = 'All Claims';
 
-        $claims = DB::table('claim')
-            ->join('customer', 'claim.customer_id', '=', 'customer.id')
-            ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
-            ->get();
+        $claims = new ClaimModel();
+        $claims = $claims->getClaims();        
 
         return view('claim.index', [
         	'title' => $title,
@@ -27,7 +26,7 @@ class ClaimController extends Controller
     	$title = 'Create Claim';
 
         $damage_codes = DB::table('damage_code')->get();
-        $repair_centers = DB::table('repair_center')->get();
+        $repair_centers = DB::table('repair_center')->orderBy('name', 'asc')->get();
         $products = DB::table('product')->orderBy('style', 'asc')->get();
 
     	return view('claim.claim-form', [

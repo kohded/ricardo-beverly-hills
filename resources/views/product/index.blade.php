@@ -59,6 +59,11 @@
 						@endforeach
 						</tbody>
 					</table>
+
+				<div class="col-xs-12 text-center">
+					{{ $products->links() }}
+				</div>
+
 				</div>
 			</div>
 		</div>
