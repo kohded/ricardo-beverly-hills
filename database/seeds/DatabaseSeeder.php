@@ -25,14 +25,14 @@ class DatabaseSeeder extends Seeder
 
     	// Seed Damage Code table
     	$damage_codes = array(
-    		array('id' => '1', 'part' => 'Combo Lock'),
-    		array('id' => '2', 'part' => 'Wheels Broken'),
-    		array('id' => '3', 'part' => 'Plastic Buckles'),
-    		array('id' => '4', 'part' => 'Zipper Seams'),
-    		array('id' => '5', 'part' => 'Zipper Teeth'),
-    		array('id' => '6', 'part' => 'Zipper Slider/Puller'),
-    		array('id' => '7', 'part' => 'Tie Down Straps/Clips'),
-    		array('id' => '9', 'part' => 'Top/Side Handle'),
+    		array('id' => '1',  'part' => 'Combo Lock'),
+    		array('id' => '2',  'part' => 'Wheels Broken'),
+    		array('id' => '3',  'part' => 'Plastic Buckles'),
+    		array('id' => '4',  'part' => 'Zipper Seams'),
+    		array('id' => '5',  'part' => 'Zipper Teeth'),
+    		array('id' => '6',  'part' => 'Zipper Slider/Puller'),
+    		array('id' => '7',  'part' => 'Tie Down Straps/Clips'),
+    		array('id' => '9',  'part' => 'Top/Side Handle'),
     		array('id' => '10', 'part' => 'Retractable Handle'),
     		array('id' => '11', 'part' => 'Retractable Handle Grip'),
     		array('id' => '12', 'part' => 'Piping Worn/Damaged'),
@@ -50,10 +50,21 @@ class DatabaseSeeder extends Seeder
         		'created_at' 	   => $faker->dateTime(),
         		'customer_id'	   => $index,
         		'product_style'    => $faker->regexify('[A-Z0-9]{11}'),
+        		'damage_code_id'   => $faker->numberBetween($min = 9, $max = 16),
         		'repair_center_id' => $faker->numberBetween($min = 1, $max = 15),
         		'replaced'         => $faker->boolean($chanceOfGettingTrue = 20)
         	]);
         }
+
+        // Seed Claim Comment Table
+    	foreach (range(1,50) as $index) {
+	    	DB::table('claim_comment')->insert([
+	    		'claim_id' 		   => $faker->numberBetween($min = 1, $max = 50),
+	    		'created_at' 	   => $faker->dateTime(),
+	    		'author'     	   => $faker->lastName,
+	    		'comment'    	   => $faker->sentence($nbWords = 15,$variableNbWords = true),
+	    	]);
+    	}
 
         // Seed Customer Table
         foreach (range(1,50) as $index) {
@@ -85,7 +96,7 @@ class DatabaseSeeder extends Seeder
     	}
 
     	// Seed Repair Center Comment Table
-    	    foreach (range(1,50) as $index) {
+    	foreach (range(1,50) as $index) {
 	    	DB::table('repair_center_comment')->insert([
 	    		'repair_center_id' => $faker->numberBetween($min = 1, $max = 15),
 	    		'created_at' 	   => $faker->dateTime(),
