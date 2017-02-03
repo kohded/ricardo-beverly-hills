@@ -11,7 +11,10 @@ class ClaimController extends Controller
     {
         $title = 'All Claims';
 
-        $claims = DB::table('claim')->get();
+        $claims = DB::table('claim')
+            ->join('customer', 'claim.customer_id', '=', 'customer.id')
+            ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
+            ->get();
 
         return view('claim.index', [
         	'title' => $title,

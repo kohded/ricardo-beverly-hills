@@ -8,7 +8,7 @@
 	<table class="table">
 		<thead>
 		<tr>
-			<th>Claim ID</th>
+			<th>Claim Number</th>
 			<th>Customer</th>
 			<th>Product Style</th>
 			<th>Repair Center</th>
@@ -21,9 +21,9 @@
 		@foreach ($claims as $claim)
 			<tr>
 				<td>{{ $claim->id }}</td>
-				<td>{{ $claim->customer_id }}</td>
+				<td>{{ $claim->first_name . ' ' . $claim->last_name }}</td>
 				<td>{{ $claim->product_style }}</td>
-				<td>{{ $claim->repair_center_id }}</td>
+				<td>{{ $claim->name }}</td>
 				<td>{{ $claim->created_at }}</td>
 				<td>{{ $claim->date_closed }}</td>
 			</tr>
