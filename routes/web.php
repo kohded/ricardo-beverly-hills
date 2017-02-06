@@ -71,5 +71,5 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-// /login, /logout, /register, /password/reset, /password/email
+// /login, /logout, /register, /password/reset, /password/reset/{token}
 Auth::routes();
