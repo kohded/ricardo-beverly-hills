@@ -18,43 +18,50 @@
                            id="repair-center-name" name="name"
                            value="{{ $info->name }}">
                 </div>
+                {{--Contact Name--}}
+                <div class="form-group col-sm-6">
+                    <label for="repair-center-contact-name">Contact Name</label>
+                    <input type="text" class="form-control"
+                           id="repair-center-contact-name" name="contact-name"
+                           value="{{ $info->contact_name }}">
+                </div>
                 {{--Phone--}}
-                <div class="form-group col-xs-6 col-sm-3">
+                <div class="form-group col-xs-6">
                     <label for="repair-center-phone">Phone #</label>
                     <input type="tel" class="form-control"
                            id="repair-center-phone" name="phone"
                            value="{{ $info->phone }}">
                 </div>
                 {{--Email--}}
-                <div class="form-group col-xs-6 col-sm-3">
+                <div class="form-group col-xs-6">
                     <label for="repair-center-email">Email</label>
                     <input type="email" class="form-control"
                            id="repair-center-email" name="email"
                            value="{{ $info->email }}">
                 </div>
                 {{--Address--}}
-                <div class="form-group col-xs-12 col-lg-6">
+                <div class="form-group col-xs-12">
                     <label for="repair-center-address">Address</label>
                     <input type="text" class="form-control"
                            id="repair-center-address" name="address"
                            value="{{ $info->address }}">
                 </div>
                 {{--City--}}
-                <div class="form-group col-xs-4 col-lg-2">
+                <div class="form-group col-xs-6">
                     <label for="repair-center-city">City</label>
                     <input type="text" class="form-control"
                            id="repair-center-city" name="city"
                            value="{{ $info->city }}">
                 </div>
                 {{--State--}}
-                <div class="form-group col-xs-4 col-lg-2">
+                <div class="form-group col-xs-3">
                     <label for="repair-center-state">State</label>
                     <input type="text" class="form-control"
                            id="repair-center-state" name="state"
                            value="{{ $info->state }}">
                 </div>
                 {{--Zip--}}
-                <div class="form-group col-xs-4 col-lg-2">
+                <div class="form-group col-xs-3">
                     <label for="repair-center-zip">Zip</label>
                     <input type="text" class="form-control"
                            id="repair-center-zip" name="zip"

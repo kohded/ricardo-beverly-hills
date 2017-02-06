@@ -27,6 +27,7 @@
                         <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Contact Name</th>
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Address</th>
@@ -40,6 +41,7 @@
                         @foreach ($repairCenters as $repairCenter)
                             <tr>
                                 <td>{{ $repairCenter->name }}</td>
+                                <td>{{ $repairCenter->contact_name }}</td>
                                 <td>{{ $repairCenter->phone }}</td>
                                 <td>{{ $repairCenter->email }}</td>
                                 <td>{{ $repairCenter->address }}</td>
@@ -63,6 +65,11 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                {{ $repairCenters->links() }}
             </div>
         </div>
     </div>

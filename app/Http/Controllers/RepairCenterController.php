@@ -58,20 +58,22 @@ class RepairCenterController extends Controller
     public function createRepairCenter(Request $request)
     {
         $this->validate($request, [
-            'name'    => 'required',
-            'phone'   => 'required',
-            'address' => 'required',
-            'city'    => 'required',
-            'state'   => 'required',
-            'zip'     => 'required'
+            'name'         => 'required|max:40',
+            'contact-name' => 'required|max:50',
+            'phone'        => 'required|max:15',
+            'email'        => 'required|email|max:50',
+            'address'      => 'required|max:60',
+            'city'         => 'required|max:30',
+            'state'        => 'required|min:2|max:2',
+            'zip'          => 'required|min:5|max:10'
         ]);
 
         $createRepairCenter = new RepairCenterModel();
         $createRepairCenter->createRepairCenter(
-            $request->input('name'), $request->input('phone'),
-            $request->input('email'), $request->input('address'),
-            $request->input('city'), $request->input('state'),
-            $request->input('zip')
+            $request->input('name'), $request->input('contact-name'),
+            $request->input('phone'), $request->input('email'),
+            $request->input('address'), $request->input('city'),
+            $request->input('state'), $request->input('zip')
         );
 
         return redirect()->route('repair-center.create')
@@ -102,22 +104,24 @@ class RepairCenterController extends Controller
     public function editRepairCenter(Request $request)
     {
         $this->validate($request, [
-            'name'    => 'required',
-            'phone'   => 'required',
-            'id'      => '',
-            'address' => 'required',
-            'city'    => 'required',
-            'state'   => 'required',
-            'zip'     => 'required',
-            'id'      => 'required'
+            'name'         => 'required|max:40',
+            'contact-name' => 'required|max:50',
+            'phone'        => 'required|max:15',
+            'email'        => 'required|email|max:50',
+            'address'      => 'required|max:60',
+            'city'         => 'required|max:30',
+            'state'        => 'required|min:2|max:2',
+            'zip'          => 'required|min:5|max:10',
+            'id'           => 'required'
         ]);
 
         $editRepairCenter = new RepairCenterModel();
         $editRepairCenter->editRepairCenter(
-            $request->input('name'), $request->input('phone'),
-            $request->input('email'), $request->input('address'),
-            $request->input('city'), $request->input('state'),
-            $request->input('zip'), $request->input('id')
+            $request->input('name'), $request->input('contact-name'),
+            $request->input('phone'), $request->input('email'),
+            $request->input('address'), $request->input('city'),
+            $request->input('state'), $request->input('zip'),
+            $request->input('id')
         );
 
         return redirect()->route('repair-center.edit', ['id' => $request->input('id')])

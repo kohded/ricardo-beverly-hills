@@ -13,7 +13,7 @@ class RepairCenterModel
      */
     public function getRepairCenters()
     {
-        $repairCenters = DB::table('repair_center')->get();
+        $repairCenters = DB::table('repair_center')->orderBy('name', 'ASC')->paginate(20);
 
         return $repairCenters;
     }
@@ -35,6 +35,7 @@ class RepairCenterModel
      * Insert a repair center into the database.
      *
      * @param $name
+     * @param $contactName
      * @param $phone
      * @param $email
      * @param $address
@@ -42,16 +43,17 @@ class RepairCenterModel
      * @param $state
      * @param $zip
      */
-    public function createRepairCenter($name, $phone, $email, $address, $city, $state, $zip)
+    public function createRepairCenter($name, $contactName, $phone, $email, $address, $city, $state, $zip)
     {
         DB::table('repair_center')->insert([
-            'name'    => $name,
-            'phone'   => $phone,
-            'email'   => $email,
-            'address' => $address,
-            'city'    => $city,
-            'state'   => $state,
-            'zip'     => $zip,
+            'name'         => $name,
+            'contact_name' => $contactName,
+            'phone'        => $phone,
+            'email'        => $email,
+            'address'      => $address,
+            'city'         => $city,
+            'state'        => $state,
+            'zip'          => $zip,
         ]);
     }
 
@@ -59,6 +61,7 @@ class RepairCenterModel
      * Update a repair center by id.
      *
      * @param $name
+     * @param $contactName
      * @param $phone
      * @param $email
      * @param $address
@@ -67,17 +70,18 @@ class RepairCenterModel
      * @param $zip
      * @param $id
      */
-    public function editRepairCenter($name, $phone, $email, $address, $city, $state, $zip, $id)
+    public function editRepairCenter($name, $contactName, $phone, $email, $address, $city, $state, $zip, $id)
     {
         DB::table('repair_center')->where('id', $id)->update([
-            'name'    => $name,
-            'phone'   => $phone,
-            'email'   => $email,
-            'address' => $address,
-            'city'    => $city,
-            'state'   => $state,
-            'zip'     => $zip,
-            'id'      => $id,
+            'name'         => $name,
+            'contact_name' => $contactName,
+            'phone'        => $phone,
+            'email'        => $email,
+            'address'      => $address,
+            'city'         => $city,
+            'state'        => $state,
+            'zip'          => $zip,
+            'id'           => $id,
         ]);
     }
 
