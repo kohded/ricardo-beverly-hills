@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="col-xs-offset-3 col-xs-6">
-        <h1 class="text-center"> {{ $customerDetail[0]->name }} </h1>
+        <h1 class="text-center"> {{ $customerDetail[0]->first_name . " " . $customerDetail[0]->last_name }} </h1>
 
         <table class="table table-striped">
             <tr>
@@ -36,16 +36,6 @@
             <tr>
                 <th>Phone Number</th>
                 <td class="text-center">{{ $customerDetail[0]->phone }}</td>
-            </tr>
-            @if($customerDetail[0]->extension )
-            <tr>
-                <th>Extension</th>
-                <td class="text-center">{{ $customerDetail[0]->extension }}</td>
-            </tr>
-            @endif
-            <tr>
-                <th>Comments</th>
-                <td>{{ $customerDetail[0]->comments }}</td>
             </tr>
         </table>
 

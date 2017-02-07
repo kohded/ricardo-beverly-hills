@@ -23,10 +23,15 @@
         </div>
     @endif
 
-<form class="insertion-form" action="{{ URL::route('customer-edit') }}" method="post">
-        <div class="form-group col-xs-offset-3 col-xs-6">
-            <label for="inputCustomerName">Customer Name</label>
-            <input type="text" class="form-control" id="inputCustomerName" name="name" value="{{ $customerDetail[0]->name }}">
+    <form class="insertion-form" action="{{ URL::route('customer-edit') }}" method="post">
+        <div class="form-group col-xs-offset-3 col-xs-3">
+            <label for="inputCustomerName">First Name</label>
+            <input type="text" class="form-control" id="inputCustomerName" name="firstname" value="{{ $customerDetail[0]->first_name}}">
+        </div>
+
+        <div class="col-xs-3">
+            <label for="inputCustomerName">Last Name</label>
+            <input type="text" class="form-control" id="inputCustomerName" name="lastname" value="{{ $customerDetail[0]->last_name}}">
         </div>
 
         <div class="form-group col-xs-offset-3  col-xs-6">
@@ -54,25 +59,18 @@
             <input type="text" class="form-control" id="inputCustomerZip" name="zip" value="{{ $customerDetail[0]->zip }}">
         </div>
 
-        <div class="form-group col-xs-offset-3 col-xs-2">
+        <div class="form-group col-xs-offset-3 col-xs-3">
             <label for="inputCustomerPhone">Phone</label>
             <input type="text" class="form-control" id="inputCustomerPhone" name="phone"  value="{{ $customerDetail[0]->phone }}">
         </div>
 
-        <div class="form-group col-xs-2">
-            <label for="inputCustomerExt">Extension</label>
-            <input type="text" class="form-control" id="inputCustomerExt" name="ext" value="{{ $customerDetail[0]->extension }}">
-        </div>
 
-        <div class="form-group col-xs-2">
+        <div class="form-group col-xs-3">
             <label for="inputCustomerEmail">Email</label>
             <input type="text" class="form-control" id="inputCustomerEmail" name="email" value="{{ $customerDetail[0]->email }}">
         </div>
 
-        <div class="form-group col-xs-offset-3 col-xs-6">
-            <label for="inputCustomerComment">Comments</label>
-            <textarea class="col-xs-12" id="inputCustomerComment" name="comments">{{ $customerDetail[0]->comments }}</textarea>
-        </div>
+
 
 {{ csrf_field() }}
 

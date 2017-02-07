@@ -73,7 +73,8 @@ class CustomerController extends Controller
 
             $editCustomer->editCustomerData(
                 $request->input('id'),
-                $request->input('name'),
+                $request->input('firstname'),
+                $request->input('lastname'),
                 $request->input('address1'),
                 $request->input('address2'),
                 $request->input('city'),
@@ -100,7 +101,8 @@ class CustomerController extends Controller
 
     private function dataIsNotValid($request, $validator){
         $validation = $validator->make($request->all(), [
-            'name' => 'required|min:2|max:40',
+            'firstname' => 'required|min:2|max:40',
+            'lastname' => 'required|min:2|max:40',
             'address1' => 'required|max:60',
             'address2' => 'nullable|max:60',
             'city' => 'required|max:30|alpha',
@@ -108,7 +110,7 @@ class CustomerController extends Controller
             'zip' => 'required|numeric',
             'phone' => 'required|numeric',
             'ext' => 'nullable|max:99999|numeric',
-            'email' => 'required|max:50|unique:customer',
+            'email' => 'required|max:50',
             'comments' => 'nullable'
         ]);
 

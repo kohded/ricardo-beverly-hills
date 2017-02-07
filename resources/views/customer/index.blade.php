@@ -10,6 +10,7 @@
         <tr>
             <th>Customer ID</th>
             <th>Customer Name</th>
+            <th>Claim ID</th>
             <th>Address</th>
             <th>City</th>
             <th>State</th>
@@ -25,6 +26,7 @@
             <tr>
                 <td>{{ $customer->id }}</td>
                 <td>{{ $customer->first_name . " " . $customer->last_name }}</td>
+                <td>{{ $customer->claim_id }}</td>
                 <td>{{ $customer->address }}</td>
                 <td>{{ $customer->city }}</td>
                 <td>{{ $customer->state }}</td>

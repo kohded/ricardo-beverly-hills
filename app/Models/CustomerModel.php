@@ -12,19 +12,18 @@ class CustomerModel
         return DB::table('customer')->get();
     }
 
-    public function insertCustomerData($name, $address, $address_2, $city, $state, $zip, $phone, $extension, $email, $comments)
+    public function insertCustomerData($first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email)
     {
         DB::table('customer')->insert([
-            'name' => $name,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'address' => $address,
             'address_2' => $address_2,
             'city' => $city,
             'state' => $state,
             'zip' => $zip,
             'phone' => $phone,
-            'extension' => $extension,
-            'email' => $email,
-            'comments' => $comments
+            'email' => $email
         ]);
     }
 
@@ -33,19 +32,19 @@ class CustomerModel
         return DB::table('customer')->where('id', '=', $customerId)->get();
     }
 
-    public function editCustomerData($customerId, $name, $address, $address_2, $city, $state, $zip, $phone, $extension, $email, $comments)
+    public function editCustomerData($customerId, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email)
     {
+
         DB::table('customer')->where('id', '=', $customerId)->update([
-            'name' => $name,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'address' => $address,
             'address_2' => $address_2,
             'city' => $city,
             'state' => $state,
             'zip' => $zip,
             'phone' => $phone,
-            'extension' => $extension,
-            'email' => $email,
-            'comments' => $comments
+            'email' => $email
         ]);
     }
 }
