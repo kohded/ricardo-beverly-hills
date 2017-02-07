@@ -98,6 +98,13 @@ class CustomerController extends Controller
         return view('customer.more-detail', ['customerDetail' => $customerDetail]);
     }
 
+    public function deleteCustomer($customerId){
+        $deleteCustomer = new CustomerModel();
+        $deleteCustomer->deleteCustomer($customerId);
+
+        return redirect('customer');
+    }
+
     private function dataIsNotValid($request, $validator){
         $validation = $validator->make($request->all(), [
             'firstname' => 'required|min:2|max:40',

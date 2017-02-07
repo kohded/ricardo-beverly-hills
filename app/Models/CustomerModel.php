@@ -48,4 +48,9 @@ class CustomerModel
             'email' => $email
         ]);
     }
+
+    public function deleteCustomer($customerId)
+    {
+        DB::table('customer')->delete($customerId);
+    }
 }

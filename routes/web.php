@@ -33,6 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Individual customer detail
         Route::get('/more-details/{customerId}', 'CustomerController@getCustomerDetails')->name('more-customer-details');
+
+        // Delete
+        Route::get('/delete/{customerId}', 'CustomerController@deleteCustomer')->name('customer.delete');
     });
 
     // Product
