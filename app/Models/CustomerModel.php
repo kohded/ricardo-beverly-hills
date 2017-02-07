@@ -36,6 +36,7 @@ class CustomerModel
     {
 
         DB::table('customer')->where('id', '=', $customerId)->update([
+            'id' => $customerId,
             'first_name' => $first_name,
             'last_name' => $last_name,
             'address' => $address,

@@ -63,7 +63,7 @@ class CustomerController extends Controller
     }
 
 
-    public function editCustomer(Request $request, \Illuminate\Validation\Factory $validator)
+    public function editCustomer(Request $request, \Illuminate\Validation\Factory $validator )
     {
         if ($this->dataIsNotValid($request, $validator)->fails()) {
             return redirect()->back()->withErrors($this->dataIsNotValid($request, $validator));
@@ -81,13 +81,12 @@ class CustomerController extends Controller
                 strtoupper($request->input('state')),
                 $request->input('zip'),
                 $request->input('phone'),
-                $request->input('ext'),
                 $request->input('email'),
                 $request->input('comments')
             );
 
 
-            return redirect()->route('more-customer-details', ['customerId' => 1]);
+            return redirect()->route('more-customer-details', ['customerId' => $request->input('id')]);
         }
     }
 

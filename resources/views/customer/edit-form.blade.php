@@ -70,6 +70,8 @@
             <input type="text" class="form-control" id="inputCustomerEmail" name="email" value="{{ $customerDetail[0]->email }}">
         </div>
 
+        <input type="hidden" name="id" value="{{ $customerDetail[0]->id}}">
+
 
 
 {{ csrf_field() }}
