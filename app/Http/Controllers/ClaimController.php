@@ -39,11 +39,14 @@ class ClaimController extends Controller
 
     public function claim($id)
     {
-        $claim = new ClaimModel();
-        $claim = $claim->getClaim($id);
+        $claimModel = new ClaimModel();
+        $claim = $claimModel->getClaim($id);
+        $comments = $claimModel->getComments($id);
+
 
         return view('claim.claim', [
-            'claim' => $claim
+            'claim' => $claim,
+            'comments' => $comments
         ]);
     }
 }

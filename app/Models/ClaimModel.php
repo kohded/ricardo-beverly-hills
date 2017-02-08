@@ -48,9 +48,11 @@ class ClaimModel
                 'customer.zip as cust_zip',
                 'product.style as product_style',
                 'repair_center.id as rc_id',
+                'repair_center.address as rc_address',
                 'repair_center.name as rc_name',
                 'repair_center.city as rc_city',
                 'repair_center.state as rc_state',
+                'repair_center.contact_name as rc_contact',
                 'repair_center.phone as rc_phone',
                 'repair_center.email as rc_email',
                 'repair_center.zip as rc_zip',
@@ -59,5 +61,15 @@ class ClaimModel
             ->where('customer.id', '=', $id)
             ->get();
         return $claim;
+    }
+
+    // Get comments for a claim
+    public function getComments($id)
+    {
+        $comments = DB::table('claim_comment')
+            ->where('claim_id', '=', $id)
+            ->get();
+
+        return $comments;
     }
 }

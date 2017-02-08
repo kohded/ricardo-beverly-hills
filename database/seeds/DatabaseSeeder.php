@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // Seed Claim Comment Table
-        foreach (range(1,50) as $index) {
+        foreach (range(1,200) as $index) {
             DB::table('claim_comment')->insert([
                 'claim_id'         => $faker->numberBetween($min = 1, $max = 50),
                 'created_at'       => $faker->dateTime(),
