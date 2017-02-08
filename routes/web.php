@@ -14,10 +14,17 @@
 Route::get('/', 'HomeController@getHomeView')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/claim', 'ClaimController@index')->name('claim-index');
-    Route::get('/claim/create', 'ClaimController@create')->name('claim-create');
-
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
+
+    // Claim
+    Route::group(['prefix' => 'claim'], function() {
+        // List
+        Route::get('/', 'ClaimController@index')->name('claim-index');
+        // Add
+        Route::get('/create', 'ClaimController@create')->name('claim-create');
+        // Detail
+        Route::get('/{id}', 'ClaimController@claim')->name('claim');
+    });
 
     // Customer
     Route::group(['prefix' => 'customer'], function() {

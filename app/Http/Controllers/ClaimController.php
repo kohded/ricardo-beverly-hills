@@ -36,4 +36,14 @@ class ClaimController extends Controller
             'products'       => $products
     	]);
     }
+
+    public function claim($id)
+    {
+        $claim = new ClaimModel();
+        $claim = $claim->getClaim($id);
+
+        return view('claim.claim', [
+            'claim' => $claim
+        ]);
+    }
 }

@@ -44,28 +44,6 @@ class DatabaseSeeder extends Seeder
 
     	DB::table('damage_code')->insert($damage_codes);
 
-    	// Seed Claim Table
-        foreach (range(1,50) as $index) {
-        	DB::table('claim')->insert([
-        		'created_at' 	   => $faker->dateTime(),
-        		'customer_id'	   => $index,
-        		'product_style'    => $faker->regexify('[A-Z0-9]{11}'),
-        		'damage_code_id'   => $faker->numberBetween($min = 9, $max = 16),
-        		'repair_center_id' => $faker->numberBetween($min = 1, $max = 15),
-        		'replaced'         => $faker->boolean($chanceOfGettingTrue = 20)
-        	]);
-        }
-
-        // Seed Claim Comment Table
-    	foreach (range(1,50) as $index) {
-	    	DB::table('claim_comment')->insert([
-	    		'claim_id' 		   => $faker->numberBetween($min = 1, $max = 50),
-	    		'created_at' 	   => $faker->dateTime(),
-	    		'author'     	   => $faker->lastName,
-	    		'comment'    	   => $faker->sentence($nbWords = 15,$variableNbWords = true),
-	    	]);
-    	}
-
         // Seed Customer Table
         foreach (range(1,50) as $index) {
         	DB::table('customer')->insert([
@@ -117,6 +95,28 @@ class DatabaseSeeder extends Seeder
 	    		'class_description' => $faker->sentence($nbWords = 6,$variableNbWords = true),
 	    		'launch_date'		=> $faker->date($format = 'Y-m-d', $max = 'now')
 	    	]);
-    	}   	
+    	} 
+
+        // Seed Claim Table
+        foreach (range(1,50) as $index) {
+            DB::table('claim')->insert([
+                'created_at'       => $faker->dateTime(),
+                'customer_id'      => $index,
+                'product_style'    => DB::table('product')->inRandomOrder()->first()->style,
+                'damage_code_id'   => DB::table('damage_code')->inRandomOrder()->first()->id,
+                'repair_center_id' => DB::table('repair_center')->inRandomOrder()->first()->id,
+                'replaced'         => $faker->boolean($chanceOfGettingTrue = 20)
+            ]);
+        }
+
+        // Seed Claim Comment Table
+        foreach (range(1,50) as $index) {
+            DB::table('claim_comment')->insert([
+                'claim_id'         => $faker->numberBetween($min = 1, $max = 50),
+                'created_at'       => $faker->dateTime(),
+                'author'           => $faker->lastName,
+                'comment'          => $faker->sentence($nbWords = 15,$variableNbWords = true),
+            ]);
+        }  	
     }
 }
