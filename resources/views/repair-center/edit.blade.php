@@ -85,11 +85,11 @@
         </div>
 
         {{--Form successfully added repair center--}}
-        @if(Session::has('name'))
+        @if(Session::has('message'))
             <div class="row">
                 <div class="col-md-12">
                     <p class="alert alert-success">
-                        {{ Session::get('name') }}
+                        {{ Session::get('message') }}
                     </p>
                 </div>
             </div>

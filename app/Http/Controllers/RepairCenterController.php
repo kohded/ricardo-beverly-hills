@@ -35,7 +35,7 @@ class RepairCenterController extends Controller
         $deleteRepairCenter = new RepairCenterModel();
         $deleteRepairCenter->deleteRepairCenter($id);
 
-        return redirect()->route('repair-center')->with('name', $name . ' deleted.');
+        return redirect()->route('repair-center')->with('message', $name . ' deleted.');
     }
 
     // Create View
@@ -77,7 +77,7 @@ class RepairCenterController extends Controller
         );
 
         return redirect()->route('repair-center.create')
-            ->with('name', $request->input('name') . ' added.');
+            ->with('message', $request->input('name') . ' added.');
     }
 
     // Edit View
@@ -125,6 +125,6 @@ class RepairCenterController extends Controller
         );
 
         return redirect()->route('repair-center.edit', ['id' => $request->input('id')])
-            ->with('name', $request->input('name') . ' edited.');
+            ->with('message', $request->input('name') . ' edited.');
     }
 }

@@ -7,9 +7,9 @@
                 <h1>Repair Centers</h1>
 
                 {{--Delete repair center alert--}}
-                @if(Session::has('name'))
+                @if(Session::has('message'))
                     <p class="alert alert-danger">
-                        {{ Session::get('name') }}
+                        {{ Session::get('message') }}
                     </p>
                 @endif
 
