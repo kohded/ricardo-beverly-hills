@@ -60,12 +60,12 @@ class RepairCenterController extends Controller
         $this->validate($request, [
             'name'         => 'required|max:40',
             'contact-name' => 'required|max:50',
-            'phone'        => 'required|max:15',
+            'phone'        => 'required|max:10',
             'email'        => 'required|email|max:50',
             'address'      => 'required|max:60',
             'city'         => 'required|max:30',
             'state'        => 'required|min:2|max:2',
-            'zip'          => 'required|min:5|max:10'
+            'zip'          => 'required|min:5|max:5'
         ]);
 
         $createRepairCenter = new RepairCenterModel();
@@ -106,12 +106,12 @@ class RepairCenterController extends Controller
         $this->validate($request, [
             'name'         => 'required|max:40',
             'contact-name' => 'required|max:50',
-            'phone'        => 'required|max:15',
+            'phone'        => 'required|max:10',
             'email'        => 'required|email|max:50',
             'address'      => 'required|max:60',
             'city'         => 'required|max:30',
             'state'        => 'required|min:2|max:2',
-            'zip'          => 'required|min:5|max:10',
+            'zip'          => 'required|min:5|max:5',
             'id'           => 'required'
         ]);
 

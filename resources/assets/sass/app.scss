@@ -29,9 +29,52 @@ footer {
 }
 
 table {
-  margin-top: $standard-margin-top;
+  margin-top: $margin-default;
 }
 
 .insertion-form {
-  margin-top: $standard-margin-top;
+  margin-top: $margin-default;
+}
+
+.mt-10 {
+  margin-top: $margin-secondary;
+}
+
+.mr-10 {
+  margin-right: $margin-secondary;
+}
+
+.mb-10 {
+  margin-bottom: $margin-secondary;
+}
+
+.ml-10 {
+  margin-left: $margin-secondary;
+}
+
+.mt-20 {
+  margin-top: $margin-default;
+}
+
+.mr-20 {
+  margin-right: $margin-default;
+}
+
+.mb-20 {
+  margin-bottom: $margin-default;
+}
+
+.ml-20 {
+  margin-left: $margin-default;
+}
+
+// Medium or greater
+@media only screen and (min-width: 768px) {
+}
+
+// Small or less
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .table-responsive {
+    margin-top: $margin-default;
+  }
 }

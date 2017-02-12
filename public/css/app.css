@@ -7717,4 +7717,42 @@ table {
   margin-top: 20px;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .table-responsive {
+    margin-top: 20px;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */

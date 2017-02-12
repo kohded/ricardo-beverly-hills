@@ -11,9 +11,14 @@
 |
 */
 
+// /login, /logout, /register, /password/reset, /password/reset/{token}
+Auth::routes();
+
+// Home
 Route::get('/', 'HomeController@getHomeView')->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function() {
+    // Dashboard
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
 
     // Claim
@@ -29,49 +34,48 @@ Route::group(['middleware' => 'auth'], function () {
     // Customer
     Route::group(['prefix' => 'customer'], function() {
         // List / Index
-        Route::get('/', 
+        Route::get('/',
             'CustomerController@getCustomerView')->name('customer');
         // Add
-        Route::get('/create', 
+        Route::get('/create',
             'CustomerController@getCreateView')->name('customer-create');
-        Route::post('/create', 
+        Route::post('/create',
             'CustomerController@addCustomer')->name('customer-create');
 
         // Edit
-        Route::get('/edit/{customerId}', 
+        Route::get('/edit/{customerId}',
             'CustomerController@getEditView')->name('customer-get-edit');
-        Route::post('/edit', 
+        Route::post('/edit',
             'CustomerController@editCustomer')->name('customer-edit');
 
         // Individual customer detail
-        Route::get('/more-details/{customerId}', 
+        Route::get('/more-details/{customerId}',
             'CustomerController@getCustomerDetails')->name('more-customer-details');
 
         // Delete
-        Route::get('/delete/{customerId}', 
+        Route::get('/delete/{customerId}',
             'CustomerController@deleteCustomer')->name('customer.delete');
     });
 
     // Product
     Route::group(['prefix' => 'product'], function() {
         // List / Index
-        Route::get('/', 
+        Route::get('/',
             'ProductController@index')->name('product');
         // Add
-        Route::get('/create', 
+        Route::get('/create',
             'ProductController@getCreateView')->name('product.create');
-        Route::post('/create', 
+        Route::post('/create',
             'ProductController@createProduct')->name('product.create');
         // Edit
-        Route::get('/edit/{style}', 
+        Route::get('/edit/{style}',
             'ProductController@getEditView')->name('product.edit');
-        Route::post('/edit', 
+        Route::post('/edit',
             'ProductController@editProduct')->name('product.edit-post');
         // Delete
-        Route::get('/delete/{style}/{description}', 
+        Route::get('/delete/{style}/{description}',
             'ProductController@deleteProduct')->name('product.delete');
     });
-
 
     // Repair Center
     Route::group(['prefix' => 'repair-center'], function() {
@@ -92,7 +96,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}/{name}',
             'RepairCenterController@deleteRepairCenter')->name('repair-center.delete');
     });
-});
 
-// /login, /logout, /register, /password/reset, /password/reset/{token}
-Auth::routes();
+    // Mail
+    Route::group(['prefix' => 'mail'], function() {
+        // Claim Confirmation
+        Route::post('/claim-confirmation',
+            'Mail\ClaimConfirmationController@sendMail')->name('mail.claim-confirmation');
+    });
+});
