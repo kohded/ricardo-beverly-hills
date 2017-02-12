@@ -29,6 +29,6 @@ class ClaimConfirmationController extends Controller
         // Client
         $mailer->to('ricardobevhills@gmail.com')->send(new \App\Mail\ClientMail($claim));
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Email sent successfully.');
     }
 }

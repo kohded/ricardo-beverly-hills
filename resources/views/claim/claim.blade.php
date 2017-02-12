@@ -6,6 +6,13 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Claim #{{ $claim[0]->claim_id }} </h1>
+
+                @if(Session::has('message'))
+                    <p class="alert alert-success">
+                        {{ Session::get('message') }}
+                    </p>
+                @endif
+
                 <hr>
             </div>
             <div class="col-sm-6">

@@ -6,7 +6,7 @@
             <div class="col-xs-12">
                 <h1>Repair Centers</h1>
 
-                {{--Delete repair center alertr--}}
+                {{--Delete repair center alert--}}
                 @if(Session::has('name'))
                     <p class="alert alert-danger">
                         {{ Session::get('name') }}
