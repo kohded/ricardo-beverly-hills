@@ -26,6 +26,8 @@ class ClaimConfirmationController extends Controller
         $mailer->to('ricardobevhills@gmail.com')->send(new \App\Mail\RicardoBeverlyHillsMail($claim, $comments));
         // Part Center
         $mailer->to('ricardobevhills@gmail.com')->send(new \App\Mail\PartCenterMail($claim, $comments));
+        // Client
+        $mailer->to('ricardobevhills@gmail.com')->send(new \App\Mail\ClientMail($claim));
 
         return redirect()->back();
     }
