@@ -24,7 +24,7 @@ class ClaimModel
 		return $claims;
 	}
 
-    // Select claim by ID
+    // Select claim by ID g
     public function getClaim($id)
     {
         //$claim = DB::table('claim')->where('id', '=', $id)->get();
