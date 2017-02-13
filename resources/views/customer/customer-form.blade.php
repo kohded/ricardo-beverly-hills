@@ -25,6 +25,7 @@
    @endif
 
 
+
     <form class="insertion-form" action="{{ URL::route('customer-create') }}" method="post">
         <div class="form-group col-xs-offset-3 col-xs-6">
             <label for="inputCustomerName">Customer Name</label>

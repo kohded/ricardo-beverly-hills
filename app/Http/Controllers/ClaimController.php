@@ -8,12 +8,14 @@ use App\Models\ClaimModel;
 
 class ClaimController extends Controller
 {
+
+
     public function index()
     {
         $title = 'All Claims';
 
         $claims = new ClaimModel();
-        $claims = $claims->getClaims();        
+        $claims = $claims->getClaims();
 
         return view('claim.index', [
         	'title' => $title,
@@ -48,5 +50,28 @@ class ClaimController extends Controller
             'claim' => $claim,
             'comments' => $comments
         ]);
+    }
+
+    public function addClaim(Request $request){
+
+        $claimModel = new ClaimModel();
+
+        $claimModel->insertClaim(
+            $request->input('firstname'),
+            $request->input('lastname'),
+            $request->input('address1'),
+            $request->input('address2'),
+            $request->input('city'),
+            strtoupper($request->input('state')),
+            $request->input('zip'),
+            $request->input('phone'),
+            $request->input('email'),
+            $request->input('comment'),
+            $request->input('products'),
+            $request->input('damagecode'),
+            $request->input('repaircenter'),
+            $request->input('replaced')
+        );
+
     }
 }

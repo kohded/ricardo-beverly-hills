@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ClaimModel
@@ -61,6 +62,102 @@ class ClaimModel
             ->where('customer.id', '=', $id)
             ->get();
         return $claim;
+    }
+
+    public function insertClaim($first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replaced){
+
+        DB::beginTransaction();
+
+
+        try {
+
+            DB::table('customer')->insert([
+                'claim_id' => 0,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'address' => $address,
+                'address_2' => $address_2,
+                'city' => $city,
+                'state' => $state,
+                'zip' => $zip,
+                'phone' => $phone,
+                'email' => $email
+            ]);
+
+        } catch (ValidationException $e)
+        {
+            DB::rollback();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
+
+        }
+
+        try {
+
+            $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
+
+            DB::table('claim')->insert([
+                'customer_id' => $customerID,
+                'product_style' => $products,
+                'damage_code_id' => $damage_code,
+                'repair_center_id' => $repair_center,
+                'replaced' => $replaced
+            ]);
+
+        } catch (ValidationException $e)
+        {
+            DB::rollback();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
+
+        }
+
+        try {
+
+            $claimId = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
+
+            DB::table('claim_comment')->insert([
+                'claim_id' => $claimId,
+                'author' => Auth::user()->id . ' : ' . Auth::user()->name,
+                'comment' => $comment
+            ]);
+
+        } catch (ValidationException $e)
+        {
+            DB::rollback();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
+
+        }
+
+        try {
+
+            $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
+            $claimId = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
+
+            DB::table('customer')->where('customer.id', '=', $customerID)->update(['claim_id' => $claimId]);
+
+        } catch (ValidationException $e)
+        {
+            DB::rollback();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
+
+        }
+
+        DB::commit();
     }
 
     // Get comments for a claim

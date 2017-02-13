@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/create', 'ClaimController@create')->name('claim-create');
         // Detail
         Route::get('/{id}', 'ClaimController@claim')->name('claim');
+        // Insert
+        Route::post('/create', 'ClaimController@addClaim')->name('claim.create');
     });
 
     // Customer

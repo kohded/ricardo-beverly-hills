@@ -7,6 +7,15 @@ use App\Models\CustomerModel;
 
 class CustomerController extends Controller
 {
+    //If this commented code is still here delete it,
+//    private $customerModel;
+//
+//    public function __construct()
+//    {
+//        $this->customerModel = new CustomerModel();
+//    }
+
+
     public function getCustomerView()
     {
         $customersModel = new CustomerModel();
