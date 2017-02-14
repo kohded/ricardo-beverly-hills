@@ -80,7 +80,17 @@ class ClaimController extends Controller
 
             return redirect()->route('claim', ['id' => $claimModel->getMostRecentClaimId()]);
         }
+    }
 
+    public function addComment(Request $request)
+    {
+        $claimModel = new ClaimModel();
+        $claimModel->insertComment(
+            $request->input('claim_id'),
+            $request->input('comment')
+        );
+
+        return redirect()->route('claim', ['id' => $request->input('claim_id')]);
     }
 
     public function deleteClaim($id)

@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/edit/{id}', 'ClaimController@editClaim')->name('claim.edit');
         // delete
         Route::get('/delete/{id}', 'ClaimController@deleteClaim')->name('claim.delete');
+        // Add a new comment
+        Route::post('/add-comment', 'ClaimController@addComment')->name('claim.add-comment');
     });
 
     // Customer

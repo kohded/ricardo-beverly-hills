@@ -25,7 +25,7 @@
 
         <div class="row">
             <div class="panel panel-info">
-                <div class="panel-heading">Repair Center</div>
+                <div class="panel-heading">Product</div>
                 <div class="panel-body">
                     <div class="col-sm-6">
                         <p><strong>Product Style: </strong>{{ $claim[0]->product_style }}</p>
@@ -91,9 +91,10 @@
                     </tr>
                 @endforeach
                     <tr><td colspan="3">
-                        <form action="" method="POST">
+                        <form action="{{ route('claim.add-comment') }}" method="post">
+                            <input type="hidden" name="claim_id" value="{{ $claim[0]->claim_id }}">
                             <div class="form-group col-xs-9">
-                                <input type="text" class="form-control" id="customer-last-name" name="lastname" placeholder="Enter new comment...">
+                                <input type="text" class="form-control" id="comment-comment" name="comment" placeholder="Enter new comment...">
                             </div>
                             <div class="form-group col-xs-3">
                                 <button class="btn btn-primary" type="submit">Add Comment</button>

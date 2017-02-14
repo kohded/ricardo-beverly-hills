@@ -179,11 +179,22 @@ class ClaimModel
         DB::commit();
     }
 
-    public function getMostRecentClaimId(){
+    public function insertComment($claimID, $comment)
+    {
+            DB::table('claim_comment')->insert([
+                'author' => Auth::user()->name,
+                'claim_id' => $claimID,
+                'comment' => $comment
+            ]);
+    }
+
+    public function getMostRecentClaimId()
+    {
         return DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
     }
 
-    public function deleteClaim($id){
+    public function deleteClaim($id)
+    {
         DB::table('claim')->where('id', '=', $id)->delete();
     }
 
