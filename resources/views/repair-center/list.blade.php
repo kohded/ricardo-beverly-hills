@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -50,14 +50,14 @@
                                 <td>
                                     <a href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
-                                        ]) }}" class="btn btn-success">Edit
+                                        ]) }}" class="btn btn-success btn-sm">Edit
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('repair-center.delete', [
                                             'id' => $repairCenter->id,
                                             'name' => $repairCenter->name
-                                        ]) }}" class="btn btn-danger">Delete
+                                        ]) }}" class="btn btn-danger btn-sm">Delete
                                     </a>
                                 </td>
                             </tr>

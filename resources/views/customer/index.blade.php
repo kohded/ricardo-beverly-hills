@@ -5,7 +5,7 @@
 
     <a href="{{ URL::route('customer-create') }}" class="btn btn-primary" role="button">Create New Customer</a>
 
-    <table class="table">
+    <table class="table table-hover table-condensed">
         <thead>
         <tr>
             <th>Customer ID</th>
@@ -32,9 +32,9 @@
                 <td>{{ $customer->state }}</td>
                 <td>{{ $customer->zip }}</td>
                 <td>{{ $customer->email }}</td>
-                <td><a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id ]) }}" class="btn btn-default">More Detail</a></td>
-                <td><a href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}" class="btn btn-success">Edit</a></td>
-                <td><a href="{{ URL::route('customer.delete', [ 'customerId' => $customer->id ])  }}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id ]) }}" class="btn btn-default btn-sm">More Detail</a></td>
+                <td><a href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}" class="btn btn-success btn-sm">Edit</a></td>
+                <td><a href="{{ URL::route('customer.delete', [ 'customerId' => $customer->id ])  }}" class="btn btn-danger btn-sm">Delete</a></td>
 
             </tr>
         @endforeach

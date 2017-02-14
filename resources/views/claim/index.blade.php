@@ -5,7 +5,7 @@
 
 	<a href="{{ URL::route('claim-create') }}" class="btn btn-primary" role="button">Create New Claim</a>
 
-	<table class="table table-hover">
+	<table class="table table-hover table-condensed">
 		<thead>
 		<tr>
 			<th>Claim Number</th>
@@ -22,7 +22,7 @@
 			<a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
 				<tr>
 					<td><a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
-					<button class="btn btn-primary col-xs-12">
+					<button class="btn btn-primary btn-sm col-xs-12">
 						{{ $claim->claim_id }}
 					</button>
 					</a></td>
@@ -31,8 +31,8 @@
 					<td>{{ $claim->repair_center }}</td>
 					<td>{{ $claim->created_at }}</td>
 					<td>{{ $claim->closed_at }}</td>
-					<td><a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}" class="btn btn-success">Edit</a></td>
-					<td><a href="{{ URL::route('claim.delete', [ 'id' => $claim->claim_id])  }}" class="btn btn-danger">Delete</a></td>
+					<td><a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}" class="btn btn-success btn-sm">Edit</a></td>
+					<td><a href="{{ URL::route('claim.delete', [ 'id' => $claim->claim_id])  }}" class="btn btn-danger btn-sm">Delete</a></td>
 				</tr>
 			</a>
 		@endforeach

@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="table-responsive">
-					<table class="table table-hover">
+					<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
 								<th>Style</th>
@@ -45,14 +45,14 @@
 								<td>
 									<a href="{{ route('product.edit', [
 										'style' => $product->style
-										]) }}" class="btn btn-success">Edit
+										]) }}" class="btn btn-success btn-sm">Edit
 									</a>
 								</td>
 								<td>
 									<a href="{{ route('product.delete', [
 										'style' => $product->style,
 										'description' => $product->description
-										]) }}" class="btn btn-danger">Delete
+										]) }}" class="btn btn-danger btn-sm">Delete
 									</a>
 								</td>
 							</tr>
