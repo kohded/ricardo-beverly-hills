@@ -35,17 +35,17 @@
 
                     <div class="form-group col-xs-6">
                         <label for="customer-first-name">First</label>
-                        <input type="text" class="form-control" id="customer-first-name" name="firstname" placeholder="First">
+                        <input type="text" class="form-control" id="customer-first-name" name="firstname" placeholder="First" required>
                     </div>
 
                     <div class="form-group col-xs-6">
                         <label for="customer-last-name">Last</label>
-                        <input type="text" class="form-control" id="customer-last-name" name="lastname" placeholder="Last">
+                        <input type="text" class="form-control" id="customer-last-name" name="lastname" placeholder="Last" required>
                     </div>
 
                     <div class="form-group col-xs-12">
                         <label for="customer-address1">Address 1</label>
-                        <input type="text" class="form-control" id="customer-address1" name="address1" placeholder="Address 1">
+                        <input type="text" class="form-control" id="customer-address1" name="address1" placeholder="Address 1" required>
                     </div>
 
                     <div class="form-group col-xs-12">
@@ -55,27 +55,27 @@
 
                     <div class="form-group col-xs-7">
                         <label for="customer-city">City</label>
-                        <input type="text" class="form-control" id="customer-city" name="city" placeholder="City">
+                        <input type="text" class="form-control" id="customer-city" name="city" placeholder="City" required>
                     </div>
 
                     <div class="form-group col-xs-2">
                         <label for="customer-state">State</label>
-                        <input type="text" class="form-control" id="customer-state" name="state" placeholder="WA ">
+                        <input type="text" class="form-control" id="customer-state" name="state" placeholder="WA " required>
                     </div>
 
                     <div class="form-group col-xs-3">
                         <label for="customer-zip">Zip</label>
-                        <input type="text" class="form-control" id="customer-zip" name="zip" placeholder="Zip">
+                        <input type="text" class="form-control" id="customer-zip" name="zip" placeholder="Zip" required>
                     </div>
 
                     <div class="form-group col-xs-6">
                         <label for="customer-phone">Phone</label>
-                        <input type="text" class="form-control" id="customer-phone" name="phone" placeholder="###-###-####">
+                        <input type="text" class="form-control" id="customer-phone" name="phone" placeholder="###-###-####" required>
                     </div>
 
                     <div class="form-group col-xs-6">
                         <label for="customer-email">Email</label>
-                        <input type="text" class="form-control" id="customer-email" name="email" placeholder="Email">
+                        <input type="text" class="form-control" id="customer-email" name="email" placeholder="Email" required>
                     </div>
                     <div class="col-xs-12">
                         <hr />

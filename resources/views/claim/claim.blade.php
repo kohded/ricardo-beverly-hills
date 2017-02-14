@@ -94,7 +94,7 @@
                         <form action="{{ route('claim.add-comment') }}" method="post">
                             <input type="hidden" name="claim_id" value="{{ $claim[0]->claim_id }}">
                             <div class="form-group col-xs-9">
-                                <input type="text" class="form-control" id="comment-comment" name="comment" placeholder="Enter new comment...">
+                                <input type="text" class="form-control" id="comment-comment" name="comment" placeholder="Enter new comment..." required>
                             </div>
                             <div class="form-group col-xs-3">
                                 <button class="btn btn-primary" type="submit">Add Comment</button>
