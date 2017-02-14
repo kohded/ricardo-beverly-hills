@@ -15,7 +15,7 @@ class CreateClaimTable extends Migration
     {
         Schema::create('claim', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable(true)->useCurrent();
             $table->unsignedInteger('customer_id');
             $table->string('product_style', 11);
             $table->unsignedInteger('damage_code_id');
