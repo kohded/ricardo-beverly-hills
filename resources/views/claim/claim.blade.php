@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        {{--Product--}}
+        Product
         <div class="row">
             <div class="col-xs-12">
                 <h3>Product</h3>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        {{--Customer--}}
+        Customer
         <div class="row">
             <div class="col-xs-12">
                 <h3>Customer</h3>
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        {{--Repair Center--}}
+        Repair Center
         <div class="row">
             <div class="col-xs-12">
                 <h3>Repair Center</h3>
@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        {{--Comments--}}
+        Comments
         <div class="row">
             <div class="col-xs-12">
                 <h3>Comments</h3>
@@ -100,24 +100,24 @@
         </div>
 
         <div class="row">
-            {{--Back Button--}}
+            Back Button
             <div class="col-xs-4">
                 <a href="{{ route('claim-index') }}" class="btn btn-primary">
                     Back
                 </a>
             </div>
 
-            {{--Email Button--}}
+            Email Button
             <div class="col-xs-8">
                 <form action="{{ route('mail.claim-confirmation') }}"
                       method="post" class="pull-right">
-                    {{--Claim Id--}}
+                    Claim Id
                     <input type="number" name="claim-id" value="{{ $claim[0]->claim_id }}" hidden>
                     <button type="submit" class="btn btn-primary">Send Email</button>
                     {{ csrf_field() }}
                 </form>
 
-                {{--Emails Sent--}}
+                Emails Sent
                 <p class="pull-right mt-10 mr-20"><strong>Emails Sent: </strong>0</p>
             </div>
         </div>

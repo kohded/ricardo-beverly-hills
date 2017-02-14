@@ -59,7 +59,7 @@ class ClaimModel
                 'repair_center.zip as rc_zip',
                 'damage_code.id as dc_id',
                 'damage_code.part as dc_part')
-            ->where('customer.id', '=', $id)
+            ->where('claim.id', '=', $id)
             ->get();
         return $claim;
     }
@@ -71,18 +71,37 @@ class ClaimModel
 
         try {
 
-            DB::table('customer')->insert([
-                'claim_id' => 0,
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'address' => $address,
-                'address_2' => $address_2,
-                'city' => $city,
-                'state' => $state,
-                'zip' => $zip,
-                'phone' => $phone,
-                'email' => $email
-            ]);
+            $customers = DB::table('customer')->get();
+
+            //Checks to see if customer exists in the db, if it does then the insert new customer step is skipped
+            $isCustomerInDB = false;
+            foreach($customers as $customer){
+
+                if($customer->email == $email) {
+
+                    $isCustomerInDB = true;
+                    break;
+                }
+            }
+
+            if(!$isCustomerInDB) {
+
+                DB::table('customer')->insert([
+                    'claim_id' => 0,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'address' => $address,
+                    'address_2' => $address_2,
+                    'city' => $city,
+                    'state' => $state,
+                    'zip' => $zip,
+                    'phone' => $phone,
+                    'email' => $email
+                ]);
+
+            }
+
+
 
         } catch (ValidationException $e)
         {
@@ -162,6 +181,10 @@ class ClaimModel
 
     public function getMostRecentClaimId(){
         return DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
+    }
+
+    public function deleteClaim($id){
+        DB::table('claim')->where('id', '=', $id)->delete();
     }
 
     // Get comments for a claim

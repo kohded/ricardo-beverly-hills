@@ -31,6 +31,8 @@
 					<td>{{ $claim->repair_center }}</td>
 					<td>{{ $claim->created_at }}</td>
 					<td>{{ $claim->closed_at }}</td>
+					<td><a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}" class="btn btn-success">Edit</a></td>
+					<td><a href="{{ URL::route('claim.delete', [ 'id' => $claim->claim_id])  }}" class="btn btn-danger">Delete</a></td>
 				</tr>
 			</a>
 		@endforeach

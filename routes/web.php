@@ -26,37 +26,32 @@ Route::group(['middleware' => 'auth'], function() {
         // List
         Route::get('/', 'ClaimController@index')->name('claim-index');
         // Add
-        Route::get('/create', 'ClaimController@create')->name('claim-create');
-        // Detail
-        Route::get('/{id}', 'ClaimController@claim')->name('claim');
+        Route::get('/create', 'ClaimController@getCreateView')->name('claim-create');
         // Insert
         Route::post('/create', 'ClaimController@addClaim')->name('claim.create');
+        // Detail
+        Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')->name('claim');
+        // edit
+        Route::get('/edit/{id}', 'ClaimController@editClaim')->name('claim.edit');
+        // delete
+        Route::get('/delete/{id}', 'ClaimController@deleteClaim')->name('claim.delete');
     });
 
     // Customer
     Route::group(['prefix' => 'customer'], function() {
         // List / Index
-        Route::get('/',
-            'CustomerController@getCustomerView')->name('customer');
+        Route::get('/', 'CustomerController@getCustomerView')->name('customer');
         // Add
-        Route::get('/create',
-            'CustomerController@getCreateView')->name('customer-create');
-        Route::post('/create',
-            'CustomerController@addCustomer')->name('customer-create');
-
+        Route::get('/create', 'CustomerController@getCreateView')->name('customer-create');
+        // Insert
+        Route::post('/create', 'CustomerController@addCustomer')->name('customer-create');
         // Edit
-        Route::get('/edit/{customerId}',
-            'CustomerController@getEditView')->name('customer-get-edit');
-        Route::post('/edit',
-            'CustomerController@editCustomer')->name('customer-edit');
-
+        Route::get('/edit/{customerId}', 'CustomerController@getEditView')->name('customer-get-edit');
+        Route::post('/edit', 'CustomerController@editCustomer')->name('customer-edit');
         // Individual customer detail
-        Route::get('/more-details/{customerId}',
-            'CustomerController@getCustomerDetails')->name('more-customer-details');
-
+        Route::get('/more-details/{customerId}', 'CustomerController@getCustomerDetails')->name('more-customer-details');
         // Delete
-        Route::get('/delete/{customerId}',
-            'CustomerController@deleteCustomer')->name('customer.delete');
+        Route::get('/delete/{customerId}', 'CustomerController@deleteCustomer')->name('customer.delete');
     });
 
     // Product

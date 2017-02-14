@@ -18,28 +18,28 @@ class ClaimController extends Controller
         $claims = $claims->getClaims();
 
         return view('claim.index', [
-        	'title' => $title,
-        	'claims' => $claims
+            'title' => $title,
+            'claims' => $claims
         ]);
     }
 
-    public function create()
+    public function getCreateView()
     {
-    	$title = 'Create Claim';
+        $title = 'Create Claim';
 
         $damage_codes = DB::table('damage_code')->get();
         $repair_centers = DB::table('repair_center')->orderBy('name', 'asc')->get();
         $products = DB::table('product')->orderBy('style', 'asc')->get();
 
-    	return view('claim.claim-form', [
-    		'title'          => $title,
-            'damage_codes'   => $damage_codes,
+        return view('claim.claim-form', [
+            'title' => $title,
+            'damage_codes' => $damage_codes,
             'repair_centers' => $repair_centers,
-            'products'       => $products
-    	]);
+            'products' => $products
+        ]);
     }
 
-    public function claim($id)
+    public function getClaimDetails($id)
     {
         $claimModel = new ClaimModel();
         $claim = $claimModel->getClaim($id);
@@ -52,7 +52,8 @@ class ClaimController extends Controller
         ]);
     }
 
-    public function addClaim(Request $request, \Illuminate\Validation\Factory $validator){
+    public function addClaim(Request $request, \Illuminate\Validation\Factory $validator)
+    {
 
         if ($this->inputValidation($request, $validator)->fails()) {
             return redirect()->back()->withErrors($this->inputValidation($request, $validator));
@@ -78,11 +79,26 @@ class ClaimController extends Controller
             );
 
             return redirect()->route('claim', ['id' => $claimModel->getMostRecentClaimId()]);
-    }
+        }
 
     }
 
-    private function inputValidation($request, $validator){
+    public function deleteClaim($id)
+    {
+
+        $claimModel = new ClaimModel();
+        $claimModel->deleteClaim($id);
+
+        return redirect('claim');
+    }
+
+    public function editClaim()
+    {
+
+    }
+
+    private function inputValidation($request, $validator)
+    {
         $validation = $validator->make($request->all(), [
             'firstname' => 'required|min:2|max:40',
             'lastname' => 'required|min:2|max:40',
