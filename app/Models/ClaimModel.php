@@ -160,6 +160,10 @@ class ClaimModel
         DB::commit();
     }
 
+    public function getMostRecentClaimId(){
+        return DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
+    }
+
     // Get comments for a claim
     public function getComments($id)
     {

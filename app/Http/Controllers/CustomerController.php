@@ -36,8 +36,8 @@ class CustomerController extends Controller
 
     public function addCustomer(Request $request, \Illuminate\Validation\Factory $validator)
     {
-        if ($this->dataIsNotValid($request, $validator)->fails()) {
-            return redirect()->back()->withErrors($this->dataIsNotValid($request, $validator));
+        if ($this->inputValidation($request, $validator)->fails()) {
+            return redirect()->back()->withErrors($this->inputValidation($request, $validator));
         } else {
                 $createCustomer = new CustomerModel();
 
@@ -74,8 +74,8 @@ class CustomerController extends Controller
 
     public function editCustomer(Request $request, \Illuminate\Validation\Factory $validator )
     {
-        if ($this->dataIsNotValid($request, $validator)->fails()) {
-            return redirect()->back()->withErrors($this->dataIsNotValid($request, $validator));
+        if ($this->inputValidation($request, $validator)->fails()) {
+            return redirect()->back()->withErrors($this->inputValidation($request, $validator));
         } else {
 
             $editCustomer = new CustomerModel();
@@ -114,7 +114,7 @@ class CustomerController extends Controller
         return redirect('customer');
     }
 
-    private function dataIsNotValid($request, $validator){
+    private function inputValidation($request, $validator){
         $validation = $validator->make($request->all(), [
             'firstname' => 'required|min:2|max:40',
             'lastname' => 'required|min:2|max:40',
@@ -124,7 +124,6 @@ class CustomerController extends Controller
             'state' => 'required|max:2|min:2|alpha',
             'zip' => 'required|numeric',
             'phone' => 'required|numeric',
-            'ext' => 'nullable|max:99999|numeric',
             'email' => 'required|max:50',
             'comments' => 'nullable'
         ]);

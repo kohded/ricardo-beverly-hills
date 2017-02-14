@@ -6,6 +6,27 @@
             <div class="col-xs-12 col-md-6 col-md-offset-3">
                 {{--<h4>{{ $title }}</h4>--}}
 
+                @if(count($errors->all()))
+                    <div class="col-xs-offset-3 col-xs-6 alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error  }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                {{--Form successfully added product--}}
+                @if(Session::has('message'))
+                    <div class="row">
+                        <div class="col-xs-offset-3 col-xs-6">
+                            <p class="alert alert-success text-center">
+                                {{ Session::get('message') }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
+
                 <form action="{{ URL::route('claim.create') }}" method="post">
 
                     <legend>Create New Claim</legend>
