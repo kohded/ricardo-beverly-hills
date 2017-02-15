@@ -90,7 +90,8 @@ class ClaimController extends Controller
             $request->input('comment')
         );
 
-        return redirect()->route('claim', ['id' => $request->input('claim_id')]);
+        return redirect()->route('claim', ['id' => $request->input('claim_id')])
+            ->with('message', 'Comment successfully added to claim.');
     }
 
     public function deleteClaim($id)
