@@ -35,7 +35,7 @@
                                 <a href="{{ route('dashboard') }}">Dashboard</a>
                             </li>
                             <li>
-                                <a href="{{ url('/register') }}">Register</a>
+                                <a href="{{ url('/register') }}">Register User</a>
                             </li>
                             <li>
                                 <a href="{{ url('/logout') }}" onclick="event.preventDefault();

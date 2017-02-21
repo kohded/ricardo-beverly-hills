@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Auth\User;
+use App\Models\Auth\Role;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/register';
 
     /**
      * Create a new controller instance.
@@ -55,7 +56,12 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return $this->registered($request, $user) ?: redirect($this->redirectPath());
+        // Assign role to user.
+        $role = new Role();
+        $role = $role->getSelectedRole($request->get('role'));
+        $user->roles()->attach($role);
+
+        return redirect($this->redirectPath());
     }
 
     /**
@@ -70,6 +76,7 @@ class RegisterController extends Controller
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'role'     => 'required',
         ]);
     }
 

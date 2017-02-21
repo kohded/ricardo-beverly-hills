@@ -60,14 +60,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="role" class="col-md-4 control-label">Permission Level</label>
+                            <label for="role" class="col-md-4 control-label">User Role</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="role">
-                                    <option>DISABLED</option> {{--Use Zizaco/entrust role-based Permissions--}}
-                                    <option>Ricardo Beverly Hills</option>
-                                    <option>Parts Company</option>
-                                    <option>Repair Center</option>
+                                <select class="form-control" id="role" name="role" required>
+                                    <option value="ricardo-beverly-hills">Ricardo Beverly Hills</option>
+                                    <option value="part-company">Part Company</option>
+                                    <option value="repair-center">Repair Center</option>
                                 </select>
                             </div>
                         </div>
