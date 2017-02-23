@@ -11,13 +11,18 @@
 |
 */
 
-// /login, /logout, /register, /password/reset, /password/reset/{token}
+// Authentication Routes - /login, /logout, /password/reset, /password/reset/{token}
 Auth::routes();
 
 // Home
 Route::get('/', 'HomeController@getHomeView')->name('home');
 
-Route::group(['middleware' => 'auth'], function() {
+// Ricardo Beverly Hills Role
+Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
+    // Registration Routes - Only a RBH employee can register a user.
+    $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    $this->post('register', 'Auth\RegisterController@register');
+
     // Dashboard
     Route::get('/dashboard', 'DashboardController@getDashboardView')->name('dashboard');
 
@@ -102,4 +107,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/claim-confirmation',
             'Mail\ClaimConfirmationController@sendMail')->name('mail.claim-confirmation');
     });
+});
+
+// Part Company Role
+Route::group(['middleware' => 'role:part-company'], function() {
+
+});
+
+// Repair Center Role
+Route::group(['middleware' => 'role:repair-center'], function() {
+
 });
