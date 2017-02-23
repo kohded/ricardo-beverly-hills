@@ -111,10 +111,14 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
 
 // Part Company Role
 Route::group(['middleware' => 'role:part-company'], function() {
+    Route::group(['prefix' => 'part-company-claim'], function() {
 
+    });
 });
 
 // Repair Center Role
 Route::group(['middleware' => 'role:repair-center'], function() {
+    Route::group(['prefix' => 'repair-center-claim'], function() {
 
+    });
 });
