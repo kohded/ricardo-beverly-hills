@@ -128,7 +128,9 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
 // Part Company Role
 Route::group(['middleware' => 'role:part-company'], function() {
     Route::group(['prefix' => 'part-company-claim'], function() {
-
+        // List
+        Route::get('/', 'Role\PartCompany\PartCompanyController@getListView')
+            ->name('part-company-claim');
     });
 });
 
