@@ -5,21 +5,31 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\ClaimModel;
+use App\Models\ProductModel;
+use App\Models\RepairCenterModel;
 
 class ClaimController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
         $title = 'All Claims';
 
-        $claims = new ClaimModel();
-        $claims = $claims->getClaims();
+        $claimModel = new ClaimModel();
+        $claims = $claimModel->getClaims(20, $request);
+
+        $rcModel = new RepairCenterModel();
+        $repair_centers = $rcModel->getRepairCenters();
+
+        $productModel = new ProductModel;
+        $products = $productModel->getProducts();
 
         return view('claim.index', [
-            'title' => $title,
-            'claims' => $claims
+            'title'          => $title,
+            'claims'         => $claims,
+            'products'       => $products,
+            'repair_centers' => $repair_centers
         ]);
     }
 
@@ -28,14 +38,18 @@ class ClaimController extends Controller
         $title = 'Create Claim';
 
         $damage_codes = DB::table('damage_code')->get();
-        $repair_centers = DB::table('repair_center')->orderBy('name', 'asc')->get();
-        $products = DB::table('product')->orderBy('style', 'asc')->get();
+
+        $rcModel = new RepairCenterModel();
+        $repair_centers = $rcModel->getRepairCenters();
+
+        $productModel = new ProductModel;
+        $products = $productModel->getProducts();
 
         return view('claim.claim-form', [
-            'title' => $title,
-            'damage_codes' => $damage_codes,
+            'title'          => $title,
+            'damage_codes'   => $damage_codes,
             'repair_centers' => $repair_centers,
-            'products' => $products
+            'products'       => $products
         ]);
     }
 
@@ -112,18 +126,18 @@ class ClaimController extends Controller
     {
         $validation = $validator->make($request->all(), [
             'firstname' => 'required|min:2|max:40',
-            'lastname' => 'required|min:2|max:40',
-            'address1' => 'required|max:60',
-            'address2' => 'nullable|max:60',
-            'city' => 'required|max:30|alpha',
-            'state' => 'required|max:2|min:2|alpha',
-            'zip' => 'required|numeric',
-            'phone' => 'required|numeric',
-            'email' => 'required|max:50',
-            'comments' => 'nullable',
-            'products' => 'required',
+            'lastname'  => 'required|min:2|max:40',
+            'address1'  => 'required|max:60',
+            'address2'  => 'nullable|max:60',
+            'city'      => 'required|max:30|alpha',
+            'state'     => 'required|max:2|min:2|alpha',
+            'zip'       => 'required|numeric',
+            'phone'     => 'required|numeric',
+            'email'     => 'required|max:50',
+            'comments'  => 'nullable',
+            'products'  => 'required',
             'repaircenter' => 'required',
-            'replaced' => 'required'
+            'replaced'  => 'required'
         ]);
 
         return $validation;

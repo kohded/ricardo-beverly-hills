@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = new ProductModel();
-        $products = $products->getProducts();
+        $products = $products->getProducts(20);
 
         return view('product.index', [
         	'products' => $products

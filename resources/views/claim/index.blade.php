@@ -4,6 +4,9 @@
 	<h1>All Claims</h1>
 
 	<a href="{{ URL::route('claim-create') }}" class="btn btn-primary" role="button">Create New Claim</a>
+	<hr>
+
+	@include('claim.filter-form')
 
 	<table class="table table-hover table-condensed">
 		<thead>

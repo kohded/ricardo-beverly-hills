@@ -3,3 +3,9 @@ Questions for Daunte
 Can't have a print button in the email - you'll have to print from browser.  (Claims, Replace Order).
 
 Emailing button - on the list or in individual claims.
+
+Should part center get comments on claims?
+
+Email is being sent to TWC parts center, client, and Ricardo (Daunte).  Do we need to send to the Repair Center as well?
+
+Are any customers (who want to open a claim) corporations?  Who might open several claims?

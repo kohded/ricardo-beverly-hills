@@ -11,10 +11,15 @@ class RepairCenterModel
      *
      * @return mixed
      */
-    public function getRepairCenters()
+    public function getRepairCenters($rcPerPage = null)
     {
-        $repairCenters = DB::table('repair_center')->orderBy('name', 'ASC')->paginate(20);
-
+            $repairCenters = DB::table('repair_center')->orderBy('name', 'ASC')
+                ->when($rcPerPage, function($query) use($rcPerPage) {
+                    return $query->paginate($rcPerPage);
+                }, function($query) {
+                    return $query->get();
+                });
+            
         return $repairCenters;
     }
 

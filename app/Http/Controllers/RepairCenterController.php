@@ -18,7 +18,7 @@ class RepairCenterController extends Controller
     public function getListView()
     {
         $repairCenters = new RepairCenterModel();
-        $repairCenters = $repairCenters->getRepairCenters();
+        $repairCenters = $repairCenters->getRepairCenters(20);
 
         return view('repair-center.list', ['repairCenters' => $repairCenters]);
     }

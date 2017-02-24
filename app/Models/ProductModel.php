@@ -8,9 +8,18 @@ use Carbon\Carbon;
 class ProductModel
 {
 	// Select all products
-	public function getProducts()
+	public function getProducts($productsPerPage = 0)
 	{
-		$products = DB::table('product')->paginate(20);
+        $products;
+        
+        if ($productsPerPage > 0)
+        {
+            $products = DB::table('product')->paginate($productsPerPage);
+        }
+        else
+        {
+            $products = DB::table('product')->orderBy('style', 'asc')->get();
+        }
 
 		return $products;
 	}

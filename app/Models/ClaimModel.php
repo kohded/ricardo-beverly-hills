@@ -8,19 +8,76 @@ use Illuminate\Support\Facades\DB;
 class ClaimModel
 {
 	// Select all products
-	public function getClaims()
+	public function getClaims($claimsPerPage = null, $request = null)
 	{
+        $rcId = $request->input('rc');
+        $product = $request->input('product');
+        $searchString = $request->input('search');
+        $searchField = $request->input('field');
+        $status = $request->input('status');
+
 		$claims = DB::table('claim')
             ->join('customer', 'claim.customer_id', '=', 'customer.id')
             ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
             ->select('claim.id as claim_id', 
                     'customer.first_name as first', 
-                    'customer.last_name as last', 
+                    'customer.last_name as last',
                     'claim.product_style as style', 
                     'repair_center.name as repair_center', 
+                    'repair_center.id as repair_center_id',
                     'claim.created_at as created_at', 
                     'claim.date_closed as closed_at')
-            ->paginate(20);
+            ->when($searchString, function($query) use($searchString) {
+                if (isset($searchField)) 
+                {
+                    if ($searchField === 'claim')
+                    {
+                        return $query->where('claim.id', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'cust')
+                    {
+                        return $query->where('customer.first_name', 'like', '%' . $searchString . '%')
+                                    ->orWhere('customer.last_name', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'rc')
+                    {
+                        return $query->where('repair_center.name', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'product')
+                    {
+                        return $query->where('claim.product_style', 'like', '%' . $searchString . '%');
+                    }
+                }
+                else
+                {
+                    return $query->where('claim.id', 'like', '%' . $searchString . '%')
+                                ->orWhere('customer.first_name', 'like', '%' . $searchString . '%')
+                                ->orWhere('customer.last_name', 'like', '%' . $searchString . '%')
+                                ->orWhere('claim.product_style', 'like', '%' . $searchString . '%')
+                                ->orWhere('repair_center.name', 'like', '%' . $searchString . '%');
+                }
+            })
+
+            ->when($product, function($query) use($product) {
+                return $query->where('claim.product_style', '=', $product);
+            })
+
+            ->when($rcId, function($query) use($rcId) {
+                return $query->where('repair_center.id', '=', $rcId);
+            })
+
+            ->when($status === "Open", function($query) {
+                return $query->where('claim.date_closed', '=', null);
+            })
+            ->when($status === "Closed", function($query) {
+                return $query->where('claim.date_closed', '!=', null);
+            })
+
+            ->when($claimsPerPage, function ($query) use ($claimsPerPage) {
+                return $query->paginate($claimsPerPage);
+            }, function ($query) {
+                return $query->get();
+            });
 
 		return $claims;
 	}
