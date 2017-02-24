@@ -141,5 +141,8 @@ Route::group(['middleware' => 'role:repair-center'], function() {
         // More Details
         Route::get('/more-details/{id}', 'Role\RepairCenter\RepairCenterController@getMoreDetailsView')
             ->name('repair-center-claim.more-details');
+        // Add Comment
+        Route::post('/add-comment', 'Role\RepairCenter\RepairCenterController@addComment')
+            ->name('repair-center-claim.add-comment');
     });
 });

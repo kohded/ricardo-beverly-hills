@@ -44,4 +44,17 @@ class RepairCenterController extends Controller
             'comments' => $comments
         ]);
     }
+
+    public function addComment(Request $request)
+    {
+        $comment = new ClaimModel();
+        $comment->insertComment(
+            $request->input('claim_id'),
+            $request->input('comment')
+        );
+
+        return redirect()->route('repair-center-claim.more-details', [
+            'id' => $request->input('claim_id')
+        ])->with('message', 'Comment successfully added to claim.');
+    }
 }
