@@ -138,5 +138,8 @@ Route::group(['middleware' => 'role:repair-center'], function() {
         // List
         Route::get('/', 'Role\RepairCenter\RepairCenterController@getListView')
             ->name('repair-center-claim');
+        // More Details
+        Route::get('/more-details/{id}', 'Role\RepairCenter\RepairCenterController@getMoreDetailsView')
+            ->name('repair-center-claim.more-details');
     });
 });

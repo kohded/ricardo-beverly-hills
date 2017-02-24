@@ -26,4 +26,22 @@ class RepairCenterController extends Controller
             'claims' => $claims,
         ]);
     }
+
+    /**
+     * Get more details about claim by id.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getMoreDetailsView($id)
+    {
+        $claimModel = new ClaimModel();
+        $claim = $claimModel->getClaim($id);
+        $comments = $claimModel->getComments($id);
+
+        return view('role.repair-center.more-details', [
+            'claim'    => $claim,
+            'comments' => $comments
+        ]);
+    }
 }

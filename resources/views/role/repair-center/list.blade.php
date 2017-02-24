@@ -25,6 +25,13 @@
                         <tbody>
                         @foreach ($claims as $claim)
                             <tr>
+                                <td>
+                                    <a href="{{ route('repair-center-claim.more-details', [
+                                        'id' => $claim->claim_id
+                                        ]) }}" class="btn btn-primary btn-sm col-xs-12">
+                                        {{ $claim->claim_id }}
+                                    </a>
+                                </td>
                                 <td>{{ $claim->first . ' ' . $claim->last }}</td>
                                 <td>{{ $claim->style }}</td>
                                 <td>{{ $claim->repair_center }}</td>
