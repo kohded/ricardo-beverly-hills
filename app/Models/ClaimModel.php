@@ -233,6 +233,27 @@ class ClaimModel
 
         }
 
+        try {
+
+            $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
+            $claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
+
+            DB::table('claim_customer')->insert([
+                'claim_id' => $claimID,
+                'customer_id' => $customerID
+            ]);
+
+        } catch (ValidationException $e)
+        {
+            DB::rollback();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
+
+        }
+
         DB::commit();
     }
 
