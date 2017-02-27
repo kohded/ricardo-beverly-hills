@@ -29,7 +29,12 @@ class CustomerModel
 
     public function getCustomerDetailedData($customerId)
     {
-        return DB::table('customer')->where('id', '=', $customerId)->get();
+        $tempArr = [];
+
+         $tempArr['claim-customer'] = DB::table('claim_customer')->where('customer_id', '=', $customerId)->get();
+         $tempArr['customer'] = DB::table('customer')->where('id', '=', $customerId)->get();
+
+         return $tempArr;
     }
 
     public function editCustomerData($customerId, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email)

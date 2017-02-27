@@ -33,52 +33,75 @@
 
                     <legend>Customer</legend>
 
-                    <div class="form-group col-xs-6">
-                        <label for="customer-first-name">First</label>
-                        <input type="text" class="form-control" id="customer-first-name" name="firstname" placeholder="First" required>
+                    <a href="#claim-existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2" data-toggle="collapse">Existing Customer</a>
+                    <div id="claim-existing-customer" class="collapse form-group col-xs-8 col-xs-offset-2">
+                        <label for="customer-email">Existing Customer Email</label>
+                        <input type="text" class="form-control" id="existing-customer-email" name="existingcustomeremail" placeholder="Email"
+                               >
                     </div>
 
-                    <div class="form-group col-xs-6">
-                        <label for="customer-last-name">Last</label>
-                        <input type="text" class="form-control" id="customer-last-name" name="lastname" placeholder="Last" required>
-                    </div>
+                    <br />
+                    <br />
 
-                    <div class="form-group col-xs-12">
-                        <label for="customer-address1">Address 1</label>
-                        <input type="text" class="form-control" id="customer-address1" name="address1" placeholder="Address 1" required>
-                    </div>
+                    <a href="#claim-new-customer" class="btn btn-info col-xs-8 col-xs-offset-2" data-toggle="collapse">New Customer</a>
+                    <div id="claim-new-customer" class="collapse col-xs-12">
+                        <div class="form-group col-xs-6">
+                            <label for="customer-first-name">First</label>
+                            <input type="text" class="form-control" id="customer-first-name" name="firstname"
+                                   placeholder="First" >
+                        </div>
 
-                    <div class="form-group col-xs-12">
-                        <label for="customer-address2">Address 2</label>
-                        <input type="text" class="form-control" id="customer-address2" name="address2" placeholder="Address 2">
-                    </div>
+                        <div class="form-group col-xs-6">
+                            <label for="customer-last-name">Last</label>
+                            <input type="text" class="form-control" id="customer-last-name" name="lastname"
+                                   placeholder="Last" >
+                        </div>
 
-                    <div class="form-group col-xs-7">
-                        <label for="customer-city">City</label>
-                        <input type="text" class="form-control" id="customer-city" name="city" placeholder="City" required>
-                    </div>
+                        <div class="form-group col-xs-12">
+                            <label for="customer-address1">Address 1</label>
+                            <input type="text" class="form-control" id="customer-address1" name="address1"
+                                   placeholder="Address 1" >
+                        </div>
 
-                    <div class="form-group col-xs-2">
-                        <label for="customer-state">State</label>
-                        <input type="text" class="form-control" id="customer-state" name="state" placeholder="WA " required>
-                    </div>
+                        <div class="form-group col-xs-12">
+                            <label for="customer-address2">Address 2</label>
+                            <input type="text" class="form-control" id="customer-address2" name="address2"
+                                   placeholder="Address 2">
+                        </div>
 
-                    <div class="form-group col-xs-3">
-                        <label for="customer-zip">Zip</label>
-                        <input type="text" class="form-control" id="customer-zip" name="zip" placeholder="Zip" required>
-                    </div>
+                        <div class="form-group col-xs-7">
+                            <label for="customer-city">City</label>
+                            <input type="text" class="form-control" id="customer-city" name="city" placeholder="City"
+                                   >
+                        </div>
 
-                    <div class="form-group col-xs-6">
-                        <label for="customer-phone">Phone</label>
-                        <input type="text" class="form-control" id="customer-phone" name="phone" placeholder="###-###-####" required>
-                    </div>
+                        <div class="form-group col-xs-2">
+                            <label for="customer-state">State</label>
+                            <input type="text" class="form-control" id="customer-state" name="state" placeholder="WA "
+                                   >
+                        </div>
 
-                    <div class="form-group col-xs-6">
-                        <label for="customer-email">Email</label>
-                        <input type="text" class="form-control" id="customer-email" name="email" placeholder="Email" required>
+                        <div class="form-group col-xs-3">
+                            <label for="customer-zip">Zip</label>
+                            <input type="text" class="form-control" id="customer-zip" name="zip" placeholder="Zip"
+                                   >
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="customer-phone">Phone</label>
+                            <input type="text" class="form-control" id="customer-phone" name="phone"
+                                   placeholder="###-###-####" >
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="customer-email">Email</label>
+                            <input type="text" class="form-control" id="customer-email" name="email" placeholder="Email"
+                                   >
+                        </div>
+
                     </div>
                     <div class="col-xs-12">
-                        <hr />
+                        <hr/>
                     </div>
 
                     <div class="row">
@@ -90,8 +113,8 @@
                             <select name="products" id="claim-product">
                                 @foreach ($products as $product)
                                     <option name="products" value="{{ $product->style }}">
-                                        {{ $product->style }} -  
-                                        {{ $product->class }} - 
+                                        {{ $product->style }} -
+                                        {{ $product->class }} -
                                         {{ $product->color }}
                                     </option>
                                 @endforeach
@@ -126,26 +149,26 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <legend>Action Taken to this Claim</legend>
 
-                        <div class="form-check col-xs-5">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="" value=1>
-                                Send Replacement Parts
-                            </label>
-                        </div>
+                    <div class="form-check col-xs-5">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="" value=1>
+                            Send Replacement Parts
+                        </label>
+                    </div>
 
-                        <div class="col-xs-1"><b>OR</b></div>
+                    <div class="col-xs-1"><b>OR</b></div>
 
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="" value=0>
-                                Referred to Repair Center
-                            </label>
-                        </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="" value=0>
+                            Referred to Repair Center
+                        </label>
+                    </div>
 
-                    <br />
+                    <br/>
 
                     <legend>Recommendation From Repair Center</legend>
 

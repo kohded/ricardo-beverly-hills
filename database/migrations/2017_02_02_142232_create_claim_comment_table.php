@@ -17,7 +17,7 @@ class CreateClaimCommentTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('claim_id');
             $table->string('author', 40);
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->text('comment');
         });
     }

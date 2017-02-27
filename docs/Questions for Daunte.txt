@@ -9,3 +9,5 @@ Should part center get comments on claims?
 Email is being sent to TWC parts center, client, and Ricardo (Daunte).  Do we need to send to the Repair Center as well?
 
 Are any customers (who want to open a claim) corporations?  Who might open several claims?
+
+How do you want us to store the part company data or is TWC the only part company?

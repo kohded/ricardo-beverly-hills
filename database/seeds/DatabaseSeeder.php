@@ -72,7 +72,6 @@ class DatabaseSeeder extends Seeder
         // Seed Customer Table
         foreach(range(1, 50) as $index) {
             DB::table('customer')->insert([
-                'claim_id'   => $index,
                 'first_name' => $faker->firstName,
                 'last_name'  => $faker->lastName,
                 'address'    => $faker->streetAddress,
@@ -143,5 +142,9 @@ class DatabaseSeeder extends Seeder
                 'comment'    => $faker->sentence($nbWords = 15, $variableNbWords = true),
             ]);
         }
+
+        DB::statement('insert into claim_customer (claim_id, customer_id) select a.id, b.id from claim as a join customer as b on a.customer_id = b.id');
+
+
     }
 }

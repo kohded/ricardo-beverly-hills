@@ -39,6 +39,20 @@
             </tr>
         </table>
 
+        <div>
+
+            <legend>Customer Claims</legend>
+            @foreach ($customerClaims as $claim)
+                <a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
+                    <button class="btn btn-primary btn-sm col-xs-12">
+                       Claim #{{ $claim->claim_id }}
+                    </button>
+                    <br />
+                    <br />
+                </a>
+            @endforeach
+        </div>
+
 
     </div>
 

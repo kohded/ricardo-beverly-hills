@@ -121,30 +121,33 @@ class ClaimModel
         return $claim;
     }
 
-    public function insertClaim($first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replaced){
+    public function insertClaim($existing_customer_email, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replaced){
+
 
         DB::beginTransaction();
 
+        $isCustomerInDB = false;
+        $customerID = '';
+        $claimID = '';
 
         try {
 
             $customers = DB::table('customer')->get();
 
             //Checks to see if customer exists in the db, if it does then the insert new customer step is skipped
-            $isCustomerInDB = false;
+
             foreach($customers as $customer){
 
-                if($customer->email == $email) {
+                if($customer->email == $email || $customer->email == $existing_customer_email) {
 
                     $isCustomerInDB = true;
                     break;
                 }
             }
 
-            if(!$isCustomerInDB) {
+            if(!$isCustomerInDB && empty($existing_customer_email)) {
 
                 DB::table('customer')->insert([
-                    'claim_id' => 0,
                     'first_name' => $first_name,
                     'last_name' => $last_name,
                     'address' => $address,
@@ -156,6 +159,22 @@ class ClaimModel
                     'email' => $email
                 ]);
 
+                $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
+
+            } else if(!empty($existing_customer_email) && $isCustomerInDB && empty($email)){
+
+                $output = new \Symfony\Component\Console\Output\ConsoleOutput(2);
+
+
+                $customerID = DB::table('customer')->where('customer.email', '=', $existing_customer_email)->select('id')->pluck('id')[0];
+
+                $output->writeln($customerID);
+
+
+            } else {
+                DB::rollback();
+
+                return redirect()->route('claim-index')->withErrors('Customer with that email already exists.');
             }
 
 
@@ -172,8 +191,6 @@ class ClaimModel
         }
 
         try {
-
-            $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
 
             DB::table('claim')->insert([
                 'customer_id' => $customerID,
@@ -196,10 +213,10 @@ class ClaimModel
 
         try {
 
-            $claimId = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
+            $claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
 
             DB::table('claim_comment')->insert([
-                'claim_id' => $claimId,
+                'claim_id' => $claimID,
                 'author' => Auth::user()->id . ' : ' . Auth::user()->name,
                 'comment' => $comment
             ]);
@@ -215,28 +232,8 @@ class ClaimModel
 
         }
 
-        try {
-
-            $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
-            $claimId = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
-
-            DB::table('customer')->where('customer.id', '=', $customerID)->update(['claim_id' => $claimId]);
-
-        } catch (ValidationException $e)
-        {
-            DB::rollback();
-
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            throw $e;
-
-        }
 
         try {
-
-            $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
-            $claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
 
             DB::table('claim_customer')->insert([
                 'claim_id' => $claimID,
