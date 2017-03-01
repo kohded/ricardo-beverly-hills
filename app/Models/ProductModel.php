@@ -10,9 +10,16 @@ class ProductModel
 	// Select all products
 	public function getProducts($productsPerPage = null, $request = null)
 	{
-        $searchString = $request->input('search');
-        $searchField = $request->input('field');
-        $brand = $request->input('brand');
+        $searchString = null;
+        $searchField = null;
+        $brand = "";
+
+        if (isset($request))
+        {
+            $searchString = $request->input('search');
+            $searchField = $request->input('field');
+            $brand = $request->input('brand');
+        }
 
         $products = DB::table('product')
             ->when($searchString, function($query) use($searchString, $searchField) {

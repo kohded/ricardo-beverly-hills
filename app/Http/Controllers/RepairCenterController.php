@@ -15,10 +15,10 @@ class RepairCenterController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getListView()
+    public function getListView(Request $request)
     {
         $repairCenters = new RepairCenterModel();
-        $repairCenters = $repairCenters->getRepairCenters(20);
+        $repairCenters = $repairCenters->getRepairCenters(20, $request);
 
         return view('repair-center.list', ['repairCenters' => $repairCenters]);
     }
