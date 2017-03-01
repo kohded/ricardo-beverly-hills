@@ -10,10 +10,10 @@ use Carbon\Carbon;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $products = new ProductModel();
-        $products = $products->getProducts(20);
+        $products = $products->getProducts(20, $request);
 
         return view('product.index', [
         	'products' => $products

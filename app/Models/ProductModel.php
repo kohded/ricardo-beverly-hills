@@ -8,18 +8,55 @@ use Carbon\Carbon;
 class ProductModel
 {
 	// Select all products
-	public function getProducts($productsPerPage = 0)
+	public function getProducts($productsPerPage = null, $request = null)
 	{
-        $products;
-        
-        if ($productsPerPage > 0)
-        {
-            $products = DB::table('product')->paginate($productsPerPage);
-        }
-        else
-        {
-            $products = DB::table('product')->orderBy('style', 'asc')->get();
-        }
+        $searchString = $request->input('search');
+        $searchField = $request->input('field');
+        $brand = $request->input('brand');
+
+        $products = DB::table('product')
+            ->when($searchString, function($query) use($searchString, $searchField) {
+                if (isset($searchField)) 
+                {
+                    if ($searchField === 'style')
+                    {
+                        return $query->where('style', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'description')
+                    {
+                        return $query->where('description', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'warranty')
+                    {
+                        return $query->where('warranty_years', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'class')
+                    {
+                        return $query->where('class', 'like', '%' . $searchString . '%');
+                    }
+                }
+                else
+                {
+                    return $query->where('style', 'like', '%' . $searchString . '%')
+                                ->orWhere('description', 'like', '%' . $searchString . '%')
+                                ->orWhere('warranty', 'like', '%' . $searchString . '%')
+                                ->orWhere('class', 'like', '%' . $searchString . '%')
+                                ->orWhere('class_description', 'like', '%' . $searchString . '%');
+                }
+            })
+
+            ->when($brand === "rbh", function($query) {
+                return $query->where('brand', '=', "Ricardo Beverly Hills");
+            })
+            ->when($brand === "skye", function($query) {
+                return $query->where('brand', '=', "Skye");
+            })
+
+            ->when($productsPerPage, function ($query) use ($productsPerPage) {
+                return $query->paginate($productsPerPage);
+            }, function ($query) {
+                return $query->get();
+            });
 
 		return $products;
 	}

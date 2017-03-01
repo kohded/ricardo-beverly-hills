@@ -17,6 +17,9 @@
 				<a href="{{ URL::route('product.create') }}" class="btn btn-primary" role="button">Create New Product</a>
 			</div>
 		</div>
+		<hr>
+
+		@include('product.filter-form')
 
 		<div class="row">
 			<div class="col-xs-12">
