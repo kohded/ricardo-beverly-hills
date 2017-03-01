@@ -28,25 +28,22 @@ class ClaimModel
                     'claim.created_at as created_at', 
                     'claim.date_closed as closed_at')
             ->when($searchString, function($query) use($searchString, $searchField) {
-                if (isset($searchField)) 
+                if ($searchField === 'claim')
                 {
-                    if ($searchField === 'claim')
-                    {
-                        return $query->where('claim.id', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'cust')
-                    {
-                        return $query->where('customer.first_name', 'like', '%' . $searchString . '%')
-                                    ->orWhere('customer.last_name', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'rc')
-                    {
-                        return $query->where('repair_center.name', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'product')
-                    {
-                        return $query->where('claim.product_style', 'like', '%' . $searchString . '%');
-                    }
+                    return $query->where('claim.id', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'cust')
+                {
+                    return $query->where('customer.first_name', 'like', '%' . $searchString . '%')
+                                ->orWhere('customer.last_name', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'rc')
+                {
+                    return $query->where('repair_center.name', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'product')
+                {
+                    return $query->where('claim.product_style', 'like', '%' . $searchString . '%');
                 }
                 else
                 {

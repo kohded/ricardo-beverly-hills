@@ -23,30 +23,27 @@ class ProductModel
 
         $products = DB::table('product')
             ->when($searchString, function($query) use($searchString, $searchField) {
-                if (isset($searchField)) 
+                if ($searchField === 'style')
                 {
-                    if ($searchField === 'style')
-                    {
-                        return $query->where('style', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'description')
-                    {
-                        return $query->where('description', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'warranty')
-                    {
-                        return $query->where('warranty_years', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'class')
-                    {
-                        return $query->where('class', 'like', '%' . $searchString . '%');
-                    }
+                    return $query->where('style', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'description')
+                {
+                    return $query->where('description', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'warranty')
+                {
+                    return $query->where('warranty_years', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'class')
+                {
+                    return $query->where('class', 'like', '%' . $searchString . '%');
                 }
                 else
                 {
                     return $query->where('style', 'like', '%' . $searchString . '%')
                                 ->orWhere('description', 'like', '%' . $searchString . '%')
-                                ->orWhere('warranty', 'like', '%' . $searchString . '%')
+                                ->orWhere('warranty_years', 'like', '%' . $searchString . '%')
                                 ->orWhere('class', 'like', '%' . $searchString . '%')
                                 ->orWhere('class_description', 'like', '%' . $searchString . '%');
                 }

@@ -24,41 +24,38 @@ class RepairCenterModel
 
         $repairCenters = DB::table('repair_center')
             ->when($searchString, function($query) use($searchString, $searchField) {
-                if (isset($searchField)) 
+                if ($searchField === 'name')
                 {
-                    if ($searchField === 'name')
-                    {
-                        return $query->where('name', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'contact')
-                    {
-                        return $query->where('contact_name', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'email')
-                    {
-                        return $query->where('email', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'address')
-                    {
-                        return $query->where('address', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'city')
-                    {
-                        return $query->where('city', 'like', '%' . $searchString . '%');
-                    }
-                    else if ($searchField === 'state')
-                    {
-                        return $query->where('state', 'like', '%' . $searchString . '%');
-                    }
-                    else
-                    {
-                        return $query->where('name', 'like', '%' . $searchString . '%')
-                                    ->orWhere('contact_name', 'like', '%' . $searchString . '%')
-                                    ->orWhere('address', 'like', '%' . $searchString . '%')
-                                    ->orWhere('city', 'like', '%' . $searchString . '%')
-                                    ->orWhere('state', 'like', '%' . $searchString . '%')
-                                    ->orWhere('email', 'like', '%' . $searchString . '%');
-                    }
+                    return $query->where('name', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'contact')
+                {
+                    return $query->where('contact_name', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'email')
+                {
+                    return $query->where('email', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'address')
+                {
+                    return $query->where('address', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'city')
+                {
+                    return $query->where('city', 'like', '%' . $searchString . '%');
+                }
+                else if ($searchField === 'state')
+                {
+                    return $query->where('state', 'like', '%' . $searchString . '%');
+                }
+                else
+                {
+                    return $query->where('name', 'like', '%' . $searchString . '%')
+                                ->orWhere('contact_name', 'like', '%' . $searchString . '%')
+                                ->orWhere('address', 'like', '%' . $searchString . '%')
+                                ->orWhere('city', 'like', '%' . $searchString . '%')
+                                ->orWhere('state', 'like', '%' . $searchString . '%')
+                                ->orWhere('email', 'like', '%' . $searchString . '%');
                 }
             })
             ->when($rcPerPage, function($query) use($rcPerPage) {
