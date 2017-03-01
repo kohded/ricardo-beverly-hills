@@ -27,7 +27,7 @@ class ClaimModel
                     'repair_center.id as repair_center_id',
                     'claim.created_at as created_at', 
                     'claim.date_closed as closed_at')
-            ->when($searchString, function($query) use($searchString) {
+            ->when($searchString, function($query) use($searchString, $searchField) {
                 if (isset($searchField)) 
                 {
                     if ($searchField === 'claim')

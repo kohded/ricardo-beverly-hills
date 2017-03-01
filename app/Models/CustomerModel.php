@@ -7,9 +7,52 @@ use DB;
 class CustomerModel
 {
 
-    public function getCustomerData()
+    public function getCustomerData($customersPerPage = null, $request = null)
     {
-        return DB::table('customer')->get();
+        $searchString = $request->input('search');
+        $searchField = $request->input('field');
+
+        return DB::table('customer')
+            ->when($searchString, function($query) use($searchString, $searchField) {
+                if (isset($searchField)) 
+                {
+                    if ($searchField === 'name')
+                    {
+                        return $query->where('first_name', 'like', '%' . $searchString . '%')
+                            ->orWhere('last_name', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'address')
+                    {
+                        return $query->where('address', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'city')
+                    {
+                        return $query->where('city', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'state')
+                    {
+                        return $query->where('state', 'like', '%' . $searchString . '%');
+                    }
+                    else if ($searchField === 'email')
+                    {
+                        return $query->where('email', 'like', '%' . $searchString . '%');
+                    }
+                }
+                else
+                {
+                    return $query->where('first_name', 'like', '%' . $searchString . '%')
+                        ->orWhere('last_name', 'like', '%' . $searchString . '%')
+                        ->orWhere('address', 'like', '%' . $searchString . '%')
+                        ->orWhere('city', 'like', '%' . $searchString . '%')
+                        ->orWhere('state', 'like', '%' . $searchString . '%')
+                        ->orWhere('email', 'like', '%' . $searchString . '%');
+                }
+            })
+            ->when($customersPerPage, function ($query) use ($customersPerPage) {
+                return $query->paginate($customersPerPage);
+            }, function ($query) {
+                return $query->get();
+            });
     }
 
     public function insertCustomerData($first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email)

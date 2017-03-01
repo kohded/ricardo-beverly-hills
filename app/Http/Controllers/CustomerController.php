@@ -16,13 +16,13 @@ class CustomerController extends Controller
 //    }
 
 
-    public function getCustomerView()
+    public function getCustomerView(Request $request)
     {
         $customersModel = new CustomerModel();
 
         $title = 'Customers';
 
-        $customers = $customersModel->getCustomerData();
+        $customers = $customersModel->getCustomerData(20, $request);
 
         return view('customer.index', ['title' => $title, 'customers' => $customers]);
     }
