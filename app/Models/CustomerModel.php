@@ -13,6 +13,8 @@ class CustomerModel
         $searchField = $request->input('field');
 
         return DB::table('customer')
+            ->join('claim', 'claim.customer_id', '=', 'customer.id')
+            ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
             ->when($searchString, function($query) use($searchString, $searchField) {
                 if ($searchField === 'name')
                 {
