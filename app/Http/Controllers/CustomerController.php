@@ -104,7 +104,10 @@ class CustomerController extends Controller
 
         $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId)['customer'];
         $customerClaims = $getCustomerDetail->getCustomerDetailedData($customerId)['claim-customer'];
-        return view('customer.more-detail', ['customerDetail' => $customerDetail, 'customerClaims' => $customerClaims]);
+        return view('customer.more-detail', [
+            'customerDetail' => $customerDetail, 
+            'customerClaims' => $customerClaims
+        ]);
     }
 
     public function deleteCustomer($customerId){

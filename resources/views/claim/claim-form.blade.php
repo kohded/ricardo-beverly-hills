@@ -114,7 +114,7 @@
                                 @foreach ($products as $product)
                                     <option name="products" value="{{ $product->style }}">
                                         {{ $product->style }} -
-                                        {{ $product->class }} -
+                                        {{ $product->collection }} -
                                         {{ $product->color }}
                                     </option>
                                 @endforeach
