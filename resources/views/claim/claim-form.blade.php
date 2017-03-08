@@ -150,24 +150,6 @@
                         </div>
                     </div>
 
-                    <legend>Action Taken to this Claim</legend>
-
-                    <div class="form-check col-xs-5">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="" value=1>
-                            Send Replacement Parts
-                        </label>
-                    </div>
-
-                    <div class="col-xs-1"><b>OR</b></div>
-
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="" value=0>
-                            Referred to Repair Center
-                        </label>
-                    </div>
-
                     <br/>
 
                     <legend>Recommendation From Repair Center</legend>
