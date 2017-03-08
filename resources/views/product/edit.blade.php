@@ -37,13 +37,8 @@
                     </div>
 
                     <div class="form-group col-xs-6">
-                        <label for="product-class">Class</label>
-                        <input type="text" class="form-control" id="product-class" name="class" placeholder="Class" value="{{ $info->class }}">
-                    </div>
-
-                    <div class="form-group col-xs-6">
-                        <label for="product-class-description">Class Description</label>
-                        <input type="text" class="form-control" id="product-class-description" name="class-desc" placeholder="Class Description" value="{{ $info->class_description }}">
+                        <label for="product-class">Collection</label>
+                        <input type="text" class="form-control" id="product-collection" name="collection" placeholder="Class" value="{{ $info->collection }}">
                     </div>
 
                     <div class="form-group col-xs-4 col-xs-offset-2">
@@ -51,10 +46,6 @@
                         <input type="text" class="form-control" id="product-launch-date" name="launch" placeholder="mm/dd/yyyy" value="{{ $info->launch_date }}">
                     </div>
 
-                    <div class="form-group col-xs-4">
-                        <label for="product-discontinued">Discontinued Date</label>
-                        <input type="text" class="form-control" id="product-discontinued" name="discontinued" placeholder="mm/dd/yyyy" value="{{ $info->discontinued }}">
-                    </div>
                     @endforeach
 
                     <div class="form-group col-xs-12">

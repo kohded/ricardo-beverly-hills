@@ -16,13 +16,18 @@
                     </div>
 
                     <div class="form-group col-xs-6">
+                        <label for="product-brand">Brand</label>
+                        <input type="text" class="form-control" id="product-brand" name="brand" placeholder="">
+                    </div>
+
+                    <div class="form-group col-xs-12">
                         <label for="product-description">Description</label>
                         <input type="text" class="form-control" id="product-description" name="description" placeholder="">
                     </div>
 
                     <div class="form-group col-xs-6">
-                        <label for="product-brand">Brand</label>
-                        <input type="text" class="form-control" id="product-brand" name="brand" placeholder="">
+                        <label for="product-class">Collection</label>
+                        <input type="text" class="form-control" id="product-collection" name="collection" placeholder="Collection">
                     </div>
 
                     <div class="form-group col-xs-3">
@@ -35,24 +40,9 @@
                         <input type="text" class="form-control" id="product-color" name="color" placeholder="Color">
                     </div>
 
-                    <div class="form-group col-xs-6">
-                        <label for="product-class">Class</label>
-                        <input type="text" class="form-control" id="product-class" name="class" placeholder="Class">
-                    </div>
-
-                    <div class="form-group col-xs-6">
-                        <label for="product-class-description">Class Description</label>
-                        <input type="text" class="form-control" id="product-class-description" name="class-desc" placeholder="Class Description">
-                    </div>
-
-                    <div class="form-group col-xs-4 col-xs-offset-2">
+                    <div class="form-group col-xs-4">
                         <label for="product-launch-date">Launch Date</label>
                         <input type="text" class="form-control" id="product-launch-date" name="launch" placeholder="mm/dd/yyyy">
-                    </div>
-
-                    <div class="form-group col-xs-4">
-                        <label for="product-discontinued">Discontinued Date</label>
-                        <input type="text" class="form-control" id="product-discontinued" name="discontinued" placeholder="mm/dd/yyyy">
                     </div>
 
                     <div class="form-group col-xs-12">

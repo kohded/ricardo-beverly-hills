@@ -35,17 +35,16 @@ class ProductModel
                 {
                     return $query->where('warranty_years', 'like', '%' . $searchString . '%');
                 }
-                else if ($searchField === 'class')
+                else if ($searchField === 'collection')
                 {
-                    return $query->where('class', 'like', '%' . $searchString . '%');
+                    return $query->where('collection', 'like', '%' . $searchString . '%');
                 }
                 else
                 {
                     return $query->where('style', 'like', '%' . $searchString . '%')
                                 ->orWhere('description', 'like', '%' . $searchString . '%')
                                 ->orWhere('warranty_years', 'like', '%' . $searchString . '%')
-                                ->orWhere('class', 'like', '%' . $searchString . '%')
-                                ->orWhere('class_description', 'like', '%' . $searchString . '%');
+                                ->orWhere('collection', 'like', '%' . $searchString . '%');
                 }
             })
 
@@ -76,17 +75,13 @@ class ProductModel
 			{
 				$value->launch_date = Carbon::createFromFormat('Y-m-d', $value->launch_date)->format('m/d/Y');
 			}
-			if($value->discontinued)
-			{
-				$value->discontinued = Carbon::createFromFormat('Y-m-d', $value->discontinued)->format('m/d/Y');
-			}
 		}
 
 		return $product;
 	}
 
 	// Insert new product
-	public function createProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued)
+	public function createProduct($style, $description, $brand, $warranty, $color, $collection, $launch)
 	{
 		DB::table('product')->insert([
 			'style' 		       => $style,
@@ -94,15 +89,13 @@ class ProductModel
 			'brand'                => $brand,
             'warranty_years'       => $warranty,
             'color'                => $color,
-            'class'                => $class,
-            'class_description'    => $class_desc,
-            'launch_date'          => $launch,
-            'discontinued'         => $discontinued
+            'collection'           => $collection,
+            'launch_date'          => $launch
 		]);
 	}
 
 	// Edit product by style
-	public function editProduct($style, $description, $brand, $warranty, $color, $class, $class_desc, $launch, $discontinued)
+	public function editProduct($style, $description, $brand, $warranty, $color, $collection, $launch)
 	{
 		DB::table('product')->where('style', $style)->update([
 			'style' => $style,
@@ -110,10 +103,8 @@ class ProductModel
             'brand'                => $brand,
             'warranty_years'       => $warranty,
             'color'                => $color,
-            'class'                => $class,
-            'class_description'    => $class_desc,
-            'launch_date'          => $launch,
-            'discontinued'         => $discontinued
+            'collection'           => $collection,
+            'launch_date'          => $launch
 		]);
 	}
 

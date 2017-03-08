@@ -115,8 +115,7 @@ class DatabaseSeeder extends Seeder
                 'brand'             => 'Ricardo Beverly Hills',
                 'warranty_years'    => $faker->randomDigit,
                 'color'             => $faker->word,
-                'class'             => $faker->regexify('[0-9]{3}'),
-                'class_description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'collection' => $faker->sentence($nbWords = 2, $variableNbWords = false),
                 'launch_date'       => $faker->date($format = 'Y-m-d', $max = 'now')
             ]);
         }

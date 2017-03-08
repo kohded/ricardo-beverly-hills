@@ -45,23 +45,12 @@ class ProductController extends Controller
             'brand'         => 'required',
             'warranty'      => 'required|integer',
             'color'         => 'required',
-            'class'         => 'required',
-            'class-desc'    => 'required',
-            'launch'        => 'required',
-            'discontinued'  => 'nullable'
+            'collection'    => 'required',
+            'launch'        => 'required'
         ]);
 
         // Create a Carbon object for the launch date
         $launch_date = Carbon::createFromFormat('m/d/Y', $request->input('launch'));
-
-        // Create a Carbon object if there is a discontinued date
-        if($request->input('discontinued'))
-        {
-            $discontinued_date = 
-                Carbon::createFromFormat('m/d/Y', $request->input('discontinued'));
-        } else {
-            $discontinued_date = NULL;
-        }
 
         $createProduct = new ProductModel();
         $createProduct->createProduct(
@@ -70,10 +59,8 @@ class ProductController extends Controller
             $request->input('brand'),
             $request->input('warranty'),
             $request->input('color'),
-            $request->input('class'),
-            $request->input('class-desc'),
-            $launch_date,
-            $discontinued_date
+            $request->input('collection'),
+            $launch_date
         );
 
         return redirect()->route('product.create')
@@ -98,22 +85,12 @@ class ProductController extends Controller
             'brand'         => 'required',
             'warranty'      => 'required|integer',
             'color'         => 'required',
-            'class'         => 'required',
-            'class-desc'    => 'required',
+            'collection'    => 'required',
             'launch'        => 'required'
         ]);
 
         // Create a Carbon object for the launch date
         $launch_date = Carbon::createFromFormat('m/d/Y', $request->input('launch'));
-
-        // Create a Carbon object if there is a discontinued date
-        if($request->input('discontinued'))
-        {
-            $discontinued_date = 
-                Carbon::createFromFormat('m/d/Y', $request->input('discontinued'));
-        } else {
-            $discontinued_date = NULL;
-        }
 
         $editProduct = new ProductModel();
         $editProduct->editProduct(
@@ -122,10 +99,8 @@ class ProductController extends Controller
             $request->input('brand'),
             $request->input('warranty'),
             $request->input('color'),
-            $request->input('class'),
-            $request->input('class-desc'),
-            $launch_date,
-            $discontinued_date
+            $request->input('collection'),
+            $launch_date
         );
 
         return redirect()->route('product.edit', ['style' => $request->input('style')])

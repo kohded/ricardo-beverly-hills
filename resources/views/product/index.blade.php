@@ -31,7 +31,7 @@
 								<th>Description</th>
 								<th>Brand</th>
 								<th>Warranty</th>
-								<th>Class</th>
+								<th>Collection</th>
 								<th>Launched</th>
 							</tr>
 						</thead>
@@ -43,7 +43,7 @@
 								<td>{{ $product->description }}</td>
 								<td>{{ $product->brand }}</td>
 								<td>{{ $product->warranty_years }}</td>
-								<td>{{ $product->class }} - {{ $product->class_description }}</td>
+								<td>{{ $product->collection }}</td>
 								<td>{{ $product->launch_date }}</td>
 								<td>
 									<a href="{{ route('product.edit', [
