@@ -92,6 +92,7 @@ class ClaimModel
                 'claim.id as claim_id',
                 'claim.created_at as claim_created_at',
                 'claim.date_closed as claim_date_closed',
+                'claim.email_sent as claim_email_sent',
                 'customer.address as cust_address',
                 'customer.address_2 as cust_address_2',
                 'customer.city as cust_city',

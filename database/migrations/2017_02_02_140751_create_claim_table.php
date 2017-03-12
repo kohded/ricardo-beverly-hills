@@ -23,6 +23,7 @@ class CreateClaimTable extends Migration
             $table->unsignedInteger('repair_center_id');
             $table->date('date_closed')->nullable()->default(NULL);
             $table->boolean('replaced')->default(0);
+            $table->unsignedInteger('email_sent')->default(0);
         });
     }
 

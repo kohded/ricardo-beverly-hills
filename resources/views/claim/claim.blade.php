@@ -121,7 +121,7 @@
                     {{ csrf_field() }}
                 </form>
 
-                <p class="pull-right mt-10 mr-20"><strong>Emails Sent: </strong>0</p>
+                <p class="pull-right mt-10 mr-20"><strong>Emails Sent: </strong>{{ $claim[0]->claim_email_sent }}</p>
             </div>
         </div>
     </div>
