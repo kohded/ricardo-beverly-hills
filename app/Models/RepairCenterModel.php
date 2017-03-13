@@ -63,7 +63,7 @@ class RepairCenterModel
             }, function($query) {
                 return $query->get();
             });
-            
+
         return $repairCenters;
     }
 
@@ -92,8 +92,12 @@ class RepairCenterModel
      * @param $state
      * @param $zip
      */
-    public function createRepairCenter($name, $contactName, $phone, $email, $address, $city, $state, $zip)
+    public function createRepairCenter($name, $contactName, $phone, $email, $address, $city, $state, $zip, $preferred)
     {
+        if($preferred === null) {
+            $preferred = 0;
+        }
+
         DB::table('repair_center')->insert([
             'name'         => $name,
             'contact_name' => $contactName,
@@ -103,6 +107,7 @@ class RepairCenterModel
             'city'         => $city,
             'state'        => $state,
             'zip'          => $zip,
+            'preferred'    => $preferred
         ]);
     }
 

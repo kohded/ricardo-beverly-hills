@@ -66,6 +66,15 @@
                            id="repair-center-zip" name="zip"
                            value="{{ old('zip') }}">
                 </div>
+                {{--Preferred--}}
+                <div class="form-check col-xs-3 col-xs-offset-9">
+                    <label for="repair-center-preferred" class="pull-right">
+                    <input type="checkbox" class="form-check-input"
+                           id="repair-center-preferred" name="preferred"
+                           value="1">
+                        Preferred
+                    </label>
+                </div>
                 {{--Submit--}}
                 <div class="form-group col-xs-12">
                     <a href="{{ route('repair-center') }}" class="btn btn-primary">

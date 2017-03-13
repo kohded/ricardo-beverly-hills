@@ -11,7 +11,7 @@ class RepairCenterController extends Controller
 {
     // List View
     /**
-     * Get list view populated with repair centers.
+     * Get list ewvi populated with repair centers.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -73,7 +73,8 @@ class RepairCenterController extends Controller
             $request->input('name'), $request->input('contact-name'),
             $request->input('phone'), $request->input('email'),
             $request->input('address'), $request->input('city'),
-            $request->input('state'), $request->input('zip')
+            $request->input('state'), $request->input('zip'),
+            $request->input('preferred')
         );
 
         return redirect()->route('repair-center.create')
