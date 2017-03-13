@@ -93,7 +93,8 @@ class DatabaseSeeder extends Seeder
                 'zip'          => substr($faker->postcode, 0, 5),
                 'phone'        => $faker->numberBetween($min = 1000000000, $max = 9999999999),
                 'email'        => $faker->email,
-                'contact_name' => $faker->firstName
+                'contact_name' => $faker->firstName,
+                'preferred'    => $faker->boolean($chanceOfGettingTrue = 50)
             ]);
         }
 

@@ -37,6 +37,7 @@
                             <th>Address</th>
                             <th>City</th>
                             <th>State</th>
+                            <th>Preferred</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -51,6 +52,7 @@
                                 <td>{{ $repairCenter->address }}</td>
                                 <td>{{ $repairCenter->city }}</td>
                                 <td>{{ $repairCenter->state }}</td>
+                                <td>{{ $repairCenter->preferred ? 'Yes' : 'No' }}</td>
                                 <td class="table-data-wrap">
                                     <a href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
