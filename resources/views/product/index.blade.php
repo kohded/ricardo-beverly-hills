@@ -6,23 +6,24 @@
 			<div class="col-xs-12">
 				<h1>All Products</h1>
 
-				{{--Delete product alert--}}
-				@if(Session::has('message'))
-					<p class="alert alert-danger">
-					{{ Session::get('message') }}
-					</p>
-				@endif
-
 				{{--Create button--}}
 				<a href="{{ URL::route('product.create') }}" class="btn btn-primary" role="button">Create New Product</a>
 			</div>
 		</div>
-		<hr>
 
+		<hr>
 		@include('product.filter-form')
+		<hr>
 
 		<div class="row">
 			<div class="col-xs-12">
+				{{--Delete product alert--}}
+				@if(Session::has('message'))
+					<p class="alert alert-danger">
+						{{ Session::get('message') }}
+					</p>
+				@endif
+
 				<div class="table-responsive">
 					<table class="table table-hover table-condensed">
 						<thead>

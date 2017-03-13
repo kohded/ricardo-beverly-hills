@@ -6,25 +6,26 @@
             <div class="col-xs-12">
                 <h1>All Claims</h1>
 
-                {{--Delete repair center alert--}}
-                @if(Session::has('message'))
-                    <p class="alert alert-danger">
-                        {{ Session::get('message') }}
-                    </p>
-                @endif
-
                 {{--Create button--}}
                 <a href="{{ URL::route('claim-create') }}" class="btn btn-primary">
                     Create New Claim
                 </a>
             </div>
         </div>
-        <hr>
 
+        <hr>
         @include('claim.filter-form')
+        <hr>
 
         <div class="row">
             <div class="col-xs-12">
+                {{--Delete claim alert--}}
+                @if(Session::has('message'))
+                    <p class="alert alert-danger">
+                        {{ Session::get('message') }}
+                    </p>
+                @endif
+
                 <div class="table-responsive">
                     <table class="table table-hover table-condensed">
                         <thead>

@@ -6,25 +6,26 @@
             <div class="col-xs-12">
                 <h1>All Customers</h1>
 
-                {{--Delete repair center alert--}}
-                @if(Session::has('message'))
-                    <p class="alert alert-danger">
-                        {{ Session::get('message') }}
-                    </p>
-                @endif
-
                 {{--Create button--}}
                 <a href="{{ URL::route('customer-create') }}" class="btn btn-primary">
                     Create New Customer
                 </a>
             </div>
         </div>
-        <hr>
 
+        <hr>
         @include('customer.filter-form')
+        <hr>
 
         <div class="row">
             <div class="col-xs-12">
+                {{--Delete customer alert--}}
+                @if(Session::has('message'))
+                    <p class="alert alert-danger">
+                        {{ Session::get('message') }}
+                    </p>
+                @endif
+
                 <div class="table-responsive">
                     <table class="table table-hover table-condensed">
                         <thead>
