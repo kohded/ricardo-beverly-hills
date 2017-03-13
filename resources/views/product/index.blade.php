@@ -33,6 +33,8 @@
 								<th>Warranty</th>
 								<th>Collection</th>
 								<th>Launched</th>
+								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 
@@ -45,13 +47,13 @@
 								<td>{{ $product->warranty_years }}</td>
 								<td>{{ $product->collection }}</td>
 								<td>{{ $product->launch_date }}</td>
-								<td>
+								<td class="table-data-wrap">
 									<a href="{{ route('product.edit', [
 										'style' => $product->style
 										]) }}" class="btn btn-success btn-sm">Edit
 									</a>
 								</td>
-								<td>
+								<td class="table-data-wrap">
 									<a href="{{ route('product.delete', [
 										'style' => $product->style,
 										'description' => $product->description
@@ -62,12 +64,12 @@
 						@endforeach
 						</tbody>
 					</table>
-
-				<div class="col-xs-12 text-center">
-					{{ $products->links() }}
 				</div>
-
-				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				{{ $products->links() }}
 			</div>
 		</div>
 	</div>

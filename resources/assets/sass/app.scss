@@ -32,6 +32,11 @@ table {
   margin-top: $margin-default;
 }
 
+.table-data-wrap {
+  white-space: nowrap;
+  width: 1%;
+}
+
 .insertion-form {
   margin-top: $margin-default;
 }

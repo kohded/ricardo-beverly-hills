@@ -14,8 +14,8 @@
                 @endif
 
                 {{--Create button--}}
-                <a href="{{ route('repair-center.create') }}"
-                   class="btn btn-primary">Create Repair Center
+                <a href="{{ route('repair-center.create') }}" class="btn btn-primary">
+                    Create Repair Center
                 </a>
             </div>
         </div>
@@ -36,8 +36,8 @@
                             <th>Address</th>
                             <th>City</th>
                             <th>State</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,13 +50,13 @@
                                 <td>{{ $repairCenter->address }}</td>
                                 <td>{{ $repairCenter->city }}</td>
                                 <td>{{ $repairCenter->state }}</td>
-                                <td>
+                                <td class="table-data-wrap">
                                     <a href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
                                         ]) }}" class="btn btn-success btn-sm">Edit
                                     </a>
                                 </td>
-                                <td>
+                                <td class="table-data-wrap">
                                     <a href="{{ route('repair-center.delete', [
                                             'id' => $repairCenter->id,
                                             'name' => $repairCenter->name

@@ -7713,6 +7713,11 @@ table {
   margin-top: 20px;
 }
 
+.table-data-wrap {
+  white-space: nowrap;
+  width: 1%;
+}
+
 .insertion-form {
   margin-top: 20px;
 }

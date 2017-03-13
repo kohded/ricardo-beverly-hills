@@ -20,11 +20,9 @@ class CustomerController extends Controller
     {
         $customersModel = new CustomerModel();
 
-        $title = 'Customers';
-
         $customers = $customersModel->getCustomerData(20, $request);
 
-        return view('customer.index', ['title' => $title, 'customers' => $customers]);
+        return view('customer.index', ['customers' => $customers]);
     }
 
     public function getCreateView()
