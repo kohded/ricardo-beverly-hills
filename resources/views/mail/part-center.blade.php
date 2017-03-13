@@ -2869,27 +2869,6 @@
                         <p><strong>Zip: </strong>{{ $claim[0]->rc_zip }}</p>
                     </div>
                 </div>
-
-                {{--Comments--}}
-                <div class="row clearfix">
-                    <div class="col-xs-12">
-                        <h3>Comments</h3>
-                        <hr>
-                    </div>
-
-                    @foreach ($comments as $comment)
-                        <div class="col-xs-6">
-                            <p><strong>Name: </strong>{{ $comment->author }}</p>
-                        </div>
-                        <div class="col-xs-6">
-                            <p><strong>Created: </strong>{{ $comment->created_at }}</p>
-                        </div>
-                        <div class="col-xs-12">
-                            <p><strong>Comment: </strong>{{ $comment->comment }}</p>
-                            <hr/>
-                        </div>
-                    @endforeach
-                </div>
             </div>
         </div>
     </div>

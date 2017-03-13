@@ -29,7 +29,7 @@ class ClaimConfirmationController extends Controller
             ->send(new \App\Mail\RicardoBeverlyHillsMail($claim, $comments));
         // // Part Center
         $mailer->to('ricardobevhills@gmail.com')
-            ->send(new \App\Mail\PartCenterMail($claim, $comments));
+            ->send(new \App\Mail\PartCenterMail($claim));
         // // Client
         $mailer->to('ricardobevhills@gmail.com')
             ->send(new \App\Mail\ClientMail($claim));

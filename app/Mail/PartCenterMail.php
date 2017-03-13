@@ -20,10 +20,9 @@ class PartCenterMail extends Mailable
      * @param $claim
      * @param $comments
      */
-    public function __construct($claim, $comments)
+    public function __construct($claim)
     {
         $this->claim = $claim;
-        $this->comments = $comments;
     }
 
     /**
