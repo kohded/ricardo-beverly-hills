@@ -19,7 +19,7 @@ class ClaimModel
 		$claims = DB::table('claim')
             ->join('customer', 'claim.customer_id', '=', 'customer.id')
             ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
-            ->select('claim.id as claim_id', 
+            ->select('claim.id as claim_id',
                     'customer.first_name as first', 
                     'customer.last_name as last',
                     'claim.product_style as style', 
@@ -90,9 +90,11 @@ class ClaimModel
             ->join('product', 'claim.product_style', '=', 'product.style')
             ->select(
                 'claim.id as claim_id',
+                'claim.customer_id as cust_id',
                 'claim.created_at as claim_created_at',
                 'claim.date_closed as claim_date_closed',
                 'claim.email_sent as claim_email_sent',
+                'claim.replaced as replaced',
                 'customer.address as cust_address',
                 'customer.address_2 as cust_address_2',
                 'customer.city as cust_city',

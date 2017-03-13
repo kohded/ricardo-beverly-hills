@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ClaimModel;
 use App\Models\ProductModel;
 use App\Models\RepairCenterModel;
+use App\Models\CustomerModel;
 
 class ClaimController extends Controller
 {
@@ -118,9 +119,33 @@ class ClaimController extends Controller
         return redirect('claim');
     }
 
-    public function editClaim()
+    public function editClaim($id)
     {
+        $title = 'Edit Claim';
+        $damage_codes = DB::table('damage_code')->get();
 
+        $rcModel = new RepairCenterModel();
+        $repair_centers = $rcModel->getRepairCenters();
+
+        $productModel = new ProductModel;
+        $products = $productModel->getProducts();
+
+        $claimDetails = new ClaimModel();
+        $claimDetails = $claimDetails->getClaim($id);
+
+        $customerDetails = new CustomerModel();
+        $customerDetails = $customerDetails->getCustomerDetailedData($claimDetails[0]->cust_id);
+
+        echo '<script>console.log(' . $claimDetails . ')</script>';
+
+        return view('claim.claim-edit', [
+            'title' => $title,
+            'claimDetails' => $claimDetails[0],
+            'customerDetails' => $customerDetails,
+            'damage_codes' => $damage_codes,
+            'repair_centers' => $repair_centers,
+            'products' => $products
+        ]);
     }
 
 
