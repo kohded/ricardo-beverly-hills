@@ -67,6 +67,15 @@
                            id="repair-center-zip" name="zip"
                            value="{{ $info->zip }}">
                 </div>
+                {{--Preferred--}}
+                <div class="form-check col-xs-3 col-xs-offset-9">
+                    <label for="repair-center-preferred" class="pull-right">
+                        <input type="checkbox" class="form-check-input"
+                               id="repair-center-preferred" name="preferred"
+                               value="1" {{ $info->preferred ? 'checked' : '' }}>
+                        Preferred
+                    </label>
+                </div>
                 {{--Id--}}
                 <input type="hidden" name="id" value="{{ $info->id }}">
                 @endforeach

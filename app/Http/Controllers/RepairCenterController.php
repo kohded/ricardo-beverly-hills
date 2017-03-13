@@ -122,7 +122,7 @@ class RepairCenterController extends Controller
             $request->input('phone'), $request->input('email'),
             $request->input('address'), $request->input('city'),
             $request->input('state'), $request->input('zip'),
-            $request->input('id')
+            $request->input('preferred'), $request->input('id')
         );
 
         return redirect()->route('repair-center.edit', ['id' => $request->input('id')])

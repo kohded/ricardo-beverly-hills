@@ -15,50 +15,46 @@ class RepairCenterModel
     {
         $searchString = null;
         $searchField = null;
-        
-        if (isset($request))
-        {
+
+        if(isset($request)) {
             $searchString = $request->input('search');
             $searchField = $request->input('field');
         }
 
         $repairCenters = DB::table('repair_center')
-            ->when($searchString, function($query) use($searchString, $searchField) {
-                if ($searchField === 'name')
-                {
+            ->when($searchString, function($query) use ($searchString, $searchField) {
+                if($searchField === 'name') {
                     return $query->where('name', 'like', '%' . $searchString . '%');
-                }
-                else if ($searchField === 'contact')
-                {
-                    return $query->where('contact_name', 'like', '%' . $searchString . '%');
-                }
-                else if ($searchField === 'email')
-                {
-                    return $query->where('email', 'like', '%' . $searchString . '%');
-                }
-                else if ($searchField === 'address')
-                {
-                    return $query->where('address', 'like', '%' . $searchString . '%');
-                }
-                else if ($searchField === 'city')
-                {
-                    return $query->where('city', 'like', '%' . $searchString . '%');
-                }
-                else if ($searchField === 'state')
-                {
-                    return $query->where('state', 'like', '%' . $searchString . '%');
-                }
-                else
-                {
-                    return $query->where('name', 'like', '%' . $searchString . '%')
-                                ->orWhere('contact_name', 'like', '%' . $searchString . '%')
-                                ->orWhere('address', 'like', '%' . $searchString . '%')
-                                ->orWhere('city', 'like', '%' . $searchString . '%')
-                                ->orWhere('state', 'like', '%' . $searchString . '%')
-                                ->orWhere('email', 'like', '%' . $searchString . '%');
+                } else {
+                    if($searchField === 'contact') {
+                        return $query->where('contact_name', 'like', '%' . $searchString . '%');
+                    } else {
+                        if($searchField === 'email') {
+                            return $query->where('email', 'like', '%' . $searchString . '%');
+                        } else {
+                            if($searchField === 'address') {
+                                return $query->where('address', 'like', '%' . $searchString . '%');
+                            } else {
+                                if($searchField === 'city') {
+                                    return $query->where('city', 'like', '%' . $searchString . '%');
+                                } else {
+                                    if($searchField === 'state') {
+                                        return $query->where('state', 'like', '%' . $searchString . '%');
+                                    } else {
+                                        return $query->where('name', 'like', '%' . $searchString . '%')
+                                            ->orWhere('contact_name', 'like', '%' . $searchString . '%')
+                                            ->orWhere('address', 'like', '%' . $searchString . '%')
+                                            ->orWhere('city', 'like', '%' . $searchString . '%')
+                                            ->orWhere('state', 'like', '%' . $searchString . '%')
+                                            ->orWhere('email', 'like', '%' . $searchString . '%');
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             })
-            ->when($rcPerPage, function($query) use($rcPerPage) {
+            ->when($rcPerPage, function($query) use ($rcPerPage) {
                 return $query->paginate($rcPerPage);
             }, function($query) {
                 return $query->get();
@@ -122,10 +118,15 @@ class RepairCenterModel
      * @param $city
      * @param $state
      * @param $zip
+     * @param $preferred
      * @param $id
      */
-    public function editRepairCenter($name, $contactName, $phone, $email, $address, $city, $state, $zip, $id)
+    public function editRepairCenter($name, $contactName, $phone, $email, $address, $city, $state, $zip, $preferred, $id)
     {
+        if($preferred === null) {
+            $preferred = 0;
+        }
+
         DB::table('repair_center')->where('id', $id)->update([
             'name'         => $name,
             'contact_name' => $contactName,
@@ -135,6 +136,7 @@ class RepairCenterModel
             'city'         => $city,
             'state'        => $state,
             'zip'          => $zip,
+            'preferred'    => $preferred,
             'id'           => $id,
         ]);
     }
