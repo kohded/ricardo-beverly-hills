@@ -207,4 +207,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var firstNameTxt = document.getElementById("customer-first-name");
+            firstNameTxt.onclick = function (){
+                document.getElementById("existing-customer-email").value = "";
+            }
+
+        var existCustTxt = document.getElementById("existing-customer-email");
+        existCustTxt.onclick = function (){
+            document.getElementById("customer-first-name").value = "";
+            document.getElementById("customer-last-name").value = "";
+            document.getElementById("customer-address1").value = "";
+            document.getElementById("customer-address2").value = "";
+            document.getElementById("customer-city").value = "";
+            document.getElementById("customer-state").value = "";
+            document.getElementById("customer-zip").value = "";
+            document.getElementById("customer-phone").value = "";
+            document.getElementById("customer-email").value = "";
+        }
+    </script>
 @endsection
