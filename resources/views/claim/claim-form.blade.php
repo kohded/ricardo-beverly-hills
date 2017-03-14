@@ -144,7 +144,7 @@
                         <div class="form-group col-xs-8">
                             <select name="repaircenter" id="claim-repair-center">
                                 @foreach ($repair_centers as $rc)
-                                    <option value="{{ $rc->id }}">{{ $rc->name }}</option>
+                                    <option value="{{ $rc->id }}">{{ $rc->name }} - {{ $rc->streetName }}</option>
                                 @endforeach
                             </select>
                         </div>

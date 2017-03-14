@@ -43,6 +43,12 @@ class ClaimController extends Controller
         $rcModel = new RepairCenterModel();
         $repair_centers = $rcModel->getRepairCenters();
 
+        foreach ($repair_centers as $repair_center)
+        {
+            $street = substr($repair_center->address, strpos($repair_center->address, " "), 10);
+            $repair_center->streetName = $street;
+        }
+
         $productModel = new ProductModel;
         $products = $productModel->getProducts();
 
