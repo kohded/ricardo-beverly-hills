@@ -79,6 +79,26 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
             ->name('customer.delete');
     });
 
+    // Damage Code
+    Route::group(['prefix' => 'damage-code'], function() {
+        // List
+        Route::get('/', 'DamageCodeController@getListView')
+            ->name('damage-code');
+        // Add
+        Route::get('/create', 'DamageCodeController@getCreateView')
+            ->name('damage-code.create');
+        Route::post('/create', 'DamageCodeController@createDamageCode')
+            ->name('damage-code.create');
+        // Edit
+        Route::get('/edit/{id}', 'DamageCodeController@getEditView')
+            ->name('damage-code.edit');
+        Route::post('/edit', 'DamageCodeController@editDamageCode')
+            ->name('damage-code.edit-post');
+        // Delete
+        Route::get('/delete/{id}/{name}', 'DamageCodeController@deleteDamageCode')
+            ->name('damage-code.delete');
+    });
+
     // Product
     Route::group(['prefix' => 'product'], function() {
         // List / Index

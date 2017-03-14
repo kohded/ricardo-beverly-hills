@@ -26,6 +26,7 @@
                     <li><a href="{{ route('customer') }}">Customer</a></li>
                     <li><a href="{{ route('product') }}">Product</a></li>
                     <li><a href="{{ route('repair-center') }}">Repair Center</a>
+                    <li><a href="{{ route('damage-code') }}">Damage Codes</a>
                     @endrole
 
                     @role('part-company')
