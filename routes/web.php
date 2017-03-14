@@ -45,6 +45,8 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
         // edit
         Route::get('/edit/{id}', 'ClaimController@editClaim')
             ->name('claim.edit');
+        Route::post('/edit', 'ClaimController@updateClaim')
+            ->name('update-claim');
         // delete
         Route::get('/delete/{id}', 'ClaimController@deleteClaim')
             ->name('claim.delete');

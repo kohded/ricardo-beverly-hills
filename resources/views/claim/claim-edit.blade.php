@@ -199,6 +199,8 @@
                         <textarea class="col-xs-12" name="comment"></textarea>
                     </div>
 
+                    <input type="hidden" name="id" value="{{ $claimDetails->id}}">
+
                     {{ csrf_field() }}
 
                     <button type="submit" class="btn btn-primary col-xs-12" name="submit">Submit</button>

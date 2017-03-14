@@ -136,8 +136,6 @@ class ClaimController extends Controller
         $customerDetails = new CustomerModel();
         $customerDetails = $customerDetails->getCustomerDetailedData($claimDetails[0]->cust_id);
 
-        echo '<script>console.log(' . $claimDetails . ')</script>';
-
         return view('claim.claim-edit', [
             'title' => $title,
             'claimDetails' => $claimDetails[0],
@@ -146,6 +144,10 @@ class ClaimController extends Controller
             'repair_centers' => $repair_centers,
             'products' => $products
         ]);
+    }
+
+    public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) {
+
     }
 
 
