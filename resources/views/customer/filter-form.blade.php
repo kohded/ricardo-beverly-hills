@@ -4,7 +4,7 @@
 
         <label for="field">in:</label>
         <select class="form-control" name="field">
-            <option value="" disabled selected>All</option>
+            <option value="" selected>All</option>
             <option value="name">Customer Name</option>
             <option value="address">Address</option>
             <option value="city">City</option>
