@@ -130,7 +130,8 @@ class DatabaseSeeder extends Seeder
                 'damage_code_id'   => DB::table('damage_code')->inRandomOrder()->first()->id,
                 'repair_center_id' => DB::table('repair_center')->inRandomOrder()->first()->id,
                 'replaced'         => $faker->boolean($chanceOfGettingTrue = 20),
-                'ship_to'          => $faker->randomElement($array = array('Customer', 'Repair Center'))
+                'ship_to'          => $faker->randomElement($array = array('Customer', 'Repair Center')),
+                'parts_needed'     => $faker->randomElement($array = array('None', 'Need 2 wheels', 'Need main bag zipper', 'Need one wheel and new zipper tag')),
             ]);
         }
 

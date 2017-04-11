@@ -175,7 +175,14 @@
 
                         <br />
 
-                        <dt>Ship To</dt>
+                        <dt>Parts Needed</dt>
+                        <dd>
+                            <input type="text" class="form-control" name="parts_needed" placeholder="Parts needed...">
+                        </dd>
+
+                        <br />
+
+                        <dt>Ship Parts To</dt>
                         <dd>
                             <div class="form-check">
                                 <label class="form-check-label">

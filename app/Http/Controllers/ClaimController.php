@@ -98,7 +98,8 @@ class ClaimController extends Controller
                 $request->input('damagecode'),
                 $request->input('repaircenter'),
                 $request->input('replaced'),
-                $request->input('ship_to')
+                $request->input('ship_to'),
+                $request->input('parts_needed')
             );
 
             return redirect()->route('claim', ['id' => $claimModel->getMostRecentClaimId()]);

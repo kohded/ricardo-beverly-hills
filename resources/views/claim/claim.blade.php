@@ -47,14 +47,22 @@
 				                </form>
                 			@endif
                 		</dd>
-                		<dt>Ship Part To:</dt>
-                		<dd>{{ $claim[0]->ship_to }}</dd>
+
                         <dt>Opened Date:</dt>
                         <dd>{{ $claim[0]->claim_created_at }}</dd>
                         @if ($claim[0]->claim_date_closed)
 	                        <dt>Closed Date:</dt>
 	                        <dd>{{ $claim[0]->claim_date_closed }}</dd>
 	                    @endif
+
+                        <!-- only display parts and ship to if it's a repair order -->
+                        @if ($claim[0]->replaced == 0)
+                            <hr>
+                            <dt>Parts Needed:</dt>
+                            <dd>{{ $claim[0]->parts_needed }}</dd>
+                            <dt>Ship Parts To:</dt>
+                            <dd>{{ $claim[0]->ship_to }}</dd>
+                        @endif
                     </dl>
                 </div>
             </div>
