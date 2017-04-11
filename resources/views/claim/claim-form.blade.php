@@ -156,7 +156,7 @@
 
                     <div class="form-check col-xs-2">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="replaced" value="0">
+                            <input class="form-check-input" type="radio" name="replaced" value="0" checked="checked">
                             Repair
                         </label>
                     </div>
@@ -177,7 +177,7 @@
 
                     {{ csrf_field() }}
 
-                    <button type="submit" class="btn btn-primary col-xs-12" name="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary col-xs-12" name="submit">Create Claim</button>
                 </form>
 
             </div>

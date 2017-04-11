@@ -4,91 +4,187 @@
     <div id="claim-detail" class="col-md-8 col-md-offset-2">
         {{--Claim--}}
         <div class="row">
-            <div class="col-xs-12">
-                <h1>Claim #{{ $claim[0]->claim_id }} </h1>
-
                 @if(Session::has('message'))
                     <p class="alert alert-success">
                         {{ Session::get('message') }}
                     </p>
                 @endif
-
-                <hr>
-            </div>
-            <div class="col-sm-6">
-                <p><strong>Opened Date: </strong>{{ $claim[0]->claim_created_at }}</p>
-            </div>
-            <div class="col-sm-6">
-                <p><strong>Closed Date: </strong>{{ $claim[0]->claim_date_closed }}</p>
-            </div>
         </div>
 
         <div class="row">
             <div class="panel panel-info">
-                <div class="panel-heading">Product</div>
+                <div class="panel-heading">
+                	<h3 class="panel-title">
+                		<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                		Claim #{{ $claim[0]->claim_id }}
+                	</h3>
+                </div>
                 <div class="panel-body">
-                    <div class="col-sm-6">
-                        <p><strong>Product Style: </strong>{{ $claim[0]->product_style }}</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p><strong>Damage Code: </strong>{{ $claim[0]->dc_id }}</p>
-                    </div>
+                	<dl class="dl-horizontal">
+                		<dt>Status</dt>
+                		<dd>
+                			@if ($claim[0]->claim_date_closed)
+                				Closed
+                			@else
+                				Open
+                			@endif
+                		</dd>
+                		<dt>Claim Type:</dt>
+                		<dd>
+                			@if ($claim[0]->replaced == 1)
+                				<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                				Replace Order
+                			@else
+                				<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                				Repair Order
+                				<!-- Convert to Replace Order form -->
+				                <form action="{{ route('claim.convert-to-replace-order') }}" method="post">
+				                    <input type="number" name="claim_id" value="{{ $claim[0]->claim_id }}" hidden>
+				                    <button type="submit" class="btn btn-primary btn-xs">
+                						Convert to Replace Order
+                					</button>
+				                    {{ csrf_field() }}
+				                </form>
+                			@endif
+                		</dd>
+                        <dt>Opened Date:</dt>
+                        <dd>{{ $claim[0]->claim_created_at }}</dd>
+                        @if ($claim[0]->claim_date_closed)
+	                        <dt>Closed Date:</dt>
+	                        <dd>{{ $claim[0]->claim_date_closed }}</dd>
+	                    @endif
+                    </dl>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="panel panel-info">
-                <div class="panel-heading">Customer</div>
+                <div class="panel-heading">
+                	<h3 class="panel-title">
+                		<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                		Product
+                	</h3>
+                </div>
                 <div class="panel-body">
-                    <div class="col-sm-6">
-                        <p><strong>First Name: </strong>{{ $claim[0]->cust_first_name }}</p>
-                        <p><strong>Last Name: </strong>{{ $claim[0]->cust_last_name }}</p>
-                        <p><strong>Phone: </strong>{{ $claim[0]->cust_phone }}</p>
-                        <p><strong>Email: </strong>{{ $claim[0]->cust_email }}</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p><strong>Address: </strong>{{ $claim[0]->cust_address }}</p>
-                        <p><strong>Address 2: </strong>{{ $claim[0]->cust_address_2 }}</p>
-                        <p><strong>City: </strong>{{ $claim[0]->cust_city }}</p>
-                        <p><strong>State: </strong>{{ $claim[0]->cust_state }}</p>
-                        <p><strong>Zip: </strong>{{ $claim[0]->cust_zip }}</p>
-                    </div>
+                    <dl class="dl-horizontal">
+                        <dt>Product Style:</dt>
+                        <dd>{{ $claim[0]->product_style }}</dd>
+                        <dt>Damage Code:</dt>
+                        <dd>{{ $claim[0]->dc_id }}</dd>
+                    </dl>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="panel panel-info">
-                <div class="panel-heading">Repair Center</div>
+                <div class="panel-heading">
+                	<h3 class="panel-title">
+                		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                		Customer
+                	</h3>
+                </div>
                 <div class="panel-body">
-                    <div class="col-sm-6">
-                        <p><strong>Name: </strong>{{ $claim[0]->rc_name }}</p>
-                        <p><strong>Contact Name: </strong>{{ $claim[0]->rc_contact }}</p>
-                        <p><strong>Phone: </strong>{{ $claim[0]->rc_phone }}</p>
-                        <p><strong>Email: </strong>{{ $claim[0]->rc_email }}</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p><strong>Address: </strong>{{ $claim[0]->rc_address }}</p>
-                        <p><strong>City: </strong>{{ $claim[0]->rc_city }}</p>
-                        <p><strong>State: </strong>{{ $claim[0]->rc_state }}</p>
-                        <p><strong>Zip: </strong>{{ $claim[0]->rc_zip }}</p>
-                    </div>
+                    <dl class="dl-horizontal">
+                        <dt>Name: </dt>
+                        <dd>{{ $claim[0]->cust_first_name }} {{ $claim[0]->cust_last_name }}</dd>
+                        <dt>
+                        	<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                        	Phone: 
+                        </dt>
+                        <dd>{{ $claim[0]->cust_phone }}</dd>
+                        <dt>
+                        	<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        	Email: 
+                        </dt>
+                        <dd>
+                        	<a href="mailto:{{ $claim[0]->cust_email }}?Subject=RBH Warranty Claim #{{ $claim[0]->claim_id }}" target="_top">
+                        		{{ $claim[0]->cust_email }}
+                        	</a>
+                        </dd>
+                        <dt>
+                        	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        	Address: 
+                        </dt>
+                        <dd>
+                        	{{ $claim[0]->cust_address }}<br>
+                        	<!-- Only display address 2 if it's not blank -->
+                        	@if($claim[0]->cust_address_2)
+                        		{{ $claim[0]->cust_address_2 }}<br>
+                        	@endif
+	                        {{ $claim[0]->cust_city }}, {{ $claim[0]->cust_state }}, {{ $claim[0]->cust_zip }}
+                        </dd>
+                    </dl>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="panel panel-info">
-                <div class="panel-heading">Comments</div>
+                <div class="panel-heading">
+                	<h3 class="panel-title">
+                		<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                		Repair Center
+                	</h3>
+                </div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Name: </dt>
+                        <dd>{{ $claim[0]->rc_name }}</dd>
+                        <dt>Contact Name: </dt>
+                        <dd>{{ $claim[0]->rc_contact }}</dd>
+                        <dt>
+                        	<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                        	Phone: 
+                        </dt>
+                        <dd>{{ $claim[0]->rc_phone }}</dd>
+                        <dt>
+                        	<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        	Email: 
+                        </dt>
+                        <dd>
+                        	<a href="mailto:{{ $claim[0]->rc_email }}?Subject=RBH Warranty Claim #{{ $claim[0]->claim_id }}" target="_top">
+                        		{{ $claim[0]->rc_email }}
+                        	</a>
+                        </dd>
+                        <dt>
+                        	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        	Address: 
+                        </dt>
+                        <dd>
+                        	{{ $claim[0]->rc_address }}<br>
+                        	{{ $claim[0]->rc_city }}, {{ $claim[0]->rc_state }}, {{ $claim[0]->rc_zip }}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                	<h3 class="panel-title">
+                		<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                		Comments
+                	</h3>
+                </div>
 
                 <table class="table table-conensed">
                 @foreach ($comments as $comment)
-                    <tr>
-                        <td><strong>Name: </strong>{{ $comment->author }}</td>
-                        <td><strong>Posted: </strong>{{ $comment->created_at }}</td>
-                        <td><strong>Comment: </strong>{{ $comment->comment }}</td>
-                    </tr>
+                    <tr><td>
+                        <dl class="dl-horizontal">
+                        	<dt>
+	                        	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+	                        	{{ $comment->author }}<br>
+	                        	{{ $comment->created_at }}
+	                        </dt>
+	                        <dd>
+	                        	<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+	                        	{{ $comment->comment }}
+	                        </dd>
+                        </dl>
+                    </td></tr>
                 @endforeach
                     <tr><td colspan="3">
                         <form action="{{ route('claim.add-comment') }}" method="post">
@@ -121,7 +217,7 @@
                     {{ csrf_field() }}
                 </form>
 
-                <p class="pull-right mt-10 mr-20"><strong>Emails Sent: </strong>{{ $claim[0]->claim_email_sent }}</p>
+                <p class="pull-right mt-10 mr-20">Emails Sent: {{ $claim[0]->claim_email_sent }}</p>
             </div>
         </div>
     </div>

@@ -53,6 +53,9 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
         // Add a new comment
         Route::post('/add-comment', 'ClaimController@addComment')
             ->name('claim.add-comment');
+        // Convert to Replace Order
+        Route::post('/convert-to-replace-order', 'ClaimController@convertToReplaceOrder')
+            ->name('claim.convert-to-replace-order');
     });
 
     // Customer

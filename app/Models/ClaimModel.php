@@ -282,4 +282,11 @@ class ClaimModel
 
         return $comments;
     }
+
+    public function convertToReplaceOrder($id)
+    {
+        DB::table('claim')
+            ->where('id', '=', $id)
+            ->update(['replaced' => 1]);
+    }
 }

@@ -116,6 +116,14 @@ class ClaimController extends Controller
             ->with('message', 'Comment successfully added to claim.');
     }
 
+    public function convertToReplaceOrder(Request $request) {
+        $claimModel = new ClaimModel();
+        $claimModel->convertToReplaceOrder($request->input('claim_id'));
+        
+        return redirect()->route('claim', ['id' => $request->input('claim_id')])
+            ->with('message', 'Claim successfully converted to a Replace Order.');
+    }
+
     public function deleteClaim($id)
     {
 
@@ -155,7 +163,6 @@ class ClaimController extends Controller
     public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) {
 
     }
-
 
     private function inputValidation($request, $validator)
     {
