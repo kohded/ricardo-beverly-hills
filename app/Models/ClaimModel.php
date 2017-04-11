@@ -95,6 +95,7 @@ class ClaimModel
                 'claim.date_closed as claim_date_closed',
                 'claim.email_sent as claim_email_sent',
                 'claim.replaced as replaced',
+                'claim.ship_to as ship_to', 
                 'customer.address as cust_address',
                 'customer.address_2 as cust_address_2',
                 'customer.city as cust_city',
@@ -115,13 +116,14 @@ class ClaimModel
                 'repair_center.email as rc_email',
                 'repair_center.zip as rc_zip',
                 'damage_code.id as dc_id',
-                'damage_code.part as dc_part')
+                'damage_code.part as dc_part'
+            )
             ->where('claim.id', '=', $id)
             ->get();
         return $claim;
     }
 
-    public function insertClaim($existing_customer_email, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replaced){
+    public function insertClaim($existing_customer_email, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replaced, $ship_to){
 
 
         DB::beginTransaction();
@@ -197,7 +199,8 @@ class ClaimModel
                 'product_style' => $products,
                 'damage_code_id' => $damage_code,
                 'repair_center_id' => $repair_center,
-                'replaced' => $replaced
+                'replaced' => $replaced,
+                'ship_to' => $ship_to
             ]);
 
         } catch (ValidationException $e)

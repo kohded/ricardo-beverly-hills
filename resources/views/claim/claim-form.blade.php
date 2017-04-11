@@ -152,23 +152,47 @@
 
                     <br/>
 
-                    <legend>Recommendation From Repair Center</legend>
+                    <dl class="dl-horizontal">
+                        <dt>Claim Type</dt>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="replaced" value="0" checked="checked">
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                    Repair Order
+                                </label>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="replaced" value="1">
+                                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                                    Replace Order
+                                </label>
+                            </div>
+                        </dd>
 
-                    <div class="form-check col-xs-2">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="replaced" value="0" checked="checked">
-                            Repair
-                        </label>
-                    </div>
+                        <br />
 
-                    <div class="col-xs-1"><b>OR</b></div>
-
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="replaced" value="1">
-                            Replace
-                        </label>
-                    </div>
+                        <dt>Ship To</dt>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="ship_to" value="Customer" checked="checked">
+                                    Customer
+                                </label>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="ship_to" value="Repair Center">
+                                    Repair Center
+                                </label>
+                            </div>
+                        </dd>
+                    </dl>
 
                     <div class="form-group col-xs-12">
                         <label for="inputClaimNumber">Comment</label>

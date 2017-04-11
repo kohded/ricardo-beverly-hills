@@ -97,7 +97,8 @@ class ClaimController extends Controller
                 $request->input('products'),
                 $request->input('damagecode'),
                 $request->input('repaircenter'),
-                $request->input('replaced')
+                $request->input('replaced'),
+                $request->input('ship_to')
             );
 
             return redirect()->route('claim', ['id' => $claimModel->getMostRecentClaimId()]);
@@ -119,7 +120,7 @@ class ClaimController extends Controller
     public function convertToReplaceOrder(Request $request) {
         $claimModel = new ClaimModel();
         $claimModel->convertToReplaceOrder($request->input('claim_id'));
-        
+
         return redirect()->route('claim', ['id' => $request->input('claim_id')])
             ->with('message', 'Claim successfully converted to a Replace Order.');
     }

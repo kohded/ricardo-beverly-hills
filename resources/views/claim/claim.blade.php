@@ -47,6 +47,8 @@
 				                </form>
                 			@endif
                 		</dd>
+                		<dt>Ship Part To:</dt>
+                		<dd>{{ $claim[0]->ship_to }}</dd>
                         <dt>Opened Date:</dt>
                         <dd>{{ $claim[0]->claim_created_at }}</dd>
                         @if ($claim[0]->claim_date_closed)
