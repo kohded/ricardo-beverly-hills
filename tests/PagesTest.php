@@ -19,9 +19,13 @@ class PagesTest extends TestCase
         $this->visit('/claim')
             ->see('All Claims');
 
-        $this->click('Create New Claim')
+        $this->click('create-claim')
             ->see('Create New Claim')
             ->seePageIs('/claim/create');
+
+        $this->visit('/claim')
+            ->click('claim-detail')
+            ->see('Claim');
 
         // Test edit link once we have edit claims working
     }
@@ -38,7 +42,7 @@ class PagesTest extends TestCase
             ->seePageIs('/customer/create');
 
         $this->visit('/customer')
-            ->click('Edit')
+            ->click('customer-edit')
             ->see('Edit Customer');
     }
 
@@ -54,7 +58,7 @@ class PagesTest extends TestCase
             ->seePageIs('/product/create');
 
         $this->visit('/product')
-            ->click('Edit')
+            ->click('product-edit')
             ->see('Edit Product');
     }
 
@@ -70,7 +74,7 @@ class PagesTest extends TestCase
             ->seePageIs('/repair-center/create');
 
         $this->visit('/repair-center')
-            ->click('Edit')
+            ->click('rc-edit')
             ->see('Edit Repair Center');
     }
 

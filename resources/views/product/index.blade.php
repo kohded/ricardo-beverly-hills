@@ -54,7 +54,7 @@
 								<td>{{ $product->collection }}</td>
 								<td>{{ $product->launch_date }}</td>
 								<td class="table-data-wrap">
-									<a href="{{ route('product.edit', ['style' => $product->style]) }}">
+									<a id="product-edit" href="{{ route('product.edit', ['style' => $product->style]) }}">
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 									</a>
 								</td>

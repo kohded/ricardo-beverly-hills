@@ -68,7 +68,7 @@
                                 <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td class="table-data-wrap">
-                                    <a href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}">
+                                    <a id="customer-edit" href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
                                 </td>

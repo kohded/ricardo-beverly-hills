@@ -4,18 +4,21 @@
     <div id="claim-list">
         <div class="row">
             <div class="col-xs-12">
-                <h1>All Claims</h1>
+                <h1>
+                    All Claims
 
-                {{--Create button--}}
-                <a href="{{ URL::route('claim-create') }}" class="btn btn-primary">
-                    Create New Claim
-                </a>
+                    {{--Create button--}}
+                    <a id="create-claim" href="{{ URL::route('claim-create') }}" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        New
+                    </a>
+                </h1>
+
+
             </div>
         </div>
 
-        <hr>
         @include('claim.filter-form')
-        <hr>
 
         <div class="row">
             <div class="col-xs-12">
@@ -64,7 +67,7 @@
                             <a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
                                 <tr>
                                     <td>
-                                        <a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
+                                        <a id="claim-detail" href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
                                             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                                             {{ $claim->claim_id }}
                                         </a>

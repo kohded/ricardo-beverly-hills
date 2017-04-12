@@ -54,7 +54,7 @@
                                 <td>{{ $repairCenter->state }}</td>
                                 <td>{{ $repairCenter->preferred ? 'Yes' : 'No' }}</td>
                                 <td class="table-data-wrap">
-                                    <a href="{{ route('repair-center.edit', [
+                                    <a id="rc-edit" href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
                                         ]) }}">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
