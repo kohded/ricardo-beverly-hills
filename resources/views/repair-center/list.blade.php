@@ -56,14 +56,16 @@
                                 <td class="table-data-wrap">
                                     <a href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
-                                        ]) }}" class="btn btn-success btn-sm">Edit
+                                        ]) }}">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
                                     <a href="{{ route('repair-center.delete', [
                                             'id' => $repairCenter->id,
                                             'name' => $repairCenter->name
-                                        ]) }}" class="btn btn-danger btn-sm">Delete
+                                        ]) }}">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 </td>
                             </tr>

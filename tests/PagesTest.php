@@ -38,11 +38,6 @@ class PagesTest extends TestCase
             ->seePageIs('/customer/create');
 
         $this->visit('/customer')
-            ->click('More Detail')
-            ->see('Phone Number')
-            ->see('Customer Claims');
-
-        $this->visit('/customer')
             ->click('Edit')
             ->see('Edit Customer');
     }

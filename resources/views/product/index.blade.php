@@ -28,12 +28,17 @@
 					<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
-								<th>Style</th>
+								<th>
+									<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+									Style
+								</th>
 								<th>Description</th>
 								<th>Brand</th>
 								<th>Warranty</th>
 								<th>Collection</th>
-								<th>Launched</th>
+								<th>
+									<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+									Launched</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -49,16 +54,16 @@
 								<td>{{ $product->collection }}</td>
 								<td>{{ $product->launch_date }}</td>
 								<td class="table-data-wrap">
-									<a href="{{ route('product.edit', [
-										'style' => $product->style
-										]) }}" class="btn btn-success btn-sm">Edit
+									<a href="{{ route('product.edit', ['style' => $product->style]) }}">
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 									</a>
 								</td>
 								<td class="table-data-wrap">
 									<a href="{{ route('product.delete', [
 										'style' => $product->style,
 										'description' => $product->description
-										]) }}" class="btn btn-danger btn-sm">Delete
+										]) }}">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 									</a>
 								</td>
 							</tr>
