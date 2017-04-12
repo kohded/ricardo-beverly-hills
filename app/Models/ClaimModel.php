@@ -98,6 +98,7 @@ class ClaimModel
                 'claim.ship_to as ship_to', 
                 'claim.part_needed as part_needed',
                 'claim.parts_needed as parts_needed',
+                'claim.parts_available as parts_available',
                 'customer.address as cust_address',
                 'customer.address_2 as cust_address_2',
                 'customer.city as cust_city',

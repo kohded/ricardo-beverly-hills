@@ -68,6 +68,16 @@
                                 <dd>{{ $claim[0]->parts_needed }}</dd>
                                 <dt>Ship Parts To:</dt>
                                 <dd>{{ $claim[0]->ship_to }}</dd>
+                                <dt>Parts Available?</dt>
+                                <dd>
+                                    @if ($claim[0]->parts_available == 0)
+                                        Parts unavailable from TWC
+                                    @elseif ($claim[0]->parts_available == 1)
+                                        Parts are available from TWC
+                                    @else
+                                        Waiting for response from TWC...
+                                    @endif
+                                </dd>
                             @endif
                         @endif
                     </dl>
