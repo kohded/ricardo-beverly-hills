@@ -23,7 +23,7 @@
                 @else
                     @role('ricardo-beverly-hills')
                     <li><a href="{{ route('claim-index') }}">
-                        <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;
                         Claims
                     </a></li>
                     <li><a href="{{ route('customer') }}">

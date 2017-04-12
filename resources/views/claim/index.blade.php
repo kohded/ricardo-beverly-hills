@@ -30,12 +30,30 @@
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
-                            <th>Claim Number</th>
-                            <th>Customer</th>
-                            <th>Product Style</th>
-                            <th>Repair Center</th>
-                            <th>Date Opened</th>
-                            <th>Date Closed</th>
+                            <th>
+                                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                Claim
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                Customer
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                                Product Style
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                Repair Center
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                Date Opened
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                Date Closed
+                            </th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -47,21 +65,33 @@
                                 <tr>
                                     <td>
                                         <a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
-                                            <button class="btn btn-primary btn-sm col-xs-12">
-                                                {{ $claim->claim_id }}
-                                            </button>
-                                        </a></td>
+                                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                            {{ $claim->claim_id }}
+                                        </a>
+                                    </td>
                                     <td>{{ $claim->first . ' ' . $claim->last }}</td>
                                     <td>{{ $claim->style }}</td>
                                     <td>{{ $claim->repair_center }}</td>
                                     <td>{{ $claim->created_at }}</td>
                                     <td>{{ $claim->closed_at }}</td>
+                                    </a>
+                                    <!--
                                     <td class="table-data-wrap">
                                         <a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}"
                                            class="btn btn-success btn-sm">Edit</a></td>
                                     <td class="table-data-wrap">
                                         <a href="{{ URL::route('claim.delete', [ 'id' => $claim->claim_id])  }}"
                                            class="btn btn-danger btn-sm">Delete</a></td>
+                                    -->
+
+                                    <td class="table-data-wrap">
+                                        <a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                                    <td class="table-data-wrap">
+                                        <a href="{{ URL::route('claim.delete', [ 'id' => $claim->claim_id])  }}">
+                                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+
+
                                 </tr>
                             </a>
                         @endforeach
