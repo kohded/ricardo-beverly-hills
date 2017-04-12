@@ -4,12 +4,16 @@
     <div id="repair-center-list">
         <div class="row">
             <div class="col-xs-12">
-                <h1>Damage Codes</h1>
+                <h1>
+                    Damage Codes
+                    {{--Create button--}}
+                    <a href="{{ route('damage-code.create') }}" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        New
+                    </a>
+                </h1>
 
-                {{--Create button--}}
-                <a href="{{ route('damage-code.create') }}" class="btn btn-primary">
-                    Create Damage Code
-                </a>
+
             </div>
         </div>
 
@@ -38,16 +42,18 @@
                                 <td>{{ $damageCode->id }}</td>
                                 <td>{{ $damageCode->part }}</td>
                                 <td class="table-data-wrap">
-                                    <a href="{{ route('damage-code.edit', [
+                                    <a id="dc-edit" href="{{ route('damage-code.edit', [
                                         'id' => $damageCode->id
-                                        ]) }}" class="btn btn-success btn-sm">Edit
+                                        ]) }}">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
                                     <a href="{{ route('damage-code.delete', [
                                             'id' => $damageCode->id,
                                             'part' => $damageCode->part
-                                        ]) }}" class="btn btn-danger btn-sm">Delete
+                                        ]) }}">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 </td>
                             </tr>

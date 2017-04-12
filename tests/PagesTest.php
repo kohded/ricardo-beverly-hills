@@ -78,6 +78,22 @@ class PagesTest extends TestCase
             ->see('Edit Repair Center');
     }
 
+    public function testDamageCodePages()
+    {
+        $this->login();
+
+        $this->visit('/damage-code')
+            ->see('Damage Codes');
+
+        $this->click('New')
+            ->see('Create Damage Code')
+            ->seePageIs('/damage-code/create');
+
+        $this->visit('/damage-code')
+            ->click('dc-edit')
+            ->see('Edit Damage Code');
+    }
+
     public function login()
     {
         $this->visit('/login')
