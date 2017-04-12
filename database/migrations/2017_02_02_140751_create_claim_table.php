@@ -26,7 +26,8 @@ class CreateClaimTable extends Migration
             $table->boolean('replaced')->default(0);
             $table->unsignedInteger('email_sent')->default(0);
             $table->boolean('part_needed');
-            $table->string('parts_needed', 200)->nullable;
+            $table->string('parts_needed', 200)->nullable();
+            $table->boolean('parts_available')->nullable()->default(NULL);
         });
     }
 

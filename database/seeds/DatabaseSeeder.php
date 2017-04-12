@@ -133,6 +133,7 @@ class DatabaseSeeder extends Seeder
                 'ship_to'          => $faker->randomElement($array = array('Customer', 'Repair Center')),
                 'part_needed'      => $faker->randomElement($array = array(0, 1)),
                 'parts_needed'     => $faker->randomElement($array = array('None', 'Need 2 wheels', 'Need main bag zipper', 'Need one wheel and new zipper tag')),
+                'parts_available'  => $faker->randomElement($array = array(NULL, 0, 1))
             ]);
         }
 
