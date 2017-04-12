@@ -175,6 +175,27 @@
 
                         <br />
 
+                        <dt>Parts Required?</dt>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="part_needed" value="1">
+                                    Yes
+                                </label>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="part_needed" value="0">
+                                    No
+                                </label>
+                            </div>
+                        </dd>
+
+                        <br />
+
+
                         <dt>Parts Needed</dt>
                         <dd>
                             <input type="text" class="form-control" name="parts_needed" placeholder="Parts needed...">

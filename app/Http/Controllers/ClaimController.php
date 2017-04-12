@@ -99,6 +99,7 @@ class ClaimController extends Controller
                 $request->input('repaircenter'),
                 $request->input('replaced'),
                 $request->input('ship_to'),
+                $request->input('part_needed'),
                 $request->input('parts_needed')
             );
 

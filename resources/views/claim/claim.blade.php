@@ -58,10 +58,17 @@
                         <!-- only display parts and ship to if it's a repair order -->
                         @if ($claim[0]->replaced == 0)
                             <hr>
-                            <dt>Parts Needed:</dt>
-                            <dd>{{ $claim[0]->parts_needed }}</dd>
-                            <dt>Ship Parts To:</dt>
-                            <dd>{{ $claim[0]->ship_to }}</dd>
+                            <dt>Parts Required?:</dt>
+                            
+                            @if ($claim[0]->part_needed == 0)
+                                <dd>No</dd>
+                            @else
+                                <dd>Yes</dd>
+                                <dt>Parts Needed:</dt>
+                                <dd>{{ $claim[0]->parts_needed }}</dd>
+                                <dt>Ship Parts To:</dt>
+                                <dd>{{ $claim[0]->ship_to }}</dd>
+                            @endif
                         @endif
                     </dl>
                 </div>
