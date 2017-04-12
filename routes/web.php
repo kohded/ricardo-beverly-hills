@@ -144,9 +144,8 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
 
     // Mail
     Route::group(['prefix' => 'mail'], function() {
-        // Claim Confirmation
-        Route::post('/claim-confirmation', 'Mail\ClaimConfirmationController@sendMail')
-            ->name('mail.claim-confirmation');
+        Route::post('/mail-claim', 'Mail\MailClaimController@send')
+            ->name('mail.claim');
     });
 });
 

@@ -4,11 +4,14 @@
     <div id="claim-detail" class="col-md-8 col-md-offset-2">
         {{--Claim--}}
         <div class="row">
-                @if(Session::has('message'))
-                    <p class="alert alert-success">
-                        {{ Session::get('message') }}
-                    </p>
-                @endif
+            @if(Session::has('email-message'))
+                <ul class="alert alert-success list-unstyled">
+                    <li>{{ Session::get('email-message')['message'] }}</li>
+                    <li>{{ Session::get('email-message')['rbh'] }}</li>
+                    <li>{{ Session::get('email-message')['twc'] }}</li>
+                    <li>{{ Session::get('email-message')['receiver'] }}</li>
+                </ul>
+            @endif
         </div>
 
         <div class="row">
@@ -59,7 +62,7 @@
                         @if ($claim[0]->replaced == 0)
                             <hr>
                             <dt>Parts Required?:</dt>
-                            
+
                             @if ($claim[0]->part_needed == 0)
                                 <dd>No</dd>
                             @else
@@ -118,12 +121,12 @@
                         <dd>{{ $claim[0]->cust_first_name }} {{ $claim[0]->cust_last_name }}</dd>
                         <dt>
                         	<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                        	Phone: 
+                        	Phone:
                         </dt>
                         <dd>{{ $claim[0]->cust_phone }}</dd>
                         <dt>
                         	<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                        	Email: 
+                        	Email:
                         </dt>
                         <dd>
                         	<a href="mailto:{{ $claim[0]->cust_email }}?Subject=RBH Warranty Claim #{{ $claim[0]->claim_id }}" target="_top">
@@ -132,7 +135,7 @@
                         </dd>
                         <dt>
                         	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                        	Address: 
+                        	Address:
                         </dt>
                         <dd>
                         	{{ $claim[0]->cust_address }}<br>
@@ -163,12 +166,12 @@
                         <dd>{{ $claim[0]->rc_contact }}</dd>
                         <dt>
                         	<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                        	Phone: 
+                        	Phone:
                         </dt>
                         <dd>{{ $claim[0]->rc_phone }}</dd>
                         <dt>
                         	<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                        	Email: 
+                        	Email:
                         </dt>
                         <dd>
                         	<a href="mailto:{{ $claim[0]->rc_email }}?Subject=RBH Warranty Claim #{{ $claim[0]->claim_id }}" target="_top">
@@ -177,7 +180,7 @@
                         </dd>
                         <dt>
                         	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                        	Address: 
+                        	Address:
                         </dt>
                         <dd>
                         	{{ $claim[0]->rc_address }}<br>
@@ -237,7 +240,7 @@
             </div>
 
             <div class="col-xs-8">
-                <form action="{{ route('mail.claim-confirmation') }}"
+                <form action="{{ route('mail.claim') }}"
                       method="post" class="pull-right">
                     <input type="number" name="claim-id" value="{{ $claim[0]->claim_id }}" hidden>
                     <button type="submit" class="btn btn-primary">Send Email</button>

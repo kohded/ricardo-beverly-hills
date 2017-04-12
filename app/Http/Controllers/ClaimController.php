@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Mail\MailClaimController;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\ClaimModel;
@@ -103,7 +104,13 @@ class ClaimController extends Controller
                 $request->input('parts_needed')
             );
 
-            return redirect()->route('claim', ['id' => $claimModel->getMostRecentClaimId()]);
+            $claimId = $claimModel->getMostRecentClaimId();
+
+            // Mail claim
+            $request->request->add(['claim-id' => $claimId]);
+            (new MailClaimController())->send($request);
+
+            return redirect()->route('claim', ['id' => $claimId]);
         }
     }
 
