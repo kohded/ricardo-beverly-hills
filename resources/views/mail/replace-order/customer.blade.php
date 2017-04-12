@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="en">
-@include('mail.partials.head', ['title' => 'Part Order'])
+@include('mail.partials.head', ['title' => 'Replace Order'])
 <body>
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-body">
-                @include('mail.partials.claim-info', ['emailFor' => 'Part Order'])
-                @include('mail.partials.claim-comments')
+                @include('mail.partials.claim-info', ['emailFor' => 'Replace Order'])
             </div>
         </div>
     </div>

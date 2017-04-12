@@ -226,6 +226,7 @@
                         <label for="inputClaimNumber">Comment</label>
                         <textarea class="col-xs-12" name="comment"></textarea>
                     </div>
+                    <input type="number" name="claim_new" value="1" hidden>
 
                     {{ csrf_field() }}
 

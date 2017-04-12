@@ -10,6 +10,8 @@
                 {{ $emailFor }}
             @endif
         </h2>
+        <hr>
+        {{ $note }}
     </div>
 </div>
 

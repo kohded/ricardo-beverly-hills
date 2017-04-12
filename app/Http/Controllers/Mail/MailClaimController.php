@@ -14,6 +14,8 @@ class MailClaimController extends Controller
     private $receiverEmail;
     private $claim;
     private $comments;
+    private $twcName = '';
+    private $rbhName = '';
 
     /**
      * Send email to RBH, TWC, and receiver.
@@ -27,6 +29,7 @@ class MailClaimController extends Controller
         $claimId = $request->input('claim-id');
         $this->claim = $claimModel->getClaim($claimId);
         $this->comments = $claimModel->getComments($claimId);
+
         $receiverName = '';
 
         // Set receiver email and name.
@@ -52,7 +55,10 @@ class MailClaimController extends Controller
         // Send part order email or replace order email.
         switch($this->claim[0]->replaced) {
             case 0:
-                $this->partOrderMail();
+                $this->partOrderMail($request);
+                break;
+            case 1:
+                $this->replaceOrderMail($request);
                 break;
             default:
                 break;
@@ -65,8 +71,8 @@ class MailClaimController extends Controller
         // Redirect with email message.
         return redirect()->back()->with('email-message', [
             'message'  => 'Email sent successfully to:',
-            'rbh'      => 'Ricardo Beverly Hills',
-            'twc'      => 'T.W. Carrol & Co.',
+            'rbh'      => $this->rbhName,
+            'twc'      => $this->twcName,
             'receiver' => $receiverName,
         ]);
     }
@@ -74,16 +80,32 @@ class MailClaimController extends Controller
     /**
      * Send email to RBH, TWC, and receiver for part order.
      */
-    public function partOrderMail()
+    public function partOrderMail($request)
     {
         // Ricardo Beverly Hills
         \Mail::to($this::RBH_EMAIL)
             ->send(new \App\Mail\PartOrder\RBHMail($this->claim, $this->comments));
-        // Part Center
-        \Mail::to($this::TWC_EMAIL)
-            ->send(new \App\Mail\PartOrder\TWCMail($this->claim, $this->comments));
+        $this->rbhName = 'Ricardo Beverly Hills';
+        // TWC
+        if($request->input('part_needed') === '1') {
+            \Mail::to($this::TWC_EMAIL)
+                ->send(new \App\Mail\PartOrder\TWCMail($this->claim, $this->comments));
+            $this->twcName = 'T.W. Carrol & Co.';
+        }
         // Receiver
         \Mail::to($this->receiverEmail)
             ->send(new \App\Mail\PartOrder\ReceiverMail($this->claim));
+    }
+
+    public function replaceOrderMail($request)
+    {
+        // Repair Center
+        if($this->claim[0]->replaced === 1 && !$request->input('claim_new')) {
+            \Mail::to($this->receiverEmail)
+                ->send(new \App\Mail\ReplaceOrder\RepairCenterMail($this->claim));
+        }
+        // Customer
+        \Mail::to($this->receiverEmail)
+            ->send(new \App\Mail\ReplaceOrder\CustomerMail($this->claim));
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Mail\PartOrder;
+namespace App\Mail\ReplaceOrder;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ReceiverMail extends Mailable
+class CustomerMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -15,14 +15,15 @@ class ReceiverMail extends Mailable
     private $note;
 
     /**
-     * Create a new ReceiverMail instance.
+     * Create a new CustomerMail instance.
      *
      * @param $claim
      */
     public function __construct($claim)
     {
         $this->claim = $claim;
-        $this->note = '';
+        $this->note = 'Your warranty claim has been processed and a replacement bag will be sent to 
+        the address you provide with your claim.';
     }
 
     /**
@@ -32,11 +33,11 @@ class ReceiverMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.part-order.receiver')
-            ->subject('Ricardo Beverly Hills - Part Order Claim #' . $this->claim[0]->claim_id)
+        return $this->view('mail.replace-order.customer')
+            ->subject('Ricardo Beverly Hills - Replace Order Claim #' . $this->claim[0]->claim_id)
             ->with([
                 'claim' => $this->claim,
-                'note' => $this->note,
+                'note'  => $this->note,
             ]);
     }
 }

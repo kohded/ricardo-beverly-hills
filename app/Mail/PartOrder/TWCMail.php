@@ -11,8 +11,9 @@ class TWCMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $claim;
-    public $comments;
+    private $claim;
+    private $comments;
+    private $note;
 
     /**
      * Create a new TWCMail instance.
@@ -24,6 +25,7 @@ class TWCMail extends Mailable
     {
         $this->claim = $claim;
         $this->comments = $comments;
+        $this->note = '';
     }
 
     /**
@@ -34,6 +36,11 @@ class TWCMail extends Mailable
     public function build()
     {
         return $this->view('mail.part-order.twc')
-            ->subject('Ricardo Beverly Hills - Part Order Claim #' . $this->claim[0]->claim_id);
+            ->subject('Ricardo Beverly Hills - Part Order Claim #' . $this->claim[0]->claim_id)
+            ->with([
+                'claim' => $this->claim,
+                'comments' => $this->comments,
+                'note' => $this->note,
+            ]);
     }
 }
