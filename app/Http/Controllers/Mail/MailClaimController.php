@@ -27,7 +27,7 @@ class MailClaimController extends Controller
         $this->claimId = $request->input('claim-id');
         $this->claim = $claimModel->getClaim($this->claimId);
         $this->claimComments = $claimModel->getComments($this->claimId);
-        $this->customerName = $this->claim[0]->cust_first_name . $this->claim[0]->cust_last_name;
+        $this->customerName = $this->claim[0]->cust_first_name . ' ' . $this->claim[0]->cust_last_name;
         $this->customerEmail = $this->claim[0]->cust_email;
         $this->repairCenterName = $this->claim[0]->rc_name;
         $this->repairCenterEmail = $this->claim[0]->rc_email;
