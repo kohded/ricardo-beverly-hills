@@ -2,6 +2,10 @@
     <div class="container-fluid">
         {{--Mobile Nav--}}
         <div class="navbar-header">
+            <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="{{ route('home') }}">
+                <img src="{{asset('img/nav-logo.jpg')}}"
+                     class="img-responsive" id="nav-logo" alt="Ricardo Beverly Hills Logo">
+            </a>
             <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
@@ -10,13 +14,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">
-                Ricardo Beverly Hills
-            </a>
         </div>
 
         {{--Desktop Nav--}}
         <div id="navbar" class="navbar-collapse collapse">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="{{asset('img/nav-logo.jpg')}}"
+                             class="img-responsive" id="nav-logo" alt="Ricardo Beverly Hills Logo">
+                    </a>
+                </div>
+            </div>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
