@@ -110,7 +110,11 @@ class MailClaimController extends Controller
      */
     private function sendNewWarrantyClaimReplaceMail()
     {
-
+        \Mail::to($this->customerEmail)
+            ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim));
+        $this->repairCenterName = '';
+        $this->rbhName = '';
+        $this->twcName = '';
     }
 
     /**
@@ -122,13 +126,13 @@ class MailClaimController extends Controller
     {
         if($this->claim[0]->ship_to === 'Customer') {
             \Mail::to($this->customerEmail)
-                ->send(new \App\Mail\Claim\ReplaceOrder\Convert\CustomerMail($this->claim));
+                ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim));
             $this->repairCenterName = '';
         } elseif($this->claim[0]->ship_to === 'Repair Center') {
             \Mail::to($this->customerEmail)
-                ->send(new \App\Mail\Claim\ReplaceOrder\Convert\CustomerMail($this->claim));
+                ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim));
             \Mail::to($this->repairCenterEmail)
-                ->send(new \App\Mail\Claim\ReplaceOrder\Convert\RepairCenterMail($this->claim));
+                ->send(new \App\Mail\Claim\ReplaceOrder\RepairCenterMail($this->claim));
         }
 
         $this->incrementEmailSentCount();
