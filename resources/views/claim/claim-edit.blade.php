@@ -199,7 +199,7 @@
                         <textarea class="col-xs-12" name="comment"></textarea>
                     </div>
 
-                    <input type="hidden" name="id" value="{{ $claimDetails->id}}">
+                    <input type="hidden" name="id" value="{{ $claimDetails->claim_id}}">
 
                     {{ csrf_field() }}
 

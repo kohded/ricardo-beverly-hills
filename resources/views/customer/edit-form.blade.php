@@ -32,51 +32,51 @@
     <form class="insertion-form" action="{{ URL::route('customer-edit') }}" method="post">
         <div class="form-group col-xs-offset-3 col-xs-3">
             <label for="inputCustomerName">First Name</label>
-            <input type="text" class="form-control" id="inputCustomerName" name="firstname" value="{{ $customerDetail['customer'][0]->first_name}}">
+            <input type="text" class="form-control" id="inputCustomerName" name="firstname" value="{{ $customerDetails['customer'][0]->first_name}}">
         </div>
 
         <div class="col-xs-3">
             <label for="inputCustomerName">Last Name</label>
-            <input type="text" class="form-control" id="inputCustomerName" name="lastname" value="{{ $customerDetail['customer'][0]->last_name}}">
+            <input type="text" class="form-control" id="inputCustomerName" name="lastname" value="{{ $customerDetails['customer'][0]->last_name}}">
         </div>
 
         <div class="form-group col-xs-offset-3  col-xs-6">
             <label for="inputCustomerAddress1">Address 1</label>
-            <input type="text" class="form-control" id="inputCustomerAddress1" name="address1" value="{{ $customerDetail['customer'][0]->address }}">
+            <input type="text" class="form-control" id="inputCustomerAddress1" name="address1" value="{{ $customerDetails['customer'][0]->address }}">
         </div>
 
         <div class="form-group col-xs-offset-3 col-xs-6">
             <label for="inputCustomerAddress2">Address 2</label>
-            <input type="text" class="form-control" id="inputCustomerAddress2" name="address2" value="{{ $customerDetail['customer'][0]->address_2 }}">
+            <input type="text" class="form-control" id="inputCustomerAddress2" name="address2" value="{{ $customerDetails['customer'][0]->address_2 }}">
         </div>
 
         <div class="form-group col-xs-offset-3 col-xs-2">
             <label for="inputCustomerCity">City</label>
-            <input type="text" class="form-control" id="inputCustomerCity" name="city" value="{{ $customerDetail['customer'][0]->city }}">
+            <input type="text" class="form-control" id="inputCustomerCity" name="city" value="{{ $customerDetails['customer'][0]->city }}">
         </div>
 
         <div class="form-group col-xs-2">
             <label for="inputCustomerState">State</label>
-            <input type="text" class="form-control" id="inputCustomerState" name="state" value="{{ $customerDetail['customer'][0]->state }}">
+            <input type="text" class="form-control" id="inputCustomerState" name="state" value="{{ $customerDetails['customer'][0]->state }}">
         </div>
 
         <div class="form-group col-xs-2">
             <label for="inputCustomerZip">Zip</label>
-            <input type="text" class="form-control" id="inputCustomerZip" name="zip" value="{{ $customerDetail['customer'][0]->zip }}">
+            <input type="text" class="form-control" id="inputCustomerZip" name="zip" value="{{ $customerDetails['customer'][0]->zip }}">
         </div>
 
         <div class="form-group col-xs-offset-3 col-xs-3">
             <label for="inputCustomerPhone">Phone</label>
-            <input type="text" class="form-control" id="inputCustomerPhone" name="phone"  value="{{ $customerDetail['customer'][0]->phone }}">
+            <input type="text" class="form-control" id="inputCustomerPhone" name="phone"  value="{{ $customerDetails['customer'][0]->phone }}">
         </div>
 
 
         <div class="form-group col-xs-3">
             <label for="inputCustomerEmail">Email</label>
-            <input type="text" class="form-control" id="inputCustomerEmail" name="email" value="{{ $customerDetail['customer'][0]->email }}">
+            <input type="text" class="form-control" id="inputCustomerEmail" name="email" value="{{ $customerDetails['customer'][0]->email }}">
         </div>
 
-        <input type="hidden" name="id" value="{{ $customerDetail['customer'][0]->id}}">
+        <input type="hidden" name="id" value="{{ $customerDetails['customer'][0]->id}}">
 
 
 
