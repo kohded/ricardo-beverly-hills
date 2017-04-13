@@ -6,12 +6,12 @@
     </div>
     <div class="col-xs-12">
         <h2 class="text-center">
-            @if(@isset($emailFor))
-                {{ $emailFor }}
+            @if(@isset($claimType))
+                {{ $claimType }}
             @endif
         </h2>
         <hr>
-        {{ $note }}
+        {{ $claimMessage }}
     </div>
 </div>
 

@@ -10,102 +10,106 @@ class MailClaimController extends Controller
 {
     private const RBH_EMAIL = 'ricardobevhills@gmail.com';
     // REPLACE WITH TWC EMAIL IN PRODUCTION.
-    private const TWC_EMAIL = 'ricardobevhills@gmail.com';
-    private $receiverEmail;
+    private const TWC_EMAIL = 'twc@gmail.com';
+    private $claimId;
     private $claim;
-    private $comments;
-    private $twcName = '';
-    private $rbhName = '';
+    private $claimComments;
+    private $customerName;
+    private $customerEmail;
+    private $repairCenterName;
+    private $repairCenterEmail;
+    private $rbhName;
+    private $twcName;
 
-    /**
-     * Send email to RBH, TWC, and receiver.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function send(\Illuminate\Http\Request $request)
+    public function __construct(\Illuminate\Http\Request $request)
     {
         $claimModel = new ClaimModel();
-        $claimId = $request->input('claim-id');
-        $this->claim = $claimModel->getClaim($claimId);
-        $this->comments = $claimModel->getComments($claimId);
+        $this->claimId = $request->input('claim-id');
+        $this->claim = $claimModel->getClaim($this->claimId);
+        $this->claimComments = $claimModel->getComments($this->claimId);
+        $this->customerName = $this->claim[0]->cust_first_name . $this->claim[0]->cust_last_name;
+        $this->customerEmail = $this->claim[0]->cust_email;
+        $this->repairCenterName = $this->claim[0]->rc_name;
+        $this->repairCenterEmail = $this->claim[0]->rc_email;
+        $this->rbhName = 'Ricardo Beverly Hills';
+        $this->twcName = 'T.W. Carrol & Co.';
+    }
 
-        $receiverName = '';
-
-        // Set receiver email and name.
-        switch($this->claim[0]->ship_to) {
-            case 'Repair Center':
-                $this->receiverEmail = $this->claim[0]->rc_email;
-                $receiverName = $this->claim[0]->rc_name;
-                break;
-            case 'Customer':
-                $this->receiverEmail = $this->claim[0]->cust_email;
-                $receiverName = $this->claim[0]->cust_first_name . $this->claim[0]->cust_last_name;
-                break;
-            default:
-                $this->receiverEmail = $this::RBH_EMAIL;
-                $receiverName = 'Sorry, there was no ship to recipient for this claim. RBH will be 
-                                sent an additional email for this claim.';
-                break;
+    public function sendNewWarrantyClaimMail()
+    {
+        if($this->claim[0]->replaced === 0) { // Repair Order
+            $this->sendNewWarrantyClaimRepairMail();
+        } elseif($this->claim[0]->replaced === 1) { // Replace Order
+            $this->sendNewWarrantyClaimReplaceMail();
         }
 
-        // DELETE THIS LINE IN PRODUCTION ONLY.
-        $this->receiverEmail = 'ricardobevhills@gmail.com';
-
-        // Send part order email or replace order email.
-        switch($this->claim[0]->replaced) {
-            case 0:
-                $this->partOrderMail($request);
-                break;
-            case 1:
-                $this->replaceOrderMail($request);
-                break;
-            default:
-                break;
-        }
-
-        // Increment email sent count for claim.
-        $mailModel = new MailClaimModel();
-        $mailModel->incrementEmailSentCount($claimId);
+        $this->incrementEmailSentCount();
 
         // Redirect with email message.
         return redirect()->back()->with('email-message', [
-            'message'  => 'Email sent successfully to:',
-            'rbh'      => $this->rbhName,
-            'twc'      => $this->twcName,
-            'receiver' => $receiverName,
+            'message'       => 'Email sent successfully to:',
+            'customer'      => $this->customerName,
+            'repair-center' => $this->repairCenterName,
+            'rbh'           => $this->rbhName,
+            'twc'           => $this->twcName,
         ]);
     }
 
-    /**
-     * Send email to RBH, TWC, and receiver for part order.
-     */
-    public function partOrderMail($request)
+    private function sendNewWarrantyClaimRepairMail()
     {
-        // Ricardo Beverly Hills
-        \Mail::to($this::RBH_EMAIL)
-            ->send(new \App\Mail\PartOrder\RBHMail($this->claim, $this->comments));
-        $this->rbhName = 'Ricardo Beverly Hills';
-        // TWC
-        if($request->input('part_needed') === '1') {
-            \Mail::to($this::TWC_EMAIL)
-                ->send(new \App\Mail\PartOrder\TWCMail($this->claim, $this->comments));
-            $this->twcName = 'T.W. Carrol & Co.';
+        if($this->claim[0]->part_needed === 0) { // Part Not Required
+            if($this->claim[0]->ship_to === 'Customer') {
+                \Mail::to($this->customerEmail)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\Customer\CustomerMail($this->claim));
+                \Mail::to($this::RBH_EMAIL)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\Customer\RBHMail($this->claim, $this->claimComments));
+
+                // Clear name so it doesn't show in claim.blade.php
+                $this->repairCenterName = '';
+            } elseif($this->claim[0]->ship_to === 'Repair Center') {
+                \Mail::to($this->customerEmail)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\CustomerMail($this->claim));
+                \Mail::to($this::RBH_EMAIL)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RBHMail($this->claim, $this->claimComments));
+                \Mail::to($this->repairCenterEmail)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RepairCenterMail($this->claim));
+            }
+
+            $this->twcName = '';
+        } elseif($this->claim[0]->part_needed === 1) { // Part Required
+            if($this->claim[0]->ship_to === 'Customer') {
+                \Mail::to($this->customerEmail)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\CustomerMail($this->claim));
+                \Mail::to($this::RBH_EMAIL)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\RBHMail($this->claim, $this->claimComments));
+                \Mail::to($this::TWC_EMAIL)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\TWCMail($this->claim, $this->claimComments));
+
+                $this->repairCenterName = '';
+            } elseif($this->claim[0]->ship_to === 'Repair Center') {
+                \Mail::to($this->customerEmail)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\CustomerMail($this->claim));
+                \Mail::to($this::RBH_EMAIL)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\RBHMail($this->claim, $this->claimComments));
+                \Mail::to($this->repairCenterEmail)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\RepairCenterMail($this->claim));
+                \Mail::to($this::TWC_EMAIL)
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\TWCMail($this->claim, $this->claimComments));
+            }
         }
-        // Receiver
-        \Mail::to($this->receiverEmail)
-            ->send(new \App\Mail\PartOrder\ReceiverMail($this->claim));
     }
 
-    public function replaceOrderMail($request)
+    private function sendNewWarrantyClaimReplaceMail()
     {
-        // Repair Center
-        if($this->claim[0]->replaced === 1 && !$request->input('claim_new')) {
-            \Mail::to($this->receiverEmail)
-                ->send(new \App\Mail\ReplaceOrder\RepairCenterMail($this->claim));
-        }
-        // Customer
-        \Mail::to($this->receiverEmail)
-            ->send(new \App\Mail\ReplaceOrder\CustomerMail($this->claim));
+
+    }
+
+    /**
+     * Increment email sent count for claim.
+     */
+    private function incrementEmailSentCount()
+    {
+        $mailModel = new MailClaimModel();
+        $mailModel->incrementEmailSentCount($this->claimId);
     }
 }

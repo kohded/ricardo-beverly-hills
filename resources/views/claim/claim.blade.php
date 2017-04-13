@@ -7,14 +7,17 @@
             @if(Session::has('email-message'))
                 <ul class="alert alert-success list-unstyled">
                     <li>{{ Session::get('email-message')['message'] }}</li>
+                    @if(isset(Session::get('email-message')['customer']))
+                        <li>{{ Session::get('email-message')['customer'] }}</li>
+                    @endif
+                    @if(isset(Session::get('email-message')['repair-center']))
+                        <li>{{ Session::get('email-message')['repair-center'] }}</li>
+                    @endif
                     @if(isset(Session::get('email-message')['rbh']))
                         <li>{{ Session::get('email-message')['rbh'] }}</li>
                     @endif
                     @if(isset(Session::get('email-message')['twc']))
                         <li>{{ Session::get('email-message')['twc'] }}</li>
-                    @endif
-                    @if(isset(Session::get('email-message')['receiver']))
-                        <li>{{ Session::get('email-message')['receiver'] }}</li>
                     @endif
                 </ul>
             @endif

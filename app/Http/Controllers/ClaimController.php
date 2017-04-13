@@ -108,7 +108,7 @@ class ClaimController extends Controller
 
             // Mail claim
             $request->request->add(['claim-id' => $claimId]);
-            (new MailClaimController())->send($request);
+            (new MailClaimController($request))->sendNewWarrantyClaimMail();
 
             return redirect()->route('claim', ['id' => $claimId]);
         }
@@ -127,12 +127,13 @@ class ClaimController extends Controller
     }
 
     public function convertToReplaceOrder(Request $request) {
+        $claimId = $request->input('claim_id');
         $claimModel = new ClaimModel();
-        $claimModel->convertToReplaceOrder($request->input('claim_id'));
+        $claimModel->convertToReplaceOrder($claimId);
 
         // Mail claim
-        $request->request->add(['claim-id' => $request->input('claim_id')]);
-        (new MailClaimController())->send($request);
+        // $request->request->add(['claim-id' => $claimId]);
+        // (new MailClaimController($request))->send($request);
 
         return redirect()->route('claim', ['id' => $request->input('claim_id')])
             ->with('message', 'Claim successfully converted to a Replace Order.');
