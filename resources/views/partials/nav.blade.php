@@ -18,7 +18,7 @@
 
         {{--Desktop Nav--}}
         <div id="navbar" class="navbar-collapse collapse">
-            <div class="row">
+            <div class="row hidden-xs">
                 <div class="col-xs-12">
                     <a class="navbar-brand" href="{{ route('home') }}">
                         <img src="{{asset('img/nav-logo.jpg')}}"
