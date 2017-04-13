@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\ReplaceOrder;
+namespace App\Mail\Claim\ReplaceOrder\Convert;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -12,18 +12,20 @@ class CustomerMail extends Mailable
     use Queueable, SerializesModels;
 
     private $claim;
-    private $note;
+    private $claimMessage;
+    private $claimType;
 
     /**
-     * Create a new CustomerMail instance.
+     * CustomerMail constructor.
      *
      * @param $claim
      */
     public function __construct($claim)
     {
         $this->claim = $claim;
-        $this->note = 'Your warranty claim has been processed and a replacement bag will be sent to 
-        the address you provide with your claim.';
+        $this->claimMessage = 'Your warranty claim has been processed and a replacement bag will be 
+            sent to the address you provide with your claim.';
+        $this->claimType = 'Replace Order';
     }
 
     /**
@@ -33,11 +35,12 @@ class CustomerMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.replace-order.customer')
+        return $this->view('mail.claim.customer')
             ->subject('Ricardo Beverly Hills - Replace Order Claim #' . $this->claim[0]->claim_id)
             ->with([
-                'claim' => $this->claim,
-                'note'  => $this->note,
+                'claim'        => $this->claim,
+                'claimMessage' => $this->claimMessage,
+                'claimType'    => $this->claimType,
             ]);
     }
 }

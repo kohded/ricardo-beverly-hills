@@ -35,6 +35,11 @@ class MailClaimController extends Controller
         $this->twcName = 'T.W. Carrol & Co.';
     }
 
+    /**
+     * Send new warranty claim mail.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendNewWarrantyClaimMail()
     {
         if($this->claim[0]->replaced === 0) { // Repair Order
@@ -55,6 +60,9 @@ class MailClaimController extends Controller
         ]);
     }
 
+    /**
+     * sendNewWarrantyClaimMail() helper function to send repair mail.
+     */
     private function sendNewWarrantyClaimRepairMail()
     {
         if($this->claim[0]->part_needed === 0) { // Part Not Required
@@ -63,7 +71,6 @@ class MailClaimController extends Controller
                     ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\Customer\CustomerMail($this->claim));
                 \Mail::to($this::RBH_EMAIL)
                     ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\Customer\RBHMail($this->claim, $this->claimComments));
-
                 // Clear name so it doesn't show in claim.blade.php
                 $this->repairCenterName = '';
             } elseif($this->claim[0]->ship_to === 'Repair Center') {
@@ -84,7 +91,6 @@ class MailClaimController extends Controller
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\RBHMail($this->claim, $this->claimComments));
                 \Mail::to($this::TWC_EMAIL)
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\TWCMail($this->claim, $this->claimComments));
-
                 $this->repairCenterName = '';
             } elseif($this->claim[0]->ship_to === 'Repair Center') {
                 \Mail::to($this->customerEmail)
@@ -99,9 +105,42 @@ class MailClaimController extends Controller
         }
     }
 
+    /**
+     * sendNewWarrantyClaimMail() helper function to send replace mail.
+     */
     private function sendNewWarrantyClaimReplaceMail()
     {
 
+    }
+
+    /**
+     * Send convert to replace order mail.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendConvertToReplaceOrderMail()
+    {
+        if($this->claim[0]->ship_to === 'Customer') {
+            \Mail::to($this->customerEmail)
+                ->send(new \App\Mail\Claim\ReplaceOrder\Convert\CustomerMail($this->claim));
+            $this->repairCenterName = '';
+        } elseif($this->claim[0]->ship_to === 'Repair Center') {
+            \Mail::to($this->customerEmail)
+                ->send(new \App\Mail\Claim\ReplaceOrder\Convert\CustomerMail($this->claim));
+            \Mail::to($this->repairCenterEmail)
+                ->send(new \App\Mail\Claim\ReplaceOrder\Convert\RepairCenterMail($this->claim));
+        }
+
+        $this->incrementEmailSentCount();
+
+        // Redirect with email message.
+        return redirect()->back()->with('email-message', [
+            'message'       => 'Email sent successfully to:',
+            'customer'      => $this->customerName,
+            'repair-center' => $this->repairCenterName,
+            'rbh'           => '',
+            'twc'           => '',
+        ]);
     }
 
     /**

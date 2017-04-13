@@ -132,8 +132,8 @@ class ClaimController extends Controller
         $claimModel->convertToReplaceOrder($claimId);
 
         // Mail claim
-        // $request->request->add(['claim-id' => $claimId]);
-        // (new MailClaimController($request))->send($request);
+        $request->request->add(['claim-id' => $claimId]);
+        (new MailClaimController($request))->sendConvertToReplaceOrderMail();
 
         return redirect()->route('claim', ['id' => $request->input('claim_id')])
             ->with('message', 'Claim successfully converted to a Replace Order.');
