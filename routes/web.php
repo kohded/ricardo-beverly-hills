@@ -141,12 +141,6 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
         Route::get('/delete/{id}/{name}', 'RepairCenterController@deleteRepairCenter')
             ->name('repair-center.delete');
     });
-
-    // Mail
-    Route::group(['prefix' => 'mail'], function() {
-        Route::post('/mail-claim', 'Mail\MailClaimController@send')
-            ->name('mail.claim');
-    });
 });
 
 // Part Company Role

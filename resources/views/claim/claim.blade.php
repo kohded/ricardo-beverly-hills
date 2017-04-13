@@ -69,7 +69,14 @@
                             <dt>Closed Date:</dt>
                             <dd>{{ $claim[0]->claim_date_closed }}</dd>
                         @endif
-
+                        <dt>Email Sent:</dt>
+                        <dd>
+                            @if ($claim[0]->claim_email_sent > 0)
+                                Yes
+                            @else
+                                No
+                            @endif
+                        </dd>
                     <!-- only display parts and ship to if it's a repair order -->
                         @if ($claim[0]->replaced == 0)
                             <hr>
@@ -263,17 +270,6 @@
                 <a href="{{ route('claim-index') }}" class="btn btn-primary">
                     Back
                 </a>
-            </div>
-
-            <div class="col-xs-8">
-                <form action="{{ route('mail.claim') }}"
-                      method="post" class="pull-right">
-                    <input type="number" name="claim-id" value="{{ $claim[0]->claim_id }}" hidden>
-                    <button type="submit" class="btn btn-primary">Send Email</button>
-                    {{ csrf_field() }}
-                </form>
-
-                <p class="pull-right mt-10 mr-20">Emails Sent: {{ $claim[0]->claim_email_sent }}</p>
             </div>
         </div>
     </div>
