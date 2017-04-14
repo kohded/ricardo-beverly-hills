@@ -33,11 +33,26 @@
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Contact Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Address</th>
+                            <th>
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                Name
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                Contact Name
+                            </th>
+                            <th>   
+                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                                Phone
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                Email
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                Address
+                            </th>
                             <th>City</th>
                             <th>State</th>
                             <th>Preferred</th>

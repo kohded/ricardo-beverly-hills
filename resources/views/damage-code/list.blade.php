@@ -29,7 +29,9 @@
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
-                            <th>Damage Code</th>
+                            <th>
+                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                                Damage Code</th>
                             <th>Part/Description</th>
                             <th></th>
                             <th></th>
