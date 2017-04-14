@@ -41,7 +41,7 @@
                                 Open
                             @endif
                         </dd>
-                        <dt>Claim Type:</dt>
+                        <dt>Claim Type</dt>
                         <dd>
                             @if ($claim[0]->replaced == 1)
                                 <span class="glyphicon glyphicon-briefcase"
@@ -63,13 +63,13 @@
                             @endif
                         </dd>
 
-                        <dt>Opened Date:</dt>
+                        <dt>Opened Date</dt>
                         <dd>{{ $claim[0]->claim_created_at }}</dd>
                         @if ($claim[0]->claim_date_closed)
-                            <dt>Closed Date:</dt>
+                            <dt>Closed Date</dt>
                             <dd>{{ $claim[0]->claim_date_closed }}</dd>
                         @endif
-                        <dt>Email Sent:</dt>
+                        <dt>Email Sent</dt>
                         <dd>
                             @if ($claim[0]->claim_email_sent > 0)
                                 Yes
@@ -80,15 +80,15 @@
                     <!-- only display parts and ship to if it's a repair order -->
                         @if ($claim[0]->replaced == 0)
                             <hr>
-                            <dt>Parts Required?:</dt>
+                            <dt>Parts Required?</dt>
 
                             @if ($claim[0]->part_needed == 0)
                                 <dd>No</dd>
                             @else
                                 <dd>Yes</dd>
-                                <dt>Parts Needed:</dt>
+                                <dt>Parts Needed</dt>
                                 <dd>{{ $claim[0]->parts_needed }}</dd>
-                                <dt>Ship Parts To:</dt>
+                                <dt>Ship Parts To</dt>
                                 <dd>{{ $claim[0]->ship_to }}</dd>
                                 <dt>Parts Available?</dt>
                                 <dd>
@@ -117,9 +117,9 @@
                 </div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
-                        <dt>Product Style:</dt>
+                        <dt>Product Style</dt>
                         <dd>{{ $claim[0]->product_style }}</dd>
-                        <dt>Damage Code:</dt>
+                        <dt>Damage Code</dt>
                         <dd>{{ $claim[0]->dc_id }}</dd>
                     </dl>
                 </div>
@@ -136,16 +136,16 @@
                 </div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
-                        <dt>Name:</dt>
+                        <dt>Name</dt>
                         <dd>{{ $claim[0]->cust_first_name }} {{ $claim[0]->cust_last_name }}</dd>
                         <dt>
                             <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                            Phone:
+                            Phone
                         </dt>
                         <dd>{{ $claim[0]->cust_phone }}</dd>
                         <dt>
                             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                            Email:
+                            Email
                         </dt>
                         <dd>
                             <a href="mailto:{{ $claim[0]->cust_email }}?Subject=RBH Warranty Claim #{{ $claim[0]->claim_id }}"
@@ -155,7 +155,7 @@
                         </dd>
                         <dt>
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            Address:
+                            Address
                         </dt>
                         <dd>
                             {{ $claim[0]->cust_address }}<br>
@@ -181,18 +181,18 @@
                 </div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
-                        <dt>Name:</dt>
+                        <dt>Name</dt>
                         <dd>{{ $claim[0]->rc_name }}</dd>
-                        <dt>Contact Name:</dt>
+                        <dt>Contact Name</dt>
                         <dd>{{ $claim[0]->rc_contact }}</dd>
                         <dt>
                             <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                            Phone:
+                            Phone
                         </dt>
                         <dd>{{ $claim[0]->rc_phone }}</dd>
                         <dt>
                             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                            Email:
+                            Email
                         </dt>
                         <dd>
                             <a href="mailto:{{ $claim[0]->rc_email }}?Subject=RBH Warranty Claim #{{ $claim[0]->claim_id }}"
@@ -202,7 +202,7 @@
                         </dd>
                         <dt>
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                            Address:
+                            Address
                         </dt>
                         <dd>
                             {{ $claim[0]->rc_address }}<br>
