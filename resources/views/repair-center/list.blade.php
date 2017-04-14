@@ -34,12 +34,12 @@
                         <thead>
                         <tr>
                             <th>
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                Name
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                Repair Center
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                Contact Name
+                                Contact
                             </th>
                             <th>   
                                 <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
@@ -55,7 +55,6 @@
                             </th>
                             <th>City</th>
                             <th>State</th>
-                            <th>Preferred</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -63,14 +62,18 @@
                         <tbody>
                         @foreach ($repairCenters as $repairCenter)
                             <tr>
-                                <td>{{ $repairCenter->name }}</td>
+                                <td>
+                                    @if ($repairCenter->preferred)
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    @endif
+                                    {{ $repairCenter->name }}
+                                </td>
                                 <td>{{ $repairCenter->contact_name }}</td>
                                 <td>{{ $repairCenter->phone }}</td>
                                 <td>{{ $repairCenter->email }}</td>
                                 <td>{{ $repairCenter->address }}</td>
                                 <td>{{ $repairCenter->city }}</td>
                                 <td>{{ $repairCenter->state }}</td>
-                                <td>{{ $repairCenter->preferred ? 'Yes' : 'No' }}</td>
                                 <td class="table-data-wrap">
                                     <a id="rc-edit" href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
