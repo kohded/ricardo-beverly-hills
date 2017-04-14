@@ -4,18 +4,20 @@
     <div id="customer-list">
         <div class="row">
             <div class="col-xs-12">
-                <h1>All Customers</h1>
+                <h2>
+                    Customers
 
-                {{--Create button--}}
-                <a href="{{ URL::route('customer-create') }}" class="btn btn-primary">
-                    Create New Customer
-                </a>
+                    {{--Create button--}}
+                    <a href="{{ URL::route('customer-create') }}" class="btn btn-primary pull-right">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Create New Customer
+                    </a>
+                </h2>
+                <hr>
             </div>
         </div>
 
-        <hr>
         @include('customer.filter-form')
-        <hr>
 
         <div class="row">
             <div class="col-xs-12">

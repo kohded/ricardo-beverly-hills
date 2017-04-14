@@ -4,16 +4,20 @@
 	<div id="product-list">
 		<div class="row">
 			<div class="col-xs-12">
-				<h1>All Products</h1>
+				<h2>
+					Products
 
-				{{--Create button--}}
-				<a href="{{ URL::route('product.create') }}" class="btn btn-primary" role="button">Create New Product</a>
+					{{--Create button--}}
+					<a href="{{ URL::route('product.create') }}" class="btn btn-primary pull-right" role="button">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						Create New Product
+					</a>
+				</h2>
+				<hr>
 			</div>
 		</div>
 
-		<hr>
 		@include('product.filter-form')
-		<hr>
 
 		<div class="row">
 			<div class="col-xs-12">

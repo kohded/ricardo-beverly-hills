@@ -4,16 +4,15 @@
     <div id="repair-center-list">
         <div class="row">
             <div class="col-xs-12">
-                <h1>
+                <h2>
                     Damage Codes
                     {{--Create button--}}
-                    <a href="{{ route('damage-code.create') }}" class="btn btn-primary">
+                    <a href="{{ route('damage-code.create') }}" class="btn btn-primary pull-right">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        New
+                        Create New Damage Code
                     </a>
-                </h1>
-
-
+                </h2>
+                <hr>
             </div>
         </div>
 

@@ -4,18 +4,21 @@
     <div id="repair-center-list">
         <div class="row">
             <div class="col-xs-12">
-                <h1>Repair Centers</h1>
+                <h2>
+                    Repair Centers
 
-                {{--Create button--}}
-                <a href="{{ route('repair-center.create') }}" class="btn btn-primary">
-                    Create Repair Center
-                </a>
+                    {{--Create button--}}
+                    <a href="{{ route('repair-center.create') }}" class="btn btn-primary pull-right">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Create Repair Center
+                    </a>
+                </h2>
+                <hr>
             </div>
         </div>
 
-        <hr>
+
         @include('repair-center.search-form')
-        <hr>
 
         <div class="row">
             <div class="col-xs-12">

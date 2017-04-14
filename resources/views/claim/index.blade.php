@@ -4,17 +4,16 @@
     <div id="claim-list">
         <div class="row">
             <div class="col-xs-12">
-                <h1>
-                    All Claims
+                <h2>
+                    Claims
 
                     {{--Create button--}}
-                    <a id="create-claim" href="{{ URL::route('claim-create') }}" class="btn btn-primary">
+                    <a id="create-claim" href="{{ URL::route('claim-create') }}" class="btn btn-primary pull-right">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        New
+                        Create New Claim
                     </a>
-                </h1>
-
-
+                </h2>
+                <hr>
             </div>
         </div>
 
