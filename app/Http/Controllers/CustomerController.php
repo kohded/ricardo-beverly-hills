@@ -65,7 +65,7 @@ class CustomerController extends Controller
 
         $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId);
 
-        return view('customer.edit-form', ['customerDetail' => $customerDetail]);
+        return view('customer.edit-form', ['customerDetails' => $customerDetail]);
 
     }
 
