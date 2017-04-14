@@ -17,7 +17,7 @@ class PagesTest extends TestCase
         $this->login();
 
         $this->visit('/claim')
-            ->see('All Claims');
+            ->see('Claims');
 
         $this->click('create-claim')
             ->see('Create New Claim')
@@ -35,7 +35,7 @@ class PagesTest extends TestCase
         $this->login();
 
         $this->visit('/customer')
-            ->see('All Customers');
+            ->see('Customers');
 
         $this->click('Create New Customer')
             ->see('Create New Customer')
@@ -51,7 +51,7 @@ class PagesTest extends TestCase
         $this->login();
 
         $this->visit('/product')
-            ->see('All Products');
+            ->see('Products');
 
         $this->click('Create New Product')
             ->see('New Product')

@@ -12,7 +12,7 @@ class TestLogins extends TestCase
             ->type('acp@acp.com', 'email')
             ->type('acpacp', 'password')
             ->press('Login')
-            ->see('All Claims')
+            ->see('Claims')
             ->seePageIs('/claim');
     }
 
@@ -22,7 +22,7 @@ class TestLogins extends TestCase
             ->type('pc@pc.com', 'email')
             ->type('acpacp', 'password')
             ->press('Login')
-            ->see('All Claims')
+            ->see('Claims')
             ->seePageIs('/part-company-claim');
     }
 
@@ -32,7 +32,7 @@ class TestLogins extends TestCase
             ->type('rc@rc.com', 'email')
             ->type('acpacp', 'password')
             ->press('Login')
-            ->see('All Claims')
+            ->see('Claims')
             ->seePageIs('/repair-center-claim');
     }
 }
