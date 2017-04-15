@@ -50,16 +50,18 @@
                             @else
                                 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                                 Repair Order
-                                <!-- Convert to Replace Order form -->
-                                <form action="{{ route('claim.convert-to-replace-order') }}"
-                                      method="post">
-                                    <input type="number" name="claim_id"
-                                           value="{{ $claim[0]->claim_id }}" hidden>
-                                    <button type="submit" class="btn btn-primary btn-xs">
-                                        Convert to Replace Order
-                                    </button>
-                                    {{ csrf_field() }}
-                                </form>
+                                @role('ricardo-beverly-hills')
+                                    <!-- Convert to Replace Order form -->
+                                    <form action="{{ route('claim.convert-to-replace-order') }}"
+                                          method="post">
+                                        <input type="number" name="claim_id"
+                                               value="{{ $claim[0]->claim_id }}" hidden>
+                                        <button type="submit" class="btn btn-primary btn-xs">
+                                            Convert to Replace Order
+                                        </button>
+                                        {{ csrf_field() }}
+                                    </form>
+                                @endrole
                             @endif
                         </dd>
 
@@ -92,7 +94,7 @@
                                 <dd>{{ $claim[0]->ship_to }}</dd>
                                 <dt>Parts Available?</dt>
                                 <dd>
-                                    @if ($claim[0]->parts_available == NULL)
+                                    @if (!isset($claim[0]->parts_available))
                                         Waiting for response from TWC...
                                     @elseif ($claim[0]->parts_available == 0)
                                         Parts unavailable from TWC

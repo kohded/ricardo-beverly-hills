@@ -73,7 +73,7 @@
                                     <td>
                                         <!-- Ricardo needs to authorize replace order -->
                                         @role('ricardo-beverly-hills')
-                                            @if ($claim->part_needed && !$claim->parts_available && !$claim->replace_order)
+                                            @if ($claim->part_needed && isset($claim->parts_available) && $claim->parts_available == 0 && !$claim->replace_order)
                                                 <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
                                             @endif
                                         @endrole
