@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 use Faker\Factory as Faker;
 
 class ProductSeeder extends Seeder
@@ -11,6 +10,8 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+
         // Seed Product Table
         foreach(range(1, 50) as $index) {
             DB::table('product')->insert([

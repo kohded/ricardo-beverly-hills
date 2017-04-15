@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 use Faker\Factory as Faker;
 
-class UsersSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the User seeds.
@@ -40,8 +40,5 @@ class UsersSeeder extends Seeder
         );
 
         DB::table('users')->insert($users);
-
-        // Entrust Roles and Permissions. Must be after insert users.
-        $this->call(EntrustSeeder::class);
     }
 }

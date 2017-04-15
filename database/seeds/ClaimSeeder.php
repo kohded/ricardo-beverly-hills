@@ -11,6 +11,8 @@ class ClaimSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+        
         // Seed Claim Table
         foreach(range(1, 50) as $index) {
             DB::table('claim')->insert([

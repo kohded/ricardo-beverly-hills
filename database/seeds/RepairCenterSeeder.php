@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 use Faker\Factory as Faker;
 
 class RepairCenterSeeder extends Seeder
@@ -11,6 +10,8 @@ class RepairCenterSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+        
         // Seed Repair Center Table
         foreach(range(1, 50) as $index) {
             DB::table('repair_center')->insert([
