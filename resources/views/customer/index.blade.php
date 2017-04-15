@@ -59,7 +59,7 @@
                             <tr>
                                 <td>
                                     <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id ]) }}">
-                                       <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                       <span class="glyphicon glyphicon-file" aria-hidden="true" title="View Customer Details"></span>
                                     </a>
                                 </td>
                                 <td>
@@ -71,12 +71,12 @@
                                 <td>{{ $customer->name }}</td>
                                 <td class="table-data-wrap">
                                     <a id="customer-edit" href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Customer"></span>
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
                                     <a href="{{ URL::route('customer.delete', [ 'customerId' => $customer->id ])  }}">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Customer"></span>
                                     </a></td>
                             </tr>
                         @endforeach

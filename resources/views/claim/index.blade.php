@@ -33,7 +33,7 @@
                         <thead>
                         <tr>
                             <th>
-                                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-alert" aria-hidden="true" title="Action needed!"></span>
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
@@ -74,22 +74,22 @@
                                         <!-- Ricardo needs to authorize replace order -->
                                         @role('ricardo-beverly-hills')
                                             @if ($claim->part_needed && isset($claim->parts_available) && $claim->parts_available == 0 && !$claim->replace_order)
-                                                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                                <span class="glyphicon glyphicon-alert" aria-hidden="true" title="Action Needed!"></span>
                                             @endif
                                         @endrole
                                         <!-- TWC Needs to enter tracking or select no parts -->
                                         @role('part-company')
                                             @if (!isset($claim->parts_available) ||
                                                  $claim->parts_available && !isset($claim->tracking_number))
-                                                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                                <span class="glyphicon glyphicon-alert" aria-hidden="true" title="Action Needed!"></span>
                                             @endif
                                         @endrole
                                     </td>
                                     <td>
                                         @if ($claim->replace_order == 0)
-                                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-wrench" aria-hidden="true" title="Repair Order"></span>
                                         @else
-                                            <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-briefcase" aria-hidden="true" title="Replace Order"></span>
                                         @endif
                                         @role('ricardo-beverly-hills')
                                             <a id="claim-detail" href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
@@ -114,11 +114,11 @@
                                     @role('ricardo-beverly-hills')
                                         <td class="table-data-wrap">
                                             <a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}">
-                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Claim"></span></a>
                                         </td>
                                         <td class="table-data-wrap">
                                             <a href="{{ URL::route('claim.delete', [ 'id' => $claim->claim_id])  }}">
-                                               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                               <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Claim"></span></a>
                                         </td>
                                     @endrole
 

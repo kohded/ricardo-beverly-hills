@@ -148,7 +148,5 @@ class DatabaseSeeder extends Seeder
         }
 
         DB::statement('insert into claim_customer (claim_id, customer_id) select a.id, b.id from claim as a join customer as b on a.customer_id = b.id');
-
-
     }
 }

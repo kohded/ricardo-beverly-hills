@@ -64,7 +64,7 @@
                             <tr>
                                 <td>
                                     @if ($repairCenter->preferred)
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true" title="Preferred Repair Center"></span>
                                     @endif
                                     {{ $repairCenter->name }}
                                 </td>
@@ -78,7 +78,7 @@
                                     <a id="rc-edit" href="{{ route('repair-center.edit', [
                                         'id' => $repairCenter->id
                                         ]) }}">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Repair Center"></span>
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
@@ -86,7 +86,7 @@
                                             'id' => $repairCenter->id,
                                             'name' => $repairCenter->name
                                         ]) }}">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Repair Center"></span>
                                     </a>
                                 </td>
                             </tr>

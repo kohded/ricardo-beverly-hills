@@ -59,7 +59,7 @@
 								<td>{{ $product->launch_date }}</td>
 								<td class="table-data-wrap">
 									<a id="product-edit" href="{{ route('product.edit', ['style' => $product->style]) }}">
-										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Product"></span>
 									</a>
 								</td>
 								<td class="table-data-wrap">
@@ -67,7 +67,7 @@
 										'style' => $product->style,
 										'description' => $product->description
 										]) }}">
-										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Product"></span>
 									</a>
 								</td>
 							</tr>

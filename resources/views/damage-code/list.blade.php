@@ -46,7 +46,7 @@
                                     <a id="dc-edit" href="{{ route('damage-code.edit', [
                                         'id' => $damageCode->id
                                         ]) }}">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Damage Code"></span>
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
@@ -54,7 +54,7 @@
                                             'id' => $damageCode->id,
                                             'part' => $damageCode->part
                                         ]) }}">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Damage Code"></span>
                                     </a>
                                 </td>
                             </tr>
