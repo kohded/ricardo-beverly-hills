@@ -50,18 +50,6 @@
                             @else
                                 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                                 Repair Order
-                                @role('ricardo-beverly-hills')
-                                    <!-- Convert to Replace Order form -->
-                                    <form action="{{ route('claim.convert-to-replace-order') }}"
-                                          method="post">
-                                        <input type="number" name="claim_id"
-                                               value="{{ $claim[0]->claim_id }}" hidden>
-                                        <button type="submit" class="btn btn-primary btn-xs">
-                                            Convert to Replace Order
-                                        </button>
-                                        {{ csrf_field() }}
-                                    </form>
-                                @endrole
                             @endif
                         </dd>
 
@@ -98,6 +86,20 @@
                                         Waiting for response from TWC...
                                     @elseif ($claim[0]->parts_available == 0)
                                         Parts unavailable from TWC
+                                        @role('ricardo-beverly-hills')
+                                            @if ($claim[0]->replace_order == 0)
+                                                <!-- Convert to Replace Order form -->
+                                                <form action="{{ route('claim.convert-to-replace-order') }}"
+                                                      method="post">
+                                                    <input type="number" name="claim_id"
+                                                           value="{{ $claim[0]->claim_id }}" hidden>
+                                                    <button type="submit" class="btn btn-primary btn-xs">
+                                                        Convert to Replace Order
+                                                    </button>
+                                                    {{ csrf_field() }}
+                                                </form>
+                                            @endif
+                                        @endrole
                                     @elseif ($claim[0]->parts_available == 1)
                                         Parts are available from TWC
                                     @endif
