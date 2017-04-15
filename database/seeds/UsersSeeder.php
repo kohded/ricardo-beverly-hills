@@ -7,7 +7,7 @@ use Faker\Factory as Faker;
 class UsersSeeder extends Seeder
 {
     /**
-     * Run the Product seeds.
+     * Run the User seeds.
      */
     public function run()
     {
