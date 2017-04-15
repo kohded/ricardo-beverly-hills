@@ -102,17 +102,19 @@
                                         Parts unavailable from TWC
                                         @role('ricardo-beverly-hills')
                                             @if ($claim[0]->replace_order == 0)
-                                                <!-- Convert to Replace Order form -->
-                                                <form action="{{ route('claim.convert-to-replace-order') }}"
-                                                      method="post">
-                                                    <input type="number" name="claim_id"
-                                                           value="{{ $claim[0]->claim_id }}" hidden>
-                                                    <button type="submit" class="btn btn-warning btn-xs">
+                                                <!-- Convert to Replace Order button -->
+                                                <div>
+                                                    <button 
+                                                        type="button"
+                                                        id="convert-to-replace-order" 
+                                                        class="btn btn-warning btn-xs"
+                                                        data-claim="{{ $claim[0]->claim_id }}"
+                                                        data-toggle="modal"
+                                                        data-target="#convertToReplaceOrderModal">
                                                     <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
                                                         Convert to Replace Order
                                                     </button>
-                                                    {{ csrf_field() }}
-                                                </form>
+                                                </div>
                                             @endif
                                         @endrole
                                     @elseif ($claim[0]->parts_available == 1)
@@ -267,4 +269,7 @@
             </div>
         </div>
     </div>
+
+    <!-- Include modal views -->
+    @include('claim.repl-order-modal')
 @endsection

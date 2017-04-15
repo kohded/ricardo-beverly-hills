@@ -22,3 +22,6 @@ if (document.querySelector('#home')) {
     el: '#home'
   });
 }
+
+// Require any custom JS files
+require('./claim-detail.js');
