@@ -31,7 +31,7 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
     // Claim
     Route::group(['prefix' => 'claim'], function() {
         // List
-        Route::get('/', 'ClaimController@index')
+        Route::get('/', 'ClaimController@getRicardoIndex')
             ->name('claim-index');
         // Add
         Route::get('/create', 'ClaimController@getCreateView')
@@ -147,8 +147,10 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
 Route::group(['middleware' => 'role:part-company'], function() {
     Route::group(['prefix' => 'part-company-claim'], function() {
         // List
-        Route::get('/', 'Role\PartCompany\PartCompanyController@getListView')
+        Route::get('/', 'ClaimController@getPartCompanyIndex')
             ->name('part-company-claim');
+        Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')
+            ->name('part-company-claim-details');
     });
 });
 

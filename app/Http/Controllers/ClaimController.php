@@ -12,14 +12,14 @@ use App\Models\CustomerModel;
 
 class ClaimController extends Controller
 {
-
-
-    public function index(Request $request)
+    public function getClaimIndex(Request $request, $role)
     {
-        $title = 'All Claims';
-
         $claimModel = new ClaimModel();
-        $claims = $claimModel->getClaims(20, $request);
+        if ($role == 'ricardo') {
+            $claims = $claimModel->getClaims(20, $request, "ricardo");
+        } else if ($role == 'partCompany') {
+            $claims = $claimModel->getClaims(20, $request, "partCompany");
+        }
 
         $rcModel = new RepairCenterModel();
         $repair_centers = $rcModel->getRepairCenters();
@@ -28,17 +28,24 @@ class ClaimController extends Controller
         $products = $productModel->getProducts();
 
         return view('claim.index', [
-            'title' => $title,
             'claims' => $claims,
             'products' => $products,
             'repair_centers' => $repair_centers
         ]);
     }
 
+    public function getRicardoIndex(Request $request)
+    {
+        return $this->getClaimIndex($request, 'ricardo');
+    }
+
+    public function getPartCompanyIndex(Request $request)
+    {
+        return $this->getClaimIndex($request, 'partCompany');
+    }
+
     public function getCreateView()
     {
-        $title = 'Create Claim';
-
         $damage_codes = DB::table('damage_code')->get();
 
         $rcModel = new RepairCenterModel();
@@ -54,7 +61,6 @@ class ClaimController extends Controller
         $products = $productModel->getProducts();
 
         return view('claim.claim-form', [
-            'title' => $title,
             'damage_codes' => $damage_codes,
             'repair_centers' => $repair_centers,
             'products' => $products
@@ -150,7 +156,6 @@ class ClaimController extends Controller
 
     public function editClaim($id)
     {
-        $title = 'Edit Claim';
         $damage_codes = DB::table('damage_code')->get();
 
         $rcModel = new RepairCenterModel();
@@ -166,7 +171,6 @@ class ClaimController extends Controller
         $customerDetails = $customerDetails->getCustomerDetailedData($claimDetails[0]->cust_id);
 
         return view('claim.claim-edit', [
-            'title' => $title,
             'claimDetails' => $claimDetails[0],
             'customerDetails' => $customerDetails,
             'damage_codes' => $damage_codes,

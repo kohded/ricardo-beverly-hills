@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class ClaimModel
 {
 	// Select all products
-	public function getClaims($claimsPerPage = null, $request = null)
+	public function getClaims($claimsPerPage = null, $request = null, $role)
 	{
         $rcId = $request->input('rc');
         $product = $request->input('product');
@@ -27,6 +27,13 @@ class ClaimModel
                     'repair_center.id as repair_center_id',
                     'claim.created_at as created_at', 
                     'claim.date_closed as closed_at')
+
+            // TWC - Only show claims where part_needed == 1
+            ->when($role == "partCompany", function($query) {
+                return $query->where('claim.part_needed', '=', 1);
+            })
+
+            // Search
             ->when($searchString, function($query) use($searchString, $searchField) {
                 if ($searchField === 'claim')
                 {
@@ -55,14 +62,17 @@ class ClaimModel
                 }
             })
 
+            // Product Filter
             ->when($product, function($query) use($product) {
                 return $query->where('claim.product_style', '=', $product);
             })
 
+            // Repair Center Filter
             ->when($rcId, function($query) use($rcId) {
                 return $query->where('repair_center.id', '=', $rcId);
             })
 
+            // Claim Status Filter
             ->when($status === "Open", function($query) {
                 return $query->where('claim.date_closed', '=', null);
             })
@@ -70,6 +80,7 @@ class ClaimModel
                 return $query->where('claim.date_closed', '!=', null);
             })
 
+            // Pagination
             ->when($claimsPerPage, function ($query) use ($claimsPerPage) {
                 return $query->paginate($claimsPerPage);
             }, function ($query) {
