@@ -15,7 +15,9 @@
 Auth::routes();
 
 // Home
-Route::get('/', 'HomeController@getHomeView')->name('home');
+Route::get('/', function() {
+    return redirect('/login');
+})->name('home');
 
 // Ricardo Beverly Hills Role
 Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
