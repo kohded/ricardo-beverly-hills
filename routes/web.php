@@ -68,8 +68,12 @@ Route::group(['prefix' => 'claim'], function() {
     // Convert to Replace Order
     Route::post('/convert-to-replace-order', 'ClaimController@convertToReplaceOrder')
         ->name('claim.convert-to-replace-order');
+    // Add part availability (TWC)
     Route::post('/enter-part-availability', 'ClaimController@enterPartAvailability')
-        ->name('claim.enter-part-availability');    
+        ->name('claim.enter-part-availability'); 
+    // Add tracking (TWC / RBH)
+    Route::post('/enter-tracking-number', 'ClaimController@enterTrackingNumber')
+        ->name('claim.enter-tracking-number');        
 });
 
 // Customer

@@ -159,6 +159,20 @@ class ClaimController extends Controller
             ->with('message', 'Added part availability information to claim.');        
     }
 
+    public function enterTrackingNumber(Request $request) {
+        $claimId = $request->input('claim_id');
+        $partsAvailable = $request->input('parts_available');
+        $trackingNumber = $request->input('tracking_number');
+
+        $claimModel = new ClaimModel();
+        $claimModel->enterTrackingNumber($claimId, $trackingNumber);
+
+        // Mail claim
+
+        return redirect()->route('claim', ['id' => $claimId])
+            ->with('message', 'Added tracking number to claim.');            
+    }
+
     public function deleteClaim($id)
     {
 

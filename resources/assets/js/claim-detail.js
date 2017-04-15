@@ -15,3 +15,13 @@ $(function() {
         $("#partsNeeded").html($(e.relatedTarget).data('parts'));
     });
 });
+
+$(function() {
+    $('#enterTrackingModal').on("show.bs.modal", function (e) {
+        var claimNumber = $(e.relatedTarget).data('claim');
+        $(".claimId").html(claimNumber);
+        $("#trackingClaimNumberInput").attr("value", claimNumber);
+
+        $("#trackingNumber").html($(e.relatedTarget).data('tracking'));
+    });
+});

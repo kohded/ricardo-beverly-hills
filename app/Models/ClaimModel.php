@@ -326,4 +326,13 @@ class ClaimModel
                 'part_company_comment' => $partCompanyComment
             ]);
     }
+
+    public function enterTrackingNumber($id, $trackingNumber) 
+    {
+        DB::table('claim')
+            ->where('id', '=', $id)
+            ->update([
+                'tracking_number' => $trackingNumber
+            ]);
+    }
 }

@@ -137,11 +137,11 @@
                                     <div>
                                         <button 
                                             type="button"
-                                            id="enter-part-availability" 
+                                            id="enter-tracking" 
                                             class="btn btn-warning btn-xs"
                                             data-claim="{{ $claim[0]->claim_id }}"
                                             data-toggle="modal"
-                                            data-target="#enterTrackingNumberModal">
+                                            data-target="#enterTrackingModal">
                                             <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
                                             Enter Tracking Number
                                         </button>
