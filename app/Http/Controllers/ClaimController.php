@@ -173,13 +173,15 @@ class ClaimController extends Controller
             ->with('message', 'Added tracking number to claim.');            
     }
 
-    public function deleteClaim($id)
+    public function deleteClaim(Request $request)
     {
+        $claimId = $request->input('claim_id');
 
         $claimModel = new ClaimModel();
-        $claimModel->deleteClaim($id);
+        $claimModel->deleteClaim($claimId);
 
-        return redirect('claim');
+        return redirect()->route('claim-index')
+            ->with('message', 'Deleted claim ' . $claimId . '.');
     }
 
     public function editClaim($id)

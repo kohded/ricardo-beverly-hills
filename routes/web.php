@@ -60,7 +60,7 @@ Route::group(['prefix' => 'claim'], function() {
     Route::post('/edit', 'ClaimController@updateClaim')
         ->name('update-claim');
     // delete
-    Route::get('/delete/{id}', 'ClaimController@deleteClaim')
+    Route::post('/delete', 'ClaimController@deleteClaim')
         ->name('claim.delete');
     // Add a new comment
     Route::post('/add-comment', 'ClaimController@addComment')

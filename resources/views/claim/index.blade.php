@@ -117,8 +117,14 @@
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Claim"></span></a>
                                         </td>
                                         <td class="table-data-wrap">
-                                            <a href="{{ URL::route('claim.delete', [ 'id' => $claim->claim_id])  }}">
-                                               <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Claim"></span></a>
+                                            <span
+                                                id="deleteClaimBtn"
+                                                class="glyphicon glyphicon-remove text-danger" 
+                                                aria-hidden="true" 
+                                                data-claim="{{ $claim->claim_id }}"
+                                                data-toggle="modal"
+                                                data-target="#deleteClaimModal"
+                                                title="Delete Claim"></span>
                                         </td>
                                     @endrole
 
@@ -137,4 +143,7 @@
             </div>
         </div>
     </div>
+
+    // Include modals
+    @include('claim.delete-modal')   
 @endsection

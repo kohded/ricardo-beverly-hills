@@ -1,3 +1,4 @@
+// Convert to replace order modal
 $(function() {
     $('#convertToReplaceOrderModal').on("show.bs.modal", function (e) {
         var claimNumber = $(e.relatedTarget).data('claim');
@@ -6,6 +7,7 @@ $(function() {
     });
 });
 
+// Enter part availability modal
 $(function() {
     $('#enterPartAvailabilityModal').on("show.bs.modal", function (e) {
         var claimNumber = $(e.relatedTarget).data('claim');
@@ -16,6 +18,7 @@ $(function() {
     });
 });
 
+// Enter tracking modal 
 $(function() {
     $('#enterTrackingModal').on("show.bs.modal", function (e) {
         var claimNumber = $(e.relatedTarget).data('claim');
@@ -23,5 +26,14 @@ $(function() {
         $("#trackingClaimNumberInput").attr("value", claimNumber);
 
         $("#trackingNumber").html($(e.relatedTarget).data('tracking'));
+    });
+});
+
+// Delete button on claim list - modal
+$(function() {
+    $('#deleteClaimModal').on("show.bs.modal", function (e) {
+        var claimNumber = $(e.relatedTarget).data('claim');
+        $(".claimId").html(claimNumber);
+        $("#deleteClaimNumberInput").attr("value", claimNumber);
     });
 });
