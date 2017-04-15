@@ -12,8 +12,10 @@
         </h4>
       </div>
       <div class="modal-body">
-        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-        <p>Are you sure you want to delete Claim #<span class="claimId"></span></p>
+        <p>
+          <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+          Are you sure you want to delete Claim #<span class="claimId"></span>
+        </p>
       </div>
       <div class="modal-footer">
         <span class="pull-left">
