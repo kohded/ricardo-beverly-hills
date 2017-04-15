@@ -16,7 +16,16 @@ Auth::routes();
 
 // Home
 Route::get('/', function() {
-    return redirect('/login');
+    if (Auth::check()) {
+        if(Auth::user()->hasRole('ricardo-beverly-hills')) {
+            return redirect('/claim');
+        } else if (Auth::user()->hasRole('part-company'))
+        {
+            return redirect('/part-company-claim');
+        }
+    } else {
+        return redirect('/login');
+    }
 })->name('home');
 
 // Ricardo Beverly Hills Role
