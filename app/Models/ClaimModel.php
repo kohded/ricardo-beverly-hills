@@ -20,17 +20,23 @@ class ClaimModel
             ->join('customer', 'claim.customer_id', '=', 'customer.id')
             ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
             ->select('claim.id as claim_id',
+                    'claim.product_style as style', 
+                    'claim.created_at as created_at', 
+                    'claim.date_closed as closed_at',
+                    'claim.parts_available as parts_available',
+                    'claim.part_needed as part_needed',
+                    'claim.tracking_number as tracking_number',
+                    'claim.replace_order as replace_order',
                     'customer.first_name as first', 
                     'customer.last_name as last',
-                    'claim.product_style as style', 
                     'repair_center.name as repair_center', 
-                    'repair_center.id as repair_center_id',
-                    'claim.created_at as created_at', 
-                    'claim.date_closed as closed_at')
+                    'repair_center.id as repair_center_id'
+                    )
 
-            // TWC - Only show claims where part_needed == 1
+            // TWC - Only show repair claims where part_needed == 1
             ->when($role == "partCompany", function($query) {
-                return $query->where('claim.part_needed', '=', 1);
+                return $query->where('claim.part_needed', '=', 1)
+                             ->where('claim.replace_order', '=', 0);
             })
 
             // Search
@@ -105,11 +111,12 @@ class ClaimModel
                 'claim.created_at as claim_created_at',
                 'claim.date_closed as claim_date_closed',
                 'claim.email_sent as claim_email_sent',
-                'claim.replaced as replaced',
+                'claim.replace_order as replace_order',
                 'claim.ship_to as ship_to', 
                 'claim.part_needed as part_needed',
                 'claim.parts_needed as parts_needed',
                 'claim.parts_available as parts_available',
+                'claim.tracking_number as tracking_number',
                 'customer.address as cust_address',
                 'customer.address_2 as cust_address_2',
                 'customer.city as cust_city',
@@ -137,7 +144,7 @@ class ClaimModel
         return $claim;
     }
 
-    public function insertClaim($existing_customer_email, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replaced, $ship_to, $part_needed, $parts_needed){
+    public function insertClaim($existing_customer_email, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed){
 
 
         DB::beginTransaction();
@@ -213,7 +220,7 @@ class ClaimModel
                 'product_style'    => $products,
                 'damage_code_id'   => $damage_code,
                 'repair_center_id' => $repair_center,
-                'replaced'         => $replaced,
+                'replace_order'         => $replace_order,
                 'ship_to'          => $ship_to,
                 'part_needed'      => $part_needed,
                 'parts_needed'     => $parts_needed
@@ -306,6 +313,6 @@ class ClaimModel
     {
         DB::table('claim')
             ->where('id', '=', $id)
-            ->update(['replaced' => 1]);
+            ->update(['replace_order' => 1]);
     }
 }

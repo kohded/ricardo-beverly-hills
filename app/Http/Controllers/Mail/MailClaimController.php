@@ -42,9 +42,9 @@ class MailClaimController extends Controller
      */
     public function sendNewWarrantyClaimMail()
     {
-        if($this->claim[0]->replaced === 0) { // Repair Order
+        if($this->claim[0]->replace_order === 0) { // Repair Order
             $this->sendNewWarrantyClaimRepairMail();
-        } elseif($this->claim[0]->replaced === 1) { // Replace Order
+        } elseif($this->claim[0]->replace_order === 1) { // Replace Order
             $this->sendNewWarrantyClaimReplaceMail();
         }
 

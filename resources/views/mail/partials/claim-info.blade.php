@@ -34,7 +34,7 @@
             <p><strong>Closed Closed: </strong>{{ $claim[0]->claim_date_closed }}</p>
         @endif
         <p><strong>Claim Type: </strong>
-            @if ($claim[0]->replaced === 1)
+            @if ($claim[0]->replace_order === 1)
                 Replace Order
             @else
                 Repair Order
@@ -50,7 +50,7 @@
         <h3>Part</h3>
         <hr>
     </div>
-    @if ($claim[0]->replaced === 0)
+    @if ($claim[0]->replace_order === 0)
         <div class="col-xs-12">
             <p><strong>Parts Required: </strong>
                 @if ($claim[0]->part_needed === 0)

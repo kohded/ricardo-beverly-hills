@@ -23,44 +23,48 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                 @else
                     @role('ricardo-beverly-hills')
-                    <li class="{{ Request::is('claim') ? 'active' : '' }}">
-                        <a href="{{ route('claim-index') }}">
-                            <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;
-                            Claims
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('customer') ? 'active' : '' }}">
-                        <a href="{{ route('customer') }}">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            Customers
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('product') ? 'active' : '' }}">
-                        <a href="{{ route('product') }}">
-                            <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
-                            Products
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('repair-center') ? 'active' : '' }}">
-                        <a href="{{ route('repair-center') }}">
-                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                            Repair Centers
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('damage-code') ? 'active' : '' }}">
-                        <a href="{{ route('damage-code') }}">
-                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                            Damage Codes
-                        </a>
-                    </li>
+                        <li class="{{ Request::is('claim') ? 'active' : '' }}">
+                            <a href="{{ route('claim-index') }}">
+                                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;
+                                Claims
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('customer') ? 'active' : '' }}">
+                            <a href="{{ route('customer') }}">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                Customers
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('product') ? 'active' : '' }}">
+                            <a href="{{ route('product') }}">
+                                <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                                Products
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('repair-center') ? 'active' : '' }}">
+                            <a href="{{ route('repair-center') }}">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                Repair Centers
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('damage-code') ? 'active' : '' }}">
+                            <a href="{{ route('damage-code') }}">
+                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                                Damage Codes
+                            </a>
+                        </li>
                     @endrole
 
                     @role('part-company')
-                    <li><a href="{{ route('part-company-claim') }}">Claim</a></li>
+                        <li class="{{ Request::is('part-company-claim') ? 'active' : '' }}">
+                            <a href="{{ route('part-company-claim') }}">
+                                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;
+                                Claims</a>
+                        </li>
                     @endrole
 
                     @role('repair-center')
-                    <li><a href="{{ route('repair-center-claim') }}">Claim</a></li>
+                        <li><a href="{{ route('repair-center-claim') }}">Claim</a></li>
                     @endrole
 
                     <li class="dropdown">

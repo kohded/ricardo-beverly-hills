@@ -104,7 +104,7 @@ class ClaimController extends Controller
                 $request->input('products'),
                 $request->input('damagecode'),
                 $request->input('repaircenter'),
-                $request->input('replaced'),
+                $request->input('replace_order'),
                 $request->input('ship_to'),
                 $request->input('part_needed'),
                 $request->input('parts_needed')
@@ -193,7 +193,7 @@ class ClaimController extends Controller
                 'comments' => 'nullable',
                 'products' => 'required',
                 'repaircenter' => 'required',
-                'replaced' => 'required',
+                'replace_order' => 'required',
                 'firstname' => 'max:0',
                 'lastname' => 'max:0',
                 'address1' => 'max:0',
@@ -220,7 +220,7 @@ class ClaimController extends Controller
                 'comments' => 'nullable',
                 'products' => 'required',
                 'repaircenter' => 'required',
-                'replaced' => 'required'
+                'replace_order' => 'required'
             ]);
         }
 

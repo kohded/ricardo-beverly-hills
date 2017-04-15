@@ -43,7 +43,7 @@
                         </dd>
                         <dt>Claim Type</dt>
                         <dd>
-                            @if ($claim[0]->replaced == 1)
+                            @if ($claim[0]->replace_order == 1)
                                 <span class="glyphicon glyphicon-briefcase"
                                       aria-hidden="true"></span>
                                 Replace Order
@@ -77,8 +77,8 @@
                                 No
                             @endif
                         </dd>
-                    <!-- only display parts and ship to if it's a repair order -->
-                        @if ($claim[0]->replaced == 0)
+
+                        @if ($claim[0]->replace_order == 0)
                             <hr>
                             <dt>Parts Required?</dt>
 
@@ -92,14 +92,17 @@
                                 <dd>{{ $claim[0]->ship_to }}</dd>
                                 <dt>Parts Available?</dt>
                                 <dd>
-                                    @if ($claim[0]->parts_available == 0)
+                                    @if ($claim[0]->parts_available == NULL)
+                                        Waiting for response from TWC...
+                                    @elseif ($claim[0]->parts_available == 0)
                                         Parts unavailable from TWC
                                     @elseif ($claim[0]->parts_available == 1)
                                         Parts are available from TWC
-                                    @else
-                                        Waiting for response from TWC...
                                     @endif
                                 </dd>
+
+                                <dt>Tracking Number</dt>
+                                <dd>{{ $claim[0]->tracking_number }}</dd>
                             @endif
                         @endif
                     </dl>
@@ -214,56 +217,13 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                        Comments
-                    </h3>
-                </div>
+        @role('ricardo-beverly-hills')
+            @include('claim.comments')
+        @endrole
 
-                <table class="table table-conensed">
-                    @foreach ($comments as $comment)
-                        <tr>
-                            <td>
-                                <dl class="dl-horizontal">
-                                    <dt>
-                                        <span class="glyphicon glyphicon-user"
-                                              aria-hidden="true"></span>
-                                        {{ $comment->author }}<br>
-                                        {{ $comment->created_at }}
-                                    </dt>
-                                    <dd>
-                                        <span class="glyphicon glyphicon-comment"
-                                              aria-hidden="true"></span>
-                                        {{ $comment->comment }}
-                                    </dd>
-                                </dl>
-                            </td>
-                        </tr>
-                    @endforeach
-                    <tr>
-                        <td colspan="3">
-                            <form action="{{ route('claim.add-comment') }}" method="post">
-                                <input type="hidden" name="claim_id"
-                                       value="{{ $claim[0]->claim_id }}">
-                                <div class="form-group col-xs-9">
-                                    <input type="text" class="form-control" id="comment-comment"
-                                           name="comment" placeholder="Enter new comment..."
-                                           required>
-                                </div>
-                                <div class="form-group col-xs-3">
-                                    <button class="btn btn-primary" type="submit">Add Comment
-                                    </button>
-                                </div>
-                                {{ csrf_field() }}
-                            </form>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        @role('part-company')
+            @include('claim.part-company-actions')
+        @endrole
 
         <div class="row">
             <div class="col-xs-4">
