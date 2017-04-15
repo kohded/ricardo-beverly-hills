@@ -79,7 +79,8 @@
                                         @endrole
                                         <!-- TWC Needs to enter tracking or select no parts -->
                                         @role('part-company')
-                                            @if (!$claim->tracking_number && $claim->parts_available == NULL)
+                                            @if (!isset($claim->parts_available) ||
+                                                 $claim->parts_available && !isset($claim->tracking_number))
                                                 <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
                                             @endif
                                         @endrole
