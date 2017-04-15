@@ -85,6 +85,11 @@
                                         @endrole
                                     </td>
                                     <td>
+                                        @if ($claim->replace_order == 0)
+                                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                        @else
+                                            <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                                        @endif
                                         @role('ricardo-beverly-hills')
                                             <a id="claim-detail" href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
                                                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>

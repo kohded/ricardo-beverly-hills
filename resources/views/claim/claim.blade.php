@@ -104,11 +104,10 @@
                                         Parts are available from TWC
                                     @endif
                                 </dd>
-
-                                <dt>Tracking Number</dt>
-                                <dd>{{ $claim[0]->tracking_number }}</dd>
                             @endif
                         @endif
+                        <dt>Tracking Number</dt>
+                        <dd>{{ $claim[0]->tracking_number }}</dd>
                     </dl>
                 </div>
             </div>
