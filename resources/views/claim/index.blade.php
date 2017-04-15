@@ -74,14 +74,14 @@
                                         <!-- Ricardo needs to authorize replace order -->
                                         @role('ricardo-beverly-hills')
                                             @if ($claim->part_needed && isset($claim->parts_available) && $claim->parts_available == 0 && !$claim->replace_order)
-                                                <span class="glyphicon glyphicon-alert" aria-hidden="true" title="Action Needed!"></span>
+                                                <span class="glyphicon glyphicon-alert text-warning" aria-hidden="true" title="Action Needed!"></span>
                                             @endif
                                         @endrole
                                         <!-- TWC Needs to enter tracking or select no parts -->
                                         @role('part-company')
                                             @if (!isset($claim->parts_available) ||
                                                  $claim->parts_available && !isset($claim->tracking_number))
-                                                <span class="glyphicon glyphicon-alert" aria-hidden="true" title="Action Needed!"></span>
+                                                <span class="glyphicon glyphicon-alert text-warning" aria-hidden="true" title="Action Needed!"></span>
                                             @endif
                                         @endrole
                                     </td>

@@ -83,7 +83,21 @@
                                 <dt>Parts Available?</dt>
                                 <dd>
                                     @if (!isset($claim[0]->parts_available))
-                                        Waiting for response from TWC...
+                                        @role('ricardo-beverly-hills')
+                                            Waiting for response from TWC...
+                                        @endrole
+                                        @role('part-company')
+                                            <!-- Enter part availability -->
+                                            <form action="" method="post">
+                                                <input type="number" name="claim_id"
+                                                       value="{{ $claim[0]->claim_id }}" hidden>
+                                                <button type="submit" class="btn btn-warning btn-xs">
+                                                    <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                                    Enter Part Availibility
+                                                </button>
+                                                {{ csrf_field() }}
+                                            </form>
+                                        @endrole
                                     @elseif ($claim[0]->parts_available == 0)
                                         Parts unavailable from TWC
                                         @role('ricardo-beverly-hills')
@@ -93,7 +107,8 @@
                                                       method="post">
                                                     <input type="number" name="claim_id"
                                                            value="{{ $claim[0]->claim_id }}" hidden>
-                                                    <button type="submit" class="btn btn-primary btn-xs">
+                                                    <button type="submit" class="btn btn-warning btn-xs">
+                                                    <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
                                                         Convert to Replace Order
                                                     </button>
                                                     {{ csrf_field() }}
@@ -107,7 +122,23 @@
                             @endif
                         @endif
                         <dt>Tracking Number</dt>
-                        <dd>{{ $claim[0]->tracking_number }}</dd>
+                        <dd>
+                            @if ($claim[0]->parts_available && !isset($claim[0]->tracking_number))
+                                @role('part-company')
+                                    <!-- Enter Tracking # -->
+                                    <form action="" method="post">
+                                        <input type="number" name="claim_id"
+                                               value="{{ $claim[0]->claim_id }}" hidden>
+                                        <button type="submit" class="btn btn-warning btn-xs">
+                                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                            Enter Tracking Number
+                                        </button>
+                                        {{ csrf_field() }}
+                                    </form>
+                                @endrole
+                            @endif
+                            {{ $claim[0]->tracking_number }}
+                        </dd>
                     </dl>
                 </div>
             </div>
