@@ -88,15 +88,19 @@
                                         @endrole
                                         @role('part-company')
                                             <!-- Enter part availability -->
-                                            <form action="" method="post">
-                                                <input type="number" name="claim_id"
-                                                       value="{{ $claim[0]->claim_id }}" hidden>
-                                                <button type="submit" class="btn btn-warning btn-xs">
-                                                    <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-                                                    Enter Part Availibility
+                                            <div>
+                                                <button 
+                                                    type="button"
+                                                    id="enter-part-availability" 
+                                                    class="btn btn-warning btn-xs"
+                                                    data-claim="{{ $claim[0]->claim_id }}"
+                                                    data-parts="{{ $claim[0]->parts_needed }}"
+                                                    data-toggle="modal"
+                                                    data-target="#enterPartAvailabilityModal">
+                                                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                                    Enter Part Availability
                                                 </button>
-                                                {{ csrf_field() }}
-                                            </form>
+                                            </div>
                                         @endrole
                                     @elseif ($claim[0]->parts_available == 0)
                                         Parts unavailable from TWC
@@ -123,20 +127,25 @@
                                 </dd>
                             @endif
                         @endif
+                        <dt>TWC Comment</dt>
+                        <dd>{{ $claim[0]->part_company_comment }}</dd>
                         <dt>Tracking Number</dt>
                         <dd>
                             @if ($claim[0]->parts_available && !isset($claim[0]->tracking_number))
                                 @role('part-company')
                                     <!-- Enter Tracking # -->
-                                    <form action="" method="post">
-                                        <input type="number" name="claim_id"
-                                               value="{{ $claim[0]->claim_id }}" hidden>
-                                        <button type="submit" class="btn btn-warning btn-xs">
+                                    <div>
+                                        <button 
+                                            type="button"
+                                            id="enter-part-availability" 
+                                            class="btn btn-warning btn-xs"
+                                            data-claim="{{ $claim[0]->claim_id }}"
+                                            data-toggle="modal"
+                                            data-target="#enterTrackingNumberModal">
                                             <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
                                             Enter Tracking Number
                                         </button>
-                                        {{ csrf_field() }}
-                                    </form>
+                                    </div>
                                 @endrole
                             @endif
                             {{ $claim[0]->tracking_number }}
@@ -272,4 +281,6 @@
 
     <!-- Include modal views -->
     @include('claim.repl-order-modal')
+    @include('claim.part-availability-modal')
+    @include('claim.tracking-number-modal')
 @endsection

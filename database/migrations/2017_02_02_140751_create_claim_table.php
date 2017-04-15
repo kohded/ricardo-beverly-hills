@@ -28,6 +28,7 @@ class CreateClaimTable extends Migration
             $table->boolean('part_needed')->nullable();
             $table->string('parts_needed', 200)->nullable();
             $table->boolean('parts_available')->nullable()->default(NULL);
+            $table->string('part_company_comment', 200)->nullable()->default(NULL);
         });
 
         DB::update("ALTER TABLE claim AUTO_INCREMENT = 1000;");

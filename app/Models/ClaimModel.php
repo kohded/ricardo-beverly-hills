@@ -117,6 +117,7 @@ class ClaimModel
                 'claim.parts_needed as parts_needed',
                 'claim.parts_available as parts_available',
                 'claim.tracking_number as tracking_number',
+                'claim.part_company_comment as part_company_comment',
                 'customer.address as cust_address',
                 'customer.address_2 as cust_address_2',
                 'customer.city as cust_city',
@@ -220,7 +221,7 @@ class ClaimModel
                 'product_style'    => $products,
                 'damage_code_id'   => $damage_code,
                 'repair_center_id' => $repair_center,
-                'replace_order'         => $replace_order,
+                'replace_order'    => $replace_order,
                 'ship_to'          => $ship_to,
                 'part_needed'      => $part_needed,
                 'parts_needed'     => $parts_needed
@@ -314,5 +315,15 @@ class ClaimModel
         DB::table('claim')
             ->where('id', '=', $id)
             ->update(['replace_order' => 1]);
+    }
+
+    public function enterPartAvailability($id, $partsAvailable, $partCompanyComment) 
+    {
+        DB::table('claim')
+            ->where('id', '=', $id)
+            ->update([
+                'parts_available' => $partsAvailable,
+                'part_company_comment' => $partCompanyComment
+            ]);
     }
 }

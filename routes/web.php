@@ -68,6 +68,8 @@ Route::group(['prefix' => 'claim'], function() {
     // Convert to Replace Order
     Route::post('/convert-to-replace-order', 'ClaimController@convertToReplaceOrder')
         ->name('claim.convert-to-replace-order');
+    Route::post('/enter-part-availability', 'ClaimController@enterPartAvailability')
+        ->name('claim.enter-part-availability');    
 });
 
 // Customer

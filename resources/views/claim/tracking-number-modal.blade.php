@@ -1,5 +1,6 @@
 <div class="modal fade" id="convertToReplaceOrderModal" 
-     tabindex="-1" role="dialog">
+     tabindex="-1" role="dialog" 
+     aria-labelledby="favoritesModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,7 +8,8 @@
           data-dismiss="modal" 
           aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">
+        <h4 class="modal-title" 
+        id="favoritesModalLabel">
           <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
           Convert Claim #<span class="claimId"></span> to Replace Order
         </h4>
@@ -34,7 +36,6 @@
                 method="post">
               <input id="claimNumberInput" type="number" name="claim_id" hidden>
               <button type="submit" class="btn btn-primary">
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                   Convert to Replace Order
               </button>
               {{ csrf_field() }}
