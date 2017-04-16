@@ -58,24 +58,24 @@
                         @foreach ($customers as $customer)
                             <tr>
                                 <td>
-                                    <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id ]) }}">
+                                    <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->customer_id ]) }}">
                                        <span class="glyphicon glyphicon-file" aria-hidden="true" title="View Customer Details"></span>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id ]) }}">
+                                    <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->customer_id ]) }}">
                                     {{ $customer->first_name . " " . $customer->last_name }}
                                 </td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td class="table-data-wrap">
-                                    <a id="customer-edit" href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}">
+                                    <a id="customer-edit" href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->customer_id ])  }}">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Customer"></span>
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
-                                    <a href="{{ URL::route('customer.delete', [ 'customerId' => $customer->id ])  }}">
+                                    <a href="{{ URL::route('customer.delete', [ 'customerId' => $customer->customer_id ])  }}">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Customer"></span>
                                     </a></td>
                             </tr>

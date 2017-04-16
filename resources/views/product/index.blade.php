@@ -63,12 +63,14 @@
 									</a>
 								</td>
 								<td class="table-data-wrap">
-									<a href="{{ route('product.delete', [
-										'style' => $product->style,
-										'description' => $product->description
-										]) }}">
-										<span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Product"></span>
-									</a>
+									<a  href=""
+                                                id="deleteProductBtn"
+                                                class="glyphicon glyphicon-remove text-danger" 
+                                                aria-hidden="true" 
+                                                data-style="{{ $product->style }}"
+                                                data-toggle="modal"
+                                                data-target="#deleteProductModal"
+                                                title="Delete Product"></a>
 								</td>
 							</tr>
 						@endforeach
@@ -83,4 +85,7 @@
 			</div>
 		</div>
 	</div>
+
+	// Include modal
+	@include('product.delete-product-modal')
 @endsection

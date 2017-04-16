@@ -136,7 +136,7 @@ Route::group(['prefix' => 'product'], function() {
     Route::post('/edit', 'ProductController@editProduct')
         ->name('product.edit-post');
     // Delete
-    Route::get('/delete/{style}/{description}', 'ProductController@deleteProduct')
+    Route::post('/delete', 'ProductController@deleteProduct')
         ->name('product.delete');
 });
 

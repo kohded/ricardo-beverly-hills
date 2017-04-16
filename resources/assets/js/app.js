@@ -25,3 +25,5 @@ if (document.querySelector('#home')) {
 
 // Require any custom JS files
 require('./claim-detail.js');
+require('./claim-list.js');
+require('./product-list.js');

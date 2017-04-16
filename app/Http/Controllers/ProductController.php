@@ -27,13 +27,15 @@ class ProductController extends Controller
     }
 
     // Delete a product
-    public function deleteProduct($style, $description)
+    public function deleteProduct(Request $request)
     {
+        $style = $request->product_style;
+
         $deleteProduct = new ProductModel();
         $deleteProduct->deleteProduct($style);
 
         return redirect()->route('product')
-            ->with('message', 'Product ' . $style . ' - ' . $description . ' deleted.');
+            ->with('message', 'Product ' . $style . ' deleted.');
     }
 
     // Create product after form is filled out

@@ -1,4 +1,4 @@
-<div class="modal fade" id="deleteClaimModal" 
+<div class="modal fade" id="deleteProductModal" 
      tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -8,13 +8,13 @@
           aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">
-          Delete Confirmation - Claim #<span class="claimId"></span>
+          Delete Confirmation - Product <span class="productStyle"></span>
         </h4>
       </div>
       <div class="modal-body">
         <p>
           <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-          Are you sure you want to delete Claim #<span class="claimId"></span>?
+          Are you sure you want to delete Product <span class="productStyle"></span>?
         </p>
       </div>
       <div class="modal-footer">
@@ -26,10 +26,10 @@
           </button>
         </span>
         <span class="pull-right"> 
-          <form action="{{ route('claim.delete') }}" method="post">
-              <input id="deleteClaimNumberInput" type="number" name="claim_id" hidden>
+          <form action="{{ route('product.delete') }}" method="post">
+              <input id="deleteProductStyle" type="text" name="product_style" hidden>
               <button type="submit" class="btn btn-danger">
-                  Delete Claim
+                  Delete Product
               </button>
               {{ csrf_field() }}
           </form>

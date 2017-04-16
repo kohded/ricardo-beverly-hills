@@ -117,14 +117,14 @@
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Claim"></span></a>
                                         </td>
                                         <td class="table-data-wrap">
-                                            <span
+                                            <a  href=""
                                                 id="deleteClaimBtn"
                                                 class="glyphicon glyphicon-remove text-danger" 
                                                 aria-hidden="true" 
                                                 data-claim="{{ $claim->claim_id }}"
                                                 data-toggle="modal"
                                                 data-target="#deleteClaimModal"
-                                                title="Delete Claim"></span>
+                                                title="Delete Claim"></a>
                                         </td>
                                     @endrole
 
