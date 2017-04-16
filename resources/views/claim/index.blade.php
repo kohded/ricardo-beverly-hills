@@ -144,6 +144,5 @@
         </div>
     </div>
 
-    // Include modals
     @include('claim.delete-modal')   
 @endsection

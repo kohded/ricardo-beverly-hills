@@ -116,7 +116,7 @@ Route::group(['prefix' => 'damage-code'], function() {
     Route::post('/edit', 'DamageCodeController@editDamageCode')
         ->name('damage-code.edit-post');
     // Delete
-    Route::get('/delete/{id}/{name}', 'DamageCodeController@deleteDamageCode')
+    Route::post('/delete', 'DamageCodeController@deleteDamageCode')
         ->name('damage-code.delete');
 });
 

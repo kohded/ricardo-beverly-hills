@@ -107,6 +107,5 @@
         </div>
     </div>
 
-    // Include modals
     @include('repair-center.delete-rc-modal')
 @endsection

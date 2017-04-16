@@ -16,12 +16,14 @@ class DamageCodeController extends Controller
         return view('damage-code.list', ['damageCodes' => $damageCodes]);
     }
 
-    public function deleteDamageCode($id, $part)
+    public function deleteDamageCode(Request $request)
     {
+        $id = $request->dc_id;
+
         $deleteDamageCode = new DamageCodeModel();
         $deleteDamageCode->deleteDamageCode($id);
 
-        return redirect()->route('damage-code')->with('message', $id . ' - ' . $part . ' deleted.');
+        return redirect()->route('damage-code')->with('message', 'Damage Code with ID ' . $id . ' deleted.');
     }
 
     public function getCreateView()

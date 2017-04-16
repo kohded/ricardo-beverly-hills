@@ -86,6 +86,5 @@
 		</div>
 	</div>
 
-	// Include modal
 	@include('product.delete-product-modal')
 @endsection

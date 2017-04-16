@@ -50,11 +50,15 @@
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
-                                    <a href="{{ route('damage-code.delete', [
-                                            'id' => $damageCode->id,
-                                            'part' => $damageCode->part
-                                        ]) }}">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Damage Code"></span>
+                                    <a  href=""
+                                                id="deleteDamageCodeBtn"
+                                                class="glyphicon glyphicon-remove text-danger" 
+                                                aria-hidden="true" 
+                                                data-id="{{ $damageCode->id }}"
+                                                data-name="{{ $damageCode->part }}"
+                                                data-toggle="modal"
+                                                data-target="#deleteDamageCodeModal"
+                                                title="Delete Damage Code">
                                     </a>
                                 </td>
                             </tr>
@@ -65,4 +69,6 @@
             </div>
         </div>
     </div>
+
+    @include('damage-code.delete-dc-modal')
 @endsection

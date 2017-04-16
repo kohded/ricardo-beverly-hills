@@ -99,6 +99,5 @@
         </div>
     </div>
 
-    // Include modals
     @include('customer.delete-customer-modal')
 @endsection
