@@ -28,7 +28,7 @@
 
                 <form action="{{ URL::route('claim.create') }}" method="post">
 
-                    <legend>{{ $title }}</legend>
+                    <legend>Edit Claim</legend>
 
                     <legend>Customer</legend>
 
@@ -171,7 +171,7 @@
 
                     <div class="form-check col-xs-2">
                         <label class="form-check-label">
-                            @if($claimDetails->replaced == 0)
+                            @if($claimDetails->replace_order == 0)
                                 <input class="form-check-input" type="radio" name="replaced" value="0" checked>
                             @else
                                 <input class="form-check-input" type="radio" name="replaced" value="0">
@@ -185,7 +185,7 @@
 
                     <div class="form-check">
                         <label class="form-check-label">
-                            @if($claimDetails->replaced == 1)
+                            @if($claimDetails->replace_order == 1)
                                 <input class="form-check-input" type="radio" name="replaced" value="1" checked>
                             @else
                                 <input class="form-check-input" type="radio" name="replaced" value="1">
