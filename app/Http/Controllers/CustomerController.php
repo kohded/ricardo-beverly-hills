@@ -108,11 +108,14 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function deleteCustomer($customerId){
+    public function deleteCustomer(Request $request){
+        $customerId = $request->customer_id;
+
         $deleteCustomer = new CustomerModel();
         $deleteCustomer->deleteCustomer($customerId);
 
-        return redirect('customer');
+        return redirect()->route('customer')
+            ->with('message', 'Customer ' . $customerId . ' deleted.');
     }
 
     private function inputValidation($request, $validator){

@@ -27,3 +27,4 @@ if (document.querySelector('#home')) {
 require('./claim-detail.js');
 require('./claim-list.js');
 require('./product-list.js');
+require('./customer-list.js');

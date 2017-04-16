@@ -96,7 +96,7 @@ Route::group(['prefix' => 'customer'], function() {
     Route::get('/more-details/{customerId}', 'CustomerController@getCustomerDetails')
         ->name('more-customer-details');
     // Delete
-    Route::get('/delete/{customerId}', 'CustomerController@deleteCustomer')
+    Route::post('/delete', 'CustomerController@deleteCustomer')
         ->name('customer.delete');
 });
 

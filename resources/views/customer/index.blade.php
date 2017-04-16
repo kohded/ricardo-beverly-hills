@@ -75,9 +75,16 @@
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
-                                    <a href="{{ URL::route('customer.delete', [ 'customerId' => $customer->customer_id ])  }}">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Customer"></span>
-                                    </a></td>
+                                    <a  href=""
+                                                id="deleteCustomerBtn"
+                                                class="glyphicon glyphicon-remove text-danger" 
+                                                aria-hidden="true" 
+                                                data-id="{{ $customer->customer_id }}"
+                                                data-name="{{ $customer->first_name }} {{ $customer->last_name }}"
+                                                data-toggle="modal"
+                                                data-target="#deleteCustomerModal"
+                                                title="Delete Customer"></a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -91,4 +98,7 @@
             </div>
         </div>
     </div>
+
+    // Include modals
+    @include('customer.delete-customer-modal')
 @endsection
