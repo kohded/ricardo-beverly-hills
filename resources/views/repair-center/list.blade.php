@@ -82,11 +82,15 @@
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
-                                    <a href="{{ route('repair-center.delete', [
-                                            'id' => $repairCenter->id,
-                                            'name' => $repairCenter->name
-                                        ]) }}">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true" title="Delete Repair Center"></span>
+                                    <a  href=""
+                                                id="deleteRepairCenterBtn"
+                                                class="glyphicon glyphicon-remove text-danger" 
+                                                aria-hidden="true" 
+                                                data-id="{{ $repairCenter->id }}"
+                                                data-name="{{ $repairCenter->name }}"
+                                                data-toggle="modal"
+                                                data-target="#deleteRepairCenterModal"
+                                                title="Delete Repair Center">
                                     </a>
                                 </td>
                             </tr>
@@ -102,4 +106,7 @@
             </div>
         </div>
     </div>
+
+    // Include modals
+    @include('repair-center.delete-rc-modal')
 @endsection

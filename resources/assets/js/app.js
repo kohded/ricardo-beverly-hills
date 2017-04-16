@@ -28,3 +28,4 @@ require('./claim-detail.js');
 require('./claim-list.js');
 require('./product-list.js');
 require('./customer-list.js');
+require('./repair-center-list.js');

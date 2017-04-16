@@ -156,7 +156,7 @@ Route::group(['prefix' => 'repair-center'], function() {
     Route::post('/edit', 'RepairCenterController@editRepairCenter')
         ->name('repair-center.edit-post');
     // Delete
-    Route::get('/delete/{id}/{name}', 'RepairCenterController@deleteRepairCenter')
+    Route::post('/delete', 'RepairCenterController@deleteRepairCenter')
         ->name('repair-center.delete');
 });
 
