@@ -24,9 +24,8 @@ if (document.querySelector('#home')) {
 }
 
 // Require any custom JS files
-require('./claim-detail.js');
-require('./claim-list.js');
-require('./product-list.js');
-require('./customer-list.js');
-require('./repair-center-list.js');
+require('./claim.js');
+require('./product.js');
+require('./customer.js');
+require('./repair-center.js');
 require('./damage-code.js');
