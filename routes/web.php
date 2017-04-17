@@ -173,6 +173,9 @@ Route::group(['middleware' => 'role:part-company'], function() {
 	    // Add tracking (TWC)
 	    Route::post('/enter-tracking-number', 'Role\PartCompany\PartCompanyController@enterTrackingNumber')
 	        ->name('pc-enter-tracking-number'); 
+	   	    // Add a new comment
+	    Route::post('/add-comment', 'Role\PartCompany\PartCompanyController@addComment')
+	        ->name('pc-add-comment');
     });
 });
 

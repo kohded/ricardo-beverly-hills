@@ -81,4 +81,16 @@ class PartCompanyController extends Controller
         return redirect()->route('pc-claim-details', ['id' => $claimId])
             ->with('message', 'Added tracking number to claim.');            
     }
+
+    public function addComment(Request $request)
+    {
+        $claimModel = new ClaimModel();
+        $claimModel->insertComment(
+            $request->input('claim_id'),
+            $request->input('comment')
+        );
+
+        return redirect()->route('pc-claim-details', ['id' => $request->input('claim_id')])
+            ->with('message', 'Comment successfully added to claim.');
+    }
 }

@@ -305,6 +305,7 @@ class ClaimModel
     {
         $comments = DB::table('claim_comment')
             ->where('claim_id', '=', $id)
+            ->latest()
             ->get();
 
         return $comments;

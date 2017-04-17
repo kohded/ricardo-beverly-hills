@@ -1,36 +1,48 @@
 @extends('layouts.master')
 
 @section('content')
-    <div id="claim-detail" class="col-md-8 col-md-offset-2">
-        {{--Claim--}}
-        <div class="row">
-            @if(Session::has('email-message'))
-                <ul class="alert alert-success list-unstyled">
-                    <li>{{ Session::get('email-message')['message'] }}</li>
-                    @if(isset(Session::get('email-message')['customer']))
-                        <li>{{ Session::get('email-message')['customer'] }}</li>
-                    @endif
-                    @if(isset(Session::get('email-message')['repair-center']))
-                        <li>{{ Session::get('email-message')['repair-center'] }}</li>
-                    @endif
-                    @if(isset(Session::get('email-message')['rbh']))
-                        <li>{{ Session::get('email-message')['rbh'] }}</li>
-                    @endif
-                    @if(isset(Session::get('email-message')['twc']))
-                        <li>{{ Session::get('email-message')['twc'] }}</li>
-                    @endif
-                </ul>
-            @endif
-        </div>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>
+        	<span class="fa fa-file-text" aria-hidden="true"></span>
+            Claim #{{ $claim[0]->claim_id }}
 
-        @if(Session::has('message'))
-        	<div class="row">
-                <ul class="alert alert-success">
-                   	{{ Session::get('message') }}
-                </ul>
-            </div>
+            {{--Action button--}}
+        </h2>
+        <hr>
+    </div>
+</div>
+    {{--Claim--}}
+    <div class="row">
+        @if(Session::has('email-message'))
+            <ul class="alert alert-success list-unstyled">
+                <li>{{ Session::get('email-message')['message'] }}</li>
+                @if(isset(Session::get('email-message')['customer']))
+                    <li>{{ Session::get('email-message')['customer'] }}</li>
+                @endif
+                @if(isset(Session::get('email-message')['repair-center']))
+                    <li>{{ Session::get('email-message')['repair-center'] }}</li>
+                @endif
+                @if(isset(Session::get('email-message')['rbh']))
+                    <li>{{ Session::get('email-message')['rbh'] }}</li>
+                @endif
+                @if(isset(Session::get('email-message')['twc']))
+                    <li>{{ Session::get('email-message')['twc'] }}</li>
+                @endif
+            </ul>
         @endif
+    </div>
 
+    @if(Session::has('message'))
+    	<div class="row">
+            <ul class="alert alert-success">
+               	{{ Session::get('message') }}
+            </ul>
+        </div>
+    @endif
+
+<div class="row">
+    <div id="claim-detail" class="col-md-6">
         <div class="row">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -279,17 +291,20 @@
                 </div>
             </div>
         </div>
-
-        @include('claim.comments')
-
-        <div class="row">
-            <div class="col-xs-4">
-                <a href="{{ route('claim-index') }}" class="btn btn-primary">
-                    Back
-                </a>
-            </div>
-        </div>
     </div>
+
+    <div class="col-md-5 col-md-offset-1">
+        @include('claim.comments')
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-4">
+        <a href="{{ route('claim-index') }}" class="btn btn-primary">
+            Back
+        </a>
+    </div>
+</div>
 
     <!-- Include modal views -->
     @include('role.part-company.tracking-number-modal')
