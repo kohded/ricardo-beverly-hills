@@ -38,126 +38,124 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
     // Dashboard
     Route::get('/dashboard', 'DashboardController@getDashboardView')
         ->name('dashboard');
-});
 
-// Claim
-Route::group(['prefix' => 'claim'], function() {
-    // List
-    Route::get('/', 'ClaimController@getRicardoIndex')
-        ->name('claim-index');
-    // Add
-    Route::get('/create', 'ClaimController@getCreateView')
-        ->name('claim-create');
-    // Insert
-    Route::post('/create', 'ClaimController@addClaim')
-        ->name('claim.create');
-    // Detail
-    Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')
-        ->name('claim');
-    // edit
-    Route::get('/edit/{id}', 'ClaimController@editClaim')
-        ->name('claim.edit');
-    Route::post('/edit', 'ClaimController@updateClaim')
-        ->name('update-claim');
-    // delete
-    Route::post('/delete', 'ClaimController@deleteClaim')
-        ->name('claim.delete');
-    // Add a new comment
-    Route::post('/add-comment', 'ClaimController@addComment')
-        ->name('claim.add-comment');
-    // Convert to Replace Order
-    Route::post('/convert-to-replace-order', 'ClaimController@convertToReplaceOrder')
-        ->name('claim.convert-to-replace-order');
-    // Add part availability (TWC)
-    Route::post('/enter-part-availability', 'ClaimController@enterPartAvailability')
-        ->name('claim.enter-part-availability'); 
-    // Add tracking (TWC / RBH)
-    Route::post('/enter-tracking-number', 'ClaimController@enterTrackingNumber')
-        ->name('claim.enter-tracking-number');        
-});
 
-// Customer
-Route::group(['prefix' => 'customer'], function() {
-    // List / Index
-    Route::get('/', 'CustomerController@getCustomerView')
-        ->name('customer');
-    // Add
-    Route::get('/create', 'CustomerController@getCreateView')
-        ->name('customer-create');
-    // Insert
-    Route::post('/create', 'CustomerController@addCustomer')
-        ->name('customer-create');
-    // Edit
-    Route::get('/edit/{customerId}', 'CustomerController@getEditView')
-        ->name('customer-get-edit');
-    Route::post('/edit', 'CustomerController@editCustomer')
-        ->name('customer-edit');
-    // Individual customer detail
-    Route::get('/more-details/{customerId}', 'CustomerController@getCustomerDetails')
-        ->name('more-customer-details');
-    // Delete
-    Route::post('/delete', 'CustomerController@deleteCustomer')
-        ->name('customer.delete');
-});
+	// Claim
+	Route::group(['prefix' => 'claim'], function() {
+	    // List
+	    Route::get('/', 'ClaimController@getRicardoIndex')
+	        ->name('claim-index');
+	    // Add
+	    Route::get('/create', 'ClaimController@getCreateView')
+	        ->name('claim-create');
+	    // Insert
+	    Route::post('/create', 'ClaimController@addClaim')
+	        ->name('claim.create');
+	    // Detail
+	    Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')
+	        ->name('claim');
+	    // edit
+	    Route::get('/edit/{id}', 'ClaimController@editClaim')
+	        ->name('claim.edit');
+	    Route::post('/edit', 'ClaimController@updateClaim')
+	        ->name('update-claim');
+	    // delete
+	    Route::post('/delete', 'ClaimController@deleteClaim')
+	        ->name('claim.delete');
+	    // Add a new comment
+	    Route::post('/add-comment', 'ClaimController@addComment')
+	        ->name('claim.add-comment');
+	    // Convert to Replace Order
+	    Route::post('/convert-to-replace-order', 'ClaimController@convertToReplaceOrder')
+	        ->name('claim.convert-to-replace-order');
+	    // Add tracking (RBH)
+	    Route::post('/enter-tracking-number', 'ClaimController@enterTrackingNumber')
+	        ->name('claim.enter-tracking-number');        
+	});
 
-// Damage Code
-Route::group(['prefix' => 'damage-code'], function() {
-    // List
-    Route::get('/', 'DamageCodeController@getListView')
-        ->name('damage-code');
-    // Add
-    Route::get('/create', 'DamageCodeController@getCreateView')
-        ->name('damage-code.create');
-    Route::post('/create', 'DamageCodeController@createDamageCode')
-        ->name('damage-code.create');
-    // Edit
-    Route::get('/edit/{id}', 'DamageCodeController@getEditView')
-        ->name('damage-code.edit');
-    Route::post('/edit', 'DamageCodeController@editDamageCode')
-        ->name('damage-code.edit-post');
-    // Delete
-    Route::post('/delete', 'DamageCodeController@deleteDamageCode')
-        ->name('damage-code.delete');
-});
+	// Customer
+	Route::group(['prefix' => 'customer'], function() {
+	    // List / Index
+	    Route::get('/', 'CustomerController@getCustomerView')
+	        ->name('customer');
+	    // Add
+	    Route::get('/create', 'CustomerController@getCreateView')
+	        ->name('customer-create');
+	    // Insert
+	    Route::post('/create', 'CustomerController@addCustomer')
+	        ->name('customer-create');
+	    // Edit
+	    Route::get('/edit/{customerId}', 'CustomerController@getEditView')
+	        ->name('customer-get-edit');
+	    Route::post('/edit', 'CustomerController@editCustomer')
+	        ->name('customer-edit');
+	    // Individual customer detail
+	    Route::get('/more-details/{customerId}', 'CustomerController@getCustomerDetails')
+	        ->name('more-customer-details');
+	    // Delete
+	    Route::post('/delete', 'CustomerController@deleteCustomer')
+	        ->name('customer.delete');
+	});
 
-// Product
-Route::group(['prefix' => 'product'], function() {
-    // List / Index
-    Route::get('/', 'ProductController@index')
-        ->name('product');
-    // Add
-    Route::get('/create', 'ProductController@getCreateView')
-        ->name('product.create');
-    Route::post('/create', 'ProductController@createProduct')
-        ->name('product.create');
-    // Edit
-    Route::get('/edit/{style}', 'ProductController@getEditView')
-        ->name('product.edit');
-    Route::post('/edit', 'ProductController@editProduct')
-        ->name('product.edit-post');
-    // Delete
-    Route::post('/delete', 'ProductController@deleteProduct')
-        ->name('product.delete');
-});
+	// Damage Code
+	Route::group(['prefix' => 'damage-code'], function() {
+	    // List
+	    Route::get('/', 'DamageCodeController@getListView')
+	        ->name('damage-code');
+	    // Add
+	    Route::get('/create', 'DamageCodeController@getCreateView')
+	        ->name('damage-code.create');
+	    Route::post('/create', 'DamageCodeController@createDamageCode')
+	        ->name('damage-code.create');
+	    // Edit
+	    Route::get('/edit/{id}', 'DamageCodeController@getEditView')
+	        ->name('damage-code.edit');
+	    Route::post('/edit', 'DamageCodeController@editDamageCode')
+	        ->name('damage-code.edit-post');
+	    // Delete
+	    Route::post('/delete', 'DamageCodeController@deleteDamageCode')
+	        ->name('damage-code.delete');
+	});
 
-// Repair Center
-Route::group(['prefix' => 'repair-center'], function() {
-    // List
-    Route::get('/', 'RepairCenterController@getListView')
-        ->name('repair-center');
-    // Add
-    Route::get('/create', 'RepairCenterController@getCreateView')
-        ->name('repair-center.create');
-    Route::post('/create', 'RepairCenterController@createRepairCenter')
-        ->name('repair-center.create');
-    // Edit
-    Route::get('/edit/{id}', 'RepairCenterController@getEditView')
-        ->name('repair-center.edit');
-    Route::post('/edit', 'RepairCenterController@editRepairCenter')
-        ->name('repair-center.edit-post');
-    // Delete
-    Route::post('/delete', 'RepairCenterController@deleteRepairCenter')
-        ->name('repair-center.delete');
+	// Product
+	Route::group(['prefix' => 'product'], function() {
+	    // List / Index
+	    Route::get('/', 'ProductController@index')
+	        ->name('product');
+	    // Add
+	    Route::get('/create', 'ProductController@getCreateView')
+	        ->name('product.create');
+	    Route::post('/create', 'ProductController@createProduct')
+	        ->name('product.create');
+	    // Edit
+	    Route::get('/edit/{style}', 'ProductController@getEditView')
+	        ->name('product.edit');
+	    Route::post('/edit', 'ProductController@editProduct')
+	        ->name('product.edit-post');
+	    // Delete
+	    Route::post('/delete', 'ProductController@deleteProduct')
+	        ->name('product.delete');
+	});
+
+	// Repair Center
+	Route::group(['prefix' => 'repair-center'], function() {
+	    // List
+	    Route::get('/', 'RepairCenterController@getListView')
+	        ->name('repair-center');
+	    // Add
+	    Route::get('/create', 'RepairCenterController@getCreateView')
+	        ->name('repair-center.create');
+	    Route::post('/create', 'RepairCenterController@createRepairCenter')
+	        ->name('repair-center.create');
+	    // Edit
+	    Route::get('/edit/{id}', 'RepairCenterController@getEditView')
+	        ->name('repair-center.edit');
+	    Route::post('/edit', 'RepairCenterController@editRepairCenter')
+	        ->name('repair-center.edit-post');
+	    // Delete
+	    Route::post('/delete', 'RepairCenterController@deleteRepairCenter')
+	        ->name('repair-center.delete');
+	});
 });
 
 
@@ -165,10 +163,16 @@ Route::group(['prefix' => 'repair-center'], function() {
 Route::group(['middleware' => 'role:part-company'], function() {
     Route::group(['prefix' => 'part-company-claim'], function() {
         // List
-        Route::get('/', 'ClaimController@getPartCompanyIndex')
-            ->name('part-company-claim');
-        Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')
-            ->name('part-company-claim-details');
+        Route::get('/', 'Role\PartCompany\PartCompanyController@getListView')
+            ->name('pc-claim-list');
+        Route::get('/more-details/{id}', 'Role\PartCompany\PartCompanyController@getClaimDetails')
+            ->name('pc-claim-details');
+	    // Add part availability (TWC)
+	    Route::post('/enter-part-availability', 'Role\PartCompany\PartCompanyController@enterPartAvailability')
+	        ->name('pc-enter-part-availability'); 
+	    // Add tracking (TWC)
+	    Route::post('/enter-tracking-number', 'Role\PartCompany\PartCompanyController@enterTrackingNumber')
+	        ->name('pc-enter-tracking-number'); 
     });
 });
 

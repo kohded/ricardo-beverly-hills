@@ -11,7 +11,7 @@
           Enter Tracking Number - Claim #<span class="claimId"></span>
         </h4>
       </div>
-      <form action="{{ route('claim.enter-tracking-number') }}" method="post">
+      <form action="{{ route('pc-enter-tracking-number') }}" method="post">
         <div class="modal-body">
           <p>Enter Tracking Number for Claim #<span class="claimId"></span></p>
 
@@ -19,7 +19,7 @@
             <input type="text" class="form-control" name="tracking_number" placeholder="Enter Tracking Number...">
           </div>
 
-          <p>The customer will receive a notification e-mail that a new bag has been shipped.</p>
+          <p>The recipient will receive a notification e-mail.</p>
         </div>
         <div class="modal-footer">
           <span class="pull-left">

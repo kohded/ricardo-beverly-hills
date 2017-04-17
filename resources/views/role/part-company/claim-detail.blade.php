@@ -58,31 +58,6 @@
                             @else
                                 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                                 Repair Order
-                                <!-- Convert to Replace Order button -->
-                                <div>
-                                	@if ($claim[0]->part_needed)
-	                                	@if ($claim[0]->parts_available == 0)
-	                                        <button 
-	                                            type="button"
-	                                            id="convert-to-replace-order" 
-	                                            class="btn btn-warning btn-xs"
-	                                            data-claim="{{ $claim[0]->claim_id }}"
-	                                            data-toggle="modal"
-	                                            data-target="#convertToReplaceOrderModal">
-	                                        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-	                                    @else
-	                                        <button 
-	                                                type="button"
-	                                                id="convert-to-replace-order" 
-	                                                class="btn btn-primary btn-xs"
-	                                                data-claim="{{ $claim[0]->claim_id }}"
-	                                                data-toggle="modal"
-	                                                data-target="#convertToReplaceOrderModal">
-	                                	@endif
-	                                        Convert to Replace Order
-	                                    </button>
-                                 	@endif
-                                </div>
                             @endif
                         </dd>
 
@@ -116,12 +91,57 @@
                                 <dt>Parts Available?</dt>
                                 <dd>
                                     @if (!isset($claim[0]->parts_available))
-                                        Waiting for response from TWC...
+                                        @role('ricardo-beverly-hills')
+                                            Waiting for response from TWC...
+                                        @endrole
+                                        @role('part-company')
+                                            <!-- Enter part availability -->
+                                            <div>
+                                                <button 
+                                                    type="button"
+                                                    id="enter-part-availability" 
+                                                    class="btn btn-warning btn-xs"
+                                                    data-claim="{{ $claim[0]->claim_id }}"
+                                                    data-parts="{{ $claim[0]->parts_needed }}"
+                                                    data-toggle="modal"
+                                                    data-target="#enterPartAvailabilityModal">
+                                                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                                    Enter Part Availability
+                                                </button>
+                                            </div>
+                                        @endrole
                                     @elseif ($claim[0]->parts_available == 0)
                                         Parts unavailable from TWC
                                     @elseif ($claim[0]->parts_available == 1)
                                         Parts are available from TWC
                                     @endif
+                                    @role('ricardo-beverly-hills')
+                                        @if ($claim[0]->replace_order == 0)
+                                            <!-- Convert to Replace Order button -->
+                                            <div>
+                                            	@if($claim[0]->parts_available == 0)
+	                                                <button 
+	                                                    type="button"
+	                                                    id="convert-to-replace-order" 
+	                                                    class="btn btn-warning btn-xs"
+	                                                    data-claim="{{ $claim[0]->claim_id }}"
+	                                                    data-toggle="modal"
+	                                                    data-target="#convertToReplaceOrderModal">
+	                                                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+	                                            @else
+		                                            <button 
+		                                                    type="button"
+		                                                    id="convert-to-replace-order" 
+		                                                    class="btn btn-primary btn-xs"
+		                                                    data-claim="{{ $claim[0]->claim_id }}"
+		                                                    data-toggle="modal"
+		                                                    data-target="#convertToReplaceOrderModal">
+	                                            @endif
+                                                    Convert to Replace Order
+                                                </button>
+                                            </div>
+                                        @endif
+                                    @endrole
                                 </dd>
                             @endif
                         @endif
@@ -129,20 +149,22 @@
                         <dd>{{ $claim[0]->part_company_comment }}</dd>
                         <dt>Tracking Number</dt>
                         <dd>
-                            @if ($claim[0]->replace_order == 1 && !isset($claim[0]->tracking_number))
-                                <!-- Enter Tracking # -->
-                                <div>
-                                    <button 
-                                        type="button"
-                                        id="enter-tracking" 
-                                        class="btn btn-warning btn-xs"
-                                        data-claim="{{ $claim[0]->claim_id }}"
-                                        data-toggle="modal"
-                                        data-target="#enterTrackingModal">
-                                        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-                                        Enter Tracking Number
-                                    </button>
-                                </div>
+                            @if ($claim[0]->parts_available && !isset($claim[0]->tracking_number))
+                                @role('part-company')
+                                    <!-- Enter Tracking # -->
+                                    <div>
+                                        <button 
+                                            type="button"
+                                            id="enter-tracking" 
+                                            class="btn btn-warning btn-xs"
+                                            data-claim="{{ $claim[0]->claim_id }}"
+                                            data-toggle="modal"
+                                            data-target="#enterTrackingModal">
+                                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                            Enter Tracking Number
+                                        </button>
+                                    </div>
+                                @endrole
                             @endif
                             {{ $claim[0]->tracking_number }}
                         </dd>
@@ -270,6 +292,6 @@
     </div>
 
     <!-- Include modal views -->
-    @include('claim.repl-order-modal')
-    @include('claim.tracking-number-modal')
+    @include('role.part-company.tracking-number-modal')
+    @include('role.part-company.part-availability-modal')
 @endsection

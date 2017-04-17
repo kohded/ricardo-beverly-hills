@@ -56,8 +56,8 @@
                     @endrole
 
                     @role('part-company')
-                        <li class="{{ Request::is('part-company-claim') ? 'active' : '' }}">
-                            <a href="{{ route('part-company-claim') }}">
+                        <li class="{{ Request::is('pc-claim-list') ? 'active' : '' }}">
+                            <a href="{{ route('pc-claim-list') }}">
                                 <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;
                                 Claims</a>
                         </li>

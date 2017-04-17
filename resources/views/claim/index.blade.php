@@ -60,9 +60,7 @@
                                 Date Closed
                             </th>
                             <!-- For edit / delete button <td>s -->
-                            @role('ricardo-beverly-hills')
-                                <th></th><th></th>
-                            @endrole
+                            <th></th><th></th>
                         </tr>
                         </thead>
 
@@ -72,18 +70,13 @@
                                 <tr>
                                     <td>
                                         <!-- Ricardo needs to authorize replace order -->
-                                        @role('ricardo-beverly-hills')
-                                            @if ($claim->part_needed && isset($claim->parts_available) && $claim->parts_available == 0 && !$claim->replace_order)
-                                                <span class="glyphicon glyphicon-alert text-warning" aria-hidden="true" title="Action Needed!"></span>
-                                            @endif
-                                        @endrole
-                                        <!-- TWC Needs to enter tracking or select no parts -->
-                                        @role('part-company')
-                                            @if (!isset($claim->parts_available) ||
-                                                 $claim->parts_available && !isset($claim->tracking_number))
-                                                <span class="glyphicon glyphicon-alert text-warning" aria-hidden="true" title="Action Needed!"></span>
-                                            @endif
-                                        @endrole
+                                        @if ($claim->part_needed && isset($claim->parts_available) && $claim->parts_available == 0 && !$claim->replace_order)
+                                            <span class="glyphicon glyphicon-alert text-warning" aria-hidden="true" title="Action Needed!"></span>
+                                        @endif
+                                        <!-- Ricardo needs to enter tracking # -->
+                                        @if ($claim->replace_order && !isset($claim->tracking_number))
+                                            <span class="glyphicon glyphicon-alert text-warning" aria-hidden="true" title="Action Needed!"></span>
+                                        @endif
                                     </td>
                                     <td>
                                         @if ($claim->replace_order == 0)
@@ -91,18 +84,10 @@
                                         @else
                                             <span class="glyphicon glyphicon-briefcase" aria-hidden="true" title="Replace Order"></span>
                                         @endif
-                                        @role('ricardo-beverly-hills')
-                                            <a id="claim-detail" href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
-                                                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                                                {{ $claim->claim_id }}
-                                            </a>
-                                        @endrole
-                                        @role('part-company')
-                                            <a id="claim-detail" href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
-                                                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                                                {{ $claim->claim_id }}
-                                            </a>
-                                        @endrole
+                                        <a id="claim-detail" href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
+                                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                            {{ $claim->claim_id }}
+                                        </a>
                                     </td>
                                     <td>{{ $claim->first . ' ' . $claim->last }}</td>
                                     <td>{{ $claim->style }}</td>
@@ -110,25 +95,20 @@
                                     <td>{{ $claim->created_at }}</td>
                                     <td>{{ $claim->closed_at }}</td>
                                     </a>
-
-                                    @role('ricardo-beverly-hills')
-                                        <td class="table-data-wrap">
-                                            <a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}">
-                                            <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Claim"></span></a>
-                                        </td>
-                                        <td class="table-data-wrap">
-                                            <a  href=""
-                                                id="deleteClaimBtn"
-                                                class="glyphicon glyphicon-remove text-danger" 
-                                                aria-hidden="true" 
-                                                data-claim="{{ $claim->claim_id }}"
-                                                data-toggle="modal"
-                                                data-target="#deleteClaimModal"
-                                                title="Delete Claim"></a>
-                                        </td>
-                                    @endrole
-
-
+                                    <td class="table-data-wrap">
+                                        <a href="{{ URL::route('claim.edit', [ 'id' => $claim->claim_id])  }}">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Claim"></span></a>
+                                    </td>
+                                    <td class="table-data-wrap">
+                                        <a  href=""
+                                            id="deleteClaimBtn"
+                                            class="glyphicon glyphicon-remove text-danger" 
+                                            aria-hidden="true" 
+                                            data-claim="{{ $claim->claim_id }}"
+                                            data-toggle="modal"
+                                            data-target="#deleteClaimModal"
+                                            title="Delete Claim"></a>
+                                    </td>
                                 </tr>
                             </a>
                         @endforeach

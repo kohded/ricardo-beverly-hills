@@ -11,7 +11,7 @@
           Enter Part Availability - Claim #<span class="claimId"></span>
         </h4>
       </div>
-      <form action="{{ route('claim.enter-part-availability') }}" method="post">
+      <form action="{{ route('pc-enter-part-availability') }}" method="post">
         <div class="modal-body">
           <p>Are the following parts available?</p>
           <p>RBH: <b><span id="partsNeeded"></span></b></p>

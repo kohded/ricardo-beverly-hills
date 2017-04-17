@@ -145,20 +145,6 @@ class ClaimController extends Controller
             ->with('message', 'Claim successfully converted to a Replace Order.');
     }
 
-    public function enterPartAvailability(Request $request) {
-        $claimId = $request->input('claim_id');
-        $partsAvailable = $request->input('parts_available');
-        $partCompanyComment = $request->input('part_company_comment');
-
-        $claimModel = new ClaimModel();
-        $claimModel->enterPartAvailability($claimId, $partsAvailable, $partCompanyComment);
-
-        // Mail claim
-
-        return redirect()->route('claim', ['id' => $claimId])
-            ->with('message', 'Added part availability information to claim.');        
-    }
-
     public function enterTrackingNumber(Request $request) {
         $claimId = $request->input('claim_id');
         $partsAvailable = $request->input('parts_available');
