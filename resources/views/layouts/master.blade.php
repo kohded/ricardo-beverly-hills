@@ -16,7 +16,7 @@ Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
 
     {{--Links--}}
     <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
-    <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
     {{--Title--}}
     <title>Ricardo Beverly Hills</title>
