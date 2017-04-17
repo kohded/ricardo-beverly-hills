@@ -70,7 +70,10 @@ Route::group(['middleware' => 'role:ricardo-beverly-hills'], function() {
 	        ->name('claim.convert-to-replace-order');
 	    // Add tracking (RBH)
 	    Route::post('/enter-tracking-number', 'ClaimController@enterTrackingNumber')
-	        ->name('claim.enter-tracking-number');        
+	        ->name('claim.enter-tracking-number');
+	    // Close claim
+	    Route::get('/close/{id}', 'ClaimController@closeClaim')
+	        ->name('close-claim');	            
 	});
 
 	// Customer

@@ -161,6 +161,14 @@ class ClaimController extends Controller
             ->with('message', 'Added tracking number to claim.');            
     }
 
+    public function closeClaim($id) {
+        $claimModel = new ClaimModel();
+        $claimModel->closeClaim($id);
+        
+        return redirect()->route('claim', ['id' => $id])
+            ->with('message', 'Successfully closed claim!');
+    }
+
     public function deleteClaim(Request $request)
     {
         $claimId = $request->input('claim_id');
