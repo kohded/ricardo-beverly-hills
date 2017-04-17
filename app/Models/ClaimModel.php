@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ClaimModel
 {
@@ -334,6 +335,15 @@ class ClaimModel
             ->where('id', '=', $id)
             ->update([
                 'tracking_number' => $trackingNumber
+            ]);
+    }
+
+    public function closeClaim($id)
+    {
+    	DB::table('claim')
+            ->where('id', '=', $id)
+            ->update([
+                'date_closed' => Carbon::now()
             ]);
     }
 }
