@@ -147,6 +147,11 @@ class MailClaimController extends Controller
         ]);
     }
 
+    /**
+     * Send email when part company submits tracking number.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendPartOrderTrackingNumberMail()
     {
         \Mail::to($this->customerEmail)
@@ -168,6 +173,28 @@ class MailClaimController extends Controller
             'message'       => 'Email sent successfully to:',
             'customer'      => $this->customerName,
             'repair-center' => $this->repairCenterName,
+            'rbh'           => $this->rbhName,
+            'twc'           => '',
+        ]);
+    }
+
+    /**
+     * Send email when part company submits no part available.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendNoPartMail()
+    {
+        \Mail::to($this::RBH_EMAIL)
+            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\NoPart\RBHNoPartMail($this->claim, $this->claimComments));
+
+        $this->incrementEmailSentCount();
+
+        // Redirect with email message.
+        return redirect()->back()->with('email-message', [
+            'message'       => 'Email sent successfully to:',
+            'customer'      => '',
+            'repair-center' => '',
             'rbh'           => $this->rbhName,
             'twc'           => '',
         ]);

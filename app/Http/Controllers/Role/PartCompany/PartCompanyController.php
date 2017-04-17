@@ -56,7 +56,11 @@ class PartCompanyController extends Controller
         $claimModel = new ClaimModel();
         $claimModel->enterPartAvailability($claimId, $partsAvailable, $partCompanyComment);
 
-        // Mail claim
+        if($partsAvailable === '0') {
+            // Send no part mail.
+            $request->request->add(['claim-id' => $claimId]);
+            (new MailClaimController($request))->sendNoPartMail();
+        }
 
         return redirect()->route('pc-claim-details', ['id' => $claimId])
             ->with('message', 'Added part availability information to claim.');        
@@ -70,7 +74,7 @@ class PartCompanyController extends Controller
         $claimModel = new ClaimModel();
         $claimModel->enterTrackingNumber($claimId, $trackingNumber);
 
-        // Mail claim
+        // Send part order tracking number mail.
         $request->request->add(['claim-id' => $claimId]);
         (new MailClaimController($request))->sendPartOrderTrackingNumberMail();
 
