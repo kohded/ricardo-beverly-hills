@@ -23,7 +23,6 @@ class CustomerTrackingMail extends Mailable
     public function __construct($claim)
     {
         $this->claim = $claim;
-        $this->claimMessage = 'Your part has been shipped. The tracking number is #' . $this->claim[0]->tracking_number . '.';
         $this->claimType = 'Tracking Number';
 
         if($this->claim[0]->ship_to === 'Customer') {
