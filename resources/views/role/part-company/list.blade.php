@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>
+                	<span class="fa fa-file-text"></span>
                     Claims
                 </h2>
                 <hr>
