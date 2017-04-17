@@ -13,7 +13,7 @@
       </div>
       <div class="modal-body">
         <p>
-          <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+          <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
           Are you sure you want to delete Repair Center <span class="repairCenterName"></span>?
         </p>
       </div>
@@ -30,6 +30,7 @@
           	  <input id="deleteRCName" type="text" name="rc_name" hidden>
               <input id="deleteRepairCenterId" type="number" name="rc_id" hidden>
               <button type="submit" class="btn btn-danger">
+              	  <span class="fa fa-trash" aria-hidden="true"></span>
                   Delete Repair Center
               </button>
               {{ csrf_field() }}

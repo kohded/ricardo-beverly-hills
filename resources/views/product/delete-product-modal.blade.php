@@ -13,7 +13,7 @@
       </div>
       <div class="modal-body">
         <p>
-          <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+          <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
           Are you sure you want to delete Product <span class="productStyle"></span>?
         </p>
       </div>

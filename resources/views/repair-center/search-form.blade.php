@@ -1,6 +1,6 @@
 <form class="form-inline form-group" action="{{ route('repair-center') }}" method="get">
         <label for="search">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <span class="fa fa-search" aria-hidden="true"></span>
         </label>
         <input type="text" class="form-control input-sm" name="search" placeholder="Search...">
 
@@ -17,7 +17,7 @@
 
         &nbsp;
         <button type="submit" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+            <span class="fa fa-filter" aria-hidden="true"></span>
             Filter
         </button>
 </form>

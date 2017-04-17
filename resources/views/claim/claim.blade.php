@@ -35,7 +35,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        <span class="fa fa-file-text" aria-hidden="true"></span>
                         Claim #{{ $claim[0]->claim_id }}
                     </h3>
                 </div>
@@ -52,11 +52,11 @@
                         <dt>Claim Type</dt>
                         <dd>
                             @if ($claim[0]->replace_order == 1)
-                                <span class="glyphicon glyphicon-briefcase"
+                                <span class="fa fa-suitcase"
                                       aria-hidden="true"></span>
                                 Replace Order
                             @else
-                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                <span class="fa fa-wrench" aria-hidden="true"></span>
                                 Repair Order
                                 <!-- Convert to Replace Order button -->
                                 <div>
@@ -69,7 +69,7 @@
 	                                            data-claim="{{ $claim[0]->claim_id }}"
 	                                            data-toggle="modal"
 	                                            data-target="#convertToReplaceOrderModal">
-	                                        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+	                                        <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
 	                                    @else
 	                                        <button 
 	                                                type="button"
@@ -86,13 +86,19 @@
                             @endif
                         </dd>
 
-                        <dt>Opened Date</dt>
+                        <dt>
+                        	<span class="fa fa-calendar-o" aria-hidden="true"></span>
+                        	Opened Date
+                        </dt>
                         <dd>{{ $claim[0]->claim_created_at }}</dd>
                         @if ($claim[0]->claim_date_closed)
                             <dt>Closed Date</dt>
                             <dd>{{ $claim[0]->claim_date_closed }}</dd>
                         @endif
-                        <dt>Email Sent</dt>
+                        <dt>
+                        	<span class="fa fa-envelope" aria-hidden="true"></span>
+                        	Email Sent
+                        </dt>
                         <dd>
                             @if ($claim[0]->claim_email_sent > 0)
                                 Yes
@@ -103,7 +109,10 @@
 
                         @if ($claim[0]->replace_order == 0)
                             <hr>
-                            <dt>Parts Required?</dt>
+                            <dt>
+                            	<span class="fa fa-cog" aria-hidden="true"></span>
+                            	Parts Required?
+                            </dt>
 
                             @if ($claim[0]->part_needed == 0)
                                 <dd>No</dd>
@@ -111,7 +120,10 @@
                                 <dd>Yes</dd>
                                 <dt>Parts Needed</dt>
                                 <dd>{{ $claim[0]->parts_needed }}</dd>
-                                <dt>Ship Parts To</dt>
+                                <dt>
+                                	<span class="fa fa-truck" aria-hidden="true"></span>
+                                	Ship Parts To
+                                </dt>
                                 <dd>{{ $claim[0]->ship_to }}</dd>
                                 <dt>Parts Available?</dt>
                                 <dd>
@@ -125,9 +137,15 @@
                                 </dd>
                             @endif
                         @endif
-                        <dt>TWC Comment</dt>
+                        <dt>
+                        	<span class="fa fa-comment" aria-hidden="true"></span>
+                      		TWC Comment
+                      	</dt>
                         <dd>{{ $claim[0]->part_company_comment }}</dd>
-                        <dt>Tracking Number</dt>
+                        <dt>
+                        	<span class="fa fa-truck" aria-hidden="true"></span>
+                        	Tracking Number
+                        </dt>
                         <dd>
                             @if ($claim[0]->replace_order == 1 && !isset($claim[0]->tracking_number))
                                 <!-- Enter Tracking # -->
@@ -139,7 +157,7 @@
                                         data-claim="{{ $claim[0]->claim_id }}"
                                         data-toggle="modal"
                                         data-target="#enterTrackingModal">
-                                        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                        <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
                                         Enter Tracking Number
                                     </button>
                                 </div>
@@ -155,15 +173,21 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                        <span class="fa fa-suitcase" aria-hidden="true"></span>
                         Product
                     </h3>
                 </div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
-                        <dt>Product Style</dt>
+                        <dt>
+                        	<span class="fa fa-home" aria-hidden="true"></span>
+                        	Product Style
+                        </dt>
                         <dd>{{ $claim[0]->product_style }}</dd>
-                        <dt>Damage Code</dt>
+                        <dt>
+                        	<span class="fa fa-fire" aria-hidden="true"></span>
+                        	Damage Code
+                        </dt>
                         <dd>{{ $claim[0]->dc_id }}</dd>
                     </dl>
                 </div>
@@ -174,21 +198,24 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <span class="fa fa-user" aria-hidden="true"></span>
                         Customer
                     </h3>
                 </div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
-                        <dt>Name</dt>
+                        <dt>
+                        	<span class="fa fa-user" aria-hidden="true"></span>
+                        	Name
+                        </dt>
                         <dd>{{ $claim[0]->cust_first_name }} {{ $claim[0]->cust_last_name }}</dd>
                         <dt>
-                            <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                            <span class="fa fa-mobile" aria-hidden="true"></span>
                             Phone
                         </dt>
                         <dd>{{ $claim[0]->cust_phone }}</dd>
                         <dt>
-                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                            <span class="fa fa-envelope" aria-hidden="true"></span>
                             Email
                         </dt>
                         <dd>
@@ -198,7 +225,7 @@
                             </a>
                         </dd>
                         <dt>
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            <span class="fa fa-home" aria-hidden="true"></span>
                             Address
                         </dt>
                         <dd>
@@ -219,23 +246,29 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                        <span class="fa fa-cogs" aria-hidden="true"></span>
                         Repair Center
                     </h3>
                 </div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
-                        <dt>Name</dt>
+                        <dt>
+                        	<span class="fa fa-cogs" aria-hidden="true"></span>
+                        	Name
+                        </dt>
                         <dd>{{ $claim[0]->rc_name }}</dd>
-                        <dt>Contact Name</dt>
+                        <dt>
+                        	<span class="fa fa-user" aria-hidden="true"></span>
+                        	Contact Name
+                        </dt>
                         <dd>{{ $claim[0]->rc_contact }}</dd>
                         <dt>
-                            <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                            <span class="fa fa-mobile" aria-hidden="true"></span>
                             Phone
                         </dt>
                         <dd>{{ $claim[0]->rc_phone }}</dd>
                         <dt>
-                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                            <span class="fa fa-envelope" aria-hidden="true"></span>
                             Email
                         </dt>
                         <dd>
@@ -245,7 +278,7 @@
                             </a>
                         </dd>
                         <dt>
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            <span class="fa fa-home" aria-hidden="true"></span>
                             Address
                         </dt>
                         <dd>

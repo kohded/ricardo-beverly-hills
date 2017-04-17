@@ -16,7 +16,7 @@
 
     &nbsp;
     <button type="submit" class="btn btn-primary btn-sm">
-        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+        <span class="fa fa-filter" aria-hidden="true"></span>
         Filter
     </button>
 </form>

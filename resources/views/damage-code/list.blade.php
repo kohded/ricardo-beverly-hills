@@ -5,10 +5,11 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>
+                	<span class="fa fa-fire" aria-hidden="true"></span>
                     Damage Codes
                     {{--Create button--}}
                     <a href="{{ route('damage-code.create') }}" class="btn btn-primary pull-right">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="fa fa-plus-circle" aria-hidden="true"></span>
                         Create New Damage Code
                     </a>
                 </h2>
@@ -30,9 +31,12 @@
                         <thead>
                         <tr>
                             <th>
-                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                                <span class="fa fa-fire" aria-hidden="true"></span>
                                 Damage Code</th>
-                            <th>Part/Description</th>
+                            <th>
+                            	<span class="fa fa-cog" aria-hidden="true"></span>
+                            	Part/Description
+                            </th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -46,13 +50,13 @@
                                     <a id="dc-edit" href="{{ route('damage-code.edit', [
                                         'id' => $damageCode->id
                                         ]) }}">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit Damage Code"></span>
+                                        <span class="fa fa-pencil-square-o" aria-hidden="true" title="Edit Damage Code"></span>
                                     </a>
                                 </td>
                                 <td class="table-data-wrap">
                                     <a  href=""
                                                 id="deleteDamageCodeBtn"
-                                                class="glyphicon glyphicon-remove text-danger" 
+                                                class="fa fa-trash text-danger" 
                                                 aria-hidden="true" 
                                                 data-id="{{ $damageCode->id }}"
                                                 data-name="{{ $damageCode->part }}"

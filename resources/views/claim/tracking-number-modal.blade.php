@@ -32,7 +32,7 @@
           <span class="pull-right">
             <input id="trackingClaimNumberInput" type="number" name="claim_id" hidden>
             <button type="submit" class="btn btn-primary">
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                <span class="fa fa-envelope" aria-hidden="true"></span>
                 Submit Tracking Number
             </button>
             {{ csrf_field() }}

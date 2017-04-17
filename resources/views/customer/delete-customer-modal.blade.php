@@ -13,7 +13,7 @@
       </div>
       <div class="modal-body">
         <p>
-          <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+          <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
           Are you sure you want to delete Customer <span class="customerName"></span>?
         </p>
       </div>
@@ -30,7 +30,8 @@
           	  <input id="customerNameInput" type="text" name="customer_name" hidden />
               <input id="deleteCustomerId" type="number" name="customer_id" hidden />
               <button type="submit" class="btn btn-danger">
-                  Delete Customer
+              	<span class="fa fa-trash" aria-hidden="true"></span>
+                Delete Customer
               </button>
               {{ csrf_field() }}
           </form>

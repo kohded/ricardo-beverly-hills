@@ -25,31 +25,31 @@
                     @role('ricardo-beverly-hills')
                         <li class="{{ Request::is('claim') ? 'active' : '' }}">
                             <a href="{{ route('claim-index') }}">
-                                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;
+                                <span class="fa fa-file-text" aria-hidden="true"></span>&nbsp;
                                 Claims
                             </a>
                         </li>
                         <li class="{{ Request::is('customer') ? 'active' : '' }}">
                             <a href="{{ route('customer') }}">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                <span class="fa fa-user" aria-hidden="true"></span>
                                 Customers
                             </a>
                         </li>
                         <li class="{{ Request::is('product') ? 'active' : '' }}">
                             <a href="{{ route('product') }}">
-                                <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                                <span class="fa fa-suitcase" aria-hidden="true"></span>
                                 Products
                             </a>
                         </li>
                         <li class="{{ Request::is('repair-center') ? 'active' : '' }}">
                             <a href="{{ route('repair-center') }}">
-                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                <span class="fa fa-cogs" aria-hidden="true"></span>
                                 Repair Centers
                             </a>
                         </li>
                         <li class="{{ Request::is('damage-code') ? 'active' : '' }}">
                             <a href="{{ route('damage-code') }}">
-                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                                <span class="fa fa-fire" aria-hidden="true"></span>
                                 Damage Codes
                             </a>
                         </li>
@@ -58,7 +58,7 @@
                     @role('part-company')
                         <li class="{{ Request::is('pc-claim-list') ? 'active' : '' }}">
                             <a href="{{ route('pc-claim-list') }}">
-                                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;
+                                <span class="fa fa-file-text" aria-hidden="true"></span>&nbsp;
                                 Claims</a>
                         </li>
                     @endrole
@@ -70,6 +70,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-expanded="false">
+                           <span class="fa fa-user-circle"></span>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 

@@ -8,7 +8,7 @@
           aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">
-          <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+          <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
           Convert Claim #<span class="claimId"></span> to Replace Order
         </h4>
       </div>
@@ -34,7 +34,7 @@
                 method="post">
               <input id="claimNumberInput" type="number" name="claim_id" hidden>
               <button type="submit" class="btn btn-primary">
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                  <span class="fa fa-envelope" aria-hidden="true"></span>
                   Convert to Replace Order
               </button>
               {{ csrf_field() }}

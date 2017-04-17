@@ -2,7 +2,7 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                <span class="fa fa-comments" aria-hidden="true"></span>
                 Comments
             </h3>
         </div>
@@ -13,13 +13,13 @@
                     <td>
                         <dl class="dl-horizontal">
                             <dt>
-                                <span class="glyphicon glyphicon-user"
+                                <span class="fa fa-user-circle"
                                       aria-hidden="true"></span>
                                 {{ $comment->author }}<br>
                                 {{ $comment->created_at }}
                             </dt>
                             <dd>
-                                <span class="glyphicon glyphicon-comment"
+                                <span class="fa fa-comment"
                                       aria-hidden="true"></span>
                                 {{ $comment->comment }}
                             </dd>
