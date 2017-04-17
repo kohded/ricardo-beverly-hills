@@ -48,8 +48,6 @@
 
         &nbsp;
         <button type="submit" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            Search / 
             <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
             Filter
         </button>

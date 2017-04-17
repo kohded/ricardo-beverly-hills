@@ -27,6 +27,7 @@
         </span>
         <span class="pull-right"> 
           <form action="{{ route('repair-center.delete') }}" method="post">
+          	  <input id="deleteRCName" type="text" name="rc_name" hidden>
               <input id="deleteRepairCenterId" type="number" name="rc_id" hidden>
               <button type="submit" class="btn btn-danger">
                   Delete Repair Center

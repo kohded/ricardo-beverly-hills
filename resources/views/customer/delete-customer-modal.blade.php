@@ -27,7 +27,8 @@
         </span>
         <span class="pull-right"> 
           <form action="{{ route('customer.delete') }}" method="post">
-              <input id="deleteCustomerId" type="text" name="customer_id" hidden>
+          	  <input id="customerNameInput" type="text" name="customer_name" hidden />
+              <input id="deleteCustomerId" type="number" name="customer_id" hidden />
               <button type="submit" class="btn btn-danger">
                   Delete Customer
               </button>

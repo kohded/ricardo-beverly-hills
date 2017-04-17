@@ -27,6 +27,7 @@
         </span>
         <span class="pull-right"> 
           <form action="{{ route('damage-code.delete') }}" method="post">
+              <input id="deleteDCName" type="text" name="dc_name" hidden>
               <input id="deleteDamageCodeId" type="number" name="dc_id" hidden>
               <button type="submit" class="btn btn-danger">
                   Delete Damage Code

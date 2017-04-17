@@ -262,9 +262,7 @@
             </div>
         </div>
 
-        @role('ricardo-beverly-hills')
-            @include('claim.comments')
-        @endrole
+        @include('claim.comments')
 
         @role('part-company')
             @include('claim.part-company-actions')

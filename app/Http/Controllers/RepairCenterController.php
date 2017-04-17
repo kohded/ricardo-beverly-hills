@@ -32,13 +32,13 @@ class RepairCenterController extends Controller
      */
     public function deleteRepairCenter(Request $request)
     {
+    	  $name = $request->rc_name;
         $id = $request->rc_id;
 
         $deleteRepairCenter = new RepairCenterModel();
         $deleteRepairCenter->deleteRepairCenter($id);
-        
 
-        return redirect()->route('repair-center')->with('message', 'Repair Center with ID ' . $id . ' deleted.');
+        return redirect()->route('repair-center')->with('message', 'Repair Center ' . $name . ' with ID ' . $id . ' deleted.');
     }
 
     // Create View
