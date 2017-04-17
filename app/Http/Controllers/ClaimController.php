@@ -153,7 +153,9 @@ class ClaimController extends Controller
         $claimModel = new ClaimModel();
         $claimModel->enterTrackingNumber($claimId, $trackingNumber);
 
-        // Mail claim
+        // Send replace order tracking number mail.
+        $request->request->add(['claim-id' => $claimId]);
+        (new MailClaimController($request))->sendReplaceOrderTrackingNumberMail();
 
         return redirect()->route('claim', ['id' => $claimId])
             ->with('message', 'Added tracking number to claim.');            

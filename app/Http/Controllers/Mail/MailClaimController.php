@@ -148,7 +148,29 @@ class MailClaimController extends Controller
     }
 
     /**
-     * Send email when part company submits tracking number.
+     * Send email when RBH submits tracking number for replace order.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendReplaceOrderTrackingNumberMail()
+    {
+        \Mail::to($this->customerEmail)
+            ->send(new \App\Mail\Claim\ReplaceOrder\TrackingNumber\CustomerTrackingMail($this->claim));
+
+        $this->incrementEmailSentCount();
+
+        // Redirect with email message.
+        return redirect()->back()->with('email-message', [
+            'message'       => 'Email sent successfully to:',
+            'customer'      => $this->customerName,
+            'repair-center' => '',
+            'rbh'           => '',
+            'twc'           => '',
+        ]);
+    }
+
+    /**
+     * Send email when part company submits tracking number for part order.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
