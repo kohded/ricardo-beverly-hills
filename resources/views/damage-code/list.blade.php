@@ -18,7 +18,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-md-6">
                 {{--Delete damage code alert--}}
                 @if(Session::has('message'))
                     <p class="alert alert-danger">
@@ -26,7 +26,7 @@
                     </p>
                 @endif
 
-                <div class="table-responsive col-xs-12 col-md-6">
+                <div class="table-responsive">
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
