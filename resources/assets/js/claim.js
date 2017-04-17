@@ -37,3 +37,25 @@ $(function() {
         $("#deleteClaimNumberInput").attr("value", claimNumber);
     });
 });
+
+
+    var existingCustomerBTN = document.getElementById("existing-customer");
+    var existingCustomerFields = document.getElementById("existing-customer-field");
+
+    var editCustomerBTN = document.getElementById("edit-customer-info");
+    var editCustomerFields = document.getElementById("claim-new-customer");
+
+    var editTypeSwitchHDL = document.getElementById("edit-type-switch");
+
+    existingCustomerBTN.onclick = function () {
+        editCustomerFields.style.display = 'none';
+        existingCustomerFields.style.display = 'block';
+        editTypeSwitchHDL.setAttribute("value", 1);
+    }
+
+    editCustomerBTN.onclick = function () {
+        existingCustomerFields.style.display = 'none';
+        editCustomerFields.style.display = 'block';
+        editTypeSwitchHDL.setAttribute("value", 0);
+    }
+

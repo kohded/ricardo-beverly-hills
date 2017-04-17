@@ -312,6 +312,10 @@ class ClaimModel
         return $comments;
     }
 
+    public function updateClaim($claimData, $editType) {
+
+    }
+
     public function convertToReplaceOrder($id)
     {
         DB::table('claim')

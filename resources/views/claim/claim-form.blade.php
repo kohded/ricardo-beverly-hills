@@ -33,8 +33,8 @@
 
                     <legend>Customer</legend>
 
-                    <a href="#claim-existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2" data-toggle="collapse">Existing Customer</a>
-                    <div id="claim-existing-customer" class="collapse form-group col-xs-8 col-xs-offset-2">
+                    <a href="#claim-existing-customer" id="existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2" >Existing Customer</a>
+                    <div id="existing-customer-field" class=" form-group col-xs-8 col-xs-offset-2">
                         <label for="customer-email">Existing Customer Email</label>
                         <input type="text" class="form-control" id="existing-customer-email" name="existingcustomeremail" placeholder="Email"
                                >
@@ -43,8 +43,8 @@
                     <br />
                     <br />
 
-                    <a href="#claim-new-customer" class="btn btn-info col-xs-8 col-xs-offset-2" data-toggle="collapse">New Customer</a>
-                    <div id="claim-new-customer" class="collapse col-xs-12">
+                    <a href="#claim-new-customer" id="edit-customer-info" class="btn btn-info col-xs-8 col-xs-offset-2">New Customer</a>
+                    <div id="claim-new-customer" id="claim-new-customer" class="col-xs-12">
                         <div class="form-group col-xs-6">
                             <label for="customer-first-name">First</label>
                             <input type="text" class="form-control" id="customer-first-name" name="firstname"
@@ -226,7 +226,9 @@
                         <label for="inputClaimNumber">Comment</label>
                         <textarea class="col-xs-12" name="comment"></textarea>
                     </div>
+
                     <input type="number" name="claim_new" value="1" hidden>
+                    <input type="hidden" id="edit-type-switch" name="edit-type-switch" value="1">
 
                     {{ csrf_field() }}
 
