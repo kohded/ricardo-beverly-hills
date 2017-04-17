@@ -60,28 +60,26 @@
                                 Repair Order
                                 <!-- Convert to Replace Order button -->
                                 <div>
-                                	@if ($claim[0]->part_needed)
-	                                	@if ($claim[0]->parts_available == 0)
-	                                        <button 
-	                                            type="button"
-	                                            id="convert-to-replace-order" 
-	                                            class="btn btn-warning btn-xs"
-	                                            data-claim="{{ $claim[0]->claim_id }}"
-	                                            data-toggle="modal"
-	                                            data-target="#convertToReplaceOrderModal">
-	                                        <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
-	                                    @else
-	                                        <button 
-	                                                type="button"
-	                                                id="convert-to-replace-order" 
-	                                                class="btn btn-primary btn-xs"
-	                                                data-claim="{{ $claim[0]->claim_id }}"
-	                                                data-toggle="modal"
-	                                                data-target="#convertToReplaceOrderModal">
-	                                	@endif
-	                                        Convert to Replace Order
-	                                    </button>
-                                 	@endif
+                                	@if ($claim[0]->parts_available == 0 && $claim[0]->part_needed)
+                                        <button 
+                                            type="button"
+                                            id="convert-to-replace-order" 
+                                            class="btn btn-warning btn-xs"
+                                            data-claim="{{ $claim[0]->claim_id }}"
+                                            data-toggle="modal"
+                                            data-target="#convertToReplaceOrderModal">
+                                        <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
+                                    @else
+                                        <button 
+                                                type="button"
+                                                id="convert-to-replace-order" 
+                                                class="btn btn-primary btn-xs"
+                                                data-claim="{{ $claim[0]->claim_id }}"
+                                                data-toggle="modal"
+                                                data-target="#convertToReplaceOrderModal">
+                                	@endif
+                                        Convert to Replace Order
+                                    </button>
                                 </div>
                             @endif
                         </dd>
