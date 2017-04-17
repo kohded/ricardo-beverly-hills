@@ -44,7 +44,7 @@ class RBHTrackingMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.claim.tracking.rbh')
+        return $this->view('mail.claim.rbh')
             ->subject('Ricardo Beverly Hills - Part Order #' . $this->claim[0]->claim_id . ' Tracking')
             ->with([
                 'claim'         => $this->claim,

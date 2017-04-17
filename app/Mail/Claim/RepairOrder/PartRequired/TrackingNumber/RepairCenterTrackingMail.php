@@ -35,7 +35,7 @@ class RepairCenterTrackingMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.claim.tracking.repair-center')
+        return $this->view('mail.claim.repair-center')
             ->subject('Ricardo Beverly Hills - Part Order #' . $this->claim[0]->claim_id . ' Tracking')
             ->with([
                 'claim'        => $this->claim,
