@@ -147,6 +147,32 @@ class MailClaimController extends Controller
         ]);
     }
 
+    public function sendPartOrderTrackingNumberMail()
+    {
+        \Mail::to($this->customerEmail)
+            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\CustomerTrackingMail($this->claim));
+        \Mail::to($this::RBH_EMAIL)
+            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RBHTrackingMail($this->claim, $this->claimComments));
+
+        if($this->claim[0]->ship_to === 'Repair Center') {
+            \Mail::to($this->repairCenterEmail)
+                ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RepairCenterTrackingMail($this->claim));
+        } else {
+            $this->repairCenterName = '';
+        }
+
+        $this->incrementEmailSentCount();
+
+        // Redirect with email message.
+        return redirect()->back()->with('email-message', [
+            'message'       => 'Email sent successfully to:',
+            'customer'      => $this->customerName,
+            'repair-center' => $this->repairCenterName,
+            'rbh'           => $this->rbhName,
+            'twc'           => '',
+        ]);
+    }
+
     /**
      * Increment email sent count for claim.
      */

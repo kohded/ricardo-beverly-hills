@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Role\PartCompany;
 
+use App\Http\Controllers\Mail\MailClaimController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ClaimModel;
@@ -70,6 +71,8 @@ class PartCompanyController extends Controller
         $claimModel->enterTrackingNumber($claimId, $trackingNumber);
 
         // Mail claim
+        $request->request->add(['claim-id' => $claimId]);
+        (new MailClaimController($request))->sendPartOrderTrackingNumberMail();
 
         return redirect()->route('pc-claim-details', ['id' => $claimId])
             ->with('message', 'Added tracking number to claim.');            
