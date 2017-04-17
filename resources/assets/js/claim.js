@@ -42,8 +42,13 @@ $(function() {
     var existingCustomerBTN = document.getElementById("existing-customer");
     var existingCustomerFields = document.getElementById("existing-customer-field");
 
+
+
     var editCustomerBTN = document.getElementById("edit-customer-info");
     var editCustomerFields = document.getElementById("claim-new-customer");
+
+    editCustomerFields.style.display = "none";
+    existingCustomerFields.style.display = "none";
 
     var editTypeSwitchHDL = document.getElementById("edit-type-switch");
 
@@ -58,4 +63,5 @@ $(function() {
         editCustomerFields.style.display = 'block';
         editTypeSwitchHDL.setAttribute("value", 0);
     }
+
 

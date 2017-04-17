@@ -207,7 +207,7 @@ class ClaimController extends Controller
 
     public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) {
 
-
+        echo "<script>console.log(" . $request . ")</script>";
 
     }
 

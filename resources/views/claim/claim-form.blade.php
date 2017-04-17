@@ -34,7 +34,7 @@
                     <legend>Customer</legend>
 
                     <a href="#claim-existing-customer" id="existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2" >Existing Customer</a>
-                    <div id="existing-customer-field" class=" form-group col-xs-8 col-xs-offset-2">
+                    <div id="existing-customer-field" class="form-group col-xs-8 col-xs-offset-2">
                         <label for="customer-email">Existing Customer Email</label>
                         <input type="text" class="form-control" id="existing-customer-email" name="existingcustomeremail" placeholder="Email"
                                >
