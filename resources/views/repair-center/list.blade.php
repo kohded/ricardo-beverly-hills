@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>
+                	<span class="fa fa-cogs" aria-hidden="true"></span>
                     Repair Centers
 
                     {{--Create button--}}
