@@ -32,69 +32,69 @@
 
                     <legend>Customer</legend>
 
-                    <a href="#claim-existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2" data-toggle="collapse">Existing Customer</a>
-                    <div id="claim-existing-customer" class="collapse form-group col-xs-8 col-xs-offset-2">
+                    <a href="#claim-existing-customer" id="existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2">Existing Customer</a>
+                    <div id="existing-customer-field" class="form-group col-xs-8 col-xs-offset-2">
                         <label for="customer-email">Existing Customer Email</label>
-                        <input type="text" class="form-control" id="existing-customer-email" name="existingcustomeremail" value="{{ $customerDetails['customer'][0]->email }}"
+                        <input type="text" class="form-control" name="existingcustomeremail" value="{{ $customerDetails['customer'][0]->email }}"
                         >
                     </div>
 
                     <br />
                     <br />
 
-                    <a href="#claim-new-customer" class="btn btn-info col-xs-8 col-xs-offset-2" data-toggle="collapse">New Customer</a>
-                    <div id="claim-new-customer" class="collapse col-xs-12">
+                    <a href="#claim-new-customer" id="edit-customer-info" class="btn btn-info col-xs-8 col-xs-offset-2" >Edit Customer Information</a>
+                    <div id="claim-new-customer" class="col-xs-12">
                         <div class="form-group col-xs-6">
                             <label for="customer-first-name">First</label>
                             <input type="text" class="form-control" id="customer-first-name" name="firstname"
-                                   placeholder="First" >
+                                   value="{{ $customerDetails['customer'][0]->first_name }}" >
                         </div>
 
                         <div class="form-group col-xs-6">
                             <label for="customer-last-name">Last</label>
                             <input type="text" class="form-control" id="customer-last-name" name="lastname"
-                                   placeholder="Last" >
+                                   value="{{ $customerDetails['customer'][0]->last_name }}" >
                         </div>
 
                         <div class="form-group col-xs-12">
                             <label for="customer-address1">Address 1</label>
                             <input type="text" class="form-control" id="customer-address1" name="address1"
-                                   placeholder="Address 1" >
+                                   value="{{ $customerDetails['customer'][0]->address }}" >
                         </div>
 
                         <div class="form-group col-xs-12">
                             <label for="customer-address2">Address 2</label>
                             <input type="text" class="form-control" id="customer-address2" name="address2"
-                                   placeholder="Address 2">
+                                   value="{{ $customerDetails['customer'][0]->address_2 }}">
                         </div>
 
                         <div class="form-group col-xs-7">
                             <label for="customer-city">City</label>
-                            <input type="text" class="form-control" id="customer-city" name="city" placeholder="City"
+                            <input type="text" class="form-control" id="customer-city" name="city" value="{{ $customerDetails['customer'][0]->city }}"
                             >
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label for="customer-state">State</label>
-                            <input type="text" class="form-control" id="customer-state" name="state" placeholder="WA "
+                            <input type="text" class="form-control" id="customer-state" name="state" value="{{ $customerDetails['customer'][0]->state }}"
                             >
                         </div>
 
                         <div class="form-group col-xs-3">
                             <label for="customer-zip">Zip</label>
-                            <input type="text" class="form-control" id="customer-zip" name="zip" placeholder="Zip"
+                            <input type="text" class="form-control" id="customer-zip" name="zip" value="{{ $customerDetails['customer'][0]->zip }}"
                             >
                         </div>
 
                         <div class="form-group col-xs-6">
                             <label for="customer-phone">Phone</label>
                             <input type="text" class="form-control" id="customer-phone" name="phone"
-                                   placeholder="###-###-####" >
+                                   value="{{ $customerDetails['customer'][0]->phone }}" >
                         </div>
 
                         <div class="form-group col-xs-6">
                             <label for="customer-email">Email</label>
-                            <input type="text" class="form-control" id="customer-email" name="email" placeholder="Email"
+                            <input type="text" class="form-control" id="customer-email" name="email" value="{{ $customerDetails['customer'][0]->email }}"
                             >
                         </div>
 
@@ -200,6 +200,7 @@
                     </div>
 
                     <input type="hidden" name="id" value="{{ $claimDetails->claim_id}}">
+                    <input type="hidden" id="edit-type-switch" name="edit-type-switch" value="1">
 
                     {{ csrf_field() }}
 
@@ -211,22 +212,27 @@
     </div>
 
     <script>
-        var firstNameTxt = document.getElementById("customer-first-name");
-            firstNameTxt.onclick = function (){
-                document.getElementById("existing-customer-email").value = "";
-            }
+        var existingCustomerBTN = document.getElementById("existing-customer");
+        var existingCustomerFields = document.getElementById("existing-customer-field");
 
-        var existCustTxt = document.getElementById("existing-customer-email");
-        existCustTxt.onclick = function (){
-            document.getElementById("customer-first-name").value = "";
-            document.getElementById("customer-last-name").value = "";
-            document.getElementById("customer-address1").value = "";
-            document.getElementById("customer-address2").value = "";
-            document.getElementById("customer-city").value = "";
-            document.getElementById("customer-state").value = "";
-            document.getElementById("customer-zip").value = "";
-            document.getElementById("customer-phone").value = "";
-            document.getElementById("customer-email").value = "";
+        var editCustomerBTN = document.getElementById("edit-customer-info");
+        var editCustomerFields =  document.getElementById("claim-new-customer");
+
+        var editTypeSwitchHDL = document.getElementById("edit-type-switch");
+        
+        existingCustomerBTN.onclick = function () {
+            editCustomerFields.style.display = 'none';
+            existingCustomerFields.style.display = 'block';
+            editTypeSwitchHDL.setAttribute("value", 1);
         }
+
+        editCustomerBTN.onclick = function () {
+            existingCustomerFields.style.display = 'none';
+            editCustomerFields.style.display = 'block';
+            editTypeSwitchHDL.setAttribute("value", 0);
+        }
+
+
+        
     </script>
 @endsection

@@ -199,6 +199,8 @@ class ClaimController extends Controller
 
     public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) {
 
+
+
     }
 
     private function inputValidation($request, $validator)
