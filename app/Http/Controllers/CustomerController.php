@@ -92,8 +92,8 @@ class CustomerController extends Controller
                 $request->input('comments')
             );
 
-
-            return redirect()->route('more-customer-details', ['customerId' => $request->input('id')]);
+            return redirect()->route('customer-get-edit', ['id' => $request->input('id')])
+                ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' edited.');
         }
     }
 
