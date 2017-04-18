@@ -157,7 +157,7 @@
                         <dd>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="replaced" value="0" checked="checked">
+                                    <input class="form-check-input" type="radio" name="replace_order" value="0" checked="checked">
                                     <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                                     Repair Order
                                 </label>
@@ -166,7 +166,7 @@
                         <dd>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="replaced" value="1">
+                                    <input class="form-check-input" type="radio" name="replace_order" value="1">
                                     <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
                                     Replace Order
                                 </label>
