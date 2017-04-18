@@ -10,7 +10,7 @@
             <option value="style">Style</option>
             <option value="description">Description</option>
             <option value="warranty">Warranty</option>
-            <option value="class">Class</option>
+            <option value="class">Collection</option>
         </select>
         &nbsp;&nbsp;
         <label for="product">Brand</label>
