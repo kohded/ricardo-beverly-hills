@@ -13,14 +13,14 @@
             <form action="{{ route('damage-code.edit-post') }}" method="post">
                 @foreach ($damageCode as $info)
                     {{--Damage Code ID--}}
-                    <div class="form-group col-sm-4">
-                        <label for="damage-code-new-id">Damage Code ID</label>
+                    <div class="form-group col-xs-4">
+                        <label for="damage-code-new-id">Code</label>
                         <input type="text" class="form-control"
                                id="damage-code-new-id" name="newId"
                                value="{{ $info->id }}">
                     </div>
                     {{--Part/Description--}}
-                    <div class="form-group col-sm-8">
+                    <div class="form-group col-xs-8">
                         <label for="damage-code-part">Part/Description</label>
                         <input type="text" class="form-control"
                                id="damage-code-part" name="part"
