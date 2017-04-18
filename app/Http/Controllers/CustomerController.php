@@ -125,11 +125,11 @@ class CustomerController extends Controller
             'lastname' => 'required|min:2|max:40',
             'address1' => 'required|max:60',
             'address2' => 'nullable|max:60',
-            'city' => 'required|max:30|alpha',
+            'city' => 'required|max:30',
             'state' => 'required|max:2|min:2|alpha',
             'zip' => 'required|numeric',
             'phone' => 'required|numeric',
-            'email' => 'required|max:50',
+            'email' => 'required|email|max:50',
             'comments' => 'nullable'
         ]);
 
