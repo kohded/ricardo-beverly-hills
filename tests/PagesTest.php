@@ -38,7 +38,7 @@ class PagesTest extends TestCase
             ->see('Customers');
 
         $this->click('Create New Customer')
-            ->see('Create New Customer')
+            ->see('Create Customer')
             ->seePageIs('/customer/create');
 
         $this->visit('/customer')
@@ -54,7 +54,7 @@ class PagesTest extends TestCase
             ->see('Products');
 
         $this->click('Create New Product')
-            ->see('New Product')
+            ->see('Create Product')
             ->seePageIs('/product/create');
 
         $this->visit('/product')

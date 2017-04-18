@@ -23,28 +23,28 @@ class CustomerModel
                 }
                 else if ($searchField === 'address')
                 {
-                    return $query->where('address', 'like', '%' . $searchString . '%');
+                    return $query->where('customer.address', 'like', '%' . $searchString . '%');
                 }
                 else if ($searchField === 'city')
                 {
-                    return $query->where('city', 'like', '%' . $searchString . '%');
+                    return $query->where('customer.city', 'like', '%' . $searchString . '%');
                 }
                 else if ($searchField === 'state')
                 {
-                    return $query->where('state', 'like', '%' . $searchString . '%');
+                    return $query->where('customer.state', 'like', '%' . $searchString . '%');
                 }
                 else if ($searchField === 'email')
                 {
-                    return $query->where('email', 'like', '%' . $searchString . '%');
+                    return $query->where('customer.email', 'like', '%' . $searchString . '%');
                 }
                 else
                 {
                     return $query->where('first_name', 'like', '%' . $searchString . '%')
                         ->orWhere('last_name', 'like', '%' . $searchString . '%')
-                        ->orWhere('address', 'like', '%' . $searchString . '%')
-                        ->orWhere('city', 'like', '%' . $searchString . '%')
-                        ->orWhere('state', 'like', '%' . $searchString . '%')
-                        ->orWhere('email', 'like', '%' . $searchString . '%');
+                        ->orWhere('customer.address', 'like', '%' . $searchString . '%')
+                        ->orWhere('customer.city', 'like', '%' . $searchString . '%')
+                        ->orWhere('customer.state', 'like', '%' . $searchString . '%')
+                        ->orWhere('customer.email', 'like', '%' . $searchString . '%');
                 }
             })
             ->when($customersPerPage, function ($query) use ($customersPerPage) {
