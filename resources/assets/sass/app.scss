@@ -90,6 +90,16 @@ table {
   max-width: 540px;
 }
 
+#repair-center-edit {
+  #repair-center-preferred-label {
+    background-color: $input-bg;
+    border: solid 1px $input-border;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 6px;
+  }
+}
+
 // Medium or greater
 @media only screen and (min-width: 768px) {
 }
