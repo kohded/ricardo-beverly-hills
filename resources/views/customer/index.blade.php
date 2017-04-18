@@ -24,7 +24,7 @@
             <div class="col-xs-12">
                 {{--Delete customer alert--}}
                 @if(Session::has('message'))
-                    <p class="alert alert-danger">
+                    <p class="alert alert-success">
                         {{ Session::get('message') }}
                     </p>
                 @endif

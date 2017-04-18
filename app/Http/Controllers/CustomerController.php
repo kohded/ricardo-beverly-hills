@@ -49,7 +49,7 @@ class CustomerController extends Controller
                     $request->input('email')
                 );
 
-                return redirect()->route('customer-create')
+                return redirect()->route('customer')
                     ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' added.');
 
             }
