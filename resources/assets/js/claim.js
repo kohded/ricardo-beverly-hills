@@ -38,6 +38,8 @@ $(function() {
     });
 });
 
+// New customer form
+if (document.getElementById("existing-customer")) {
     var existingCustomerBTN = document.getElementById("existing-customer");
     var existingCustomerFields = document.getElementById("existing-customer-field");
 
@@ -60,5 +62,5 @@ $(function() {
         editCustomerFields.style.display = 'block';
         editTypeSwitchHDL.setAttribute("value", 0);
     }
-
+}
 
