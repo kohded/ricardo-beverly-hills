@@ -1,10 +1,11 @@
-@extends('layouts.master')
+@extends('layouts.master-narrow')
 
 @section('content')
     <div id="repair-center-edit">
         <div class="row">
             <div class="col-xs-12">
-                <h1>Edit Damage Code</h1>
+                <h2>Edit Damage Code</h2>
+                <hr>
             </div>
         </div>
 
@@ -46,7 +47,7 @@
         {{--Form successfully added damage code--}}
         @if(Session::has('message'))
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <p class="alert alert-success">
                         {{ Session::get('message') }}
                     </p>
@@ -56,7 +57,7 @@
         {{--Form validation errors--}}
         @if(count($errors) > 0)
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
