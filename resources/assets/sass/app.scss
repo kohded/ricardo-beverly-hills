@@ -1,12 +1,9 @@
 // Fonts
 @import url(http://fonts.googleapis.com/css?family=Oswald:300,400,600);
-
 // Font-awesome
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
-
 // Variables
 @import "variables";
-
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -90,14 +87,12 @@ table {
   max-width: 540px;
 }
 
-#repair-center-edit {
-  #repair-center-preferred-label {
-    background-color: $input-bg;
-    border: solid 1px $input-border;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    padding: 6px;
-  }
+#repair-center-preferred-label {
+  background-color: $input-bg;
+  border: solid 1px $input-border;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  padding: 6px;
 }
 
 // Medium or greater

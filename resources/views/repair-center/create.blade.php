@@ -1,10 +1,11 @@
-@extends('layouts.master')
+@extends('layouts.master-narrow')
 
 @section('content')
     <div id="repair-center-create">
         <div class="row">
             <div class="col-xs-12">
-                <h1>Create Repair Center</h1>
+                <h2>Create Repair Center</h2>
+                <hr>
             </div>
         </div>
 
@@ -25,14 +26,14 @@
                            value="{{ old('contact-name') }}">
                 </div>
                 {{--Phone--}}
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6">
                     <label for="repair-center-phone">Phone #</label>
                     <input type="tel" class="form-control"
                            id="repair-center-phone" name="phone"
                            value="{{ old('phone') }}">
                 </div>
                 {{--Email--}}
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6">
                     <label for="repair-center-email">Email</label>
                     <input type="email" class="form-control"
                            id="repair-center-email" name="email"
@@ -46,37 +47,38 @@
                            value="{{ old('address') }}">
                 </div>
                 {{--City--}}
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6">
                     <label for="repair-center-city">City</label>
                     <input type="text" class="form-control"
                            id="repair-center-city" name="city"
                            value="{{ old('city') }}">
                 </div>
                 {{--State--}}
-                <div class="form-group col-xs-3">
+                <div class="form-group col-xs-6 col-sm-3">
                     <label for="repair-center-state">State</label>
                     <input type="text" class="form-control"
                            id="repair-center-state" name="state"
                            value="{{ old('state') }}">
                 </div>
                 {{--Zip--}}
-                <div class="form-group col-xs-3">
+                <div class="form-group col-xs-6 col-sm-3">
                     <label for="repair-center-zip">Zip</label>
                     <input type="text" class="form-control"
                            id="repair-center-zip" name="zip"
                            value="{{ old('zip') }}">
                 </div>
                 {{--Preferred--}}
-                <div class="form-check col-xs-3 col-xs-offset-9">
-                    <label for="repair-center-preferred" class="pull-right">
-                    <input type="checkbox" class="form-check-input"
-                           id="repair-center-preferred" name="preferred"
-                           value="1">
+                <div class="form-check col-xs-6 col-xs-offset-6">
+                    <label for="repair-center-preferred" class="pull-right"
+                           id="repair-center-preferred-label">
+                        <input type="checkbox" class="form-check-input"
+                               id="repair-center-preferred" name="preferred" value="1">
                         Preferred
                     </label>
                 </div>
                 {{--Submit--}}
                 <div class="form-group col-xs-12">
+                    <hr>
                     <a href="{{ route('repair-center') }}" class="btn btn-primary">
                         Back
                     </a>
@@ -92,7 +94,7 @@
         {{--Form successfully added repair center--}}
         @if(Session::has('message'))
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <p class="alert alert-success">
                         {{ Session::get('message') }}
                     </p>
@@ -102,7 +104,7 @@
         {{--Form validation errors--}}
         @if(count($errors) > 0)
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
