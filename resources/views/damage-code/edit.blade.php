@@ -1,7 +1,7 @@
 @extends('layouts.master-narrow')
 
 @section('content')
-    <div id="repair-center-edit">
+    <div id="damage-code-edit">
         <div class="row">
             <div class="col-xs-12">
                 <h2>Edit Damage Code</h2>
