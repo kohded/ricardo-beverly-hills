@@ -38,11 +38,8 @@ $(function() {
     });
 });
 
-
     var existingCustomerBTN = document.getElementById("existing-customer");
     var existingCustomerFields = document.getElementById("existing-customer-field");
-
-
 
     var editCustomerBTN = document.getElementById("edit-customer-info");
     var editCustomerFields = document.getElementById("claim-new-customer");
