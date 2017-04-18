@@ -8,7 +8,30 @@
                 <hr>
             </div>
         </div>
-
+        {{--Form successfully edited product--}}
+        @if(Session::has('message'))
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="alert alert-success">
+                        {{ Session::get('message') }}
+                    </p>
+                </div>
+            </div>
+        @endif
+        {{--Form validation errors--}}
+        @if(count($errors) > 0)
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <form action="{{ route('product.edit-post') }}" method="post">
                 @foreach ($product as $info)
@@ -68,31 +91,5 @@
                 {{ csrf_field() }}
             </form>
         </div>
-
-        {{--Form successfully added product--}}
-        @if(Session::has('message'))
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="alert alert-success">
-                        {{ Session::get('message') }}
-                    </p>
-                </div>
-            </div>
-        @endif
-
-        {{--Form validation errors--}}
-        @if(count($errors) > 0)
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        @endif
     </div>
 @endsection
