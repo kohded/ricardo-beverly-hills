@@ -27,9 +27,7 @@ class CustomerController extends Controller
 
     public function getCreateView()
     {
-        $title = "Create New Customer";
-
-        return view('customer.customer-form', ['title' => $title]);
+        return view('customer.customer-form');
     }
 
     public function addCustomer(Request $request, \Illuminate\Validation\Factory $validator)
@@ -40,20 +38,19 @@ class CustomerController extends Controller
                 $createCustomer = new CustomerModel();
 
                 $createCustomer->insertCustomerData(
-                    $request->input('name'),
+                    $request->input('firstname'),
+                    $request->input('lastname'),
                     $request->input('address1'),
                     $request->input('address2'),
                     $request->input('city'),
                     strtoupper($request->input('state')),
                     $request->input('zip'),
                     $request->input('phone'),
-                    $request->input('ext'),
-                    $request->input('email'),
-                    $request->input('comments')
+                    $request->input('email')
                 );
 
                 return redirect()->route('customer-create')
-                    ->with('message', 'Added new customer: ' . $request->input('name'));
+                    ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' added.');
 
             }
 
