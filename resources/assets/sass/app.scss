@@ -84,6 +84,12 @@ table {
   margin-left: $margin-default;
 }
 
+// master-narrow.blade.php
+.container-narrow {
+  @extend .container;
+  max-width: 540px;
+}
+
 // Medium or greater
 @media only screen and (min-width: 768px) {
 }
