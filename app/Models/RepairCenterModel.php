@@ -84,7 +84,23 @@ class RepairCenterModel
      */
     public function getRepairCenter($id)
     {
-        $repairCenter = DB::table('repair_center')->where('id', $id)->get();
+        $repairCenter = DB::table('repair_center')
+            ->select(
+                'id',
+                'name',
+                'contact_name',
+                'email',
+                'address',
+                'city',
+                'state',
+                'zip',
+                'preferred',
+                \DB::raw("CONCAT('(', SUBSTRING(phone, 1, 3), ') ', 
+                                      SUBSTRING(phone, 4, 3), '-',
+                                      SUBSTRING(phone, 7, 4)) as phone")          
+            )
+            ->where('id', $id)
+            ->get();
 
         return $repairCenter;
     }

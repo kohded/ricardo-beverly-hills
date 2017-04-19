@@ -110,7 +110,8 @@ class RepairCenterController extends Controller
         $this->validate($request, [
             'name'         => 'required|max:40',
             'contact-name' => 'required|max:50',
-            'phone'        => 'required|max:10',
+            'phone'        => 'required',
+            preg_replace("/[^0-9]/","", 'phone') => 'max:10',
             'email'        => 'required|email|max:50',
             'address'      => 'required|max:60',
             'city'         => 'required|max:30',
@@ -121,11 +122,16 @@ class RepairCenterController extends Controller
 
         $editRepairCenter = new RepairCenterModel();
         $editRepairCenter->editRepairCenter(
-            $request->input('name'), $request->input('contact-name'),
-            $request->input('phone'), $request->input('email'),
-            $request->input('address'), $request->input('city'),
-            $request->input('state'), $request->input('zip'),
-            $request->input('preferred'), $request->input('id')
+            $request->input('name'), 
+            $request->input('contact-name'),
+            preg_replace("/[^0-9]/","", $request->input('phone')), 
+            $request->input('email'),
+            $request->input('address'), 
+            $request->input('city'),
+            $request->input('state'), 
+            $request->input('zip'),
+            $request->input('preferred'), 
+            $request->input('id')
         );
 
         return redirect()->route('repair-center.edit', ['id' => $request->input('id')])
