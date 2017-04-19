@@ -37,7 +37,7 @@
                     <label for="damage-code-name">Code</label>
                     <input type="text" class="form-control"
                            id="damage-code-id" name="id"
-                           value="{{ old('id') }}">
+                           value="{{ old('id') }}" placeholder="10 Digit Code">
                 </div>
                 {{--Part/Description--}}
                 <div class="form-group col-xs-8">

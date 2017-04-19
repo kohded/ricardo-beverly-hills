@@ -42,19 +42,18 @@
                 <div class="form-group col-sm-6">
                     <label for="product-class">Collection</label>
                     <input type="text" class="form-control" id="product-collection"
-                           name="collection" placeholder="Collection">
+                           name="collection">
                 </div>
                 {{--Style--}}
                 <div class="form-group col-xs-6">
-                    <label for="product-style">Style #</label>
+                    <label for="product-style">Style</label>
                     <input type="text" class="form-control" id="product-style" name="style"
-                           placeholder="11 Digit Style Code">
+                           placeholder="11 Character Code">
                 </div>
                 {{--Color--}}
                 <div class="form-group col-xs-6">
                     <label for="product-color">Color</label>
-                    <input type="text" class="form-control" id="product-color" name="color"
-                           placeholder="Color">
+                    <input type="text" class="form-control" id="product-color" name="color">
                 </div>
                 {{--Launch Date--}}
                 <div class="form-group col-xs-6">
@@ -66,13 +65,13 @@
                 <div class="form-group col-xs-6">
                     <label for="product-warranty-years">Warranty</label>
                     <input type="text" class="form-control" id="product-warranty-years"
-                           name="warranty" placeholder="# of years">
+                           name="warranty" placeholder="# of Years">
                 </div>
                 {{--Description--}}
                 <div class="form-group col-xs-12">
                     <label for="product-description">Description</label>
                     <input type="text" class="form-control" id="product-description"
-                           name="description" placeholder="">
+                           name="description">
                 </div>
                 {{--Submit--}}
                 <div class="form-group col-xs-12">

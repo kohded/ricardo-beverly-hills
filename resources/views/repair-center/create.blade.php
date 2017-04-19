@@ -48,17 +48,17 @@
                 </div>
                 {{--Phone--}}
                 <div class="form-group col-sm-6">
-                    <label for="repair-center-phone">Phone #</label>
+                    <label for="repair-center-phone">Phone</label>
                     <input type="tel" class="form-control"
                            id="repair-center-phone" name="phone"
-                           value="{{ old('phone') }}">
+                           value="{{ old('phone') }}" placeholder="##########">
                 </div>
                 {{--Email--}}
                 <div class="form-group col-sm-6">
                     <label for="repair-center-email">Email</label>
                     <input type="email" class="form-control"
                            id="repair-center-email" name="email"
-                           value="{{ old('email') }}">
+                           value="{{ old('email') }}" placeholder="email@example.com">
                 </div>
                 {{--Address--}}
                 <div class="form-group col-xs-12">
@@ -79,14 +79,14 @@
                     <label for="repair-center-state">State</label>
                     <input type="text" class="form-control"
                            id="repair-center-state" name="state"
-                           value="{{ old('state') }}">
+                           value="{{ old('state') }}" placeholder="WA">
                 </div>
                 {{--Zip--}}
                 <div class="form-group col-xs-6 col-sm-3">
                     <label for="repair-center-zip">Zip</label>
                     <input type="text" class="form-control"
                            id="repair-center-zip" name="zip"
-                           value="{{ old('zip') }}">
+                           value="{{ old('zip') }}" placeholder="#####">
                 </div>
                 {{--Preferred--}}
                 <div class="form-check col-xs-6 col-xs-offset-6">

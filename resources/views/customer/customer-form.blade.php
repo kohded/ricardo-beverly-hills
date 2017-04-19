@@ -35,58 +35,53 @@
                 {{--First Name--}}
                 <div class="form-group col-sm-6">
                     <label for="inputCustomerFirstName">First Name</label>
-                    <input type="text" class="form-control" id="inputCustomerFirstName" name="firstname"
-                           placeholder="First Name">
+                    <input type="text" class="form-control" id="inputCustomerFirstName" name="firstname">
                 </div>
                 {{--Last Name--}}
                 <div class="form-group col-sm-6">
                     <label for="inputCustomerLastName">Last Name</label>
-                    <input type="text" class="form-control" id="inputCustomerLastName" name="lastname"
-                           placeholder="Last Name">
+                    <input type="text" class="form-control" id="inputCustomerLastName" name="lastname">
                 </div>
                 {{--Phone--}}
                 <div class="form-group col-sm-6">
                     <label for="inputCustomerPhone">Phone</label>
                     <input type="text" class="form-control" id="inputCustomerPhone" name="phone"
-                           placeholder="###-###-####">
+                           placeholder="##########">
                 </div>
                 {{--Email--}}
                 <div class="form-group col-sm-6">
                     <label for="inputCustomerEmail">Email</label>
                     <input type="text" class="form-control" id="inputCustomerEmail" name="email"
-                           placeholder="example@example.com">
+                           placeholder="email@example.com">
                 </div>
                 {{--Address 1--}}
                 <div class="form-group col-xs-12">
                     <label for="inputCustomerAddress1">Address 1</label>
                     <input type="text" class="form-control" id="inputCustomerAddress1"
-                           name="address1"
-                           placeholder="Address 1">
+                           name="address1">
                 </div>
                 {{--Address 2--}}
                 <div class="form-group col-xs-12">
                     <label for="inputCustomerAddress2">Address 2</label>
                     <input type="text" class="form-control" id="inputCustomerAddress2"
-                           name="address2"
-                           placeholder="Address 2">
+                           name="address2">
                 </div>
                 {{--City--}}
                 <div class="form-group col-sm-6">
                     <label for="inputCustomerCity">City</label>
-                    <input type="text" class="form-control" id="inputCustomerCity" name="city"
-                           placeholder="City">
+                    <input type="text" class="form-control" id="inputCustomerCity" name="city">
                 </div>
                 {{--State--}}
                 <div class="form-group col-xs-6 col-sm-3">
                     <label for="inputCustomerState">State</label>
                     <input type="text" class="form-control" id="inputCustomerState" name="state"
-                           placeholder="e.g. WA">
+                           placeholder="WA">
                 </div>
                 {{--Zip--}}
                 <div class="form-group col-xs-6 col-sm-3">
                     <label for="inputCustomerZip">Zip</label>
                     <input type="text" class="form-control" id="inputCustomerZip" name="zip"
-                           placeholder="Zip">
+                           placeholder="#####">
                 </div>
                 {{--Submit--}}
                 <div class="form-group col-xs-12">
