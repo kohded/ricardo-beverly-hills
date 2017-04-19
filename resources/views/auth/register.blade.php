@@ -1,7 +1,7 @@
 @extends('layouts.master-narrow')
 
 @section('content')
-    <div id="register">
+    <div id="register-user">
         <div class="row">
             <div class="col-xs-12">
                 <h2>Register User</h2>
