@@ -14,7 +14,7 @@ class ClaimSeeder extends Seeder
         $faker = Faker::create();
         
         // Seed Claim Table
-        foreach(range(1, 50) as $index) {
+        foreach(range(1, 100) as $index) {
             DB::table('claim')->insert([
                 'created_at'       => $faker->dateTime(),
                 'customer_id'      => $index,
@@ -30,9 +30,9 @@ class ClaimSeeder extends Seeder
         }
 
         // Seed Claim Comment Table
-        foreach(range(1, 200) as $index) {
+        foreach(range(1, 300) as $index) {
             DB::table('claim_comment')->insert([
-                'claim_id'   => $faker->numberBetween($min = 1000, $max = 1050),
+                'claim_id'   => $faker->numberBetween($min = 1000, $max = 1099),
                 'created_at' => $faker->dateTime(),
                 'author'     => $faker->lastName,
                 'comment'    => $faker->sentence($nbWords = 15, $variableNbWords = true),
