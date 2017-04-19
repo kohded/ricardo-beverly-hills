@@ -8,6 +8,16 @@
                 <hr>
             </div>
         </div>
+        {{--Form successfully reset password--}}
+        @if (session('status'))
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                </div>
+            </div>
+        @endif
         {{--Form validation errors--}}
         @if(count($errors) > 0)
             <div class="row">
