@@ -33,7 +33,6 @@
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
-                            <th></th>
                             <th>
                                 <span class="fa fa-user" aria-hidden="true"></span>
                                 Customer Name
@@ -61,11 +60,8 @@
                                 <td>
                                     <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->customer_id ]) }}">
                                        <span class="fa fa-list" aria-hidden="true" title="View Customer Details"></span>
+                                        {{ $customer->cust_name }}
                                     </a>
-                                </td>
-                                <td>
-                                    <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->customer_id ]) }}">
-                                    {{ $customer->cust_name }}
                                 </td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->cust_phone }}</td>
