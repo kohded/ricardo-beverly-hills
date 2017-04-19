@@ -15,6 +15,19 @@ class CustomerModel
         return DB::table('customer')
             ->join('claim', 'claim.customer_id', '=', 'customer.id')
             ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
+            ->select(
+                'customer_id',
+                \DB::raw("CONCAT(first_name, last_name) as cust_name"),
+                'customer.address',
+                'customer.city',
+                'customer.state',
+                'customer.email',
+                \DB::raw("CONCAT('(', SUBSTRING(customer.phone, 1, 3), ') ', 
+                                      SUBSTRING(customer.phone, 4, 3), '-',
+                                      SUBSTRING(customer.phone, 7, 4)) as cust_phone"),
+                'customer.zip',
+                'repair_center.name as rc_name'
+            )
             ->when($searchString, function($query) use($searchString, $searchField) {
                 if ($searchField === 'name')
                 {
@@ -74,7 +87,23 @@ class CustomerModel
         $tempArr = [];
 
          $tempArr['claim-customer'] = DB::table('claim_customer')->where('customer_id', '=', $customerId)->get();
-         $tempArr['customer'] = DB::table('customer')->where('id', '=', $customerId)->get();
+         $tempArr['customer'] = DB::table('customer')
+            ->select(
+                'id',
+                'first_name',
+                'last_name',
+                'address',
+                'address_2',
+                'city',
+                'state',
+                'zip',
+                'email',
+                \DB::raw("CONCAT('(', SUBSTRING(phone, 1, 3), ') ', 
+                                      SUBSTRING(phone, 4, 3), '-',
+                                      SUBSTRING(phone, 7, 4)) as phone")
+            )
+            ->where('id', '=', $customerId)
+            ->get();
 
          return $tempArr;
     }

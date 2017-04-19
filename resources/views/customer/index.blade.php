@@ -65,11 +65,11 @@
                                 </td>
                                 <td>
                                     <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->customer_id ]) }}">
-                                    {{ $customer->first_name . " " . $customer->last_name }}
+                                    {{ $customer->cust_name }}
                                 </td>
                                 <td>{{ $customer->email }}</td>
-                                <td>{{ $customer->phone }}</td>
-                                <td>{{ $customer->name }}</td>
+                                <td>{{ $customer->cust_phone }}</td>
+                                <td>{{ $customer->rc_name }}</td>
                                 <td class="table-data-wrap">
                                     <a id="customer-edit" href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->customer_id ])  }}">
                                         <span class="fa fa-pencil-square-o" aria-hidden="true" title="Edit Customer"></span>
@@ -81,7 +81,7 @@
                                                 class="fa fa-trash text-danger" 
                                                 aria-hidden="true" 
                                                 data-id="{{ $customer->customer_id }}"
-                                                data-name="{{ $customer->first_name }} {{ $customer->last_name }}"
+                                                data-name="{{ $customer->cust_name }}"
                                                 data-toggle="modal"
                                                 data-target="#deleteCustomerModal"
                                                 title="Delete Customer"></a>

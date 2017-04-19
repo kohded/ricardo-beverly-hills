@@ -22,6 +22,19 @@ class RepairCenterModel
         }
 
         $repairCenters = DB::table('repair_center')
+            ->select(
+                'id',
+                'name',
+                'contact_name',
+                'email',
+                'address',
+                'city',
+                'state',
+                'preferred',
+                \DB::raw("CONCAT('(', SUBSTRING(phone, 1, 3), ') ', 
+                                      SUBSTRING(phone, 4, 3), '-',
+                                      SUBSTRING(phone, 7, 4)) as phone")
+            )
             ->when($searchString, function($query) use ($searchString, $searchField) {
                 if($searchField === 'name') {
                     return $query->where('name', 'like', '%' . $searchString . '%');
