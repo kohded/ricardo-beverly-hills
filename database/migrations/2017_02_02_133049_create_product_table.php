@@ -14,7 +14,7 @@ class CreateProductTable extends Migration
     public function up()
     {
         Schema::create('product', function (Blueprint $table) {
-            $table->string('style', 40);
+            $table->string('style', 20);
             $table->string('description', 80);
             $table->string('brand', 40);
             $table->tinyInteger('warranty_years');

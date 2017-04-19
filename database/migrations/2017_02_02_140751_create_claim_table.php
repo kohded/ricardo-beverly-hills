@@ -17,7 +17,7 @@ class CreateClaimTable extends Migration
             $table->increments('id');
             $table->timestamp('created_at')->nullable(true)->useCurrent();
             $table->unsignedInteger('customer_id');
-            $table->string('product_style', 11);
+            $table->string('product_style', 20);
             $table->unsignedInteger('damage_code_id');
             $table->string('ship_to', 20);
             $table->string('tracking_number', 40)->nullable();
