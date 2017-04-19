@@ -20,7 +20,12 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li>
+                        <a href="{{ url('/login') }}">
+                            <span class="fa fa-sign-in" aria-hidden="true"></span>
+                            Login
+                        </a>
+                    </li>
                 @else
                     @role('ricardo-beverly-hills')
                         <li class="{{ Request::is('claim') ? 'active' : '' }}">

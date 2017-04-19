@@ -4,7 +4,10 @@
     <div id="login-user">
         <div class="row">
             <div class="col-xs-12">
-                <h2>Login</h2>
+                <h2>
+                    <span class="fa fa-sign-in" aria-hidden="true"></span>
+                    Login
+                </h2>
                 <hr>
             </div>
         </div>
@@ -34,13 +37,19 @@
             <form role="form" method="POST" action="{{ url('/login') }}">
                 {{--Email--}}
                 <div class="form-group col-xs-12 {{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email">Email</label>
+                    <label for="email">
+                        <span class="fa fa-envelope" aria-hidden="true"></span>
+                        Email
+                    </label>
                     <input id="email" type="email" class="form-control" name="email"
                            value="{{ old('email') }}" required autofocus>
                 </div>
                 {{--Password--}}
                 <div class="form-group col-xs-12 {{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password">Password</label>
+                    <label for="password">
+                        <span class="fa fa-key" aria-hidden="true"></span>
+                        Password
+                    </label>
                     <input id="password" type="password" class="form-control" name="password"
                            required>
                 </div>
@@ -48,6 +57,7 @@
                     {{--Forgot Your Password--}}
                     <div class="col-xs-6">
                         <a href="{{ url('/password/reset') }}" class="btn btn-link" id="forgot-password">
+                            <span class="fa fa-question-circle" aria-hidden="true"></span>
                             Forgot Your Password?
                         </a>
                     </div>
@@ -64,6 +74,7 @@
                 <div class="form-group col-xs-12">
                     <hr>
                     <button type="submit" class="btn btn-primary pull-right">
+                        <span class="fa fa-sign-in" aria-hidden="true"></span>
                         Login
                     </button>
                 </div>
