@@ -21,9 +21,9 @@ class ClaimModel
             ->join('customer', 'claim.customer_id', '=', 'customer.id')
             ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
             ->select('claim.id as claim_id',
-                    'claim.product_style as style', 
-                    'claim.created_at as created_at', 
-                    'claim.date_closed as closed_at',
+                    'claim.product_style as style',
+                    \DB::raw('DATE_FORMAT(claim.created_at, "%m/%d/%Y") as created_at'),
+                    \DB::raw('DATE_FORMAT(claim.date_closed, "%m/%d/%Y") as closed_at'),
                     'claim.parts_available as parts_available',
                     'claim.part_needed as part_needed',
                     'claim.tracking_number as tracking_number',
@@ -110,8 +110,8 @@ class ClaimModel
             ->select(
                 'claim.id as claim_id',
                 'claim.customer_id as cust_id',
-                'claim.created_at as claim_created_at',
-                'claim.date_closed as claim_date_closed',
+                \DB::raw('DATE_FORMAT(claim.created_at, "%m/%d/%Y") as claim_created_at'),
+                \DB::raw('DATE_FORMAT(claim.date_closed, "%m/%d/%Y") as claim_date_closed'),
                 'claim.email_sent as claim_email_sent',
                 'claim.replace_order as replace_order',
                 'claim.ship_to as ship_to', 
@@ -307,7 +307,13 @@ class ClaimModel
     {
         $comments = DB::table('claim_comment')
             ->where('claim_id', '=', $id)
-            ->latest()
+            ->select(
+                'author as author',
+                'created_at as created', // Alias for orderBy only.
+                \DB::raw('DATE_FORMAT(created_at, "%m/%d/%Y %h:%i%p") as created_at'),
+                'comment as comment'
+            )
+            ->orderBy('created', 'desc')
             ->get();
 
         return $comments;
