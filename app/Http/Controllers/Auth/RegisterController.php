@@ -60,8 +60,11 @@ class RegisterController extends Controller
         $role = new Role();
         $role = $role->getSelectedRole($request->get('role'));
         $user->roles()->attach($role);
+        // Capitalize each word and replace hyphen with space.
+        $roleString = ucwords(str_replace('-', ' ', $request->input('role')));
 
-        return redirect($this->redirectPath());
+        return redirect($this->redirectPath())
+            ->with('message', $request->input('name') . ' registered for ' . $roleString . '.');
     }
 
     /**
