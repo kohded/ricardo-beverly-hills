@@ -64,16 +64,7 @@ class RepairCenterController extends Controller
         $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
         $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
 
-        $this->validate($request, [
-            'name'         => 'required|max:40',
-            'contact-name' => 'required|max:50',
-            'phone'        => 'required|size:10',
-            'email'        => 'required|email|max:50',
-            'address'      => 'required|max:60',
-            'city'         => 'required|max:30',
-            'state'        => 'required|size:2|alpha',
-            'zip'          => 'required|size:5'
-        ]);
+        $this->validate($request, $this->getValidationRules());
 
         $createRepairCenter = new RepairCenterModel();
         $createRepairCenter->createRepairCenter(
@@ -119,17 +110,7 @@ class RepairCenterController extends Controller
         $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
         $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
 
-        $this->validate($request, [
-            'name'         => 'required|max:40',
-            'contact-name' => 'required|max:50',
-            'phone'        => 'required|size:10',
-            'email'        => 'required|email|max:50',
-            'address'      => 'required|max:60',
-            'city'         => 'required|max:30',
-            'state'        => 'required|size:2|alpha',
-            'zip'          => 'required|size:5',
-            'id'           => 'required'
-        ]);
+        $this->validate($request, $this->getValidationRules());
 
         $editRepairCenter = new RepairCenterModel();
         $editRepairCenter->editRepairCenter(
@@ -147,5 +128,21 @@ class RepairCenterController extends Controller
 
         return redirect()->route('repair-center.edit', ['id' => $request->input('id')])
             ->with('message', $request->input('name') . ' edited.');
+    }
+
+    // Returns validation rules so it doesn't have to be repeated
+    public function getValidationRules() 
+    {
+        return [
+            'name'         => 'required|max:40',
+            'contact-name' => 'required|max:50',
+            'phone'        => 'required|size:10',
+            'email'        => 'required|email|max:50',
+            'address'      => 'required|max:60',
+            'city'         => 'required|max:30',
+            'state'        => 'required|size:2|alpha',
+            'zip'          => 'required|size:5',
+            'id'           => 'required'
+        ];
     }
 }
