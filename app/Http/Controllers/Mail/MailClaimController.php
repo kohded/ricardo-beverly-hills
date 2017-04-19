@@ -42,9 +42,9 @@ class MailClaimController extends Controller
      */
     public function sendNewWarrantyClaimMail()
     {
-        if($this->claim[0]->replace_order === 0) { // Repair Order
+        if((int) $this->claim[0]->replace_order === 0) { // Repair Order
             $this->sendNewWarrantyClaimRepairMail();
-        } elseif($this->claim[0]->replace_order === 1) { // Replace Order
+        } elseif((int) $this->claim[0]->replace_order === 1) { // Replace Order
             $this->sendNewWarrantyClaimReplaceMail();
         }
 
@@ -65,7 +65,7 @@ class MailClaimController extends Controller
      */
     private function sendNewWarrantyClaimRepairMail()
     {
-        if($this->claim[0]->part_needed === 0) { // Part Not Required
+        if((int) $this->claim[0]->part_needed === 0) { // Part Not Required
             if($this->claim[0]->ship_to === 'Customer') {
                 \Mail::to($this->customerEmail)
                     ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\Customer\CustomerMail($this->claim));
@@ -83,7 +83,7 @@ class MailClaimController extends Controller
             }
 
             $this->twcName = '';
-        } elseif($this->claim[0]->part_needed === 1) { // Part Required
+        } elseif((int) $this->claim[0]->part_needed === 1) { // Part Required
             if($this->claim[0]->ship_to === 'Customer') {
                 \Mail::to($this->customerEmail)
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\CustomerMail($this->claim));
