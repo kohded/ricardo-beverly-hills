@@ -22,6 +22,15 @@ class ProductModel
         }
 
         $products = DB::table('product')
+            ->select(
+                'style',
+                'description',
+                'brand',
+                'warranty_years',
+                'color',
+                'collection',
+                \DB::raw('DATE_FORMAT(launch_date, "%m/%d/%Y") as launch_date')
+            )
             ->when($searchString, function($query) use($searchString, $searchField) {
                 if ($searchField === 'style')
                 {
