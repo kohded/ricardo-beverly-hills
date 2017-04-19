@@ -7775,6 +7775,10 @@ table {
   padding: 6px;
 }
 
+#login-user #forgot-password {
+  padding-left: 0;
+}
+
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .table-responsive {
     margin-top: 20px;

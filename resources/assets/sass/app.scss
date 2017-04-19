@@ -95,6 +95,12 @@ table {
   padding: 6px;
 }
 
+#login-user {
+  #forgot-password {
+    padding-left: 0;
+  }
+}
+
 // Medium or greater
 @media only screen and (min-width: 768px) {
 }
