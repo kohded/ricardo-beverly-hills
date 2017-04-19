@@ -36,7 +36,7 @@
                     <a href="#claim-existing-customer" id="existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2" >Existing Customer</a>
                     <div id="existing-customer-field" class="form-group col-xs-8 col-xs-offset-2">
                         <label for="customer-email">Existing Customer Email</label>
-                        <input type="text" class="form-control" id="existing-customer-email" name="existingcustomeremail" placeholder="Email"
+                        <input type="text" class="form-control" id="existing-customer-email" name="existingcustomeremail" placeholder="email@example.com"
                                >
                     </div>
 
@@ -46,56 +46,49 @@
                     <a href="#claim-new-customer" id="edit-customer-info" class="btn btn-info col-xs-8 col-xs-offset-2">New Customer</a>
                     <div id="claim-new-customer" id="claim-new-customer" class="col-xs-12">
                         <div class="form-group col-xs-6">
-                            <label for="customer-first-name">First</label>
-                            <input type="text" class="form-control" id="customer-first-name" name="firstname"
-                                   placeholder="First" >
+                            <label for="customer-first-name">First Name</label>
+                            <input type="text" class="form-control" id="customer-first-name" name="firstname">
                         </div>
 
                         <div class="form-group col-xs-6">
-                            <label for="customer-last-name">Last</label>
-                            <input type="text" class="form-control" id="customer-last-name" name="lastname"
-                                   placeholder="Last" >
+                            <label for="customer-last-name">Last Name</label>
+                            <input type="text" class="form-control" id="customer-last-name" name="lastname">
                         </div>
 
                         <div class="form-group col-xs-12">
                             <label for="customer-address1">Address 1</label>
-                            <input type="text" class="form-control" id="customer-address1" name="address1"
-                                   placeholder="Address 1" >
+                            <input type="text" class="form-control" id="customer-address1" name="address1">
                         </div>
 
                         <div class="form-group col-xs-12">
                             <label for="customer-address2">Address 2</label>
-                            <input type="text" class="form-control" id="customer-address2" name="address2"
-                                   placeholder="Address 2">
+                            <input type="text" class="form-control" id="customer-address2" name="address2">
                         </div>
 
                         <div class="form-group col-xs-7">
                             <label for="customer-city">City</label>
-                            <input type="text" class="form-control" id="customer-city" name="city" placeholder="City"
-                                   >
+                            <input type="text" class="form-control" id="customer-city" name="city">
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label for="customer-state">State</label>
-                            <input type="text" class="form-control" id="customer-state" name="state" placeholder="WA "
-                                   >
+                            <input type="text" class="form-control" id="customer-state" name="state" placeholder="WA">
                         </div>
 
                         <div class="form-group col-xs-3">
                             <label for="customer-zip">Zip</label>
-                            <input type="text" class="form-control" id="customer-zip" name="zip" placeholder="Zip"
-                                   >
+                            <input type="text" class="form-control" id="customer-zip" name="zip" placeholder="#####">
                         </div>
 
                         <div class="form-group col-xs-6">
                             <label for="customer-phone">Phone</label>
                             <input type="text" class="form-control" id="customer-phone" name="phone"
-                                   placeholder="###-###-####" >
+                                   placeholder="##########" >
                         </div>
 
                         <div class="form-group col-xs-6">
                             <label for="customer-email">Email</label>
-                            <input type="text" class="form-control" id="customer-email" name="email" placeholder="Email"
+                            <input type="text" class="form-control" id="customer-email" name="email" placeholder="email@example.com"
                                    >
                         </div>
 
@@ -198,7 +191,7 @@
 
                         <dt>Parts Needed</dt>
                         <dd>
-                            <input type="text" class="form-control" name="parts_needed" placeholder="Parts needed...">
+                            <input type="text" class="form-control" name="parts_needed">
                         </dd>
 
                         <br />
