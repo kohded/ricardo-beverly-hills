@@ -7,15 +7,6 @@ use App\Models\CustomerModel;
 
 class CustomerController extends Controller
 {
-    //If this commented code is still here delete it,
-//    private $customerModel;
-//
-//    public function __construct()
-//    {
-//        $this->customerModel = new CustomerModel();
-//    }
-
-
     public function getCustomerView(Request $request)
     {
         $customersModel = new CustomerModel();
@@ -32,31 +23,27 @@ class CustomerController extends Controller
 
     public function addCustomer(Request $request, \Illuminate\Validation\Factory $validator)
     {
-        if ($this->inputValidation($request, $validator)->fails()) {
-            return redirect()->back()->withErrors($this->inputValidation($request, $validator));
-        } else {
-                // Strip everything but numbers
-                $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
-                $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
+        // Strip everything but numbers
+        $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+        $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
 
-                $createCustomer = new CustomerModel();
-                $createCustomer->insertCustomerData(
-                    $request->input('firstname'),
-                    $request->input('lastname'),
-                    $request->input('address1'),
-                    $request->input('address2'),
-                    $request->input('city'),
-                    strtoupper($request->input('state')),
-                    $request->input('zip'),
-                    $request->input('phone'),
-                    $request->input('email')
-                );
+        $this->validate($request, $this->getValidationRules());
 
-                return redirect()->route('customer')
-                    ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' added.');
+        $createCustomer = new CustomerModel();
+        $createCustomer->insertCustomerData(
+            $request->input('firstname'),
+            $request->input('lastname'),
+            $request->input('address1'),
+            $request->input('address2'),
+            $request->input('city'),
+            strtoupper($request->input('state')),
+            $request->input('zip'),
+            $request->input('phone'),
+            $request->input('email')
+        );
 
-            }
-
+        return redirect()->route('customer')
+            ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' added.');
     }
 
     public function getEditView($customerId)
@@ -66,37 +53,33 @@ class CustomerController extends Controller
         $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId);
 
         return view('customer.edit-form', ['customerDetails' => $customerDetail]);
-
     }
-
 
     public function editCustomer(Request $request, \Illuminate\Validation\Factory $validator )
     {
-        if ($this->inputValidation($request, $validator)->fails()) {
-            return redirect()->back()->withErrors($this->inputValidation($request, $validator));
-        } else {
-            // Strip everything but numbers
-            $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
-            $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
+        // Strip everything but numbers
+        $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+        $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
 
-            $editCustomer = new CustomerModel();
-            $editCustomer->editCustomerData(
-                $request->input('id'),
-                $request->input('firstname'),
-                $request->input('lastname'),
-                $request->input('address1'),
-                $request->input('address2'),
-                $request->input('city'),
-                strtoupper($request->input('state')),
-                $request->input('zip'),
-                $request->input('phone'),
-                $request->input('email'),
-                $request->input('comments')
-            );
+        $this->validate($request, $this->getValidationRules());
 
-            return redirect()->route('customer-get-edit', ['id' => $request->input('id')])
-                ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' edited.');
-        }
+        $editCustomer = new CustomerModel();
+        $editCustomer->editCustomerData(
+            $request->input('id'),
+            $request->input('firstname'),
+            $request->input('lastname'),
+            $request->input('address1'),
+            $request->input('address2'),
+            $request->input('city'),
+            strtoupper($request->input('state')),
+            $request->input('zip'),
+            $request->input('phone'),
+            $request->input('email'),
+            $request->input('comments')
+        );
+
+        return redirect()->route('customer-get-edit', ['id' => $request->input('id')])
+            ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' edited.');
     }
 
     public function getCustomerDetails($customerId){
@@ -121,12 +104,8 @@ class CustomerController extends Controller
             ->with('message', 'Customer ' . $customerName . ' with ID ' . $customerId . ' deleted.');
     }
 
-    private function inputValidation($request, $validator){
-        // Strip everything but numbers
-        $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
-        $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
-
-        $validation = $validator->make($request->all(), [
+    private function getValidationRules(){
+        return [
             'firstname' => 'required|min:2|max:40',
             'lastname' => 'required|min:2|max:40',
             'address1' => 'required|max:60',
@@ -137,8 +116,6 @@ class CustomerController extends Controller
             'phone' => 'required|size:10',
             'email' => 'required|email|max:50',
             'comments' => 'nullable'
-        ]);
-
-        return $validation;
+        ];
     }
 }
