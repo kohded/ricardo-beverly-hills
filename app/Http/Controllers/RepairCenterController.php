@@ -107,11 +107,13 @@ class RepairCenterController extends Controller
      */
     public function editRepairCenter(Request $request)
     {
+        // Strip everything but numbers in phone input
+        $request->phone = preg_replace("/[^0-9]/","", 'phone');
+
         $this->validate($request, [
             'name'         => 'required|max:40',
             'contact-name' => 'required|max:50',
-            'phone'        => 'required',
-            preg_replace("/[^0-9]/","", 'phone') => 'max:10',
+            'phone'        => 'required|min:10|max:10',
             'email'        => 'required|email|max:50',
             'address'      => 'required|max:60',
             'city'         => 'required|max:30',
@@ -124,7 +126,7 @@ class RepairCenterController extends Controller
         $editRepairCenter->editRepairCenter(
             $request->input('name'), 
             $request->input('contact-name'),
-            preg_replace("/[^0-9]/","", $request->input('phone')), 
+            $request->input('phone'), 
             $request->input('email'),
             $request->input('address'), 
             $request->input('city'),
