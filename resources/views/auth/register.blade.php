@@ -33,7 +33,7 @@
         <div class="row">
             <form role="form" method="POST" action="{{ url('/register') }}">
                 {{--Name--}}
-                <div class="form-group col-xs-12{{ $errors->has('name') ? ' has-error' : '' }}">
+                <div class="form-group col-xs-12 {{ $errors->has('name') ? ' has-error' : '' }}">
                     <label for="name">Name</label>
                     <input id="name" type="text" class="form-control" name="name"
                            value="{{ old('name') }}" required autofocus>
