@@ -60,23 +60,31 @@ class RepairCenterController extends Controller
      */
     public function createRepairCenter(Request $request)
     {
+        // Strip everything but numbers
+        $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+        $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
+
         $this->validate($request, [
             'name'         => 'required|max:40',
             'contact-name' => 'required|max:50',
-            'phone'        => 'required|max:10',
+            'phone'        => 'required|size:10',
             'email'        => 'required|email|max:50',
             'address'      => 'required|max:60',
             'city'         => 'required|max:30',
-            'state'        => 'required|min:2|max:2',
-            'zip'          => 'required|min:5|max:5'
+            'state'        => 'required|size:2|alpha',
+            'zip'          => 'required|size:5'
         ]);
 
         $createRepairCenter = new RepairCenterModel();
         $createRepairCenter->createRepairCenter(
-            $request->input('name'), $request->input('contact-name'),
-            $request->input('phone'), $request->input('email'),
-            $request->input('address'), $request->input('city'),
-            $request->input('state'), $request->input('zip'),
+            $request->input('name'), 
+            $request->input('contact-name'),
+            $request->input('phone'), 
+            $request->input('email'),
+            $request->input('address'), 
+            $request->input('city'),
+            $request->input('state'), 
+            $request->input('zip'),
             $request->input('preferred')
         );
 
@@ -107,18 +115,19 @@ class RepairCenterController extends Controller
      */
     public function editRepairCenter(Request $request)
     {
-        // Strip everything but numbers in phone input
-        $request->phone = preg_replace("/[^0-9]/","", 'phone');
+        // Strip everything but numbers
+        $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+        $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
 
         $this->validate($request, [
             'name'         => 'required|max:40',
             'contact-name' => 'required|max:50',
-            'phone'        => 'required|min:10|max:10',
+            'phone'        => 'required|size:10',
             'email'        => 'required|email|max:50',
             'address'      => 'required|max:60',
             'city'         => 'required|max:30',
-            'state'        => 'required|min:2|max:2',
-            'zip'          => 'required|min:5|max:5',
+            'state'        => 'required|size:2|alpha',
+            'zip'          => 'required|size:5',
             'id'           => 'required'
         ]);
 

@@ -35,8 +35,11 @@ class CustomerController extends Controller
         if ($this->inputValidation($request, $validator)->fails()) {
             return redirect()->back()->withErrors($this->inputValidation($request, $validator));
         } else {
-                $createCustomer = new CustomerModel();
+                // Strip everything but numbers
+                $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+                $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
 
+                $createCustomer = new CustomerModel();
                 $createCustomer->insertCustomerData(
                     $request->input('firstname'),
                     $request->input('lastname'),
@@ -72,9 +75,11 @@ class CustomerController extends Controller
         if ($this->inputValidation($request, $validator)->fails()) {
             return redirect()->back()->withErrors($this->inputValidation($request, $validator));
         } else {
+            // Strip everything but numbers
+            $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+            $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
 
             $editCustomer = new CustomerModel();
-
             $editCustomer->editCustomerData(
                 $request->input('id'),
                 $request->input('firstname'),
@@ -117,15 +122,19 @@ class CustomerController extends Controller
     }
 
     private function inputValidation($request, $validator){
+        // Strip everything but numbers
+        $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+        $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
+
         $validation = $validator->make($request->all(), [
             'firstname' => 'required|min:2|max:40',
             'lastname' => 'required|min:2|max:40',
             'address1' => 'required|max:60',
             'address2' => 'nullable|max:60',
             'city' => 'required|max:30',
-            'state' => 'required|max:2|min:2|alpha',
-            'zip' => 'required|numeric',
-            'phone' => 'required|numeric',
+            'state' => 'required|size:2|alpha',
+            'zip' => 'required|size:5',
+            'phone' => 'required|size:10',
             'email' => 'required|email|max:50',
             'comments' => 'nullable'
         ]);
