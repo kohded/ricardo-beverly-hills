@@ -33,6 +33,7 @@ class ClaimModel
                     'repair_center.name as repair_center', 
                     'repair_center.id as repair_center_id'
                     )
+            ->orderBy('created_at', 'desc')
 
             // TWC - Only show repair claims where part_needed == 1
             ->when($role == "partCompany", function($query) {

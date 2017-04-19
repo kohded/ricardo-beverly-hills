@@ -14,9 +14,9 @@ class ClaimSeeder extends Seeder
         $faker = Faker::create();
         
         // Seed Claim Table
-        foreach(range(1, 100) as $index) {
+        foreach(range(1, 101) as $index) {
             DB::table('claim')->insert([
-                'created_at'       => $faker->dateTime(),
+                'created_at'       => date_sub(new DateTime(), date_interval_create_from_date_string(102 - $index . ' days')),
                 'customer_id'      => $index,
                 'product_style'    => DB::table('product')->inRandomOrder()->first()->style,
                 'damage_code_id'   => DB::table('damage_code')->inRandomOrder()->first()->id,

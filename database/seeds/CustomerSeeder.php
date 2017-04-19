@@ -13,7 +13,7 @@ class CustomerSeeder extends Seeder
         $faker = Faker::create();
 
         // Seed Customer Table
-        foreach(range(1, 50) as $index) {
+        foreach(range(1, 101) as $index) {
             DB::table('customer')->insert([
                 'first_name' => $faker->firstName,
                 'last_name'  => $faker->lastName,
