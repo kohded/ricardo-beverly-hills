@@ -7714,6 +7714,10 @@ table {
   margin-top: 20px;
 }
 
+table th {
+  white-space: nowrap;
+}
+
 .navbar-brand {
   padding: 0px 15px;
 }

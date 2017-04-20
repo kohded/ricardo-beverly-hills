@@ -30,6 +30,10 @@ footer {
 
 table {
   margin-top: $margin-default;
+  
+  th {
+    white-space: nowrap;
+  }
 }
 
 .navbar-brand {
