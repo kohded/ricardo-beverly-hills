@@ -82,6 +82,10 @@ class ClaimController extends Controller
 
     public function addClaim(Request $request, \Illuminate\Validation\Factory $validator)
     {
+        // Strip everything but numbers
+        $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
+        $request['zip'] = preg_replace("/[^0-9]/","", $request->input('zip'));
+
         // Validate based on whether it's an existing or new customer
         if ($request->input('edit_type_switch') === "1")
         {
@@ -214,8 +218,8 @@ class ClaimController extends Controller
         ]);
     }
 
-    public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) {
-
+    public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) 
+    {
         if ($this->inputValidation($request, $validator)->fails()) {
             return redirect()->back()->withErrors($this->inputValidation($request, $validator));
         } else {
