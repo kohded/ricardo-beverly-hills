@@ -34,21 +34,26 @@
 						<thead>
 							<tr>
 								<th>
+									Brand
+								</th>
+								<th>
+									Collection
+								</th>
+								<th>
 									<span class="fa fa-suitcase" aria-hidden="true"></span>
 									Style
+								</th>
+								<th>
+									<span class="fa fa-pie-chart" aria-hidden="true"></span>
+									Color
 								</th>
 								<th>
 									<span class="fa fa-list" aria-hidden="true"></span>
 									Description
 								</th>
 								<th>
-									Brand
-								</th>
-								<th>
+									<span class="fa fa-file-text" aria-hidden="true"></span>
 									Warranty
-								</th>
-								<th>
-									Collection
 								</th>
 								<th>
 									<span class="fa fa-calendar-o" aria-hidden="true"></span>
@@ -61,11 +66,12 @@
 						<tbody>
 						@foreach ($products as $product)
 							<tr>
-								<td>{{ $product->style }}</td>
-								<td>{{ $product->description }}</td>
 								<td>{{ $product->brand }}</td>
-								<td>{{ $product->warranty_years }}</td>
 								<td>{{ $product->collection }}</td>
+								<td>{{ $product->style }}</td>
+								<td>{{ $product->color }}</td>
+								<td>{{ $product->description }}</td>
+								<td>{{ $product->warranty_years }}</td>
 								<td>{{ $product->launch_date }}</td>
 								<td class="table-data-wrap">
 									<a id="product-edit" href="{{ route('product.edit', ['style' => $product->style]) }}">
