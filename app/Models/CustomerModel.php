@@ -17,7 +17,7 @@ class CustomerModel
             ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
             ->select(
                 'customer_id',
-                \DB::raw("CONCAT(first_name, last_name) as cust_name"),
+                \DB::raw("CONCAT(first_name, ' ', last_name) as cust_name"),
                 'customer.address',
                 'customer.city',
                 'customer.state',
