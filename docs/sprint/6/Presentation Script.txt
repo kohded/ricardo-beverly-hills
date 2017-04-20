@@ -1,0 +1,49 @@
+Sprint 6 Presentation Script
+
+(PETER) 
+Introduce team members and project name
+
+-Show screenshots from previous sprint while Peter mentions UI changes (CHRIS)
+(PETER) 
+"We made several UI changes and we don't have enough time to go over all of them, so we're going to flip through some old screenshots first to show what it looked like last sprint for comparison to the current site."
+
+(CHRIS)
+-[User Story] Demo Part Company inputting part availability
+-[User Story] Demo Part Company entering tracking #
+-[User Story] Demo Ricardo converting claim to Replace Order
+-[User Story] Demo Ricardo entering tracking #
+
+(PETER)
+-[User Story] Demo claim edit changes
+
+(ARNOLD)
+-[User Story] Demo E-mail system
+
+(CHRIS)
+Read additional changes that weren't in user stories while (ARNOLD) does his best to click and demo simultaneously
+-Typing in a route that doesn't exist now redirects to the root page instead of displaying an error
+-Trying to access a route that is not available to the user's role redirects to root instead of displaying an error
+-Made edit customer form sticky
+-Updated validation rules, strip zip and phone inputs before validating / inputting to database
+-Formatted phone numbers displayed on UI
+-Got addicted to Font-Awesome icons and added them everywhere
+-Added real repair center and product data to seeders / database
+-Updated unit tests to correspond with UI changes
+-Added ability to close out claims for Ricardo
+-Changed claim view to show comments on right side, newest comments are shown first and user can add a comment at top of page - makes access to comments much easier and user can see the newest comment immediately without scrolling down
+-Added confirmation modals for all delete operations to prevent accidental deletion
+-Displayed preferred icon next to preferred repair centers
+-Fixed several bugs and refactored code in several files
+
+
+(ARNOLD)
+Read additional changes that weren't in user stories while (CHRIS) does his best to click and demo simultaneously
+-Updated UI in several places - placeholders, spacing
+-Formatted dates and timestamps on all pages
+-Added session status to login page
+-Updated validation errors on edit customer
+-Change redirect when customer is edited
+-Resized nav logo
+-Fixed several bugs and refactored code in several files
+
+Questions and Feedback
