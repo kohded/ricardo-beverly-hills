@@ -300,7 +300,7 @@
 
 <div class="row">
     <div class="col-xs-4">
-        <a href="{{ route('claim-index') }}" class="btn btn-primary">
+        <a href="{{ route('pc-claim-list') }}" class="btn btn-primary">
             Back
         </a>
     </div>
