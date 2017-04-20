@@ -82,48 +82,51 @@ class ClaimController extends Controller
 
     public function addClaim(Request $request, \Illuminate\Validation\Factory $validator)
     {
-
-        if ($this->inputValidation($request, $validator)->fails()) {
-            return redirect()->back()->withErrors($this->inputValidation($request, $validator));
-        } else {
-
-            //Associative Array of All customer Data from form.
-            $customerData = array(
-                'first_name' => $request->input('firstname'),
-                'last_name' => $request->input('lastname'),
-                'address' => $request->input('address1'),
-                'address_2' => $request->input('address2'),
-                'city' => $request->input('city'),
-                'state' => strtoupper($request->input('state')),
-                'zip' => $request->input('zip'),
-                'phone' => $request->input('phone'),
-                'email' => $request->input('email')
-            );
-
-            $claimModel = new ClaimModel();
-
-            $claimModel->insertClaim(
-                $request->input('existing_customer_email'),
-                $customerData,
-                $request->input('comment'),
-                $request->input('products'),
-                $request->input('damage_code'),
-                $request->input('repair_center'),
-                $request->input('replace_order'),
-                $request->input('ship_to'),
-                $request->input('part_needed'),
-                $request->input('parts_needed'),
-                $request->input('edit_type_switch')
-            );
-
-            $claimId = $claimModel->getMostRecentClaimId();
-
-            // Mail claim
-            $request->request->add(['claim-id' => $claimId]);
-            (new MailClaimController($request))->sendNewWarrantyClaimMail();
-
-            return redirect()->route('claim', ['id' => $claimId]);
+        // Validate based on whether it's an existing or new customer
+        if ($request->input('existing_customer_email') === "")
+        {
+            $this->validate($request, $this->getExistingCustomerValidationRules());
         }
+        else
+        {
+            $this->validate($request, $this->getNewCustomerValidationRules());
+        }
+        
+        //Associative Array of All customer Data from form.
+        $customerData = array(
+            'first_name' => $request->input('firstname'),
+            'last_name' => $request->input('lastname'),
+            'address' => $request->input('address1'),
+            'address_2' => $request->input('address2'),
+            'city' => $request->input('city'),
+            'state' => strtoupper($request->input('state')),
+            'zip' => $request->input('zip'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email')
+        );
+
+        $claimModel = new ClaimModel();
+        $claimModel->insertClaim(
+            $request->input('existing_customer_email'),
+            $customerData,
+            $request->input('comment'),
+            $request->input('products'),
+            $request->input('damage_code'),
+            $request->input('repair_center'),
+            $request->input('replace_order'),
+            $request->input('ship_to'),
+            $request->input('part_needed'),
+            $request->input('parts_needed'),
+            $request->input('edit_type_switch')
+        );
+
+        $claimId = $claimModel->getMostRecentClaimId();
+
+        // Mail claim
+        $request->request->add(['claim-id' => $claimId]);
+        (new MailClaimController($request))->sendNewWarrantyClaimMail();
+
+        return redirect()->route('claim', ['id' => $claimId]);
     }
 
     public function addComment(Request $request)
@@ -257,46 +260,39 @@ class ClaimController extends Controller
 
     }
 
-    private function inputValidation($request, $validator)
-    {
-        if ($request->input('edit_type_switch') == 1) {
+    private function getExistingCustomerValidationRules() {
+        return [
+            'existing_customer_email' => 'required|max:50',
+            'comments' => 'nullable',
+            'products' => 'required',
+            'damage_code' => 'required',
+            'repair_center' => 'required',
+            'replace_order' => 'required',
+            'part_needed' => 'required',
+            'parts_needed' => 'nullable',
+            'ship_to' => 'required'
+        ];
+    }
 
-            $validation = $validator->make($request->all(), [
-                'existing_customer_email' => 'required|max:50',
-                'comments' => 'nullable',
-                'products' => 'required',
-                'damage_code' => 'required',
-                'repair_center' => 'required',
-                'replace_order' => 'required',
-                'part_needed' => 'required',
-                'parts_needed' => 'nullable',
-                'ship_to' => 'required'
-
-            ]);
-
-        } else {
-
-            $validation = $validator->make($request->all(), [
-                'firstname' => 'required|min:2|max:40',
-                'lastname' => 'required|min:2|max:40',
-                'address1' => 'required|max:60',
-                'address2' => 'nullable|max:60',
-                'city' => 'required|max:30|alpha',
-                'state' => 'required|max:2|min:2|alpha',
-                'zip' => 'required|numeric',
-                'phone' => 'required|numeric',
-                'email' => 'required|max:50',
-                'comments' => 'nullable',
-                'products' => 'required',
-                'damage_code' => 'required',
-                'repair_center' => 'required',
-                'replace_order' => 'required',
-                'part_needed' => 'required',
-                'parts_needed' => 'nullable',
-                'ship_to' => 'required'
-            ]);
-        }
-
-        return $validation;
+    private function getNewCustomerValidationRules() {
+        return [
+            'firstname' => 'required|min:2|max:40',
+            'lastname' => 'required|min:2|max:40',
+            'address1' => 'required|max:60',
+            'address2' => 'nullable|max:60',
+            'city' => 'required|max:30|alpha',
+            'state' => 'required|size:2|alpha',
+            'zip' => 'required|size:5',
+            'phone' => 'required|size:10',
+            'email' => 'required|max:50',
+            'comments' => 'nullable',
+            'products' => 'required',
+            'damage_code' => 'required',
+            'repair_center' => 'required',
+            'replace_order' => 'required',
+            'part_needed' => 'required',
+            'parts_needed' => 'nullable',
+            'ship_to' => 'required'
+        ];
     }
 }

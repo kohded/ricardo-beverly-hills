@@ -20,7 +20,7 @@ class PagesTest extends TestCase
             ->see('Claims');
 
         $this->click('create-claim')
-            ->see('Create New Claim')
+            ->see('Create Claim')
             ->seePageIs('/claim/create');
 
         $this->visit('/claim')
