@@ -253,7 +253,8 @@
                     <label for="claim-comment">Comment</label>
                     <textarea class="form-control" id="claim-comment" name="comment">{{ old('comment') }}</textarea>
                 </div>
-                <input type="hidden" id="edit-type-switch" name="edit_type_switch">
+                <input type="hidden" id="edit-type-switch" name="edit_type_switch" 
+                       value="{{ old('edit_type_switch') }}">
                 {{--Submit--}}
                 <div class="form-group col-xs-12">
                     <hr>
