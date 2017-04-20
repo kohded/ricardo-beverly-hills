@@ -83,7 +83,7 @@ class ClaimController extends Controller
     public function addClaim(Request $request, \Illuminate\Validation\Factory $validator)
     {
         // Validate based on whether it's an existing or new customer
-        if ($request->input('existing_customer_email') === "")
+        if ($request->input('edit_type_switch') === "1")
         {
             $this->validate($request, $this->getExistingCustomerValidationRules());
         }

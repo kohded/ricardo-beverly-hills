@@ -47,7 +47,11 @@
                     </a>
                 </div>
                 {{--Existing Customer Field--}}
-                <div id="existing-customer-field" class="collapse">
+                <div id="existing-customer-field" 
+                    @if (old('edit_type_switch') !== "1")
+                        class="collapse"
+                    @endif
+                    >
                     {{--Email--}}
                     <div class="form-group col-xs-12">
                         <label for="existing-customer-email">Email</label>
@@ -57,7 +61,11 @@
                     </div>
                 </div>
                 {{--New Customer Fields--}}
-                <div id="claim-new-customer" class="collapse">
+                <div id="claim-new-customer" 
+                    @if (old('edit_type_switch') !== "0")
+                        class="collapse"
+                    @endif
+                    >
                     {{--First Name--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-first-name">First Name</label>
@@ -245,7 +253,7 @@
                     <label for="claim-comment">Comment</label>
                     <textarea class="form-control" id="claim-comment" name="comment">{{ old('comment') }}</textarea>
                 </div>
-                <input type="hidden" id="edit-type-switch" name="edit_type_switch" value="1">
+                <input type="hidden" id="edit-type-switch" name="edit_type_switch">
                 {{--Submit--}}
                 <div class="form-group col-xs-12">
                     <hr>
