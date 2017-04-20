@@ -36,8 +36,7 @@
                     <a href="#claim-existing-customer" id="existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2" >Existing Customer</a>
                     <div id="existing-customer-field" class="form-group col-xs-8 col-xs-offset-2">
                         <label for="customer-email">Existing Customer Email</label>
-                        <input type="text" class="form-control" id="existing-customer-email" name="existingcustomeremail" placeholder="email@example.com"
-                               >
+                        <input type="text" class="form-control" id="existing-customer-email" name="existing_customer_email" placeholder="email@example.com">
                     </div>
 
                     <br />
@@ -121,7 +120,7 @@
                         </div>
 
                         <div class="form-group col-xs-8">
-                            <select name="damagecode" id="claim-damage-code">
+                            <select name="damage_code" id="claim-damage-code">
                                 @foreach ($damage_codes as $dc)
                                     <option value="{{ $dc->id }}">{{ $dc->id . '-' . $dc->part }}</option>
                                 @endforeach
@@ -135,7 +134,7 @@
                         </div>
 
                         <div class="form-group col-xs-8">
-                            <select name="repaircenter" id="claim-repair-center">
+                            <select name="repair_center" id="claim-repair-center">
                                 @foreach ($repair_centers as $rc)
                                     <option value="{{ $rc->id }}">{{ $rc->name }} - {{ $rc->streetName }}</option>
                                 @endforeach
@@ -221,7 +220,7 @@
                     </div>
 
                     <input type="number" name="claim_new" value="1" hidden>
-                    <input type="hidden" id="edit-type-switch" name="edit-type-switch" value="1">
+                    <input type="hidden" id="edit-type-switch" name="edit_type_switch" value="1">
 
                     {{ csrf_field() }}
 

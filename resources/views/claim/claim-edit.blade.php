@@ -26,7 +26,7 @@
                     </div>
                 @endif
 
-                <form action="{{ URL::route('claim.create') }}" method="post">
+                <form action="{{ URL::route('update-claim') }}" method="post">
 
                     <legend>Edit Claim</legend>
 
@@ -35,7 +35,7 @@
                     <a href="#claim-existing-customer" id="existing-customer" class="btn btn-info col-xs-8 col-xs-offset-2">Existing Customer</a>
                     <div id="existing-customer-field" class="form-group col-xs-8 col-xs-offset-2">
                         <label for="customer-email">Existing Customer Email</label>
-                        <input type="text" class="form-control" name="existingcustomeremail" value="{{ $customerDetails['customer'][0]->email }}"
+                        <input type="text" class="form-control" name="existing_customer_email" value="{{ $customerDetails['customer'][0]->email }}"
                         >
                     </div>
 
@@ -135,7 +135,7 @@
                         </div>
 
                         <div class="form-group col-xs-8">
-                            <select name="damagecode" id="claim-damage-code">
+                            <select name="damage_code" id="claim-damage-code">
                                 @foreach ($damage_codes as $dc)
                                     @if($dc->id != $claimDetails->dc_id)
                                         <option value="{{ $dc->id }}">{{ $dc->id . '-' . $dc->part }}</option>
@@ -153,7 +153,7 @@
                         </div>
 
                         <div class="form-group col-xs-8">
-                            <select name="repaircenter" id="claim-repair-center">
+                            <select name="repair_center" id="claim-repair-center">
                                 @foreach ($repair_centers as $rc)
                                     @if($rc->id != $claimDetails->rc_id)
                                         <option value="{{ $rc->id }}">{{ $rc->name }}</option>
@@ -167,40 +167,104 @@
 
                     <br/>
 
-                    <legend>Recommendation From Repair Center</legend>
+                    <dl class="dl-horizontal">
+                        <dt>Claim Type</dt>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @if($claimDetails->replace_order == 0)
+                                        <input class="form-check-input" type="radio" name="replace_order" value="0" checked="checked">
+                                    @else
+                                        <input class="form-check-input" type="radio" name="replace_order" value="0">
+                                    @endif
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                    Repair Order
+                                </label>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @if($claimDetails->replace_order == 1)
+                                        <input class="form-check-input" type="radio" name="replace_order" value="1" checked="checked">
+                                    @else
+                                        <input class="form-check-input" type="radio" name="replace_order" value="1">
+                                    @endif
+                                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                                    Replace Order
+                                </label>
+                            </div>
+                        </dd>
 
-                    <div class="form-check col-xs-2">
-                        <label class="form-check-label">
-                            @if($claimDetails->replace_order == 0)
-                                <input class="form-check-input" type="radio" name="replaced" value="0" checked>
-                            @else
-                                <input class="form-check-input" type="radio" name="replaced" value="0">
-                            @endif
+                        <br />
 
-                            Repair
-                        </label>
-                    </div>
+                        <dt>Parts Required?</dt>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @if($claimDetails->part_needed == '1')
+                                        <input class="form-check-input" type="radio" name="part_needed" value="1" checked="checked">
+                                    @else
+                                        <input class="form-check-input" type="radio" name="part_needed" value="1">
+                                    @endif
+                                    Yes
+                                </label>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @if($claimDetails->part_needed == '0')
+                                        <input class="form-check-input" type="radio" name="part_needed" value="0" checked="checked">
+                                    @else
+                                        <input class="form-check-input" type="radio" name="part_needed" value="0">
+                                    @endif
+                                    No
+                                </label>
+                            </div>
+                        </dd>
 
-                    <div class="col-xs-1"><b>OR</b></div>
+                        <br />
 
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            @if($claimDetails->replace_order == 1)
-                                <input class="form-check-input" type="radio" name="replaced" value="1" checked>
-                            @else
-                                <input class="form-check-input" type="radio" name="replaced" value="1">
-                            @endif
-                            Replace
-                        </label>
-                    </div>
 
-                    <div class="form-group col-xs-12">
-                        <label for="inputClaimNumber">Comment</label>
-                        <textarea class="col-xs-12" name="comment"></textarea>
-                    </div>
+                        <dt>Parts Needed</dt>
+                        <dd>
+                            <input type="text" class="form-control" name="parts_needed" value="{{$claimDetails->parts_needed}}">
+                        </dd>
 
-                    <input type="hidden" name="id" value="{{ $claimDetails->claim_id}}">
-                    <input type="hidden" id="edit-type-switch" name="edit-type-switch" value="1">
+                        <br />
+
+                        <dt>Ship Parts To</dt>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @if($claimDetails->ship_to == "Customer")
+                                        <input class="form-check-input" type="radio" name="ship_to" value="Customer" checked="checked">
+                                    @else
+                                        <input class="form-check-input" type="radio" name="ship_to" value="Customer">
+                                    @endif
+                                    Customer
+                                </label>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @if($claimDetails->ship_to == "Repair Center")
+                                        <input class="form-check-input" type="radio" name="ship_to" value="Repair Center" checked="checked">
+                                    @else
+                                        <input class="form-check-input" type="radio" name="ship_to" value="Repair Center">
+                                    @endif
+                                    Repair Center
+                                </label>
+                            </div>
+                        </dd>
+                    </dl>
+                    
+
+                    <input type="hidden" name="claim_id" value="{{ $claimDetails->claim_id}}">
+                    <input type="hidden" name="customer_id" value="{{ $customerDetails['customer'][0]->id}}">
+                    <input type="hidden" id="edit-type-switch" name="edit_type_switch" value="1">
 
                     {{ csrf_field() }}
 

@@ -151,14 +151,12 @@ class ClaimModel
         return $claim;
     }
 
-    public function insertClaim($existing_customer_email, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email, $comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed){
+    public function insertClaim($existing_customer_email, $customerData ,$comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed, $updateSwitch){
 
 
         DB::beginTransaction();
 
         $isCustomerInDB = false;
-        $customerID = '';
-        $claimID = '';
 
         try {
 
@@ -168,33 +166,32 @@ class ClaimModel
 
             foreach($customers as $customer){
 
-                if($customer->email == $email || $customer->email == $existing_customer_email) {
+                if($customer->email == $customerData['email'] || $customer->email == $existing_customer_email) {
 
                     $isCustomerInDB = true;
                     break;
                 }
             }
 
-            if(!$isCustomerInDB && empty($existing_customer_email)) {
+            if(!$isCustomerInDB && $updateSwitch == 0) {
 
                 DB::table('customer')->insert([
-                    'first_name' => $first_name,
-                    'last_name' => $last_name,
-                    'address' => $address,
-                    'address_2' => $address_2,
-                    'city' => $city,
-                    'state' => $state,
-                    'zip' => $zip,
-                    'phone' => $phone,
-                    'email' => $email
+                    'first_name' => $customerData['first_name'],
+                    'last_name' => $customerData['last_name'],
+                    'address' => $customerData['address'],
+                    'address_2' => $customerData['address_2'],
+                    'city' => $customerData['city'],
+                    'state' => $customerData['state'],
+                    'zip' => $customerData['zip'],
+                    'phone' => $customerData['phone'],
+                    'email' => $customerData['email']
                 ]);
 
-                $customerID = DB::table('customer')->where('customer.email', '=', $email)->pluck('id')[0];
+                $customerID = DB::table('customer')->where('customer.email', '=', $customerData['email'])->pluck('id')[0];
 
-            } else if(!empty($existing_customer_email) && $isCustomerInDB && empty($email)){
+            } else if(!empty($existing_customer_email) && $isCustomerInDB && empty($customerData['email'])){
 
                 $output = new \Symfony\Component\Console\Output\ConsoleOutput(2);
-
 
                 $customerID = DB::table('customer')->where('customer.email', '=', $existing_customer_email)->select('id')->pluck('id')[0];
 
@@ -207,21 +204,6 @@ class ClaimModel
                 return redirect()->route('claim-index')->withErrors('Customer with that email already exists.');
             }
 
-
-
-        } catch (ValidationException $e)
-        {
-            DB::rollback();
-
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            throw $e;
-
-        }
-
-        try {
-
             DB::table('claim')->insert([
                 'customer_id'      => $customerID,
                 'product_style'    => $products,
@@ -233,19 +215,6 @@ class ClaimModel
                 'parts_needed'     => $parts_needed
             ]);
 
-        } catch (ValidationException $e)
-        {
-            DB::rollback();
-
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            throw $e;
-
-        }
-
-        try {
-
             $claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
 
             DB::table('claim_comment')->insert([
@@ -253,20 +222,6 @@ class ClaimModel
                 'author' => Auth::user()->id . ' : ' . Auth::user()->name,
                 'comment' => $comment
             ]);
-
-        } catch (ValidationException $e)
-        {
-            DB::rollback();
-
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            throw $e;
-
-        }
-
-
-        try {
 
             DB::table('claim_customer')->insert([
                 'claim_id' => $claimID,
@@ -323,7 +278,61 @@ class ClaimModel
         return $comments;
     }
 
-    public function updateClaim($claimData, $editType) {
+    public function updateClaim($claimId, $customerId, $existingCustomerEmail, $products, $repairCenter, $damageCode, $claimType, $partsRequired, $partsNeeded, $shipPartsTo, $customerData, $updateSwitch) {
+        DB::beginTransaction();
+
+        try {
+
+               DB::table('claim')
+                   ->where('id', '=', $claimId)
+                   ->update([
+                       'product_style' => $products,
+                       'repair_center_id' => $repairCenter,
+                       'damage_code_id' => $damageCode,
+                       'replace_order' => $claimType,
+                       'part_needed' => $partsRequired,
+                       'parts_needed' => $partsNeeded,
+                       'ship_to' => $shipPartsTo
+                   ]);
+
+                //If customer Data isnt changed
+                if($updateSwitch == 1){
+
+                    DB::table('customer')
+                        ->where('id', '=', $customerId)
+                        ->update(['email' => $existingCustomerEmail]);
+
+                } else {
+
+                    DB::table('customer')
+                        ->where('id', '=', $customerId)
+                        ->update([
+                            'first_name' => $customerData['first_name'],
+                            'last_name' => $customerData['last_name'],
+                            'address' => $customerData['address'],
+                            'address_2' => $customerData['address_2'],
+                            'city' => $customerData['city'],
+                            'state' => $customerData['state'],
+                            'zip' => $customerData['zip'],
+                            'phone' => $customerData['phone'],
+                            'email' => $customerData['email']
+                        ]);
+
+                }
+
+                return true;
+
+        } catch (ValidationException $e) {
+            DB::rollback();
+            return false;
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            DB::rollback();
+            throw $e;
+            return false;
+        }
+
+        DB::commit();
 
     }
 

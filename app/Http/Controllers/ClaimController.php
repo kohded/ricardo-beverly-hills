@@ -87,27 +87,33 @@ class ClaimController extends Controller
             return redirect()->back()->withErrors($this->inputValidation($request, $validator));
         } else {
 
+            //Associative Array of All customer Data from form.
+            $customerData = array(
+                'first_name' => $request->input('firstname'),
+                'last_name' => $request->input('lastname'),
+                'address' => $request->input('address1'),
+                'address_2' => $request->input('address2'),
+                'city' => $request->input('city'),
+                'state' => strtoupper($request->input('state')),
+                'zip' => $request->input('zip'),
+                'phone' => $request->input('phone'),
+                'email' => $request->input('email')
+            );
+
             $claimModel = new ClaimModel();
 
             $claimModel->insertClaim(
-                $request->input('existingcustomeremail'),
-                $request->input('firstname'),
-                $request->input('lastname'),
-                $request->input('address1'),
-                $request->input('address2'),
-                $request->input('city'),
-                strtoupper($request->input('state')),
-                $request->input('zip'),
-                $request->input('phone'),
-                $request->input('email'),
+                $request->input('existing_customer_email'),
+                $customerData,
                 $request->input('comment'),
                 $request->input('products'),
-                $request->input('damagecode'),
-                $request->input('repaircenter'),
+                $request->input('damage_code'),
+                $request->input('repair_center'),
                 $request->input('replace_order'),
                 $request->input('ship_to'),
                 $request->input('part_needed'),
-                $request->input('parts_needed')
+                $request->input('parts_needed'),
+                $request->input('edit_type_switch')
             );
 
             $claimId = $claimModel->getMostRecentClaimId();
@@ -207,30 +213,65 @@ class ClaimController extends Controller
 
     public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) {
 
-        echo "<script>console.log(" . $request . ")</script>";
+        if ($this->inputValidation($request, $validator)->fails()) {
+            return redirect()->back()->withErrors($this->inputValidation($request, $validator));
+        } else {
+
+            //Associative Array of All customer Data from form.
+            $customerData = array(
+                'first_name' => $request->input('firstname'),
+                'last_name' => $request->input('lastname'),
+                'address' => $request->input('address1'),
+                'address_2' => $request->input('address2'),
+                'city' => $request->input('city'),
+                'state' => strtoupper($request->input('state')),
+                'zip' => $request->input('zip'),
+                'phone' => $request->input('phone'),
+                'email' => $request->input('email')
+            );
+
+            //Data from from
+            $claimId = $request->input('claim_id');
+            $customerId = $request->input('customer_id');
+            $existingCustomerEmail = $request->input('existing_customer_email');
+            $products = $request->input('products');
+            $repairCenter = $request->input('repair_center');
+            $damageCode = $request->input('damage_code');
+            $claimType = $request->input('replace_order');
+            $partsRequired = $request->input('part_needed');
+            $partsNeeded = $request->input('parts_needed');
+            $shipPartsTo = $request->input('ship_to');
+
+            //This switch is used to determine whether or not customer data needs to be updated
+            $updateSwitch = $request->input('edit_type_switch');
+
+            $claimDetails = new ClaimModel();
+
+            $executionsSuccess = $claimDetails->updateClaim($claimId, $customerId, $existingCustomerEmail, $products, $repairCenter, $damageCode, $claimType, $partsRequired, $partsNeeded, $shipPartsTo, $customerData, $updateSwitch);
+
+            if($executionsSuccess){
+                return redirect()->route('claim', ['id' => $claimId]);
+            }
+
+        }
 
     }
 
     private function inputValidation($request, $validator)
     {
-
-        if ($request->input('existingcustomeremail') != '') {
+        if ($request->input('edit_type_switch') == 1) {
 
             $validation = $validator->make($request->all(), [
-                'existingcustomeremail' => 'required|max:50',
+                'existing_customer_email' => 'required|max:50',
                 'comments' => 'nullable',
                 'products' => 'required',
-                'repaircenter' => 'required',
+                'damage_code' => 'required',
+                'repair_center' => 'required',
                 'replace_order' => 'required',
-                'firstname' => 'max:0',
-                'lastname' => 'max:0',
-                'address1' => 'max:0',
-                'address2' => 'max:0',
-                'city' => 'max:0',
-                'state' => 'max:0',
-                'zip' => 'max:0',
-                'phone' => 'max:0',
-                'email' => 'max:0'
+                'part_needed' => 'required',
+                'parts_needed' => 'nullable',
+                'ship_to' => 'required'
+
             ]);
 
         } else {
@@ -247,8 +288,12 @@ class ClaimController extends Controller
                 'email' => 'required|max:50',
                 'comments' => 'nullable',
                 'products' => 'required',
-                'repaircenter' => 'required',
-                'replace_order' => 'required'
+                'damage_code' => 'required',
+                'repair_center' => 'required',
+                'replace_order' => 'required',
+                'part_needed' => 'required',
+                'parts_needed' => 'nullable',
+                'ship_to' => 'required'
             ]);
         }
 
