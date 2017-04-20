@@ -80,7 +80,7 @@ class ClaimController extends Controller
         ]);
     }
 
-    public function addClaim(Request $request, \Illuminate\Validation\Factory $validator)
+    public function addClaim(Request $request)
     {
         // Strip everything but numbers
         $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));

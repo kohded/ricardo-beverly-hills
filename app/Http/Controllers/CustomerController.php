@@ -21,7 +21,7 @@ class CustomerController extends Controller
         return view('customer.customer-form');
     }
 
-    public function addCustomer(Request $request, \Illuminate\Validation\Factory $validator)
+    public function addCustomer(Request $request)
     {
         // Strip everything but numbers
         $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));
@@ -55,7 +55,7 @@ class CustomerController extends Controller
         return view('customer.edit-form', ['customerDetails' => $customerDetail]);
     }
 
-    public function editCustomer(Request $request, \Illuminate\Validation\Factory $validator )
+    public function editCustomer(Request $request)
     {
         // Strip everything but numbers
         $request['phone'] = preg_replace("/[^0-9]/","", $request->input('phone'));

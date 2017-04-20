@@ -13,8 +13,8 @@ class CustomerModel
         $searchField = $request->input('field');
 
         return DB::table('customer')
-            ->join('claim', 'claim.customer_id', '=', 'customer.id')
-            ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
+            ->leftJoin('claim', 'customer.id', '=', 'claim.customer_id')
+            ->leftJoin('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
             ->select(
                 'customer_id',
                 \DB::raw("CONCAT(first_name, ' ', last_name) as cust_name"),
