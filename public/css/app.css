@@ -7718,17 +7718,17 @@ table th {
   white-space: nowrap;
 }
 
+.table-data-wrap {
+  white-space: nowrap;
+  width: 1%;
+}
+
 .navbar-brand {
   padding: 0px 15px;
 }
 
 #nav-logo {
   margin-top: 10px;
-}
-
-.table-data-wrap {
-  white-space: nowrap;
-  width: 1%;
 }
 
 .insertion-form {
@@ -7790,6 +7790,10 @@ table th {
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .table-responsive {
     margin-top: 20px;
+  }
+  .filter-button {
+    float: right;
+    margin-top: 10px;
   }
 }
 

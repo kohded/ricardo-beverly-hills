@@ -21,7 +21,7 @@
         </select>
         
         &nbsp;
-        <button type="submit" class="btn btn-primary btn-sm">
+        <button type="submit" class="btn btn-primary btn-sm filter-button">
             <span class="fa fa-filter" aria-hidden="true"></span>
             Filter
         </button>
