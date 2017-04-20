@@ -114,7 +114,7 @@ class CustomerController extends Controller
             'state' => 'required|size:2|alpha',
             'zip' => 'required|size:5',
             'phone' => 'required|size:10',
-            'email' => 'required|email|max:50',
+            'email' => 'required|email|max:50|unique:customer,email',
             'comments' => 'nullable'
         ];
     }

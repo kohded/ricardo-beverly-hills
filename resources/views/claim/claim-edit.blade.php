@@ -32,22 +32,8 @@
         @endif
         <div class="row">
             <form action="{{ URL::route('update-claim') }}" method="post">
-                {{--Existing Customer Button--}}
-                <div class="col-xs-6">
-                    <a href="#existing-customer-field" id="existing-customer"
-                       class="btn btn-primary col-xs-12 mt-20 mb-20" data-toggle="collapse">
-                        Customer Email
-                    </a>
-                </div>
-                {{--New Customer Button--}}
-                <div class="col-xs-6">
-                    <a href="#claim-new-customer" id="edit-customer-info"
-                       class="btn btn-primary col-xs-12 mt-20 mb-20" data-toggle="collapse">
-                        Edit Customer
-                    </a>
-                </div>
-                {{--Existing Customer Field--}}
-                <div id="existing-customer-field" class="collapse">
+                {{--Existing Customer Email--}}
+                <div id="existing-customer-field">
                     {{--Email--}}
                     <div class="form-group col-xs-12">
                         <label for="existing-customer-email">Email</label>
@@ -57,65 +43,74 @@
                     </div>
                 </div>
                 {{--New Customer Fields--}}
-                <div id="claim-new-customer" class="collapse">
+                <div id="claim-new-customer">
                     {{--First Name--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-first-name">First Name</label>
                         <input type="text" class="form-control" id="customer-first-name"
                                name="firstname"
-                               value="{{ $customerDetails['customer'][0]->first_name }}">
+                               value="{{ $customerDetails['customer'][0]->first_name }}"
+                               disabled>
                     </div>
                     {{--Last Name--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-last-name">Last Name</label>
                         <input type="text" class="form-control" id="customer-last-name"
                                name="lastname"
-                               value="{{ $customerDetails['customer'][0]->last_name }}">
+                               value="{{ $customerDetails['customer'][0]->last_name }}"
+                               disabled>
                     </div>
                     {{--Phone--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-phone">Phone</label>
                         <input type="text" class="form-control" id="customer-phone" name="phone"
-                               value="{{ $customerDetails['customer'][0]->phone }}">
+                               value="{{ $customerDetails['customer'][0]->phone }}"
+                               disabled>
                     </div>
                     {{--Email--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-email">Email</label>
                         <input type="text" class="form-control" id="customer-email" name="email"
-                               value="{{ $customerDetails['customer'][0]->email }}">
+                               value="{{ $customerDetails['customer'][0]->email }}"
+                               disabled>
                     </div>
                     {{--Address 1--}}
                     <div class="form-group col-xs-12">
                         <label for="customer-address1">Address 1</label>
                         <input type="text" class="form-control" id="customer-address1"
                                name="address1"
-                               value="{{ $customerDetails['customer'][0]->address }}">
+                               value="{{ $customerDetails['customer'][0]->address }}"
+                               disabled>
                     </div>
                     {{--Address 2--}}
                     <div class="form-group col-xs-12">
                         <label for="customer-address2">Address 2</label>
                         <input type="text" class="form-control" id="customer-address2"
                                name="address2"
-                               value="{{ $customerDetails['customer'][0]->address_2 }}">
+                               value="{{ $customerDetails['customer'][0]->address_2 }}"
+                               disabled>
                     </div>
                     {{--City--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-city">City</label>
                         <input type="text" class="form-control" id="customer-city" name="city"
-                               value="{{ $customerDetails['customer'][0]->city }}">
+                               value="{{ $customerDetails['customer'][0]->city }}"
+                               disabled>
                     </div>
                     {{--State--}}
                     <div class="form-group col-xs-6 col-sm-3">
                         <label for="customer-state">State</label>
                         <input type="text" class="form-control" id="customer-state" name="state"
                                placeholder="WA"
-                               value="{{ $customerDetails['customer'][0]->state }}">
+                               value="{{ $customerDetails['customer'][0]->state }}"
+                               disabled>
                     </div>
                     {{--Zip--}}
                     <div class="form-group col-xs-6 col-sm-3">
                         <label for="customer-zip">Zip</label>
                         <input type="text" class="form-control" id="customer-zip" name="zip"
-                               value="{{ $customerDetails['customer'][0]->zip }}">
+                               value="{{ $customerDetails['customer'][0]->zip }}"
+                               disabled>
                     </div>
                 </div>
                 {{--Product--}}

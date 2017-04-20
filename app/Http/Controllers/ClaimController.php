@@ -266,7 +266,7 @@ class ClaimController extends Controller
 
     private function getExistingCustomerValidationRules() {
         return [
-            'existing_customer_email' => 'required|max:50',
+            'existing_customer_email' => 'required|max:50|exists:customer,email',
             'comments' => 'nullable',
             'products' => 'required',
             'damage_code' => 'required',
@@ -288,7 +288,7 @@ class ClaimController extends Controller
             'state' => 'required|size:2|alpha',
             'zip' => 'required|size:5',
             'phone' => 'required|size:10',
-            'email' => 'required|max:50',
+            'email' => 'required|max:50|unique:customer,email',
             'comments' => 'nullable',
             'products' => 'required',
             'damage_code' => 'required',
