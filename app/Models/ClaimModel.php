@@ -278,62 +278,22 @@ class ClaimModel
         return $comments;
     }
 
-    public function updateClaim($claimId, $customerId, $existingCustomerEmail, $products, $repairCenter, $damageCode, $claimType, $partsRequired, $partsNeeded, $shipPartsTo, $customerData, $updateSwitch) {
-        DB::beginTransaction();
+    public function updateClaim($claimId, $customerId, $product, $repairCenter, 
+                                $damageCode, $claimType, $partsRequired, $partsNeeded, 
+                                $shipPartsTo) {
 
-        try {
-
-               DB::table('claim')
-                   ->where('id', '=', $claimId)
-                   ->update([
-                       'product_style' => $products,
-                       'repair_center_id' => $repairCenter,
-                       'damage_code_id' => $damageCode,
-                       'replace_order' => $claimType,
-                       'part_needed' => $partsRequired,
-                       'parts_needed' => $partsNeeded,
-                       'ship_to' => $shipPartsTo
-                   ]);
-
-                //If customer Data isnt changed
-                if($updateSwitch == 1){
-
-                    DB::table('customer')
-                        ->where('id', '=', $customerId)
-                        ->update(['email' => $existingCustomerEmail]);
-
-                } else {
-
-                    DB::table('customer')
-                        ->where('id', '=', $customerId)
-                        ->update([
-                            'first_name' => $customerData['first_name'],
-                            'last_name' => $customerData['last_name'],
-                            'address' => $customerData['address'],
-                            'address_2' => $customerData['address_2'],
-                            'city' => $customerData['city'],
-                            'state' => $customerData['state'],
-                            'zip' => $customerData['zip'],
-                            'phone' => $customerData['phone'],
-                            'email' => $customerData['email']
-                        ]);
-
-                }
-
-                return true;
-
-        } catch (ValidationException $e) {
-            DB::rollback();
-            return false;
-
-        } catch (\Illuminate\Database\QueryException $e) {
-            DB::rollback();
-            throw $e;
-            return false;
-        }
-
-        DB::commit();
-
+       DB::table('claim')
+           ->where('id', '=', $claimId)
+           ->update([
+                'customer_id' => $customerId,
+               'product_style' => $product,
+               'repair_center_id' => $repairCenter,
+               'damage_code_id' => $damageCode,
+               'replace_order' => $claimType,
+               'part_needed' => $partsRequired,
+               'parts_needed' => $partsNeeded,
+               'ship_to' => $shipPartsTo
+        ]);
     }
 
     public function convertToReplaceOrder($id)

@@ -119,13 +119,13 @@
                     <select class="form-control" id="claim-product" name="products">
                         @foreach ($products as $product)
                             @if($product->style != $claimDetails->product_style)
-                                <option name="products" value="{{ $product->style }}">
+                                <option value="{{ $product->style }}">
                                     {{ $product->style }} -
                                     {{ $product->collection }} -
                                     {{ $product->color }}
                                 </option>
                             @else
-                                <option name="products" value="{{ $product->style }}" selected>
+                                <option value="{{ $product->style }}" selected>
                                     {{ $product->style }} -
                                     {{ $product->collection }} -
                                     {{ $product->color }}

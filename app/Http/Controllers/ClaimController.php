@@ -218,50 +218,32 @@ class ClaimController extends Controller
         ]);
     }
 
-    public function updateClaim(Request $request, \Illuminate\Validation\Factory $validator) 
+    public function updateClaim(Request $request) 
     {
-        if ($this->inputValidation($request, $validator)->fails()) {
-            return redirect()->back()->withErrors($this->inputValidation($request, $validator));
-        } else {
+        $this->validate($request, $this->getExistingCustomerValidationRules());
 
-            //Associative Array of All customer Data from form.
-            $customerData = array(
-                'first_name' => $request->input('firstname'),
-                'last_name' => $request->input('lastname'),
-                'address' => $request->input('address1'),
-                'address_2' => $request->input('address2'),
-                'city' => $request->input('city'),
-                'state' => strtoupper($request->input('state')),
-                'zip' => $request->input('zip'),
-                'phone' => $request->input('phone'),
-                'email' => $request->input('email')
-            );
+        //Data from form
+        $claimId = $request->input('claim_id');
+        $existingCustomerEmail = $request->input('existing_customer_email');
+        $product = $request->input('products');
+        $repairCenter = $request->input('repair_center');
+        $damageCode = $request->input('damage_code');
+        $claimType = $request->input('replace_order');
+        $partsRequired = $request->input('part_needed');
+        $partsNeeded = $request->input('parts_needed');
+        $shipPartsTo = $request->input('ship_to');
 
-            //Data from from
-            $claimId = $request->input('claim_id');
-            $customerId = $request->input('customer_id');
-            $existingCustomerEmail = $request->input('existing_customer_email');
-            $products = $request->input('products');
-            $repairCenter = $request->input('repair_center');
-            $damageCode = $request->input('damage_code');
-            $claimType = $request->input('replace_order');
-            $partsRequired = $request->input('part_needed');
-            $partsNeeded = $request->input('parts_needed');
-            $shipPartsTo = $request->input('ship_to');
+        // Get the customer id using their email
+        $customerModel = new CustomerModel();
+        $customerId = $customerModel->getCustomerIdByEmail($existingCustomerEmail);
 
-            //This switch is used to determine whether or not customer data needs to be updated
-            $updateSwitch = $request->input('edit_type_switch');
+        $claimModel = new ClaimModel();
+        $claimModel->updateClaim($claimId, $customerId->id, $product, $repairCenter, 
+                                 $damageCode, $claimType, $partsRequired, $partsNeeded, 
+                                 $shipPartsTo);
 
-            $claimDetails = new ClaimModel();
-
-            $executionsSuccess = $claimDetails->updateClaim($claimId, $customerId, $existingCustomerEmail, $products, $repairCenter, $damageCode, $claimType, $partsRequired, $partsNeeded, $shipPartsTo, $customerData, $updateSwitch);
-
-            if($executionsSuccess){
-                return redirect()->route('claim', ['id' => $claimId]);
-            }
-
-        }
-
+        return redirect()->route('claim', ['id' => $claimId])
+            ->with('message', 'Successfully edited claim.');
     }
 
     private function getExistingCustomerValidationRules() {

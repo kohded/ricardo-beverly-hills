@@ -68,23 +68,25 @@
                 <h3 class="panel-title">Claims</h3>
             </div>
             <div class="panel-body">
-                @foreach ($customerClaims as $claim)
-                    <div class="row">
-                        <div class="col-xs-4 col-sm-3">
-                            <p class="pull-right bold-text">
-                                <span class="fa fa-file-text" aria-hidden="true"></span>
-                                Claim
-                            </p>
+                @if ($customerClaims !== null)
+                    @foreach ($customerClaims as $claim)
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-3">
+                                <p class="pull-right bold-text">
+                                    <span class="fa fa-file-text" aria-hidden="true"></span>
+                                    Claim
+                                </p>
+                            </div>
+                            <div class="col-xs-8 col-sm-9">
+                                <a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
+                                    <button class="btn btn-primary btn-xs col-xs-6">
+                                        #{{ $claim->claim_id }}
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-xs-8 col-sm-9">
-                            <a href="{{ URL::route('claim', ['id' => $claim->claim_id]) }}">
-                                <button class="btn btn-primary btn-xs col-xs-6">
-                                    #{{ $claim->claim_id }}
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

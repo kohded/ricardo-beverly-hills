@@ -86,8 +86,8 @@ class CustomerModel
     {
         $tempArr = [];
 
-         $tempArr['claim-customer'] = DB::table('claim_customer')->where('customer_id', '=', $customerId)->get();
-         $tempArr['customer'] = DB::table('customer')
+        $tempArr['claim-customer'] = DB::table('claim_customer')->where('customer_id', '=', $customerId)->get();
+        $tempArr['customer'] = DB::table('customer')
             ->select(
                 'id',
                 'first_name',
@@ -108,7 +108,8 @@ class CustomerModel
          return $tempArr;
     }
 
-    public function editCustomerData($customerId, $first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email)
+    public function editCustomerData($customerId, $first_name, $last_name, $address, 
+                                     $address_2, $city, $state, $zip, $phone, $email)
     {
 
         DB::table('customer')->where('id', '=', $customerId)->update([
@@ -128,5 +129,13 @@ class CustomerModel
     public function deleteCustomer($customerId)
     {
         DB::table('customer')->delete($customerId);
+    }
+
+    public function getCustomerIdByEmail($email)
+    {
+        return DB::table('customer')
+                    ->where('email', '=', $email)
+                    ->select('id')
+                    ->first();
     }
 }
