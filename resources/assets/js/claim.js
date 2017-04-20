@@ -41,25 +41,16 @@ $(function() {
 // New customer form
 if (document.getElementById("existing-customer")) {
     var existingCustomerBTN = document.getElementById("existing-customer");
-    var existingCustomerFields = document.getElementById("existing-customer-field");
-
     var editCustomerBTN = document.getElementById("edit-customer-info");
-    var editCustomerFields = document.getElementById("claim-new-customer");
-
-    editCustomerFields.style.display = "none";
-    existingCustomerFields.style.display = "none";
-
     var editTypeSwitchHDL = document.getElementById("edit-type-switch");
 
     existingCustomerBTN.onclick = function () {
-        editCustomerFields.style.display = 'none';
-        existingCustomerFields.style.display = 'block';
+        $('#claim-new-customer').collapse('hide');
         editTypeSwitchHDL.setAttribute("value", 1);
     }
 
     editCustomerBTN.onclick = function () {
-        existingCustomerFields.style.display = 'none';
-        editCustomerFields.style.display = 'block';
+        $('#existing-customer-field').collapse('hide');
         editTypeSwitchHDL.setAttribute("value", 0);
     }
 }
