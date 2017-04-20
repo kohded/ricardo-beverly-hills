@@ -282,17 +282,17 @@ class ClaimModel
                                 $damageCode, $claimType, $partsRequired, $partsNeeded, 
                                 $shipPartsTo) {
 
-       DB::table('claim')
-           ->where('id', '=', $claimId)
-           ->update([
+        DB::table('claim')
+            ->where('id', '=', $claimId)
+            ->update([
                 'customer_id' => $customerId,
-               'product_style' => $product,
-               'repair_center_id' => $repairCenter,
-               'damage_code_id' => $damageCode,
-               'replace_order' => $claimType,
-               'part_needed' => $partsRequired,
-               'parts_needed' => $partsNeeded,
-               'ship_to' => $shipPartsTo
+                'product_style' => $product,
+                'repair_center_id' => $repairCenter,
+                'damage_code_id' => $damageCode,
+                'replace_order' => $claimType,
+                'part_needed' => $partsRequired,
+                'parts_needed' => $partsNeeded,
+                'ship_to' => $shipPartsTo
         ]);
     }
 

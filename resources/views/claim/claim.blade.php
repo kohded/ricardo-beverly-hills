@@ -6,11 +6,17 @@
         <h2>
         	<span class="fa fa-file-text" aria-hidden="true"></span>
             Claim #{{ $claim[0]->claim_id }}
-
+            
             {{--Close Claim button--}}
             <a id="close-claim" href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
                 <span class="fa fa-check-circle" aria-hidden="true"></span>
                 Close Claim
+            </a>
+
+            {{--Edit Claim button--}}
+            <a id="close-claim" href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
+                <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
+                Edit Claim
             </a>
         </h2>
         <hr>
