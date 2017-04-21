@@ -1,0 +1,149 @@
+app/Http/Controllers/
+	ClaimController.php
+	- Arnold, Chris, Peter
+	- Peer reviewed: All
+
+	CustomerController.php
+	- Arnold, Chris
+	- Peer reviewed: All
+
+	DamageCodeController.php
+	- Chris
+	- Peer reviewed: Arnold
+
+	ProductController.php
+	- Chris
+	- Peer reviewed: Arnold
+
+	RepairCenterController.php
+	- Chris
+	- Peer reviewed: Arnold
+
+	Mail/MailClaimController.php
+	- Arnold
+	- Peer reviewed: Chris
+
+	Role/PartCompany/PartCompanyController.php
+	- Chris
+	- Peer reviewed: Arnold
+
+app/Mail/
+	All Files
+	- Arnold
+	- Peer reviewed: Chris
+
+
+app/Models/
+	ClaimModel.php
+	- Arnold, Chris, Peter
+	- Peer reviewed: All
+
+	CustomerModel.php
+	- Arnold, Chris
+	- Peer reviewed: All
+
+	ProductModel.php
+	- Arnold
+	- Peer reviewed: Chris
+
+	RepairCenterModel.php
+	- Chris
+	- Peer reviewed: Arnold
+
+	Mail/MailClaimModel.php
+	- Arnold
+	- Peer reviewed: Chris
+
+database/seeds/
+ 	ClaimSeeder.php, CustomerSeeder.php, DamageCodeSeeder.php, DatabaseSeeder.php, ProductSeeder.php, RepairCenterSeeder.php, UserSeeder.php
+	- Chris
+	- Peer reviewed: Arnold, Peter
+
+resources/assets/
+	js/
+		claim.js
+		- Arnold, Chris, Peter
+		- Peer reviewed: All
+
+		app.js, customer.js, damage-code.js, product.js, repair-center.js
+		- Chris
+		- Peer reviewed: Arnold, Peter
+
+	sass/
+		_variable.scss
+		- Arnold
+
+		app.scss
+		- Arnold, Chris
+		- Peer reviewed: All
+
+resources/views/
+	All views were peer reviewed by: All
+	claim/
+		All files
+		- Arnold, Chris, Peter
+
+	customer/
+		customer-form.blade.php
+		- Arnold, Chris
+		delete-customer-modal.blade.php
+		- Chris
+		edit-form.blade.php
+		- Arnold, Chris
+		filter-form.blade.php
+		- Arnold, Chris
+		index.blade.php
+		- Arnold, Chris
+		more-detail.blade.php
+		- Arnold, Chris
+
+	damage-code/
+		create.blade.php
+		- Arnold
+		delete-dc-modal.blade.php
+		- Chris
+		edit.blade.php
+		- Arnold
+		list.blade.php
+		- Arnold, Chris
+
+	layouts/
+		master-narrow.blade.php
+		- Arnold
+
+	mail/
+		All files
+		- Arnold
+
+	product/
+		create.blade.php
+		- Arnold
+		delete-product-modal.blade.php
+		- Chris
+		edit.blade.php
+		- Arnold, Chris
+		filter-form.blade.php
+		- Arnold, Chris
+		index.blade.php
+		- Arnold, Chris
+
+	repair-center/
+		create.blade.php
+		- Arnold
+		delete-rc-modal.blade.php
+		- Chris
+		edit.blade.php
+		- Arnold
+		list.blade.php
+		- Chris
+		search-form.blade.php
+		- Arnold, Chris
+
+routes/web.php
+	- Arnold, Chris
+	- Peer reviewed: Everyone
+
+test/
+	All Files
+	- Chris
+	- Peer reviewed: Arnold, Peter

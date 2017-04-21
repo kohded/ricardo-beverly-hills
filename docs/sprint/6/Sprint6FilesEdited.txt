@@ -1,0 +1,1738 @@
+commit d9de6de19293cef154256893b37f4203f69856d4
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 08:59:37 2017 -0700
+
+    Part company claim detail page back button now correctly routes to part company claim list.
+
+ resources/views/role/part-company/claim-detail.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d20f559f74c789cad52f914b277a1494e0d572e9
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 08:55:24 2017 -0700
+
+    Added edit claim button to claim detail page.
+
+ app/Models/ClaimModel.php             | 20 ++++++++++----------
+ resources/views/claim/claim.blade.php |  8 +++++++-
+ 2 files changed, 17 insertions(+), 11 deletions(-)
+
+commit 099dd6f9ef678b277b8754f5c74ce9d5ee4d0aff
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 08:48:27 2017 -0700
+
+    Edit claim now works.  User can only change email address to an existing customer email - if they want to make an edit to customer data they can do it through the Customer tab.
+
+ app/Http/Controllers/ClaimController.php       | 64 ++++++++---------------
+ app/Http/Controllers/CustomerController.php    |  1 +
+ app/Models/ClaimModel.php                      | 72 ++++++--------------------
+ app/Models/CustomerModel.php                   | 15 ++++--
+ resources/views/claim/claim-edit.blade.php     |  4 +-
+ resources/views/customer/more-detail.blade.php | 34 ++++++------
+ 6 files changed, 72 insertions(+), 118 deletions(-)
+
+commit 554c06f3c9203ad50e712bc97ffa8685ad214307
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 07:34:03 2017 -0700
+
+    Change customer list query to show all customers regardless of whether they are assigned to a claim or not.
+
+ app/Http/Controllers/ClaimController.php    | 2 +-
+ app/Http/Controllers/CustomerController.php | 4 ++--
+ app/Models/CustomerModel.php                | 4 ++--
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+commit 3b7089df7a91482eb39bb09d309793063a01b856
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 07:20:44 2017 -0700
+
+    Edit type switch in new claim form is now sticky.
+
+ resources/views/claim/claim-form.blade.php | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 21bf56b54186418b6ac18c81d93839416936dcd3
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 07:18:12 2017 -0700
+
+    Validation now checks if customer email already exists when adding a new customer or claim.  Existing customer in claim forms now checks to make sure email does exist or a validation error is thrown.
+
+ app/Http/Controllers/ClaimController.php    |  4 +--
+ app/Http/Controllers/CustomerController.php |  2 +-
+ resources/views/claim/claim-edit.blade.php  | 47 +++++++++++++----------------
+ 3 files changed, 24 insertions(+), 29 deletions(-)
+
+commit d8a0eaa385c8dc0102d1feb1cb233c79bfdb5583
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 07:04:03 2017 -0700
+
+    Non-numbers are stripped from phone and zip before validation and submission of new claim form.
+
+ app/Http/Controllers/ClaimController.php | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit 2723166795cf2afa64bc5c40e8dd56b015586840
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 07:00:29 2017 -0700
+
+    New claim form now displays existing or new customer based on what was clicked on the previous submit.
+
+ app/Http/Controllers/ClaimController.php   |  2 +-
+ resources/views/claim/claim-form.blade.php | 14 +++++++++++---
+ 2 files changed, 12 insertions(+), 4 deletions(-)
+
+commit 052d3f53d8a78e09bebb806b3846adc3d5030296
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 20 06:51:58 2017 -0700
+
+    Made new claim form sticky.  Updated unit test to follow changes made to view in last commit.
+
+ app/Http/Controllers/ClaimController.php   | 152 ++++++++++++++---------------
+ resources/views/claim/claim-form.blade.php |  96 +++++++++++++-----
+ tests/PagesTest.php                        |   2 +-
+ 3 files changed, 147 insertions(+), 103 deletions(-)
+
+commit 59c86b61439f74f197f744db77af07fcd68dcb3d
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 20 05:58:26 2017 -0700
+
+    Update create and edit claim with narrow master layout. Change js with
+    collapsible. Replace td with divs.
+
+ public/js/app.js                           |   8 +-
+ resources/assets/js/claim.js               |  13 +-
+ resources/views/claim/claim-edit.blade.php | 515 ++++++++++++++---------------
+ resources/views/claim/claim-form.blade.php | 419 +++++++++++------------
+ 4 files changed, 459 insertions(+), 496 deletions(-)
+
+commit 06a5c3278e695533175df409856ea8fccce9c190
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 23:45:57 2017 -0700
+
+    Upload app.css.map file
+
+ public/css/app.css.map | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1de77847e267147f1baea378cbf0e295e2ba3652
+Author: Peter Kim <PeterLKim1337@gmail.com>
+Date:   Wed Apr 19 23:38:02 2017 -0700
+
+    reolved merge for claim-form
+
+ app/Http/Controllers/ClaimController.php   | 103 ++++++++++++++++-------
+ app/Models/ClaimModel.php                  | 129 +++++++++++++++-------------
+ public/css/app.css.map                     |   1 -
+ public/js/app.js                           |  80 ++++++++----------
+ resources/views/claim/claim-edit.blade.php | 130 +++++++++++++++++++++--------
+ resources/views/claim/claim-form.blade.php |   9 +-
+ 6 files changed, 278 insertions(+), 174 deletions(-)
+
+commit 63e310cbefc956723a6c383b0ec229f4873d8ea2
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 23:12:51 2017 -0700
+
+    * Fix alignment of all filter buttons for xs grid in list views
+
+ public/css/app.css                             | 14 +++++++++-----
+ public/css/app.css.map                         |  2 +-
+ resources/assets/sass/app.scss                 | 15 ++++++++++-----
+ resources/views/claim/filter-form.blade.php    |  2 +-
+ resources/views/customer/filter-form.blade.php |  2 +-
+ resources/views/product/filter-form.blade.php  |  2 +-
+ 6 files changed, 23 insertions(+), 14 deletions(-)
+
+commit 657f86866a4129304bd12920359201c5090b1249
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 23:10:53 2017 -0700
+
+    Fix alignment of all filter buttons for xs grid in list views
+
+ resources/views/repair-center/search-form.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 954e8b492a42e5404868b3d07f351ef792cd796f
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 20:16:30 2017 -0700
+
+    Add nowrap to table headings
+
+ public/css/app.css             | 4 ++++
+ public/css/app.css.map         | 2 +-
+ resources/assets/sass/app.scss | 4 ++++
+ 3 files changed, 9 insertions(+), 1 deletion(-)
+
+commit dc20c3787fdae57089a618cdd38b7f4015fb488b
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 20:15:05 2017 -0700
+
+    Add color to products list table and change order
+
+ resources/views/product/index.blade.php | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+commit b3ed7e188c344f2c5d692b4f91745d15a6ba0f79
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 19:33:50 2017 -0700
+
+    Created outline for presentation on Sprint 6.
+
+ docs/sprint/6/Presentation Script.txt | 49 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+
+commit d6306696606839f46cbcf5a8426981887dc2a81b
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 18:14:18 2017 -0700
+
+    Add space in customer list for customer name
+
+ app/Models/CustomerModel.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 10d5d8e84b5de2c4d5a6cccdfc11efb712bbc240
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 17:47:07 2017 -0700
+
+    Update customer more details with narrow master layout, and replace table with
+     divs
+
+ public/css/app.css                             |   4 +
+ public/css/app.css.map                         |   2 +-
+ resources/assets/sass/app.scss                 |   4 +
+ resources/views/customer/more-detail.blade.php | 146 +++++++++++++++----------
+ 4 files changed, 95 insertions(+), 61 deletions(-)
+
+commit 66e02bd2defc3a7f2a44f1b0cdafd9dba7e7049f
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 16:23:41 2017 -0700
+
+    Remove space in customer list
+
+ resources/views/customer/index.blade.php | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+commit 4947e8936380133a3ab1f1f41c60158804851e98
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 13:56:18 2017 -0700
+
+    Typing in a route that doesn't exist now redirects to root.
+
+ app/Exceptions/Handler.php | 24 +++++++++++++++++++++++-
+ 1 file changed, 23 insertions(+), 1 deletion(-)
+
+commit bd12435995cff82faedda62fca5386f499a415fb
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 13:36:33 2017 -0700
+
+    Trying to access any route redirects to login if user is not logged in.
+
+ routes/web.php | 313 +++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 158 insertions(+), 155 deletions(-)
+
+commit 2d12886133efef2ddc59035e86df577b2212e7da
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 13:14:55 2017 -0700
+
+    Refactored RepairCenterController so validation rules don't have to be repeated.
+
+ app/Http/Controllers/RepairCenterController.php | 39 ++++++++++++-------------
+ 1 file changed, 18 insertions(+), 21 deletions(-)
+
+commit f7d2e8b9a00914c1bdbccc7fd833cd4866560338
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 13:10:22 2017 -0700
+
+    Made add Customer form sticky.  Refactored CustomerController and edit form code.
+
+ app/Http/Controllers/CustomerController.php      | 115 +++++++++--------------
+ resources/views/customer/customer-form.blade.php |  44 ++++++---
+ resources/views/customer/edit-form.blade.php     |  47 +++++----
+ 3 files changed, 103 insertions(+), 103 deletions(-)
+
+commit 73ff6ef766874c87a166be3add1f8f8c78287fd2
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 12:39:31 2017 -0700
+
+    Updated validation on Repair Center and Customer forms.  Zip and phone strip all non-numeric chars before validating / inputting.
+
+ app/Http/Controllers/CustomerController.php     | 19 ++++++++++----
+ app/Http/Controllers/RepairCenterController.php | 33 ++++++++++++++++---------
+ 2 files changed, 35 insertions(+), 17 deletions(-)
+
+commit ccbd96fc2d27f28441ce427dc11ee3a1b10a562d
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 11:38:42 2017 -0700
+
+    Fixed validation error for phone number on repair center edit.
+
+ app/Http/Controllers/RepairCenterController.php | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit c8c04011b28d6ac36bf9a3729e5aef04693afac2
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 03:19:29 2017 -0700
+
+    Formatted Repair Center edit phone number, and on submit all non-numbers are stripped.
+
+ app/Http/Controllers/RepairCenterController.php | 18 ++++++++++++------
+ app/Models/RepairCenterModel.php                | 18 +++++++++++++++++-
+ 2 files changed, 29 insertions(+), 7 deletions(-)
+
+commit b2dda19e470d74e3df22c97f10180d0b938e13eb
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 03:14:24 2017 -0700
+
+    Update placeholders in create claim form
+
+ resources/views/claim/claim-form.blade.php | 33 ++++++++++++------------------
+ 1 file changed, 13 insertions(+), 20 deletions(-)
+
+commit f9b9d3853055a72fe79c30f35d3a3bc69728992a
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 03:01:44 2017 -0700
+
+    Update placeholders in customer, damage code, product, and repair center
+                create forms
+
+ resources/views/customer/customer-form.blade.php | 23 +++++++++--------------
+ resources/views/damage-code/create.blade.php     |  2 +-
+ resources/views/product/create.blade.php         | 13 ++++++-------
+ resources/views/repair-center/create.blade.php   | 10 +++++-----
+ 4 files changed, 21 insertions(+), 27 deletions(-)
+
+commit ab5e6e3a3fb4db851a3b52eca8100dfc58275a4b
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 19 02:55:28 2017 -0700
+
+    Formatted Claim, Customer, and Repair Center phone numbers.
+
+ app/Models/ClaimModel.php                |  8 ++++++--
+ app/Models/CustomerModel.php             | 31 ++++++++++++++++++++++++++++++-
+ app/Models/RepairCenterModel.php         | 13 +++++++++++++
+ resources/views/customer/index.blade.php |  8 ++++----
+ 4 files changed, 53 insertions(+), 7 deletions(-)
+
+commit 24e0cc682f482b4ebe6d20c4611c05123762e863
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 02:26:59 2017 -0700
+
+    Formatted timestamp for products list
+
+ app/Models/ProductModel.php | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit 8228311b697c9cc25b5133a5dbb8b3922ce3f6d0
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 19 01:57:50 2017 -0700
+
+    Formatted all timestamps for claims and comments
+
+ app/Models/ClaimModel.php | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
+
+commit ad461cad7e717f9ac7954e1979fd26d43e50a3ba
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 23:23:20 2017 -0700
+
+    Replace errors ul with p tag
+
+ resources/views/auth/register.blade.php          | 2 +-
+ resources/views/customer/customer-form.blade.php | 8 +++-----
+ resources/views/customer/edit-form.blade.php     | 8 +++-----
+ resources/views/damage-code/create.blade.php     | 8 +++-----
+ resources/views/damage-code/edit.blade.php       | 8 +++-----
+ resources/views/product/create.blade.php         | 8 +++-----
+ resources/views/product/edit.blade.php           | 8 +++-----
+ resources/views/repair-center/create.blade.php   | 8 +++-----
+ resources/views/repair-center/edit.blade.php     | 8 +++-----
+ 9 files changed, 25 insertions(+), 41 deletions(-)
+
+commit 69707b3bed2be1ca327ee30d77e48308c93eaa43
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 22:30:36 2017 -0700
+
+    Added icons to login page.
+
+ resources/views/auth/login.blade.php   | 17 ++++++++++++++---
+ resources/views/partials/nav.blade.php |  7 ++++++-
+ 2 files changed, 20 insertions(+), 4 deletions(-)
+
+commit 41f340b346236d1b7eec506ad776b64aed5cef3c
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 22:22:38 2017 -0700
+
+    Claims index now defaults to newest claims on top.  Dates correspond with claim IDs.  Increased total number of claims and customers in seeders.
+
+ app/Models/ClaimModel.php         | 1 +
+ database/seeds/ClaimSeeder.php    | 4 ++--
+ database/seeds/CustomerSeeder.php | 2 +-
+ 3 files changed, 4 insertions(+), 3 deletions(-)
+
+commit 9e67fd429e0f6fbf6654694290d29815b2e0e504
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 22:14:48 2017 -0700
+
+    Add session status to login page
+
+ resources/views/auth/login.blade.php | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit b20fed66cf1e24bd90d462a3ca2b1a8a09e46ca1
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 22:14:07 2017 -0700
+
+    Update reset password with narrow master layout
+
+ resources/views/auth/passwords/reset.blade.php | 127 ++++++++++++-------------
+ 1 file changed, 60 insertions(+), 67 deletions(-)
+
+commit a15e0c890275367cd4365d355562f8b9c2804830
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 21:59:17 2017 -0700
+
+    Update email password reset with narrow master layout
+
+ resources/views/auth/passwords/email.blade.php | 83 ++++++++++++++------------
+ 1 file changed, 46 insertions(+), 37 deletions(-)
+
+commit 8ee86debf7134fe19655ded757e1b670d4f59634
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 21:30:55 2017 -0700
+
+    Update login with narrow master layout
+
+ public/css/app.css                   |   4 ++
+ public/css/app.css.map               |   2 +-
+ resources/assets/sass/app.scss       |   6 ++
+ resources/views/auth/login.blade.php | 117 +++++++++++++++++------------------
+ 4 files changed, 69 insertions(+), 60 deletions(-)
+
+commit ba4690bec52113f501445061f720ee358242a23f
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 21:06:49 2017 -0700
+
+    Change id for register view
+
+ resources/views/auth/register.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ec84cc16d47016fcb5b63f165e86a05149e356a4
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 21:03:53 2017 -0700
+
+    Update register user with narrow master layout
+
+ app/Http/Controllers/Auth/RegisterController.php |   5 +-
+ resources/views/auth/register.blade.php          | 152 +++++++++++------------
+ 2 files changed, 77 insertions(+), 80 deletions(-)
+
+commit 9991e65314e56daf49cf9e3d97d1cfd5820cf9d6
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 19:11:34 2017 -0700
+
+    Added real Repair Center data to database seeder.
+
+ database/seeds/ClaimSeeder.php        |   6 +-
+ database/seeds/RepairCenterSeeder.php | 124 ++++++++++++++++++++++++++++++----
+ 2 files changed, 112 insertions(+), 18 deletions(-)
+
+commit 1a1b11cf6f6d562df04ebec95736f153c5400432
+Merge: 30fc632 42caf9c
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 17:59:11 2017 -0700
+
+    Merge branch 'master' of https://github.com/kohded/ricardo-beverly-hills
+
+commit 30fc6323fe15deef4e86199560acff807364229a
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 17:59:04 2017 -0700
+
+    Added real products to seeder
+
+ .../2017_02_02_133049_create_product_table.php     |   2 +-
+ .../2017_02_02_140751_create_claim_table.php       |   2 +-
+ database/seeds/ProductSeeder.php                   | 436 ++++++++++++++++++++-
+ 3 files changed, 427 insertions(+), 13 deletions(-)
+
+commit 42caf9c71b3ea9aeaff74f16b6bff624dfcb0860
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 17:54:20 2017 -0700
+
+    Update int comparison with attribute casting for new claim mail
+
+ app/Http/Controllers/Mail/MailClaimController.php | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit f46e68475631001b267f6331f5ea228a5ad69982
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 12:42:30 2017 -0700
+
+    Fixed unit tests to work with view changes from commit 6a7f5cd268e12c2aacdcf4c97775932f9d981f0c.
+
+ app/Models/CustomerModel.php | 16 ++++++++--------
+ tests/PagesTest.php          |  4 ++--
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+commit be9ff011b2ee137404339b2ee5704a6951ad9c94
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 11:31:20 2017 -0700
+
+    Submitting new customer now redirects to customer list instead of the new customer form.
+
+ app/Http/Controllers/CustomerController.php | 2 +-
+ resources/views/customer/index.blade.php    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 5d70683454c0db33e3c862cef201147d83c7e4dc
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 11:27:48 2017 -0700
+
+    JS for new claim form only executes on that page now.  Fixed all the delete modal problems and JS console error.
+
+ composer.lock                | 129 +++++++++++++++++++++----------------------
+ public/css/app.css.map       |   2 +-
+ public/js/app.js             |  80 +++++++++++++++------------
+ resources/assets/js/claim.js |   4 +-
+ 4 files changed, 114 insertions(+), 101 deletions(-)
+
+commit 2c479e27e17bf93c6543bdb786caa3412b6639a3
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 18 11:19:09 2017 -0700
+
+    Fixed new claim form submission.
+
+ resources/views/claim/claim-form.blade.php | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 15209f943742485d9d2fd883f5d791b1c27ce679
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 01:50:53 2017 -0700
+
+    Fix typo in filter select for product collection
+
+ resources/views/product/filter-form.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3169a6dac13d1e89ca1fd8301f92340747251026
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 01:21:16 2017 -0700
+
+    Fix create customer and update view with narrow master layout
+
+ app/Http/Controllers/CustomerController.php      |  13 +-
+ resources/views/customer/customer-form.blade.php | 182 +++++++++++++----------
+ 2 files changed, 108 insertions(+), 87 deletions(-)
+
+commit d3cfc8d65472fc23999dedabf6dad82e78f12ab2
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Tue Apr 18 00:19:32 2017 -0700
+
+    Move success and error message to top for damage code, product, repair
+    center, and customer edit
+
+ resources/views/customer/edit-form.blade.php   | 51 ++++++++++++--------------
+ resources/views/damage-code/create.blade.php   | 51 ++++++++++++--------------
+ resources/views/damage-code/edit.blade.php     | 51 ++++++++++++--------------
+ resources/views/product/create.blade.php       | 51 ++++++++++++--------------
+ resources/views/product/edit.blade.php         | 51 ++++++++++++--------------
+ resources/views/repair-center/create.blade.php | 50 ++++++++++++-------------
+ resources/views/repair-center/edit.blade.php   | 51 ++++++++++++--------------
+ 7 files changed, 168 insertions(+), 188 deletions(-)
+
+commit 6a7f5cd268e12c2aacdcf4c97775932f9d981f0c
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 21:50:11 2017 -0700
+
+    Update create product with narrow master layout
+
+ resources/views/product/create.blade.php | 114 +++++++++++++++++--------------
+ 1 file changed, 61 insertions(+), 53 deletions(-)
+
+commit 04e62af2a07b545db6f5ee989cd9769a45421e6f
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 21:40:55 2017 -0700
+
+    Update create repair center with narrow master layout
+
+ public/css/app.css                             |  2 +-
+ public/css/app.css.map                         |  2 +-
+ resources/assets/sass/app.scss                 | 17 ++++++---------
+ resources/views/repair-center/create.blade.php | 30 ++++++++++++++------------
+ 4 files changed, 24 insertions(+), 27 deletions(-)
+
+commit 010bc0c71233f8c8cdc56197a83866e090dda97a
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 21:30:44 2017 -0700
+
+    Update create damage code with narrow master layout
+
+ resources/views/damage-code/create.blade.php | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+commit 549a697ef4ba7344b9780016ba3040f9a131ea97
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 21:25:04 2017 -0700
+
+    Change damage code layout
+
+ resources/views/damage-code/edit.blade.php | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 0cf120fbab3e937806029e3328cbc0f7885ff190
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 21:12:44 2017 -0700
+
+    Change validation for edit customer, space was throwing error for city
+
+ app/Http/Controllers/CustomerController.php | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit c9740035168752bf0b8761a847c2bc60ef911fb1
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 21:07:47 2017 -0700
+
+    Update composer.lock
+
+ composer.lock | 310 ++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 158 insertions(+), 152 deletions(-)
+
+commit 6bad52db6548659be7b1bc7c14ea5045b55eafe7
+Author: Peter Kim <PeterLKim1337@gmail.com>
+Date:   Mon Apr 17 20:47:38 2017 -0700
+
+    added a debug bar
+
+ composer.json                |   3 +-
+ composer.lock                | 117 ++++++++++++++++++++++++++++++++++++++++++-
+ config/app.php               |   6 +++
+ resources/assets/js/claim.js |   3 --
+ storage/debugbar/.gitignore  |   2 +
+ 5 files changed, 126 insertions(+), 5 deletions(-)
+
+commit 4681b038be6a958e0b0f35b6bad53e47b677c749
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 20:43:51 2017 -0700
+
+    Change redirect when customer is edited
+
+ app/Http/Controllers/CustomerController.php | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3c3446333ee36ede64bad10292219503d75bf560
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 20:35:24 2017 -0700
+
+    Update edit customer with narrow master layout
+
+ resources/views/customer/edit-form.blade.php | 182 +++++++++++++++------------
+ 1 file changed, 104 insertions(+), 78 deletions(-)
+
+commit 126e28f2b4248f6e07d89a3990ab7d14094d41b5
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 20:05:48 2017 -0700
+
+    Add hr to edit repair center and edit damage code
+
+ resources/views/damage-code/edit.blade.php   |  35 +++----
+ resources/views/repair-center/edit.blade.php | 137 ++++++++++++++-------------
+ 2 files changed, 88 insertions(+), 84 deletions(-)
+
+commit ffaa5c8c3c2c9927e249103af25802db9aa70097
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 20:01:26 2017 -0700
+
+    Update edit product with narrow master layout
+
+ resources/views/product/edit.blade.php | 103 ++++++++++++++++++---------------
+ 1 file changed, 56 insertions(+), 47 deletions(-)
+
+commit 73109dbf3f4ee5dd8a643ce9f81e727adc552f0c
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 19:42:34 2017 -0700
+
+    Update edit damage code div id
+
+ resources/views/damage-code/edit.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d45ca356b344c01fe213d15d049d0343923ab8ba
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 19:38:51 2017 -0700
+
+    Update edit damage code with narrow master layout
+
+ resources/views/damage-code/edit.blade.php | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit ae51855149fafcee69f2845346def2d3f0b45c0c
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 19:34:46 2017 -0700
+
+    Update edit repair center with narrow master layout
+
+ public/css/app.css                           |  8 ++++++++
+ public/css/app.css.map                       |  2 +-
+ resources/assets/sass/app.scss               | 10 ++++++++++
+ resources/views/repair-center/edit.blade.php | 23 ++++++++++++-----------
+ 4 files changed, 31 insertions(+), 12 deletions(-)
+
+commit b178f39b15f6f116403002389da15f2cbcb01e8f
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 19:32:20 2017 -0700
+
+    Add narrow master layout
+
+ public/css/app.css                              | 32 +++++++++++---------
+ public/css/app.css.map                          |  2 +-
+ resources/assets/sass/app.scss                  |  6 ++++
+ resources/views/layouts/master-narrow.blade.php | 39 +++++++++++++++++++++++++
+ 4 files changed, 64 insertions(+), 15 deletions(-)
+
+commit 3b8d66783f1277a7164fe954ebd76f7898001b6c
+Author: Peter Kim <PeterLKim1337@gmail.com>
+Date:   Mon Apr 17 14:45:57 2017 -0700
+
+    added js to hide elements on initial load for claims
+
+ app/Http/Controllers/ClaimController.php   | 2 +-
+ public/js/app.js                           | 2 +-
+ resources/assets/js/claim.js               | 6 ++++++
+ resources/views/claim/claim-form.blade.php | 2 +-
+ 4 files changed, 9 insertions(+), 3 deletions(-)
+
+commit 14cd29102eacb1dc372fa216e3df521c4fbd01e9
+Author: Peter Kim <PeterLKim1337@gmail.com>
+Date:   Mon Apr 17 14:30:58 2017 -0700
+
+    added toggle features to create claim page
+
+ app/Models/ClaimModel.php                  |   4 ++
+ public/css/app.css.map                     |   2 +-
+ public/js/app.js                           | 102 ++++++++++++-----------------
+ resources/assets/js/claim.js               |  24 ++++++-
+ resources/views/claim/claim-edit.blade.php |  25 -------
+ resources/views/claim/claim-form.blade.php |  10 +--
+ 6 files changed, 76 insertions(+), 91 deletions(-)
+
+commit a4327f68d9b4509705dd2e3dea953dd0b96554ad
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 17 14:15:10 2017 -0700
+
+    Cleaned up JS file names and organization.
+
+ resources/assets/js/app.js                                      | 9 ++++-----
+ resources/assets/js/claim-list.js                               | 8 --------
+ resources/assets/js/{claim-detail.js => claim.js}               | 9 +++++++++
+ resources/assets/js/{customer-list.js => customer.js}           | 0
+ resources/assets/js/{product-list.js => product.js}             | 0
+ resources/assets/js/{repair-center-list.js => repair-center.js} | 0
+ 6 files changed, 13 insertions(+), 13 deletions(-)
+
+commit 0d5d595b745e7bbf3a495f2f9b78d9bbbe8efe07
+Merge: d15f27b a8d5d14
+Author: Peter Kim <PeterLKim1337@gmail.com>
+Date:   Mon Apr 17 14:06:37 2017 -0700
+
+    Merge branch 'master' of https://github.com/kohded/ricardo-beverly-hills
+
+commit d15f27bb2efa351dba88557c54a1678cda24b4a3
+Author: Peter Kim <PeterLKim1337@gmail.com>
+Date:   Mon Apr 17 14:06:11 2017 -0700
+
+    Toggle Exist and new cust, sticky edit form for new cust
+
+ app/Http/Controllers/ClaimController.php   |  2 +
+ resources/views/claim/claim-edit.blade.php | 66 ++++++++++++++++--------------
+ 2 files changed, 38 insertions(+), 30 deletions(-)
+
+commit a8d5d14099e540b82f36453c6428ea986965e1cf
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 17 13:28:57 2017 -0700
+
+    Ricardo now has ability to close out claims through claim detail page.
+
+ app/Http/Controllers/ClaimController.php |  8 ++++++++
+ app/Models/ClaimModel.php                | 10 ++++++++++
+ resources/views/claim/claim.blade.php    |  6 +++++-
+ routes/web.php                           |  5 ++++-
+ 4 files changed, 27 insertions(+), 2 deletions(-)
+
+commit 75da64df883617545297d73121495209cc398094
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 17 13:00:25 2017 -0700
+
+    Added icon by header on claim list for part company for consistency.
+
+ resources/views/role/part-company/list.blade.php | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit c01b071a536f8edd2c0c830e50e319f6a560c112
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 17 12:59:16 2017 -0700
+
+    Split claim detail view with comments on right.  Comments show newest on top now, with add button at top.  Split add comment for part company into the PartCompanyController.  Added a header and made claim details 12 column to match list widths.
+
+ .../Role/PartCompany/PartCompanyController.php     | 12 +++
+ app/Models/ClaimModel.php                          |  1 +
+ public/css/app.css.map                             |  2 +-
+ resources/views/claim/claim.blade.php              | 87 +++++++++++++---------
+ resources/views/claim/comments.blade.php           | 43 ++++++-----
+ .../views/role/part-company/claim-detail.blade.php | 83 ++++++++++++---------
+ routes/web.php                                     |  3 +
+ 7 files changed, 143 insertions(+), 88 deletions(-)
+
+commit b44eab8e4e604086ff02bf0ee4fa957835bdc87a
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 01:58:40 2017 -0700
+
+    Remove extra braces for favicon href
+
+ resources/views/layouts/master.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3a2bb1e8429adf9aa09232a61e00acd9b6d15c19
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 01:55:29 2017 -0700
+
+    Remove extra padding in damage code list
+
+ resources/views/damage-code/list.blade.php | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 1af1cc688227dc9172a87e8894b67704cf1ba9c2
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 01:44:35 2017 -0700
+
+    Remove extra claim message variable for TWC tracking email
+
+ .../RepairOrder/PartRequired/TrackingNumber/CustomerTrackingMail.php     | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 3ed421d4cd6e13fd2ff31e49478bd8edfac55a1b
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 01:36:55 2017 -0700
+
+    Add email functionality for replace order tracking number submitted by RBH
+
+ app/Http/Controllers/ClaimController.php           |  4 +-
+ app/Http/Controllers/Mail/MailClaimController.php  | 24 +++++++++++-
+ .../TrackingNumber/CustomerTrackingMail.php        | 45 ++++++++++++++++++++++
+ 3 files changed, 71 insertions(+), 2 deletions(-)
+
+commit 785c9c1e281a660e2ccd6099bed2f267ee2cd23e
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 01:11:04 2017 -0700
+
+    Resize nav logo for new icons
+
+ public/css/app.css             |   2 +-
+ public/css/app.css.map         |   2 +-
+ public/img/nav-logo.jpg        | Bin 3660 -> 3283 bytes
+ resources/assets/sass/app.scss |   2 +-
+ 4 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 69d5eac34c6a4aab07af9c36c947a63bc7420451
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 01:01:26 2017 -0700
+
+    Remove redundant views for tracking number emails
+
+ .../PartRequired/TrackingNumber/CustomerTrackingMail.php   |  2 +-
+ .../PartRequired/TrackingNumber/RBHTrackingMail.php        |  2 +-
+ .../TrackingNumber/RepairCenterTrackingMail.php            |  2 +-
+ resources/views/mail/claim/tracking/customer.blade.php     | 13 -------------
+ resources/views/mail/claim/tracking/rbh.blade.php          | 14 --------------
+ .../views/mail/claim/tracking/repair-center.blade.php      | 13 -------------
+ 6 files changed, 3 insertions(+), 43 deletions(-)
+
+commit 3172bb2217bad146d5ae7b939c07f10ddf536632
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 17 00:57:43 2017 -0700
+
+    Conver to replace order button now correctly shows at all times on repair orders, and displays an alert icon correctly only when action is required by Ricardo.
+
+ resources/views/claim/claim.blade.php | 42 +++++++++++++++++------------------
+ 1 file changed, 20 insertions(+), 22 deletions(-)
+
+commit c992630c44efb260a3263117411de80b674d5150
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 00:53:11 2017 -0700
+
+    Add email functionality for no part submitted by part company
+
+ app/Http/Controllers/Mail/MailClaimController.php  | 27 ++++++++++++
+ .../Role/PartCompany/PartCompanyController.php     |  8 +++-
+ .../PartRequired/NoPart/RBHNoPartMail.php          | 50 ++++++++++++++++++++++
+ 3 files changed, 83 insertions(+), 2 deletions(-)
+
+commit 3546730fa0c78ba8679d91ba4fc6db902d313f52
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 17 00:39:16 2017 -0700
+
+    Added icon to Repair Center list header.
+
+ resources/views/repair-center/list.blade.php | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 5e867767bd71ff2a0101468fd2ae19e163c8c0f9
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 17 00:37:20 2017 -0700
+
+    Updated glyphicons to font-awesome icons and added several new ones.
+
+ public/css/app.css                                 |  1 +
+ public/css/app.css.map                             |  2 +-
+ resources/assets/sass/app.scss                     |  3 +
+ resources/views/claim/claim.blade.php              | 83 +++++++++++++++-------
+ resources/views/claim/comments.blade.php           |  6 +-
+ resources/views/claim/delete-modal.blade.php       |  2 +-
+ resources/views/claim/filter-form.blade.php        |  4 +-
+ resources/views/claim/index.blade.php              | 39 +++++-----
+ resources/views/claim/repl-order-modal.blade.php   |  4 +-
+ .../views/claim/tracking-number-modal.blade.php    |  2 +-
+ .../views/customer/delete-customer-modal.blade.php |  5 +-
+ resources/views/customer/filter-form.blade.php     |  2 +-
+ resources/views/customer/index.blade.php           | 17 ++---
+ .../views/damage-code/delete-dc-modal.blade.php    |  3 +-
+ resources/views/damage-code/list.blade.php         | 14 ++--
+ resources/views/partials/nav.blade.php             | 13 ++--
+ .../views/product/delete-product-modal.blade.php   |  2 +-
+ resources/views/product/filter-form.blade.php      |  4 +-
+ resources/views/product/index.blade.php            | 28 +++++---
+ .../views/repair-center/delete-rc-modal.blade.php  |  3 +-
+ resources/views/repair-center/list.blade.php       | 28 +++++---
+ .../views/repair-center/search-form.blade.php      |  4 +-
+ 22 files changed, 166 insertions(+), 103 deletions(-)
+
+commit d2e798d288a6ec722f7247785064566a1e943559
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Mon Apr 17 00:08:14 2017 -0700
+
+    Add email functionality for tracking number submitted by part company
+
+ app/Http/Controllers/Mail/MailClaimController.php  | 26 ++++++++++
+ .../Role/PartCompany/PartCompanyController.php     |  3 ++
+ .../TrackingNumber/CustomerTrackingMail.php        | 52 ++++++++++++++++++++
+ .../TrackingNumber/RBHTrackingMail.php             | 56 ++++++++++++++++++++++
+ .../TrackingNumber/RepairCenterTrackingMail.php    | 46 ++++++++++++++++++
+ .../views/mail/claim/tracking/customer.blade.php   | 13 +++++
+ resources/views/mail/claim/tracking/rbh.blade.php  | 14 ++++++
+ .../mail/claim/tracking/repair-center.blade.php    | 13 +++++
+ 8 files changed, 223 insertions(+)
+
+commit cc4c866994d220150b11ccb6790610b3d7030580
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sun Apr 16 22:58:31 2017 -0700
+
+    Split Part Company into it's own controller and views.
+
+ app/Http/Controllers/ClaimController.php           |  14 -
+ .../Role/PartCompany/PartCompanyController.php     |  62 ++++-
+ resources/views/claim/claim.blade.php              | 105 ++++----
+ resources/views/claim/index.blade.php              |  72 ++---
+ .../views/claim/part-company-actions.blade.php     |   0
+ .../views/claim/tracking-number-modal.blade.php    |   2 +-
+ resources/views/partials/nav.blade.php             |   4 +-
+ .../views/role/part-company/claim-detail.blade.php | 297 +++++++++++++++++++++
+ resources/views/role/part-company/list.blade.php   |  86 +++++-
+ .../part-availability-modal.blade.php              |   2 +-
+ .../part-company/tracking-number-modal.blade.php   |  44 +++
+ routes/web.php                                     | 242 ++++++++---------
+ 12 files changed, 680 insertions(+), 250 deletions(-)
+
+commit 41453b07da2e3ab7d16bd0389eb8be52979fb76d
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sun Apr 16 20:57:12 2017 -0700
+
+    Changed Search / Filter buttons to just Filter.
+
+ resources/views/customer/filter-form.blade.php      | 2 --
+ resources/views/product/filter-form.blade.php       | 2 --
+ resources/views/repair-center/search-form.blade.php | 2 --
+ 3 files changed, 6 deletions(-)
+
+commit 56e482c475a565aa9aeecad0b43fa4bcf577eb3a
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sun Apr 16 20:02:29 2017 -0700
+
+    Added names to delete message when deleting Cutsomers, Repair centers, and damage codes.
+
+ app/Http/Controllers/CustomerController.php        |  3 +-
+ app/Http/Controllers/DamageCodeController.php      |  3 +-
+ app/Http/Controllers/RepairCenterController.php    |  4 +-
+ public/js/app.js                                   | 64 +++++++++++-----------
+ resources/assets/js/customer-list.js               |  1 +
+ resources/assets/js/damage-code.js                 |  1 +
+ resources/assets/js/repair-center-list.js          |  1 +
+ resources/views/claim/claim.blade.php              |  4 +-
+ resources/views/claim/filter-form.blade.php        |  2 -
+ .../views/customer/delete-customer-modal.blade.php |  3 +-
+ .../views/damage-code/delete-dc-modal.blade.php    |  1 +
+ .../views/repair-center/delete-rc-modal.blade.php  |  1 +
+ 12 files changed, 46 insertions(+), 42 deletions(-)
+
+commit 554d68f2af66c4729bd81e5beecb40961c084e73
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Sun Apr 16 16:16:10 2017 -0700
+
+    Fix error in claim edit view
+
+ resources/views/claim/claim-edit.blade.php | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 27201519c410b76eab6c9785167df8ae5e377b10
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sun Apr 16 10:18:57 2017 -0700
+
+    Added confirmation modal for delete damage code.
+
+ app/Http/Controllers/DamageCodeController.php      |  6 ++--
+ public/js/app.js                                   |  8 ++++-
+ resources/assets/js/app.js                         |  3 +-
+ resources/assets/js/damage-code.js                 |  7 ++++
+ resources/views/claim/index.blade.php              |  1 -
+ resources/views/customer/index.blade.php           |  1 -
+ .../views/damage-code/delete-dc-modal.blade.php    | 40 ++++++++++++++++++++++
+ resources/views/damage-code/list.blade.php         | 16 ++++++---
+ resources/views/product/index.blade.php            |  1 -
+ resources/views/repair-center/list.blade.php       |  1 -
+ routes/web.php                                     |  2 +-
+ 11 files changed, 72 insertions(+), 14 deletions(-)
+
+commit 1472b9dd4eda9f706dedfd15e549ad1cb3034392
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sun Apr 16 10:08:06 2017 -0700
+
+    Added confirmation modal to delete repair center.
+
+ app/Http/Controllers/RepairCenterController.php    |  7 ++--
+ public/js/app.js                                   |  8 ++++-
+ resources/assets/js/app.js                         |  3 +-
+ resources/assets/js/repair-center-list.js          |  7 ++++
+ .../views/repair-center/delete-rc-modal.blade.php  | 40 ++++++++++++++++++++++
+ resources/views/repair-center/list.blade.php       | 17 ++++++---
+ routes/web.php                                     |  2 +-
+ 7 files changed, 74 insertions(+), 10 deletions(-)
+
+commit 713b64208b0c293d60b718c9dcc9806e906facfc
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sun Apr 16 09:51:13 2017 -0700
+
+    Added confirmation modal to delete customer.
+
+ app/Http/Controllers/CustomerController.php        |  7 ++--
+ public/js/app.js                                   |  8 ++++-
+ resources/assets/js/app.js                         |  3 +-
+ resources/assets/js/customer-list.js               |  8 +++++
+ .../views/customer/delete-customer-modal.blade.php | 40 ++++++++++++++++++++++
+ resources/views/customer/index.blade.php           | 16 +++++++--
+ routes/web.php                                     |  2 +-
+ 7 files changed, 76 insertions(+), 8 deletions(-)
+
+commit 2903ccb0ca5001dec7f2c826bf5fa21152c7f396
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sun Apr 16 09:38:51 2017 -0700
+
+    Added confirmation modal before deleting product.  Fixed customer list bug - was reading the wrong id for view / delete / edit links.
+
+ app/Http/Controllers/ProductController.php         |  6 +-
+ public/js/app.js                                   | 64 +++++++++++++---------
+ resources/assets/js/app.js                         |  2 +
+ resources/assets/js/claim-detail.js                |  9 ---
+ resources/assets/js/claim-list.js                  |  8 +++
+ resources/assets/js/product-list.js                |  8 +++
+ resources/views/claim/delete-modal.blade.php       |  3 +-
+ resources/views/claim/index.blade.php              |  4 +-
+ resources/views/customer/index.blade.php           |  8 +--
+ .../views/product/delete-product-modal.blade.php   | 40 ++++++++++++++
+ resources/views/product/index.blade.php            | 17 ++++--
+ routes/web.php                                     |  2 +-
+ 12 files changed, 119 insertions(+), 52 deletions(-)
+
+commit 4a51a16eb70cfdce33970eafee63dce9e1cc771d
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 16:10:27 2017 -0700
+
+    Fixed text alignment on delete claim modal.
+
+ resources/views/claim/delete-modal.blade.php | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 5f93734235cc23edaaf95b62dd5143df81269230
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 16:08:59 2017 -0700
+
+    Added delete claim modal to confirm delete.  Sends a message back after deletion.
+
+ app/Http/Controllers/ClaimController.php     |  8 +++--
+ public/js/app.js                             | 52 ++++++++++++++--------------
+ resources/assets/js/claim-detail.js          | 12 +++++++
+ resources/views/claim/delete-modal.blade.php | 39 +++++++++++++++++++++
+ resources/views/claim/index.blade.php        | 13 +++++--
+ routes/web.php                               |  2 +-
+ 6 files changed, 94 insertions(+), 32 deletions(-)
+
+commit a67d62269f39ce458925ec83ee731f4fa4809b67
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 15:29:39 2017 -0700
+
+    Added ability to enter tracking number through modal.
+
+ app/Http/Controllers/ClaimController.php           | 14 +++++
+ app/Models/ClaimModel.php                          |  9 +++
+ public/js/app.js                                   |  2 +-
+ resources/assets/js/claim-detail.js                | 10 ++++
+ resources/views/claim/claim.blade.php              |  4 +-
+ .../views/claim/part-availability-modal.blade.php  | 56 +++++++++++++++++++
+ .../views/claim/tracking-number-modal.blade.php    | 65 +++++++++++-----------
+ routes/web.php                                     |  6 +-
+ 8 files changed, 128 insertions(+), 38 deletions(-)
+
+commit 17c4290d0622826b7b699ab88b746da140d6bf20
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 15:17:59 2017 -0700
+
+    Added modal for part company login to add parts availability and enter a comment.
+
+ app/Http/Controllers/ClaimController.php           | 16 +++++++-
+ app/Models/ClaimModel.php                          | 13 +++++-
+ .../2017_02_02_140751_create_claim_table.php       |  1 +
+ public/js/app.js                                   |  2 +-
+ resources/assets/js/claim-detail.js                | 10 +++++
+ resources/views/claim/claim.blade.php              | 39 +++++++++++-------
+ resources/views/claim/repl-order-modal.blade.php   |  7 ++--
+ .../views/claim/tracking-number-modal.blade.php    | 47 ++++++++++++++++++++++
+ routes/web.php                                     |  2 +
+ 9 files changed, 116 insertions(+), 21 deletions(-)
+
+commit 597fe1a21017341150c30e09545f632ace0b2209
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 13:23:30 2017 -0700
+
+    Added confirmation modal to convert to replace order button.
+
+ public/css/app.css.map                           |  2 +-
+ public/js/app.js                                 | 76 +++++++++++++++---------
+ resources/assets/js/app.js                       |  3 +
+ resources/assets/js/claim-detail.js              |  7 +++
+ resources/views/claim/claim.blade.php            | 21 ++++---
+ resources/views/claim/repl-order-modal.blade.php | 47 +++++++++++++++
+ 6 files changed, 118 insertions(+), 38 deletions(-)
+
+commit 2e8550bf5f4cfabbbccc90838556b9bd03f88528
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 12:27:19 2017 -0700
+
+    Added action buttons for part company to update part availability and tracking number.  Changed alerts and action required buttons to Bootstrap warning color.
+
+ resources/views/claim/claim.blade.php | 37 ++++++++++++++++++++++++++++++++---
+ resources/views/claim/index.blade.php |  4 ++--
+ 2 files changed, 36 insertions(+), 5 deletions(-)
+
+commit 60705516c81d71fda23cf66ae91e4788b65951f2
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 12:01:33 2017 -0700
+
+    Call seeders from DatabaseSeeder.
+
+ database/seeds/{ClaimSeeder => ClaimSeeder.php}    |   2 +
+ database/seeds/CustomerSeeder.php                  |   3 +
+ database/seeds/DatabaseSeeder.php                  | 139 +--------------------
+ database/seeds/ProductSeeder.php                   |   3 +-
+ database/seeds/RepairCenterSeeder.php              |   3 +-
+ database/seeds/{UsersSeeder.php => UserSeeder.php} |   5 +-
+ 6 files changed, 16 insertions(+), 139 deletions(-)
+
+commit 391c7be7be19211462be0010e96708ed6f8e6457
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 11:48:57 2017 -0700
+
+    Corrections to seeders.
+
+ database/seeds/CustomerSeeder.php | 2 +-
+ database/seeds/ProductSeeder.php  | 2 +-
+ database/seeds/UsersSeeder.php    | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 7c32f61d4b0467bc67afabd5832e9a4bf883ae4c
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 11:48:11 2017 -0700
+
+    Split different table seeders into their own seeder class.
+
+ database/seeds/ClaimSeeder            | 40 +++++++++++++++++++++++++++++
+ database/seeds/CustomerSeeder.php     | 26 +++++++++++++++++++
+ database/seeds/DamageCodeSeeder.php   | 35 ++++++++++++++++++++++++++
+ database/seeds/ProductSeeder.php      | 27 ++++++++++++++++++++
+ database/seeds/RepairCenterSeeder.php | 39 +++++++++++++++++++++++++++++
+ database/seeds/UsersSeeder.php        | 47 +++++++++++++++++++++++++++++++++++
+ 6 files changed, 214 insertions(+)
+
+commit ec5c46cd5adaa6f4f67c347ebe914fb3324ad40c
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 11:21:08 2017 -0700
+
+    Added tool tips to glyphicons in each list.
+
+ database/seeds/DatabaseSeeder.php            |  2 --
+ resources/views/claim/index.blade.php        | 14 +++++++-------
+ resources/views/customer/index.blade.php     |  6 +++---
+ resources/views/damage-code/list.blade.php   |  4 ++--
+ resources/views/product/index.blade.php      |  4 ++--
+ resources/views/repair-center/list.blade.php |  6 +++---
+ 6 files changed, 17 insertions(+), 19 deletions(-)
+
+commit fd7817c3bcf2391b2dc81e43ee8b9a1a5abaf728
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 10:51:42 2017 -0700
+
+    Fixed database seeder to apply comments to new claim range (1000-1050)
+
+ database/seeds/DatabaseSeeder.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e3378c3b259bd410d980fe462433f387699412ea
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 10:48:36 2017 -0700
+
+    Fixed alerts on claim list for part company.  Started claim numbers at 1000 instead of 1.
+
+ database/migrations/2017_02_02_140751_create_claim_table.php | 2 ++
+ resources/views/claim/index.blade.php                        | 3 ++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit 30e308f07f65cb0559884f14e7982fb1c35377f2
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 10:35:40 2017 -0700
+
+    Moved tracking # in claim details to always display regardless of claim type.  Added wrench or bag to specify what type of claim each is in the list.
+
+ resources/views/claim/claim.blade.php | 5 ++---
+ resources/views/claim/index.blade.php | 5 +++++
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+commit c23bb0ed99df5e43f4201bec53262c184a5970fa
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 10:31:02 2017 -0700
+
+    Moved convert to replace order button below Parts Availble in claim details.
+
+ resources/views/claim/claim.blade.php | 26 ++++++++++++++------------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
+
+commit c393e7eac336518edb384da84b04c04939d82095
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 10:27:58 2017 -0700
+
+    Fixed claim list and details to correctly detect if TWC has selected whether or not parts are available yet.
+
+ resources/views/claim/claim.blade.php | 24 +++++++++++++-----------
+ resources/views/claim/index.blade.php |  2 +-
+ 2 files changed, 14 insertions(+), 12 deletions(-)
+
+commit b2bcc70354f07a9e4c03718822de640226bc1ae2
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 10:02:19 2017 -0700
+
+    Home now redirects to claim list if logged in, otherwise to login page.
+
+ routes/web.php | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+commit 0c5d79a8fde3ef51aa804c41be684ec5303254f8
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 09:56:55 2017 -0700
+
+    Redirect home route to login.
+
+ routes/web.php | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 1d592ea21f66fb10d13704cd065f876abffec4f7
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 09:52:09 2017 -0700
+
+    Added alert icons for claims that need action.  Renamed replaced to replace_order in database for clarity.  Added Tracking # to claim details.  Removed edit / delete buttons from part company claim list.
+
+ app/Http/Controllers/ClaimController.php           |   6 +-
+ app/Http/Controllers/Mail/MailClaimController.php  |   4 +-
+ app/Models/ClaimModel.php                          |  27 ++-
+ .../2017_02_02_140751_create_claim_table.php       |   2 +-
+ database/seeds/DatabaseSeeder.php                  |   2 +-
+ resources/views/claim/claim.blade.php              |  70 ++-----
+ resources/views/claim/comments.blade.php           |  50 +++++
+ resources/views/claim/create.blade.php             | 170 ----------------
+ resources/views/claim/index.blade.php              |  63 ++++--
+ .../views/claim/part-company-actions.blade.php     |   0
+ resources/views/mail/partials/claim-info.blade.php |   4 +-
+ resources/views/partials/nav.blade.php             |  68 ++++---
+ routes/web.php                                     | 219 +++++++++++----------
+ 13 files changed, 280 insertions(+), 405 deletions(-)
+
+commit d0465267bf06af0064f03b3ff469a86077e2c45c
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Sat Apr 15 08:01:57 2017 -0700
+
+    Added part company list view.
+
+ app/Http/Controllers/ClaimController.php | 28 ++++++++++++++++------------
+ app/Models/ClaimModel.php                | 13 ++++++++++++-
+ routes/web.php                           |  6 ++++--
+ 3 files changed, 32 insertions(+), 15 deletions(-)
+
+commit ed9929d449a71c65985fca4e832e69afae98fb3a
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Fri Apr 14 15:39:07 2017 -0700
+
+    Removed preferred column. Display a star next to preferred RC names instead.
+
+ resources/views/repair-center/list.blade.php | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
+
+commit 85f9041592c3db1cb257ba4ed7fbfa63e12a4b34
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Fri Apr 14 15:17:27 2017 -0700
+
+    Removed semicolons from claim details page.
+
+ resources/views/claim/claim.blade.php | 36 +++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
+
+commit 95c56df855d1a5a152a1d0b602c65d205f609114
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Fri Apr 14 15:10:16 2017 -0700
+
+    Fixed bug with edit customer page.
+
+ app/Http/Controllers/CustomerController.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c3892c88aeef2f826a60b80f6603a60d5c341a2f
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Fri Apr 14 14:01:34 2017 -0700
+
+    Added glyphicons to damage code and repair center lists
+
+ resources/views/damage-code/list.blade.php   |  4 +++-
+ resources/views/repair-center/list.blade.php | 25 ++++++++++++++++++++-----
+ 2 files changed, 23 insertions(+), 6 deletions(-)
+
+commit e67fb53d1b54e48c1d73903aa61feb73fbcf8715
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Fri Apr 14 13:28:44 2017 -0700
+
+    Updated unit tests for list changes.
+
+ tests/LoginTest.php | 6 +++---
+ tests/PagesTest.php | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+commit e68873a39b486c0a311fcc0c1a280f3c289a43e6
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Fri Apr 14 13:24:37 2017 -0700
+
+    Made all lists consistent and updated search and filter options.
+
+ resources/views/claim/filter-form.blade.php        | 61 ++++++++++++++--------
+ resources/views/claim/index.blade.php              | 13 +++--
+ resources/views/customer/filter-form.blade.php     | 32 +++++++-----
+ resources/views/customer/index.blade.php           | 16 +++---
+ resources/views/damage-code/list.blade.php         | 11 ++--
+ resources/views/product/filter-form.blade.php      | 24 ++++++---
+ resources/views/product/index.blade.php            | 14 +++--
+ resources/views/repair-center/list.blade.php       | 17 +++---
+ .../views/repair-center/search-form.blade.php      | 19 ++++---
+ 9 files changed, 126 insertions(+), 81 deletions(-)
+
+commit 5fe2ac948feac9bbe80a3e98d887a5f7fe531b2e
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Thu Apr 13 20:22:44 2017 -0700
+
+    Made part_needed nullable to prevent error on claim submission.
+
+ database/migrations/2017_02_02_140751_create_claim_table.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b3ceca7576a6ea1bb782b7d2df7e097602a1dfa1
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 18:10:16 2017 -0700
+
+    Remove space from nav
+
+ public/css/app.css                     |   4 ++++
+ public/css/app.css.map                 |   2 +-
+ public/img/nav-logo.jpg                | Bin 5687 -> 3660 bytes
+ resources/assets/sass/app.scss         |   4 ++++
+ resources/views/partials/nav.blade.php |  14 +++-----------
+ 5 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 555432871a90c623d7cd98d3532a37b650330a1e
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 05:43:50 2017 -0700
+
+    Remove text from dashboard
+
+ app/Http/Controllers/DashboardController.php | 4 +---
+ resources/views/dashboard.blade.php          | 1 -
+ 2 files changed, 1 insertion(+), 4 deletions(-)
+
+commit b960f79e59be825e2503f44d4281df236b594fe5
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 05:43:23 2017 -0700
+
+    Update font to Oswald
+
+ public/css/app.css                    | 8 ++++----
+ public/css/app.css.map                | 2 +-
+ resources/assets/sass/_variables.scss | 2 +-
+ resources/assets/sass/app.scss        | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
+
+commit f3f647c70d7a57ba3eb4b5926b6010ab5a184bf0
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 05:30:41 2017 -0700
+
+    Hide desktop nav in mobile view
+
+ resources/views/partials/nav.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e18ed1b9f82296f1460807f9abf91d56b315c1be
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 05:28:01 2017 -0700
+
+    Add logo to nav append to last commit
+
+ app/Http/Controllers/HomeController.php |   4 +---
+ public/css/app.css                      |   4 ++++
+ public/img/nav-logo.jpg                 | Bin 0 -> 5687 bytes
+ resources/assets/sass/app.scss          |   4 ++++
+ resources/views/home.blade.php          |   1 -
+ resources/views/partials/nav.blade.php  |  15 ++++++++++++---
+ 6 files changed, 21 insertions(+), 7 deletions(-)
+
+commit 4604296b3dd6024d1f7b848bd37204cd894afad6
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 05:27:13 2017 -0700
+
+    Add logo to nav
+
+ public/css/app.css.map | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f722aa5290d224830954f359492d53d166fc0ae7
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 04:36:24 2017 -0700
+
+    Remove email button from more details and moved email sent message
+
+ resources/views/claim/claim.blade.php | 20 ++++++++------------
+ routes/web.php                        |  6 ------
+ 2 files changed, 8 insertions(+), 18 deletions(-)
+
+commit 0470958916e97470a0bf27263c5501704bf49ed9
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 04:16:41 2017 -0700
+
+    Add space in customers name for email message
+
+ app/Http/Controllers/Mail/MailClaimController.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit eb4a2d30897fb9718d0888ecfac8fdbff7ef8857
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 04:06:54 2017 -0700
+
+    Add email functionality for new claim replace order
+
+ app/Http/Controllers/Mail/MailClaimController.php            | 12 ++++++++----
+ app/Mail/Claim/ReplaceOrder/{Convert => }/CustomerMail.php   |  5 +++--
+ .../Claim/ReplaceOrder/{Convert => }/RepairCenterMail.php    |  2 +-
+ 3 files changed, 12 insertions(+), 7 deletions(-)
+
+commit 9b255e75debd4126f005df733946be5271fa25a6
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 03:47:42 2017 -0700
+
+    Update email functionality for convert to replace order
+
+ app/Http/Controllers/ClaimController.php           |  4 +-
+ app/Http/Controllers/Mail/MailClaimController.php  | 43 +++++++++++++++++++++-
+ .../ReplaceOrder/{ => Convert}/CustomerMail.php    | 19 ++++++----
+ .../{ => Convert}/RepairCenterMail.php             | 19 ++++++----
+ 4 files changed, 65 insertions(+), 20 deletions(-)
+
+commit 1f18150f5e17717f77e8fa4f50eb7cbf9fefdf09
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Thu Apr 13 03:05:06 2017 -0700
+
+    Add email functionality for new claim repair order
+
+ app/Http/Controllers/ClaimController.php           |    9 +-
+ app/Http/Controllers/Mail/MailClaimController.php  |  162 +-
+ .../PartNotRequired/Customer/CustomerMail.php      |   46 +
+ .../PartNotRequired/Customer/RBHMail.php           |   50 +
+ .../PartNotRequired/RepairCenter/CustomerMail.php  |   46 +
+ .../PartNotRequired/RepairCenter/RBHMail.php       |   50 +
+ .../RepairCenter/RepairCenterMail.php              |   46 +
+ .../PartRequired/Customer/CustomerMail.php         |   46 +
+ .../RepairOrder/PartRequired/Customer/RBHMail.php  |   50 +
+ .../RepairOrder/PartRequired/Customer/TWCMail.php  |   50 +
+ .../PartRequired/RepairCenter/CustomerMail.php     |   46 +
+ .../PartRequired/RepairCenter/RBHMail.php          |   51 +
+ .../PartRequired/RepairCenter/RepairCenterMail.php |   46 +
+ .../PartRequired/RepairCenter/TWCMail.php          |   50 +
+ app/Mail/{ => Claim}/ReplaceOrder/CustomerMail.php |    0
+ .../{ => Claim}/ReplaceOrder/RepairCenterMail.php  |    0
+ app/Mail/ClientMail.php                            |   36 -
+ app/Mail/PartCenterMail.php                        |   38 -
+ app/Mail/PartOrder/RBHMail.php                     |   46 -
+ app/Mail/PartOrder/ReceiverMail.php                |   42 -
+ app/Mail/PartOrder/TWCMail.php                     |   46 -
+ app/Mail/RicardoBeverlyHillsMail.php               |   39 -
+ resources/views/claim/claim.blade.php              |    9 +-
+ .../customer.blade.php}                            |    4 +-
+ .../views/mail/{part-order => claim}/rbh.blade.php |    4 +-
+ .../repair-center.blade.php                        |    4 +-
+ .../views/mail/{part-order => claim}/twc.blade.php |    4 +-
+ resources/views/mail/client.blade.php              | 2876 -------------------
+ resources/views/mail/part-center.blade.php         | 2876 -------------------
+ .../views/mail/partials/claim-comments.blade.php   |    3 +-
+ resources/views/mail/partials/claim-info.blade.php |    6 +-
+ resources/views/mail/partials/head.blade.php       |    8 -
+ .../views/mail/replace-order/customer.blade.php    |   13 -
+ .../views/mail/ricardo-beverly-hills.blade.php     | 2897 --------------------
+ 34 files changed, 683 insertions(+), 9016 deletions(-)
+
+commit 63e70458c1b3658b85a75c4cdc405c798cc86be3
+Author: Peter Kim <PeterLKim1337@gmail.com>
+Date:   Wed Apr 12 21:10:06 2017 -0700
+
+    Edit Claim isnt functional yet but removed the error
+
+ resources/views/claim/claim-edit.blade.php   |  2 +-
+ resources/views/customer/edit-form.blade.php | 20 ++++++++++----------
+ 2 files changed, 11 insertions(+), 11 deletions(-)
+
+commit 2850e6cf125da6b9cafbc83d06b50464172b8da2
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 12 07:37:29 2017 -0700
+
+    Add email functionality for replace order
+
+ app/Http/Controllers/ClaimController.php           |   4 +
+ app/Http/Controllers/Mail/MailClaimController.php  |  36 ++-
+ app/Mail/PartOrder/RBHMail.php                     |  13 +-
+ app/Mail/PartOrder/ReceiverMail.php                |  10 +-
+ app/Mail/PartOrder/TWCMail.php                     |  13 +-
+ app/Mail/ReplaceOrder/CustomerMail.php             |  43 ++++
+ app/Mail/ReplaceOrder/RepairCenterMail.php         |  43 ++++
+ resources/views/claim/claim-form.blade.php         |   1 +
+ resources/views/claim/claim.blade.php              | 243 +++++++++++----------
+ resources/views/mail/part-order/rbh.blade.php      |   2 +-
+ resources/views/mail/partials/claim-info.blade.php |   2 +
+ .../views/mail/replace-order/customer.blade.php    |  13 ++
+ .../mail/replace-order/repair-center.blade.php     |  13 ++
+ 13 files changed, 310 insertions(+), 126 deletions(-)
+
+commit 6c4fcf948d19b01d34fab48b644c951b5936953b
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 07:01:45 2017 -0700
+
+    Replaced buttons with glyphicons on damage code list.  Added unit tests to test damage code pages.
+
+ resources/views/damage-code/list.blade.php | 22 ++++++++++++++--------
+ tests/PagesTest.php                        | 16 ++++++++++++++++
+ 2 files changed, 30 insertions(+), 8 deletions(-)
+
+commit 2b600171fc90129eae1e1e113addb3472c0354c7
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 06:57:28 2017 -0700
+
+    Fixed unit tests to test glyphicon links instead of old buttons.
+
+ resources/views/claim/index.blade.php        | 19 +++++++++++--------
+ resources/views/customer/index.blade.php     |  2 +-
+ resources/views/product/index.blade.php      |  2 +-
+ resources/views/repair-center/list.blade.php |  2 +-
+ tests/PagesTest.php                          | 12 ++++++++----
+ 5 files changed, 22 insertions(+), 15 deletions(-)
+
+commit dc17a7865ee21370075f85bcba6a9c4319b4fa94
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 06:43:45 2017 -0700
+
+    Replaced buttons with glyphicons on Repair center and products list.
+
+ resources/views/product/index.blade.php      | 17 +++++++++++------
+ resources/views/repair-center/list.blade.php |  6 ++++--
+ tests/PagesTest.php                          |  5 -----
+ 3 files changed, 15 insertions(+), 13 deletions(-)
+
+commit 99d838208f60a95a918fa53f3d8e4351c31bd746
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 06:28:18 2017 -0700
+
+    Added active bootstrap class to active nav links.
+
+ resources/views/partials/nav.blade.php | 50 ++++++++++++++++++++--------------
+ 1 file changed, 30 insertions(+), 20 deletions(-)
+
+commit 78aa30f819efba8fe40f60adef1b0efcef35e0ba
+Merge: 067ed72 dd0e2b0
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 06:22:48 2017 -0700
+
+    Merge branch 'master' of https://github.com/kohded/ricardo-beverly-hills
+
+commit 067ed72c1467003f14d27bce1f4c15711c189f8b
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 06:20:10 2017 -0700
+
+    Replaced buttons with glyphicons on customer list.
+
+ resources/views/customer/index.blade.php | 42 +++++++++++++++++++++++---------
+ 1 file changed, 31 insertions(+), 11 deletions(-)
+
+commit dd0e2b0d9c0228cf30bd56f7bf62d3002a224be5
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 05:40:23 2017 -0700
+
+    Email Flow Chart.xml
+
+ docs/Untitled Diagram.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c99f5c18e3e042234cb80c157789b80abb716b6f
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 05:36:19 2017 -0700
+
+    Email Flow Chart.xml
+
+ docs/Untitled Diagram.xml | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit bd8e392b4ef69108de29d5ee1b19979085453cc1
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Wed Apr 12 04:38:21 2017 -0700
+
+    Replaced buttons with glyphicons on claims list.
+
+ resources/views/claim/index.blade.php  | 50 +++++++++++++++++++++++++++-------
+ resources/views/partials/nav.blade.php |  2 +-
+ 2 files changed, 41 insertions(+), 11 deletions(-)
+
+commit 2e59e28452bd16611afd9d3649449b995909c47a
+Author: Arnold Koh <kohded@users.noreply.github.com>
+Date:   Wed Apr 12 02:47:53 2017 -0700
+
+    Add email functionality for new part/repair order claims
+
+ app/Http/Controllers/ClaimController.php           |    9 +-
+ .../Mail/ClaimConfirmationController.php           |   42 -
+ app/Http/Controllers/Mail/MailClaimController.php  |   89 +
+ app/Mail/PartOrder/RBHMail.php                     |   39 +
+ app/Mail/PartOrder/ReceiverMail.php                |   36 +
+ app/Mail/PartOrder/TWCMail.php                     |   39 +
+ app/Models/Mail/MailClaimModel.php                 |   16 +
+ app/Models/Mail/MailModel.php                      |   18 -
+ resources/views/claim/claim.blade.php              |   29 +-
+ resources/views/mail/part-order/rbh.blade.php      |   14 +
+ resources/views/mail/part-order/receiver.blade.php |   13 +
+ resources/views/mail/part-order/twc.blade.php      |   14 +
+ .../views/mail/partials/claim-comments.blade.php   |   16 +
+ resources/views/mail/partials/claim-info.blade.php |  126 +
+ resources/views/mail/partials/head.blade.php       | 2791 ++++++++++++++++++++
+ routes/web.php                                     |    5 +-
+ 16 files changed, 3219 insertions(+), 77 deletions(-)
+
+commit d1eea9488f3c18b36d5c5c11ba45d74218ed9cbd
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 11 18:48:29 2017 -0700
+
+    Added favicon.
+
+ public/img/favicon.png                   | Bin 0 -> 8624 bytes
+ resources/views/layouts/master.blade.php |   1 +
+ 2 files changed, 1 insertion(+)
+
+commit f585d36b46de96f99f7167de05baedf7302a1000
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 11 17:09:32 2017 -0700
+
+    Added part availability to claim detail view.
+
+ app/Models/ClaimModel.php             |  1 +
+ resources/views/claim/claim.blade.php | 10 ++++++++++
+ 2 files changed, 11 insertions(+)
+
+commit 9d05db9abb4e39f8c82f718f3e35ed24e03d7a1e
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 11 17:04:33 2017 -0700
+
+    Added parts_available flag to claims to track whether there are parts available or not from TWC.
+
+ database/migrations/2017_02_02_140751_create_claim_table.php | 3 ++-
+ database/seeds/DatabaseSeeder.php                            | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 5ac88d1a0a60c5b31ab672260223d1dea4308237
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 11 17:01:55 2017 -0700
+
+    Added part_needed to new claim form to specify whether or not parts are needed.
+
+ app/Http/Controllers/ClaimController.php            |  1 +
+ app/Models/ClaimModel.php                           | 16 +++++++++-------
+ .../2017_02_02_140751_create_claim_table.php        |  2 +-
+ database/seeds/DatabaseSeeder.php                   |  1 +
+ resources/views/claim/claim-form.blade.php          | 21 +++++++++++++++++++++
+ resources/views/claim/claim.blade.php               | 15 +++++++++++----
+ 6 files changed, 44 insertions(+), 12 deletions(-)
+
+commit 9fa947d534019eb91bf53bf2e4783cf2fbd76a7c
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 11 16:32:04 2017 -0700
+
+    Added parts_needed field to claims for information on what parts are required for repair.
+
+ app/Http/Controllers/ClaimController.php                     |  3 ++-
+ app/Models/ClaimModel.php                                    |  6 ++++--
+ database/migrations/2017_02_02_140751_create_claim_table.php |  1 +
+ database/seeds/DatabaseSeeder.php                            |  3 ++-
+ resources/views/claim/claim-form.blade.php                   |  9 ++++++++-
+ resources/views/claim/claim.blade.php                        | 12 ++++++++++--
+ 6 files changed, 27 insertions(+), 7 deletions(-)
+
+commit db7df7be7c3c0441381af2a7538876151c293533
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Tue Apr 11 00:02:26 2017 -0700
+
+    Added ship_to field in claim.
+
+ app/Http/Controllers/ClaimController.php           |  5 +-
+ app/Models/ClaimModel.php                          |  9 ++--
+ .../2017_02_02_140751_create_claim_table.php       |  1 +
+ database/seeds/DatabaseSeeder.php                  |  3 +-
+ resources/views/claim/claim-form.blade.php         | 58 +++++++++++++++-------
+ resources/views/claim/claim.blade.php              |  2 +
+ 6 files changed, 55 insertions(+), 23 deletions(-)
+
+commit 39918994f358c1777c06a44c5885952be049cfc1
+Author: Chris Knoll <cknoll3@gmail.com>
+Date:   Mon Apr 10 19:12:09 2017 -0700
+
+    Added convert to replace order ability on claim view.  Updated some styling.
+
+ app/Http/Controllers/ClaimController.php           |   9 +-
+ app/Models/ClaimModel.php                          |   7 +
+ .../bootstrap/glyphicons-halflings-regular.eot     | Bin 0 -> 20127 bytes
+ .../bootstrap/glyphicons-halflings-regular.svg     | 288 +++++++++++++++++++++
+ .../bootstrap/glyphicons-halflings-regular.ttf     | Bin 0 -> 45404 bytes
+ .../bootstrap/glyphicons-halflings-regular.woff    | Bin 0 -> 23424 bytes
+ .../bootstrap/glyphicons-halflings-regular.woff2   | Bin 0 -> 18028 bytes
+ resources/views/claim/claim-form.blade.php         |   4 +-
+ resources/views/claim/claim.blade.php              | 198 ++++++++++----
+ resources/views/partials/nav.blade.php             |  25 +-
+ routes/web.php                                     |   3 +
+ 11 files changed, 475 insertions(+), 59 deletions(-)
