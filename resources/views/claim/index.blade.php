@@ -34,31 +34,56 @@
                         <thead>
                         <tr>
                             <th>
-                                <span class="fa fa-exclamation-triangle" aria-hidden="true" title="Action needed!"></span>
+                                <a><span class="fa fa-exclamation-triangle" aria-hidden="true" title="Action needed!"></span></a>
                             </th>
                             <th>
                                 <span class="fa fa-file-text" aria-hidden="true"></span>
-                                Claim
+                                @if(session::get('filterType') == 'claim_id' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'asc' ]) }}">Claim</a>
+                                @else
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'desc' ]) }}">Claim</a>
+                                @endif
+
                             </th>
                             <th>
                                 <span class="fa fa-user" aria-hidden="true"></span>
-                                Customer
+                                @if(session::get('filterType') == 'first' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'first', 'filterOrder' => 'asc' ]) }}">Customer</a>
+                                @else
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'first', 'filterOrder' => 'desc' ]) }}">Customer</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="fa fa-suitcase" aria-hidden="true"></span>
-                                Product Style
+                                @if(session::get('filterType') == 'style' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'style', 'filterOrder' => 'asc' ]) }}">Product Style</a>
+                                @else
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'style', 'filterOrder' => 'desc' ]) }}">Product Style</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="fa fa-cogs" aria-hidden="true"></span>
-                                Repair Center
+                                @if(session::get('filterType') == 'repair_center' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'repair_center', 'filterOrder' => 'asc' ]) }}">Repair Center</a>
+                                @else
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'repair_center', 'filterOrder' => 'desc' ]) }}">Repair Center</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="fa fa-calendar-o" aria-hidden="true"></span>
-                                Date Opened
+                                @if(session::get('filterType') == 'created_at' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'created_at', 'filterOrder' => 'asc' ]) }}">Date Opened</a>
+                                @else
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'created_at', 'filterOrder' => 'desc' ]) }}">Date Opened</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="fa fa-calendar" aria-hidden="true"></span>
-                                Date Closed
+                                @if(session::get('filterType') == 'closed_at' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'asc' ]) }}">Date Opened</a>
+                                @else
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'desc' ]) }}">Date Opened</a>
+                                @endif
                             </th>
                             <!-- For edit / delete button <td>s -->
                             <th></th><th></th>

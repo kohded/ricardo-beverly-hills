@@ -46,7 +46,9 @@ Route::group(['middleware' => 'auth'], function() {
     	Route::group(['prefix' => 'claim'], function() {
     	    // List
     	    Route::get('/', 'ClaimController@getRicardoIndex')
-    	        ->name('claim-index');
+                ->name('claim-index');
+            Route::get('/{filterType}/{filterOrder}', 'ClaimController@setFilter')
+                ->name('claim-filter-index');
     	    // Add
     	    Route::get('/create', 'ClaimController@getCreateView')
     	        ->name('claim-create');

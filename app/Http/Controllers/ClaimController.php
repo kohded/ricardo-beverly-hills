@@ -14,6 +14,8 @@ class ClaimController extends Controller
 {
     public function getClaimIndex(Request $request, $role)
     {
+
+
         $claimModel = new ClaimModel();
         if ($role == 'ricardo') {
             $claims = $claimModel->getClaims(20, $request, "ricardo");
@@ -244,6 +246,15 @@ class ClaimController extends Controller
 
         return redirect()->route('claim', ['id' => $claimId])
             ->with('message', 'Successfully edited claim.');
+    }
+
+    public function setFilter($filterType, $filterOrder, Request $request){
+
+        $request->session()->flash('filterType', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getRicardoIndex($request);
+
     }
 
     private function getExistingCustomerValidationRules() {
