@@ -31,7 +31,7 @@
             </div>
         @endif
         <div class="row">
-            <form action="{{ URL::route('claim.create') }}" method="post">
+            <form id="newClaimForm" action="{{ URL::route('claim.create') }}" method="post">
                 {{--Existing Customer Button--}}
                 <div class="col-xs-6">
                     <a href="#existing-customer-field" id="existing-customer"
@@ -261,13 +261,17 @@
                     <a href="{{ route('claim-index') }}" class="btn btn-primary">
                         Back
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right">
+                    <span id="newClaimSubmitBtn" 
+                            class="btn btn-primary pull-right"
+                            data-toggle="modal" data-target="#newClaimConfirmModal">
                         Submit
-                    </button>
+                    </span>
                 </div>
                 {{--Token--}}
                 {{ csrf_field() }}
             </form>
         </div>
     </div>
+
+    @include('claim.new-claim-confirm-modal')
 @endsection

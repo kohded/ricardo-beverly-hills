@@ -38,7 +38,14 @@ $(function() {
     });
 });
 
-// New customer form
+// New claim confirmation modal
+$(function() {
+    $('#confirmNewClaimBtn').click(function() {
+        $('#newClaimForm').submit();
+    });
+});
+
+// New / exisitng customer buttons for claims
 if (document.getElementById("existing-customer")) {
     var existingCustomerBTN = document.getElementById("existing-customer");
     var editCustomerBTN = document.getElementById("edit-customer-info");
