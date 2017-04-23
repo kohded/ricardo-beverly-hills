@@ -2,20 +2,54 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class ClaimModel
 {
 	// Select all products
-	public function getClaims($claimsPerPage = null, $request = null, $role)
+	public function getClaims($claimsPerPage = null, $request, $role)
 	{
         $rcId = $request->input('rc');
         $product = $request->input('product');
         $searchString = $request->input('search');
         $searchField = $request->input('field');
         $status = $request->input('status');
+
+        $filterType = $request->session()->get('filterType');
+        $filterOrder = $request->session()->get('filterOrder');
+
+        if(isset($rcId)){
+        $request->session()->put('rc', $rcId);
+        }
+        if(isset($product)){
+            $request->session()->put('product', $product);
+        }
+        if(isset($searchString)){
+            $request->session()->put('search', $searchString);
+        }
+        if(isset($searchField)){
+            $request->session()->put('field', $searchField);
+        }
+        if(isset($status)){
+            $request->session()->put('status', $status);
+        }
+
+        $rcId = $request->session()->get('rc');
+        $product = $request->session()->get('product');
+        $searchString = $request->session()->get('search');
+        $searchField = $request->session()->get('field');
+        $status = $request->session()->get('status');
+
+        if(empty($filterType) && empty($filterOrder)) {
+
+            $filterType = 'created_at';
+            $filterOrder = 'desc';
+        }
+
 
 		$claims = DB::table('claim')
             ->join('customer', 'claim.customer_id', '=', 'customer.id')
@@ -33,7 +67,7 @@ class ClaimModel
                     'repair_center.name as repair_center', 
                     'repair_center.id as repair_center_id'
                     )
-            ->orderBy('created_at', 'desc')
+            ->orderBy($filterType, $filterOrder)
 
             // TWC - Only show repair claims where part_needed == 1
             ->when($role == "partCompany", function($query) {
