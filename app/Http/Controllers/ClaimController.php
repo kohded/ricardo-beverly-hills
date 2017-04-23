@@ -254,9 +254,9 @@ class ClaimController extends Controller
             'damage_code' => 'required',
             'repair_center' => 'required',
             'replace_order' => 'required',
-            'part_needed' => 'required',
-            'parts_needed' => 'nullable',
-            'ship_to' => 'required'
+            'part_needed' => 'required_if:replace_order,0',
+            'parts_needed' => 'required_if:part_needed,1',
+            'ship_to' => 'required_if:part_needed,1'
         ];
     }
 
@@ -276,9 +276,9 @@ class ClaimController extends Controller
             'damage_code' => 'required',
             'repair_center' => 'required',
             'replace_order' => 'required',
-            'part_needed' => 'required',
-            'parts_needed' => 'nullable',
-            'ship_to' => 'required'
+            'part_needed' => 'required_if:replace_order,0',
+            'parts_needed' => 'required_if:part_needed,1',
+            'ship_to' => 'required_if:part_needed,1'
         ];
     }
 }

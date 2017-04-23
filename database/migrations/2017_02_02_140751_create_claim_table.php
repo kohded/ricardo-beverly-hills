@@ -19,7 +19,7 @@ class CreateClaimTable extends Migration
             $table->unsignedInteger('customer_id');
             $table->string('product_style', 20);
             $table->unsignedInteger('damage_code_id');
-            $table->string('ship_to', 20);
+            $table->string('ship_to', 20)->nullable();
             $table->string('tracking_number', 40)->nullable();
             $table->unsignedInteger('repair_center_id');
             $table->date('date_closed')->nullable()->default(NULL);

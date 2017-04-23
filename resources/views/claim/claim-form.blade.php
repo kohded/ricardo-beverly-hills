@@ -182,12 +182,14 @@
                     <label for="claim-type">Claim Type</label>
                     <div class="" id="claim-type">
                         <label class="radio-inline">
-                            <input type="radio" name="replace_order" value="0" checked="checked">
+                            <input id="repairOrderBtn" type="radio" 
+                                   name="replace_order" value="0" checked="checked">
                             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                             Repair Order
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="replace_order" value="1"
+                            <input id="replaceOrderBtn" type="radio" 
+                                   name="replace_order" value="1"
                                 @if (old('replace_order') === '1')
                                     checked="checked"
                                 @endif
@@ -197,57 +199,66 @@
                         </label>
                     </div>
                 </div>
-                {{--Parts Required--}}
-                <div class="form-group col-xs-12">
-                    <label for="parts-required">Parts Required</label>
-                    <div class="" id="parts-required">
-                        <label class="radio-inline">
-                            <input type="radio" name="part_needed" value="1"
-                                @if (old('part_needed') === '1')
-                                    checked="checked"
-                                @endif
-                                >
-                            Yes
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="part_needed" value="0"
-                                @if (old('part_needed') === '0')
-                                    checked="checked"
-                                @endif
-                                >
-                            No
-                        </label>
-                    </div>
-                </div>
-                {{--Part Needed--}}
-                <div class="form-group col-xs-12">
-                    <label for="part-needed">Part Needed</label>
-                    <input type="text" class="form-control" 
-                           id="part-needed" name="parts_needed"
-                           value="{{ old('parts_needed') }}">
-                </div>
-                {{--Ship Parts To--}}
-                <div class="form-group col-xs-12">
-                    <label for="ship-parts-to">Ship Parts To</label>
-                    <div class="" id="ship-parts-to">
-                        <label class="radio-inline">
-                            <input type="radio" name="ship_to" value="Customer"
-                                @if (old('ship_to') === 'Customer')
+
+                {{--Parts information inputs--}}
+                <div id="partsInputs">
+                    {{--Parts Required--}}
+                    <div class="form-group col-xs-12">
+                        <label for="parts-required">Parts Required</label>
+                        <div class="" id="parts-required">
+                            <label class="radio-inline">
+                                <input id="partsRequiredRadio" type="radio" 
+                                       name="part_needed" value="1"
+                                    @if (old('part_needed') === '1')
                                         checked="checked"
-                                @endif
-                                >
-                            Customer
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="ship_to" value="Repair Center"
-                                @if (old('ship_to') === 'Repair Center')
-                                    checked="checked"
-                                @endif
-                                >
-                            Repair Center
-                        </label>
+                                    @endif
+                                    >
+                                Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input id="partsNotRequiredRadio" type="radio" 
+                                       name="part_needed" value="0"
+                                    @if (old('part_needed') === '0')
+                                        checked="checked"
+                                    @endif
+                                    >
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div id="partDetails">
+                        {{--Part Needed--}}
+                        <div class="form-group col-xs-12">
+                            <label for="part-needed">Part Needed</label>
+                            <input type="text" class="form-control" 
+                                   id="part-needed" name="parts_needed"
+                                   value="{{ old('parts_needed') }}">
+                        </div>
+                        {{--Ship Parts To--}}
+                        <div class="form-group col-xs-12">
+                            <label for="ship-parts-to">Ship Parts To</label>
+                            <div class="" id="ship-parts-to">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ship_to" value="Customer"
+                                        @if (old('ship_to') === 'Customer')
+                                                checked="checked"
+                                        @endif
+                                        >
+                                    Customer
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ship_to" value="Repair Center"
+                                        @if (old('ship_to') === 'Repair Center')
+                                            checked="checked"
+                                        @endif
+                                        >
+                                    Repair Center
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 {{--Comment--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-comment">Comment</label>

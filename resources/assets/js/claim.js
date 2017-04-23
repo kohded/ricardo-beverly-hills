@@ -62,3 +62,38 @@ if (document.getElementById("existing-customer")) {
     }
 }
 
+// Hide / show parts information based on if user clicks replace or repair order
+$(function() {
+    var partsInputs = $('#partsInputs');
+    var partDetails = $('#partDetails');
+    var partsRequiredRadio = $("#partsRequiredRadio");
+    var partsNotRequiredRadio = $("#partsNotRequiredRadio");
+
+    $('#replaceOrderBtn').click(function() {
+        // Hide parts fields that aren't necessary
+        partsInputs.slideUp();
+        $("#partsNotRequiredRadio").attr('checked', true);
+    });
+    $('#repairOrderBtn').click(function() {
+        // Show parts fields if they are hidden
+        if ( partsInputs.is(":hidden")) {
+            partsInputs.show();
+            partsRequiredRadio.attr('checked', false);
+            partsNotRequiredRadio.attr('checked', false);
+        }
+    });
+
+    partsNotRequiredRadio.click(function() {
+        // Hide part details that aren't necessary
+        partDetails.slideUp();
+        $("#partsNotRequiredRadio").attr('checked', true);
+        $('#part-needed').attr('input', "");
+    });
+    partsRequiredRadio.click(function() {
+        // Show part details if they are hidden
+        if ( partDetails.is(":hidden")) {
+            partDetails.show();
+        }
+    });
+})
+
