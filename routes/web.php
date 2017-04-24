@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
     	    // List
     	    Route::get('/', 'ClaimController@getRicardoIndex')
                 ->name('claim-index');
-            Route::get('/{filterType}/{filterOrder}', 'ClaimController@setFilter')
+            Route::get('/filtered/{filterType}/{filterOrder}', 'ClaimController@setFilter')
                 ->name('claim-filter-index');
     	    // Add
     	    Route::get('/create', 'ClaimController@getCreateView')

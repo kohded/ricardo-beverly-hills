@@ -6,14 +6,14 @@
         <h2>
         	<span class="fa fa-file-text" aria-hidden="true"></span>
             Claim #{{ $claim[0]->claim_id }}
-            
-            {{--Close Claim button--}}
+
+            Close Claim button
             <a id="close-claim" href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
                 <span class="fa fa-check-circle" aria-hidden="true"></span>
                 Close Claim
             </a>
 
-            {{--Edit Claim button--}}
+            Edit Claim button
             <a id="close-claim" href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
                 <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
                 Edit Claim
@@ -84,18 +84,18 @@
                                 <!-- Convert to Replace Order button -->
                                 <div>
                                 	@if ($claim[0]->parts_available == 0 && $claim[0]->part_needed)
-                                        <button 
+                                        <button
                                             type="button"
-                                            id="convert-to-replace-order" 
+                                            id="convert-to-replace-order"
                                             class="btn btn-warning btn-xs"
                                             data-claim="{{ $claim[0]->claim_id }}"
                                             data-toggle="modal"
                                             data-target="#convertToReplaceOrderModal">
                                         <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
                                     @else
-                                        <button 
+                                        <button
                                                 type="button"
-                                                id="convert-to-replace-order" 
+                                                id="convert-to-replace-order"
                                                 class="btn btn-primary btn-xs"
                                                 data-claim="{{ $claim[0]->claim_id }}"
                                                 data-toggle="modal"
@@ -171,9 +171,9 @@
                             @if ($claim[0]->replace_order == 1 && !isset($claim[0]->tracking_number))
                                 <!-- Enter Tracking # -->
                                 <div>
-                                    <button 
+                                    <button
                                         type="button"
-                                        id="enter-tracking" 
+                                        id="enter-tracking"
                                         class="btn btn-warning btn-xs"
                                         data-claim="{{ $claim[0]->claim_id }}"
                                         data-toggle="modal"
@@ -325,7 +325,7 @@
         </a>
     </div>
 </div>
-    
+
 
     <!-- Include modal views -->
     @include('claim.repl-order-modal')

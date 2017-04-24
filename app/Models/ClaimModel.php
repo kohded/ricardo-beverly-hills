@@ -148,7 +148,7 @@ class ClaimModel
                 \DB::raw('DATE_FORMAT(claim.date_closed, "%m/%d/%Y") as claim_date_closed'),
                 'claim.email_sent as claim_email_sent',
                 'claim.replace_order as replace_order',
-                'claim.ship_to as ship_to', 
+                'claim.ship_to as ship_to',
                 'claim.part_needed as part_needed',
                 'claim.parts_needed as parts_needed',
                 'claim.parts_available as parts_available',
@@ -160,7 +160,7 @@ class ClaimModel
                 'customer.email as cust_email',
                 'customer.first_name as cust_first_name',
                 'customer.last_name as cust_last_name',
-                \DB::raw("CONCAT('(', SUBSTRING(customer.phone, 1, 3), ') ', 
+                \DB::raw("CONCAT('(', SUBSTRING(customer.phone, 1, 3), ') ',
                                       SUBSTRING(customer.phone, 4, 3), '-',
                                       SUBSTRING(customer.phone, 7, 4)) as cust_phone"),
                 'customer.state as cust_state',
@@ -172,7 +172,7 @@ class ClaimModel
                 'repair_center.city as rc_city',
                 'repair_center.state as rc_state',
                 'repair_center.contact_name as rc_contact',
-                \DB::raw("CONCAT('(', SUBSTRING(repair_center.phone, 1, 3), ') ', 
+                \DB::raw("CONCAT('(', SUBSTRING(repair_center.phone, 1, 3), ') ',
                                       SUBSTRING(repair_center.phone, 4, 3), '-',
                                       SUBSTRING(repair_center.phone, 7, 4)) as rc_phone"),
                 'repair_center.email as rc_email',
@@ -182,6 +182,7 @@ class ClaimModel
             )
             ->where('claim.id', '=', $id)
             ->get();
+
         return $claim;
     }
 
