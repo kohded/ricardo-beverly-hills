@@ -47,10 +47,10 @@
                             </th>
                             <th>
                                 <span class="fa fa-user" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'first' && session::get('filterOrder') == 'desc')
-                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'first', 'filterOrder' => 'asc' ]) }}">Customer</a>
+                                @if(session::get('filterType') == 'last' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'last', 'filterOrder' => 'asc' ]) }}">Customer</a>
                                 @else
-                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'first', 'filterOrder' => 'desc' ]) }}">Customer</a>
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'last', 'filterOrder' => 'desc' ]) }}">Customer</a>
                                 @endif
                             </th>
                             <th>
