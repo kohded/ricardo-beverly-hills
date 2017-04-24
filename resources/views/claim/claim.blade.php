@@ -25,7 +25,8 @@
                 <hr>
             </div>
         </div>
-        {{--Form successfully created claim--}}
+
+        {{--Session messages--}}
         @if(Session::has('message'))
             <div class="row">
                 <div class="col-xs-12">
@@ -56,6 +57,7 @@
                 </div>
             </div>
         @endif
+
         {{--Form validation errors--}}
         @if(count($errors) > 0)
             <div class="row">
@@ -68,6 +70,7 @@
                 </div>
             </div>
         @endif
+
         <div class="row mt-20">
             <div class="col-sm-12 col-md-6">
                 {{--Claim Info Panel--}}
@@ -280,7 +283,7 @@
                             </div>
                         </div>
                     </div>
-                </div> {{--/Claim Info Panel--}}
+                </div>
 
                 {{--Product Panel--}}
                 <div class="panel panel-info">
@@ -476,9 +479,11 @@
                     </div>
                 </div>
             </div>
+
             {{--Comments--}}
             @include('claim.comments')
         </div>
+
         {{--Back Button--}}
         <div class="row">
             <div class="col-xs-12">
