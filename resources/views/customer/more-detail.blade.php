@@ -55,7 +55,7 @@
                                 {{ $customerDetail[0]->address_2 }}
                             @endif
                             <br>
-                            {{ $customerDetail[0]->city }}
+                            {{ $customerDetail[0]->city }},
                             {{ $customerDetail[0]->state }}
                             {{ $customerDetail[0]->zip }}
                         </p>
