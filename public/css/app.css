@@ -7755,6 +7755,10 @@ table th {
   margin-left: 10px;
 }
 
+.mt-15 {
+  margin-top: 15px;
+}
+
 .mt-20 {
   margin-top: 20px;
 }
@@ -7785,6 +7789,12 @@ table th {
 
 #login-user #forgot-password {
   padding-left: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .detail-label {
+    text-align: right;
+  }
 }
 
 @media only screen and (min-width: 0px) and (max-width: 767px) {

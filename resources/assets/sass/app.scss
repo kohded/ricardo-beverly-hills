@@ -73,6 +73,10 @@ table {
   margin-left: $margin-secondary;
 }
 
+.mt-15 {
+  margin-top: 15px;
+}
+
 .mt-20 {
   margin-top: $margin-default;
 }
@@ -111,6 +115,9 @@ table {
 
 // Medium or greater
 @media only screen and (min-width: 768px) {
+  .detail-label {
+    text-align: right;
+  }
 }
 
 // Small or less
