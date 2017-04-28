@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
     	// Claim
     	Route::group(['prefix' => 'claim'], function() {
     	    // List
-    	    Route::get('/', 'ClaimController@getRicardoIndex')
+    	    Route::get('/', 'ClaimController@getClaimIndex')
                 ->name('claim-index');
             Route::get('/filtered/{filterType}/{filterOrder}', 'ClaimController@setFilter')
                 ->name('claim-filter-index');

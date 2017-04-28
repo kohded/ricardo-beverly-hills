@@ -16,8 +16,7 @@ class ClaimController extends Controller
     public function getClaimIndex(Request $request)
     {
         $claimModel = new ClaimModel();
-            $claims = $claimModel->getClaims(20, $request, "ricardo");
-        }
+        $claims = $claimModel->getClaims(20, $request, "ricardo");
 
         $rcModel = new RepairCenterModel();
         $repair_centers = $rcModel->getRepairCenters();
