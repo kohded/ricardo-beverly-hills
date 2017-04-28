@@ -2,24 +2,29 @@
 
 @section('content')
     <div id="claim-more-details">
+
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <span class="fa fa-file-text" aria-hidden="true"></span>
+                	<span class="fa fa-file-text" aria-hidden="true"></span>
                     Claim #{{ $claim[0]->claim_id }}
-
-                    {{--Close Claim button--}}
-                    <a href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}"
-                       class="btn btn-primary pull-right ml-10" id="close-claim">
-                        <span class="fa fa-check-circle" aria-hidden="true"></span>
-                        Close Claim
-                    </a>
-
+                    
                     {{--Edit Claim button--}}
-                    <a href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}"
-                       class="btn btn-primary pull-right" id="close-claim">
+                    <a id="close-claim" href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
                         Edit Claim
+                    </a>
+
+                    {{--Display as PDF button--}}
+                    <a id="close-claim" href="{{ URL::route('claim-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
+                        <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                        View PDF
+                    </a>
+
+                    {{--Close Claim button--}}
+                    <a id="close-claim" href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
+                        <span class="fa fa-check-circle" aria-hidden="true"></span>
+                        Close Claim
                     </a>
                 </h2>
                 <hr>

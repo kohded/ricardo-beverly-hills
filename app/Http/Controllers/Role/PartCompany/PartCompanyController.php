@@ -93,4 +93,12 @@ class PartCompanyController extends Controller
         return redirect()->route('pc-claim-details', ['id' => $request->input('claim_id')])
             ->with('message', 'Comment successfully added to claim.');
     }
+
+    public function setFilter($filterType, $filterOrder, Request $request){
+
+        $request->session()->flash('filterType', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getListView($request);
+    }
 }

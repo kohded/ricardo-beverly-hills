@@ -16,7 +16,7 @@
                 <p>
                     Please confirm information for new claim is correct.
                 </p>
-
+                    
                 <p>
                     Notification e-mails will be sent upon submission.
                 </p>

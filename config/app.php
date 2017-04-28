@@ -168,6 +168,9 @@ return [
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
 
+        // PDF Generator Service Provider
+        Barryvdh\Snappy\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -232,6 +235,9 @@ return [
 
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     ],
 
 ];

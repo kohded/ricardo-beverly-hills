@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth'], function() {
     	    // Detail
     	    Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')
     	        ->name('claim');
+            // Create claim PDF
+            Route::get('/pdf/{id}', 'ClaimController@displayClaimPDF')
+                ->name('claim-pdf');            
     	    // edit
     	    Route::get('/edit/{id}', 'ClaimController@editClaim')
     	        ->name('claim.edit');

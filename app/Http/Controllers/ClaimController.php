@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Mail\MailClaimController;
 use DB;
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\ClaimModel;
 use App\Models\ProductModel;
@@ -12,15 +13,10 @@ use App\Models\CustomerModel;
 
 class ClaimController extends Controller
 {
-    public function getClaimIndex(Request $request, $role)
+    public function getClaimIndex(Request $request)
     {
-
-
         $claimModel = new ClaimModel();
-        if ($role == 'ricardo') {
             $claims = $claimModel->getClaims(20, $request, "ricardo");
-        } else if ($role == 'partCompany') {
-            $claims = $claimModel->getClaims(20, $request, "partCompany");
         }
 
         $rcModel = new RepairCenterModel();
@@ -34,16 +30,6 @@ class ClaimController extends Controller
             'products' => $products,
             'repair_centers' => $repair_centers
         ]);
-    }
-
-    public function getRicardoIndex(Request $request)
-    {
-        return $this->getClaimIndex($request, 'ricardo');
-    }
-
-    public function getPartCompanyIndex(Request $request)
-    {
-        return $this->getClaimIndex($request, 'partCompany');
     }
 
     public function getCreateView()
@@ -248,13 +234,16 @@ class ClaimController extends Controller
             ->with('message', 'Successfully edited claim.');
     }
 
+    public function displayClaimPDF() {
+        return PDF::loadFile('http://www.github.com')->inline('github.pdf');
+    }
+
     public function setFilter($filterType, $filterOrder, Request $request){
 
         $request->session()->flash('filterType', $filterType);
         $request->session()->flash('filterOrder', $filterOrder);
 
-        return $this->getRicardoIndex($request);
-
+        return $this->getClaimIndex($request);
     }
 
     private function getExistingCustomerValidationRules() {

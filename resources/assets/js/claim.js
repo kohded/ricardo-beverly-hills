@@ -72,7 +72,7 @@ $(function() {
     $('#replaceOrderBtn').click(function() {
         // Hide parts fields that aren't necessary
         partsInputs.slideUp();
-        $("#partsNotRequiredRadio").attr('checked', true);
+        partsNotRequiredRadio.attr('checked', true);
     });
     $('#repairOrderBtn').click(function() {
         // Show parts fields if they are hidden
