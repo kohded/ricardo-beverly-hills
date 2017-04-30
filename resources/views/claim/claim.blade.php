@@ -10,19 +10,19 @@
                     Claim #{{ $claim[0]->claim_id }}
                     
                     {{--Edit Claim button--}}
-                    <a id="close-claim" href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
+                    <a id="close-claim" href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
                         Edit Claim
                     </a>
 
                     {{--Display as PDF button--}}
-                    <a id="close-claim" href="{{ URL::route('claim-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
+                    <a id="close-claim" href="{{ URL::route('claim-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
                         <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
                         View PDF
                     </a>
 
                     {{--Close Claim button--}}
-                    <a id="close-claim" href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right">
+                    <a id="close-claim" href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
                         <span class="fa fa-check-circle" aria-hidden="true"></span>
                         Close Claim
                     </a>
