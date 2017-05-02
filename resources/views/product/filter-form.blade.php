@@ -2,10 +2,10 @@
         <label for="search">
         <span class="fa fa-search" aria-hidden="true"></span>
         </label>
-        <input type="text" class="form-control input-sm" name="search" placeholder="Search...">
+        <input type="text" class="form-control input-sm" name="searchProduct" placeholder="Search...">
 
         <label for="field">in</label>
-        <select class="form-control input-sm" name="field">
+        <select class="form-control input-sm" name="fieldProduct">
             <option value="" selected>All</option>
             <option value="style">Style</option>
             <option value="description">Description</option>

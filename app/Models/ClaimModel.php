@@ -19,7 +19,7 @@ class ClaimModel
         $searchField = $request->input('field');
         $status = $request->input('status');
 
-        $filterType = $request->session()->get('filterType');
+        $filterType = $request->session()->get('filterTypeClaims');
         $filterOrder = $request->session()->get('filterOrder');
 
         if(isset($rcId)){
@@ -29,10 +29,10 @@ class ClaimModel
             $request->session()->put('product', $product);
         }
         if(isset($searchString)){
-            $request->session()->put('search', $searchString);
+            $request->session()->put('searchClaim', $searchString);
         }
         if(isset($searchField)){
-            $request->session()->put('field', $searchField);
+            $request->session()->put('fieldClaim', $searchField);
         }
         if(isset($status)){
             $request->session()->put('status', $status);
@@ -40,11 +40,11 @@ class ClaimModel
 
         $rcId = $request->session()->get('rc');
         $product = $request->session()->get('product');
-        $searchString = $request->session()->get('search');
-        $searchField = $request->session()->get('field');
+        $searchString = $request->session()->get('searchClaim');
+        $searchField = $request->session()->get('fieldClaim');
         $status = $request->session()->get('status');
 
-        if(empty($filterType) && empty($filterOrder)) {
+        if(empty($filterType) || empty($filterOrder)) {
 
             $filterType = 'created_at';
             $filterOrder = 'desc';

@@ -35,7 +35,7 @@
                         <tr>
                             <th>
                                 <span class="fa fa-user" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'last_name' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeCustomer') == 'last_name' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'last_name', 'filterOrder' => 'asc' ]) }}">Customer Name</a>
                                 @else
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'last_name', 'filterOrder' => 'desc' ]) }}">Customer Name</a>
@@ -43,7 +43,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-envelope" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'email' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeCustomer') == 'email' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'email', 'filterOrder' => 'asc' ]) }}">Email</a>
                                 @else
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'email', 'filterOrder' => 'desc' ]) }}">Email</a>
@@ -51,7 +51,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-mobile" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'cust_phone' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeCustomer') == 'cust_phone' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'cust_phone', 'filterOrder' => 'asc' ]) }}">Phone</a>
                                 @else
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'cust_phone', 'filterOrder' => 'desc' ]) }}">Phone</a>
@@ -59,7 +59,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-cogs" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'rc_name' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeCustomer') == 'rc_name' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'rc_name', 'filterOrder' => 'asc' ]) }}">Repair Center</a>
                                 @else
                                     <a href="{{ URL::route('customer-filter-index', ['filterType' => 'rc_name', 'filterOrder' => 'desc' ]) }}">Repair Center</a>

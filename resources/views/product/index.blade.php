@@ -34,30 +34,59 @@
 						<thead>
 							<tr>
 								<th>
-									Brand
+									@if(session::get('filterTypeProduct') == 'brand' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'brand', 'filterOrder' => 'asc' ]) }}">Brand</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'brand', 'filterOrder' => 'desc' ]) }}">Brand</a>
+									@endif
 								</th>
 								<th>
-									Collection
+									@if(session::get('filterTypeProduct') == 'collection' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'collection', 'filterOrder' => 'asc' ]) }}">Collection</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'collection', 'filterOrder' => 'desc' ]) }}">Collection</a>
+									@endif
 								</th>
 								<th>
 									<span class="fa fa-suitcase" aria-hidden="true"></span>
-									Style
+									@if(session::get('filterTypeProduct') == 'style' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'style', 'filterOrder' => 'asc' ]) }}">Style</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'style', 'filterOrder' => 'desc' ]) }}">Style</a>
+									@endif
 								</th>
 								<th>
 									<span class="fa fa-pie-chart" aria-hidden="true"></span>
-									Color
+									@if(session::get('filterTypeProduct') == 'color' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'color', 'filterOrder' => 'asc' ]) }}">Color</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'color', 'filterOrder' => 'desc' ]) }}">Color</a>
+									@endif
 								</th>
 								<th>
 									<span class="fa fa-list" aria-hidden="true"></span>
-									Description
+									@if(session::get('filterTypeProduct') == 'collection' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'collection', 'filterOrder' => 'asc' ]) }}">Description</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'collection', 'filterOrder' => 'desc' ]) }}">Description</a>
+									@endif
 								</th>
 								<th>
 									<span class="fa fa-file-text" aria-hidden="true"></span>
-									Warranty
+									@if(session::get('filterTypeProduct') == 'warranty_years' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'asc' ]) }}">Warranty</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'desc' ]) }}">Warranty</a>
+									@endif
 								</th>
 								<th>
 									<span class="fa fa-calendar-o" aria-hidden="true"></span>
-									Launched</th>
+									@if(session::get('filterTypeProduct') == 'launch_date' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'launch_date', 'filterOrder' => 'asc' ]) }}">Launched</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'launch_date', 'filterOrder' => 'desc' ]) }}">Launched</a>
+									@endif
+								</th>
 								<th></th>
 								<th></th>
 							</tr>

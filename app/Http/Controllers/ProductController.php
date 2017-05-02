@@ -108,4 +108,12 @@ class ProductController extends Controller
         return redirect()->route('product.edit', ['style' => $request->input('style')])
             ->with('message', 'Changes saved for product ' . $request->input('style'));
     }
+
+    public function setFilter($filterType, $filterOrder, Request $request){
+
+        $request->session()->flash('filterTypeProduct', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->index($request);
+    }
 }

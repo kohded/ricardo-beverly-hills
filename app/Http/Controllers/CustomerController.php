@@ -107,7 +107,7 @@ class CustomerController extends Controller
 
     public function setFilter($filterType, $filterOrder, Request $request){
 
-        $request->session()->flash('filterType', $filterType);
+        $request->session()->flash('filterTypeCustomer', $filterType);
         $request->session()->flash('filterOrder', $filterOrder);
 
         return $this->getCustomerIndex($request);

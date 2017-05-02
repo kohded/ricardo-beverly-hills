@@ -134,6 +134,8 @@ Route::group(['middleware' => 'auth'], function() {
     	    // List / Index
     	    Route::get('/', 'ProductController@index')
     	        ->name('product');
+            Route::get('/filtered/{filterType}/{filterOrder}', 'ProductController@setFilter')
+                ->name('product-filter-index');
     	    // Add
     	    Route::get('/create', 'ProductController@getCreateView')
     	        ->name('product.create');

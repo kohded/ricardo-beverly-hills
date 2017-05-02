@@ -22,7 +22,7 @@ class ClaimController extends Controller
         $repair_centers = $rcModel->getRepairCenters();
 
         $productModel = new ProductModel;
-        $products = $productModel->getProducts();
+        $products = $productModel->getProducts(null, $request);
 
         return view('claim.index', [
             'claims' => $claims,
@@ -239,7 +239,7 @@ class ClaimController extends Controller
 
     public function setFilter($filterType, $filterOrder, Request $request){
 
-        $request->session()->flash('filterType', $filterType);
+        $request->session()->flash('filterTypeClaims', $filterType);
         $request->session()->flash('filterOrder', $filterOrder);
 
         return $this->getClaimIndex($request);

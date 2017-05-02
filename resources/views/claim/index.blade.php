@@ -38,7 +38,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-file-text" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'claim_id' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeClaims') == 'claim_id' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'asc' ]) }}">Claim</a>
                                 @else
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'desc' ]) }}">Claim</a>
@@ -47,7 +47,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-user" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'last' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeClaims') == 'last' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'last', 'filterOrder' => 'asc' ]) }}">Customer</a>
                                 @else
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'last', 'filterOrder' => 'desc' ]) }}">Customer</a>
@@ -55,7 +55,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-suitcase" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'style' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeClaims') == 'style' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'style', 'filterOrder' => 'asc' ]) }}">Product Style</a>
                                 @else
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'style', 'filterOrder' => 'desc' ]) }}">Product Style</a>
@@ -63,7 +63,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-cogs" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'repair_center' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeClaims') == 'repair_center' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'repair_center', 'filterOrder' => 'asc' ]) }}">Repair Center</a>
                                 @else
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'repair_center', 'filterOrder' => 'desc' ]) }}">Repair Center</a>
@@ -71,7 +71,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-calendar-o" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'created_at' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeClaims') == 'created_at' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'created_at', 'filterOrder' => 'asc' ]) }}">Date Opened</a>
                                 @else
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'created_at', 'filterOrder' => 'desc' ]) }}">Date Opened</a>
@@ -79,7 +79,7 @@
                             </th>
                             <th>
                                 <span class="fa fa-calendar" aria-hidden="true"></span>
-                                @if(session::get('filterType') == 'closed_at' && session::get('filterOrder') == 'desc')
+                                @if(session::get('filterTypeClaims') == 'closed_at' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'asc' ]) }}">Date Opened</a>
                                 @else
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'desc' ]) }}">Date Opened</a>

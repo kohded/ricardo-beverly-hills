@@ -16,9 +16,32 @@ class ProductModel
 
         if (isset($request))
         {
-            $searchString = $request->input('search');
-            $searchField = $request->input('field');
+            $searchString = $request->input('searchProduct');
+            $searchField = $request->input('fieldProduct');
             $brand = $request->input('brand');
+        }
+
+        if(isset($searchString)){
+            $request->session()->put('searchProduct', $searchString);
+        }
+        if(isset($searchField)){
+            $request->session()->put('fieldProduct', $searchField);
+        }
+        if(isset($brand)){
+            $request->session()->put('brand', $brand);
+        }
+
+        $searchString = $request->session()->get('searchProduct');
+        $searchField = $request->session()->get('fieldProduct');
+        $brand = $request->session()->get('brand');
+
+            $filterType = $request->session()->get('filterTypeProduct');
+            $filterOrder = $request->session()->get('filterOrder');
+
+        if(empty($filterType) || empty($filterOrder)) {
+
+            $filterType = 'collection';
+            $filterOrder = 'asc';
         }
 
         $products = DB::table('product')
@@ -31,6 +54,7 @@ class ProductModel
                 'collection',
                 \DB::raw('DATE_FORMAT(launch_date, "%m/%d/%Y") as launch_date')
             )
+            ->orderBy($filterType, $filterOrder)
             ->when($searchString, function($query) use($searchString, $searchField) {
                 if ($searchField === 'style')
                 {
@@ -122,4 +146,6 @@ class ProductModel
 	{
 		DB::table('product')->where('style', '=', $style)->delete();
 	}
+
+
 }
