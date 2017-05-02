@@ -7,7 +7,7 @@ use App\Models\CustomerModel;
 
 class CustomerController extends Controller
 {
-    public function getCustomerView(Request $request)
+    public function getCustomerIndex(Request $request)
     {
         $customersModel = new CustomerModel();
 
@@ -103,6 +103,14 @@ class CustomerController extends Controller
 
         return redirect()->route('customer')
             ->with('message', 'Customer ' . $customerName . ' with ID ' . $customerId . ' deleted.');
+    }
+
+    public function setFilter($filterType, $filterOrder, Request $request){
+
+        $request->session()->flash('filterType', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getCustomerIndex($request);
     }
 
     private function getValidationRules(){

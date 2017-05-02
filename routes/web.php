@@ -86,8 +86,10 @@ Route::group(['middleware' => 'auth'], function() {
     	// Customer
     	Route::group(['prefix' => 'customer'], function() {
     	    // List / Index
-    	    Route::get('/', 'CustomerController@getCustomerView')
+    	    Route::get('/', 'CustomerController@getCustomerIndex')
     	        ->name('customer');
+            Route::get('/filtered/{filterType}/{filterOrder}', 'CustomerController@setFilter')
+                ->name('customer-filter-index');
     	    // Add
     	    Route::get('/create', 'CustomerController@getCreateView')
     	        ->name('customer-create');

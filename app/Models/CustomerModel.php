@@ -12,6 +12,26 @@ class CustomerModel
         $searchString = $request->input('search');
         $searchField = $request->input('field');
 
+        if(isset($searchString)){
+            $request->session()->put('search', $searchString);
+        }
+        if(isset($searchField)){
+            $request->session()->put('field', $searchField);
+        }
+
+        $searchString = $request->session()->get('search');
+        $searchField = $request->session()->get('field');
+
+        $filterType = $request->session()->get('filterType');
+        $filterOrder = $request->session()->get('filterOrder');
+
+        if(empty($filterType) && empty($filterOrder)) {
+
+            $filterType = 'last_name';
+            $filterOrder = 'desc';
+        }
+
+
         return DB::table('customer')
             ->leftJoin('claim', 'customer.id', '=', 'claim.customer_id')
             ->leftJoin('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
@@ -28,6 +48,7 @@ class CustomerModel
                 'customer.zip',
                 'repair_center.name as rc_name'
             )
+            ->orderBy($filterType, $filterOrder)
             ->when($searchString, function($query) use($searchString, $searchField) {
                 if ($searchField === 'name')
                 {
