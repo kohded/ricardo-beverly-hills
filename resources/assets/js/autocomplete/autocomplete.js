@@ -4,5 +4,9 @@
  * File: autocomplete.js
  */
 
+// Autocomplete Package
 require('devbridge-autocomplete');
+
+// Files
 require('./state');
+require('./customer-email');

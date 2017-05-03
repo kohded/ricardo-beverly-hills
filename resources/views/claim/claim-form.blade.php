@@ -47,7 +47,7 @@
                     </a>
                 </div>
                 {{--Existing Customer Field--}}
-                <div id="existing-customer-field" 
+                <div id="existing-customer-field"
                     @if (old('edit_type_switch') !== "1")
                         class="collapse"
                     @endif
@@ -55,13 +55,13 @@
                     {{--Email--}}
                     <div class="form-group col-xs-12">
                         <label for="existing-customer-email">Email</label>
-                        <input type="text" class="form-control" id="existing-customer-email"
-                               name="existing_customer_email" placeholder="email@example.com"
-                               value="{{ old('existing_customer_email') }}">
+                        <input type="text" class="form-control customer-email-autocomplete"
+                               id="existing-customer-email" name="existing_customer_email"
+                               placeholder="email@example.com" value="{{ old('existing_customer_email') }}">
                     </div>
                 </div>
                 {{--New Customer Fields--}}
-                <div id="claim-new-customer" 
+                <div id="claim-new-customer"
                     @if (old('edit_type_switch') !== "0")
                         class="collapse"
                     @endif
@@ -76,7 +76,7 @@
                     {{--Last Name--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-last-name">Last Name</label>
-                        <input type="text" class="form-control" 
+                        <input type="text" class="form-control"
                                id="customer-last-name" name="lastname"
                                value="{{ old('lastname') }}">
                     </div>
@@ -111,7 +111,7 @@
                     {{--City--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-city">City</label>
-                        <input type="text" class="form-control" 
+                        <input type="text" class="form-control"
                                id="customer-city" name="city"
                                value="{{ old('city') }}">
                     </div>
@@ -125,7 +125,7 @@
                     {{--Zip--}}
                     <div class="form-group col-xs-6 col-sm-3">
                         <label for="customer-zip">Zip</label>
-                        <input type="text" class="form-control" id="customer-zip" 
+                        <input type="text" class="form-control" id="customer-zip"
                                name="zip" placeholder="#####"
                                value="{{ old('zip') }}">
                     </div>
@@ -182,13 +182,13 @@
                     <label for="claim-type">Claim Type</label>
                     <div class="" id="claim-type">
                         <label class="radio-inline">
-                            <input id="repairOrderBtn" type="radio" 
+                            <input id="repairOrderBtn" type="radio"
                                    name="replace_order" value="0" checked="checked">
                             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                             Repair Order
                         </label>
                         <label class="radio-inline">
-                            <input id="replaceOrderBtn" type="radio" 
+                            <input id="replaceOrderBtn" type="radio"
                                    name="replace_order" value="1"
                                 @if (old('replace_order') === '1')
                                     checked="checked"
@@ -207,7 +207,7 @@
                         <label for="parts-required">Parts Required</label>
                         <div class="" id="parts-required">
                             <label class="radio-inline">
-                                <input id="partsRequiredRadio" type="radio" 
+                                <input id="partsRequiredRadio" type="radio"
                                        name="part_needed" value="1"
                                     @if (old('part_needed') === '1')
                                         checked="checked"
@@ -216,7 +216,7 @@
                                 Yes
                             </label>
                             <label class="radio-inline">
-                                <input id="partsNotRequiredRadio" type="radio" 
+                                <input id="partsNotRequiredRadio" type="radio"
                                        name="part_needed" value="0"
                                     @if (old('part_needed') === '0')
                                         checked="checked"
@@ -230,7 +230,7 @@
                         {{--Part Needed--}}
                         <div class="form-group col-xs-12">
                             <label for="part-needed">Part Needed</label>
-                            <input type="text" class="form-control" 
+                            <input type="text" class="form-control"
                                    id="part-needed" name="parts_needed"
                                    value="{{ old('parts_needed') }}">
                         </div>
@@ -264,7 +264,7 @@
                     <label for="claim-comment">Comment</label>
                     <textarea class="form-control" id="claim-comment" name="comment">{{ old('comment') }}</textarea>
                 </div>
-                <input type="hidden" id="edit-type-switch" name="edit_type_switch" 
+                <input type="hidden" id="edit-type-switch" name="edit_type_switch"
                        value="{{ old('edit_type_switch') }}">
                 {{--Submit--}}
                 <div class="form-group col-xs-12">
@@ -272,7 +272,7 @@
                     <a href="{{ route('claim-index') }}" class="btn btn-primary">
                         Back
                     </a>
-                    <span id="newClaimSubmitBtn" 
+                    <span id="newClaimSubmitBtn"
                             class="btn btn-primary pull-right"
                             data-toggle="modal" data-target="#newClaimConfirmModal">
                         Submit

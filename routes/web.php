@@ -174,6 +174,13 @@ Route::group(['middleware' => 'auth'], function() {
     	    Route::post('/delete', 'RepairCenterController@deleteRepairCenter')
     	        ->name('repair-center.delete');
     	});
+
+    	// Autocomplete
+        Route::group(['prefix' => 'autocomplete'], function() {
+            // Customer Email
+            Route::get('/customer-email', 'Autocomplete\AutocompleteController@getCustomerEmail')
+                ->name('autocomplete.customer-email');
+        });
     });
 
 

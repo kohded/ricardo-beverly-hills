@@ -60,7 +60,8 @@ if ($('#repair-center-create') || $('#repair-center-edit') ||
   ];
 
   $('.state-autocomplete').autocomplete({
-    maxHeight: 302,
+    autoSelectFirst: true,
     lookup: states,
+    lookupLimit: 6,
   });
 }
