@@ -118,8 +118,8 @@
                     {{--State--}}
                     <div class="form-group col-xs-6 col-sm-3">
                         <label for="customer-state">State</label>
-                        <input type="text" class="form-control" id="customer-state" 
-                               name="state" placeholder="WA"
+                        <input type="text" class="form-control state-autocomplete"
+                               id="customer-state" name="state" placeholder="WA"
                                value="{{ old('state') }}">
                     </div>
                     {{--Zip--}}
@@ -127,7 +127,7 @@
                         <label for="customer-zip">Zip</label>
                         <input type="text" class="form-control" id="customer-zip" 
                                name="zip" placeholder="#####"
-                               value="{{ old('zip') }}"">
+                               value="{{ old('zip') }}">
                     </div>
                 </div>
                 {{--Product--}}

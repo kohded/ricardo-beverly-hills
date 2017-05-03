@@ -150,7 +150,7 @@ class RepairCenterController extends Controller
             'city'         => 'required|max:30',
             'state'        => 'required|size:2|alpha',
             'zip'          => 'required|size:5',
-            'id'           => 'required'
+            'id'           => ''
         ];
     }
 }

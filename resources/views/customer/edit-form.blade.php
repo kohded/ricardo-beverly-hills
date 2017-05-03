@@ -1,7 +1,7 @@
 @extends('layouts.master-narrow')
 
 @section('content')
-    <div id="repair-center-edit">
+    <div id="customer-edit">
         <div class="row">
             <div class="col-xs-12">
                 <h2>Edit Customer</h2>
@@ -84,14 +84,14 @@
                 {{--State--}}
                 <div class="form-group col-xs-6 col-sm-3">
                     <label for="inputCustomerState">State</label>
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control state-autocomplete"
                         id="inputCustomerState" name="state"
                         value="{{ $customerDetails['customer'][0]->state }}">
                 </div>
                 {{--Zip--}}
                 <div class="form-group col-xs-6 col-sm-3">
                     <label for="inputCustomerZip">Zip</label>
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                         id="inputCustomerZip" name="zip"
                         value="{{ $customerDetails['customer'][0]->zip }}">
                 </div>

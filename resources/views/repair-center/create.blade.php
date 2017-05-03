@@ -77,7 +77,7 @@
                 {{--State--}}
                 <div class="form-group col-xs-6 col-sm-3">
                     <label for="repair-center-state">State</label>
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control state-autocomplete"
                            id="repair-center-state" name="state"
                            value="{{ old('state') }}" placeholder="WA">
                 </div>

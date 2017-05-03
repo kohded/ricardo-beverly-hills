@@ -6,6 +6,8 @@
 @import "variables";
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Autocomplete
+@import "autocomplete";
 
 html {
   min-height: 100%; // Sticky footer
