@@ -11,7 +11,7 @@ class DamageCodeController extends Controller
     public function getListView(Request $request)
     {
         $damageCodeModel = new DamageCodeModel();
-        $damageCodes = $damageCodeModel->getDamageCodes();
+        $damageCodes = $damageCodeModel->getDamageCodes($request);
 
         return view('damage-code.list', ['damageCodes' => $damageCodes]);
     }
@@ -75,5 +75,13 @@ class DamageCodeController extends Controller
 
         return redirect()->route('damage-code.edit', ['id' => $request->input('id')])
             ->with('message', $request->input('part') . ' edited.');
+    }
+
+    public function setFilter($filterType, $filterOrder, Request $request){
+
+        $request->session()->flash('filterTypeDC', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getListView($request);
     }
 }

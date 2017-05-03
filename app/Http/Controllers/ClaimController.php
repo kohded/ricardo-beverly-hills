@@ -19,7 +19,7 @@ class ClaimController extends Controller
         $claims = $claimModel->getClaims(20, $request, "ricardo");
 
         $rcModel = new RepairCenterModel();
-        $repair_centers = $rcModel->getRepairCenters();
+        $repair_centers = $rcModel->getRepairCenters(null, $request);
 
         $productModel = new ProductModel;
         $products = $productModel->getProducts(null, $request);

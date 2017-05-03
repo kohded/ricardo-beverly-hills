@@ -3,13 +3,23 @@
 namespace App\Models;
 
 use DB;
+use Illuminate\Http\Request;
 
 class DamageCodeModel
 {
-    public function getDamageCodes()
+    public function getDamageCodes($request)
     {
+        $filterType = $request->session()->get('filterTypeDC');
+        $filterOrder = $request->session()->get('filterOrder');
 
-        $damageCodes = DB::table('damage_code')->get();
+        if(empty($filterType) || empty($filterOrder)) {
+            $filterType = 'id';
+            $filterOrder = 'asc';
+        }
+
+        $damageCodes = DB::table('damage_code')
+            ->orderBy($filterType, $filterOrder)
+            ->get();
 
         return $damageCodes;
     }

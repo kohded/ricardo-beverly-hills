@@ -32,10 +32,19 @@
                         <tr>
                             <th>
                                 <span class="fa fa-fire" aria-hidden="true"></span>
-                                Damage Code</th>
+                                @if(session::get('filterTypeDC') == 'id' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('damage-code-filter-index', ['filterType' => 'id', 'filterOrder' => 'asc' ]) }}">Damage Code</a>
+                                @else
+                                    <a href="{{ URL::route('damage-code-filter-index', ['filterType' => 'id', 'filterOrder' => 'desc' ]) }}">Damage Code</a>
+                                @endif
+                            </th>
                             <th>
                             	<span class="fa fa-cog" aria-hidden="true"></span>
-                            	Part/Description
+                                @if(session::get('filterTypeDC') == 'part' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('damage-code-filter-index', ['filterType' => 'part', 'filterOrder' => 'asc' ]) }}">Part/Description</a>
+                                @else
+                                    <a href="{{ URL::route('damage-code-filter-index', ['filterType' => 'part', 'filterOrder' => 'desc' ]) }}">Part/Description</a>
+                                @endif
                             </th>
                             <th></th>
                             <th></th>

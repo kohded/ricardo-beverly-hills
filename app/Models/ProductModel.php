@@ -35,8 +35,8 @@ class ProductModel
         $searchField = $request->session()->get('fieldProduct');
         $brand = $request->session()->get('brand');
 
-            $filterType = $request->session()->get('filterTypeProduct');
-            $filterOrder = $request->session()->get('filterOrder');
+        $filterType = $request->session()->get('filterTypeProduct');
+        $filterOrder = $request->session()->get('filterOrder');
 
         if(empty($filterType) || empty($filterOrder)) {
 

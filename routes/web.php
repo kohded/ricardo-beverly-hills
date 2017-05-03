@@ -114,6 +114,8 @@ Route::group(['middleware' => 'auth'], function() {
     	    // List
     	    Route::get('/', 'DamageCodeController@getListView')
     	        ->name('damage-code');
+            Route::get('/filtered/{filterType}/{filterOrder}', 'DamageCodeController@setFilter')
+                ->name('damage-code-filter-index');
     	    // Add
     	    Route::get('/create', 'DamageCodeController@getCreateView')
     	        ->name('damage-code.create');
@@ -156,6 +158,8 @@ Route::group(['middleware' => 'auth'], function() {
     	    // List
     	    Route::get('/', 'RepairCenterController@getListView')
     	        ->name('repair-center');
+            Route::get('/filtered/{filterType}/{filterOrder}', 'RepairCenterController@setFilter')
+                ->name('repair-center-filter-index');
     	    // Add
     	    Route::get('/create', 'RepairCenterController@getCreateView')
     	        ->name('repair-center.create');

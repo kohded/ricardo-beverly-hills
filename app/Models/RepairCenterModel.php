@@ -17,8 +17,27 @@ class RepairCenterModel
         $searchField = null;
 
         if(isset($request)) {
-            $searchString = $request->input('search');
-            $searchField = $request->input('field');
+            $searchString = $request->input('searchRC');
+            $searchField = $request->input('fieldRC');
+        }
+
+        if(isset($searchString)){
+            $request->session()->put('searchRC', $searchString);
+        }
+        if(isset($searchField)){
+            $request->session()->put('fieldRC', $searchField);
+        }
+
+        $searchString = $request->session()->get('searchRC');
+        $searchField = $request->session()->get('fieldRC');
+
+        $filterType = $request->session()->get('filterTypeRC');
+        $filterOrder = $request->session()->get('filterOrder');
+
+        if(empty($filterType) || empty($filterOrder)) {
+
+            $filterType = 'id';
+            $filterOrder = 'asc';
         }
 
         $repairCenters = DB::table('repair_center')
@@ -35,6 +54,7 @@ class RepairCenterModel
                                       SUBSTRING(phone, 4, 3), '-',
                                       SUBSTRING(phone, 7, 4)) as phone")
             )
+            ->orderBy($filterType, $filterOrder)
             ->when($searchString, function($query) use ($searchString, $searchField) {
                 if($searchField === 'name') {
                     return $query->where('name', 'like', '%' . $searchString . '%');

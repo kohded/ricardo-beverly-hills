@@ -19,7 +19,6 @@
             <option value="rbh">Ricardo Beverly Hills</option>
             <option value="skye">Skye</option>
         </select>
-        
         &nbsp;
         <button type="submit" class="btn btn-primary btn-sm filter-button">
             <span class="fa fa-filter" aria-hidden="true"></span>

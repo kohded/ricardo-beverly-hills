@@ -130,6 +130,14 @@ class RepairCenterController extends Controller
             ->with('message', $request->input('name') . ' edited.');
     }
 
+    public function setFilter($filterType, $filterOrder, Request $request){
+
+        $request->session()->flash('filterTypeRC', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getListView($request);
+    }
+
     // Returns validation rules so it doesn't have to be repeated
     public function getValidationRules() 
     {
