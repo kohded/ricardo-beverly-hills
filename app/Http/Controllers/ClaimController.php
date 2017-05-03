@@ -233,8 +233,19 @@ class ClaimController extends Controller
             ->with('message', 'Successfully edited claim.');
     }
 
-    public function displayClaimPDF() {
-        return PDF::loadFile('http://www.github.com')->inline('github.pdf');
+    // Display PDF version of claim if clicked on in claim details
+    public function displayClaimPDF($id) {
+        $claimModel = new ClaimModel();
+        $claim = $claimModel->getClaim($id);
+        $comments = $claimModel->getComments($id);
+
+        //PDF::loadView('pdf.invoice', $data);
+        //$pdf = PDF::loadView('claim.claim', ['claim' => $claim, 'comments' => $comments]);
+        //return $pdf->download('invoice.pdf');
+        //return PDF::loadView('claim.claim', ['claim' => $claim, 'comments' => $comments])
+        return PDF::loadView('pdf.test')
+        //return PDF::loadFile('http://www.github.com')
+            ->inline('claim.pdf');
     }
 
     public function setFilter($filterType, $filterOrder, Request $request){

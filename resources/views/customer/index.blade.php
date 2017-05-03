@@ -74,7 +74,7 @@
                         @foreach ($customers as $customer)
                             <tr>
                                 <td>
-                                    <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->customer_id ]) }}">
+                                    <a href="{{ URL::route('more-customer-details', [ 'customerId' => $customer->id ]) }}">
                                        <span class="fa fa-list" aria-hidden="true" title="View Customer Details"></span>
                                         {{ $customer->cust_name }}
                                     </a>
@@ -83,7 +83,7 @@
                                 <td>{{ $customer->cust_phone }}</td>
                                 <td>{{ $customer->rc_name }}</td>
                                 <td class="table-data-wrap">
-                                    <a id="customer-edit" href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->customer_id ])  }}">
+                                    <a id="customer-edit" href="{{ URL::route('customer-get-edit', [ 'customerId' => $customer->id ])  }}">
                                         <span class="fa fa-pencil-square-o" aria-hidden="true" title="Edit Customer"></span>
                                     </a>
                                 </td>
@@ -92,7 +92,7 @@
                                                 id="deleteCustomerBtn"
                                                 class="fa fa-trash text-danger" 
                                                 aria-hidden="true" 
-                                                data-id="{{ $customer->customer_id }}"
+                                                data-id="{{ $customer->id }}"
                                                 data-name="{{ $customer->cust_name }}"
                                                 data-toggle="modal"
                                                 data-target="#deleteCustomerModal"
