@@ -31,12 +31,12 @@ class ClaimController extends Controller
         ]);
     }
 
-    public function getCreateView()
+    public function getCreateView(Request $request)
     {
         $damage_codes = DB::table('damage_code')->get();
 
         $rcModel = new RepairCenterModel();
-        $repair_centers = $rcModel->getRepairCenters();
+        $repair_centers = $rcModel->getRepairCenters(null, $request);
 
         foreach ($repair_centers as $repair_center)
         {
@@ -45,7 +45,7 @@ class ClaimController extends Controller
         }
 
         $productModel = new ProductModel;
-        $products = $productModel->getProducts();
+        $products = $productModel->getProducts(null, $request);
 
         return view('claim.claim-form', [
             'damage_codes' => $damage_codes,
@@ -180,15 +180,15 @@ class ClaimController extends Controller
             ->with('message', 'Deleted claim ' . $claimId . '.');
     }
 
-    public function editClaim($id)
+    public function editClaim($id, Request $request)
     {
         $damage_codes = DB::table('damage_code')->get();
 
         $rcModel = new RepairCenterModel();
-        $repair_centers = $rcModel->getRepairCenters();
+        $repair_centers = $rcModel->getRepairCenters(null, $request);
 
         $productModel = new ProductModel;
-        $products = $productModel->getProducts();
+        $products = $productModel->getProducts(null, $request);
 
         $claimDetails = new ClaimModel();
         $claimDetails = $claimDetails->getClaim($id);
