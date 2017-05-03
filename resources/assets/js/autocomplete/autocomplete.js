@@ -8,5 +8,6 @@
 require('devbridge-autocomplete');
 
 // Files
-require('./state');
 require('./customer-email');
+require('./product');
+require('./state');

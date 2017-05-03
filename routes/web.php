@@ -180,6 +180,9 @@ Route::group(['middleware' => 'auth'], function() {
             // Customer Email
             Route::get('/customer-email', 'Autocomplete\AutocompleteController@getCustomerEmail')
                 ->name('autocomplete.customer-email');
+            // Product
+            Route::get('/product', 'Autocomplete\AutocompleteController@getProduct')
+                ->name('autocomplete.product');
         });
     });
 

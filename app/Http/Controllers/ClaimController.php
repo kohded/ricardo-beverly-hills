@@ -82,7 +82,7 @@ class ClaimController extends Controller
         {
             $this->validate($request, $this->getNewCustomerValidationRules());
         }
-        
+
         //Associative Array of All customer Data from form.
         $customerData = array(
             'first_name' => $request->input('firstname'),
@@ -101,7 +101,7 @@ class ClaimController extends Controller
             $request->input('existing_customer_email'),
             $customerData,
             $request->input('comment'),
-            $request->input('products'),
+            $request->input('product-style'),
             $request->input('damage_code'),
             $request->input('repair_center'),
             $request->input('replace_order'),
