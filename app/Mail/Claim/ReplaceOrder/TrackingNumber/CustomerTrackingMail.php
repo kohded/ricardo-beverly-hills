@@ -43,7 +43,7 @@ class CustomerTrackingMail extends Mailable
                 'claimMessage' => $this->claimMessage,
                 'claimType'    => $this->claimType,
             ])
-            ->attachData($this->claimPdf, 'Replace Order ' . $this->claim[0]->claim_id . '.pdf', [
+            ->attachData($this->claimPdf, $this->claimType . ' - Replace Order ' . $this->claim[0]->claim_id . '.pdf', [
                 'mime' => 'application/pdf',
             ]);
     }
