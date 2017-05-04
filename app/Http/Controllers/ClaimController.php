@@ -40,7 +40,7 @@ class ClaimController extends Controller {
     }
     
     // Filter for list sorting
-    public function setFilter($filterType, $filterOrder, Request $request
+    public function setFilter($filterType, $filterOrder, Request $request)
     {
 
         $request->session()->flash('filterTypeClaims', $filterType);
