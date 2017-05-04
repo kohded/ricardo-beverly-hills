@@ -241,10 +241,10 @@ class ClaimController extends Controller
 
         if($claim[0]->replace_order == 1) {
         return PDF::loadView('pdf.replace-order', ['claim' => $claim, 'comments' => $comments])
-            ->inline('claim.pdf');
+            ->inline('replace-order-' . $id . '.pdf');
         } else {
             return PDF::loadView('pdf.repair-order', ['claim' => $claim, 'comments' => $comments])
-                ->inline('claim.pdf');            
+                ->inline('repair-order-' . $id . '.pdf');            
         }
     }
 

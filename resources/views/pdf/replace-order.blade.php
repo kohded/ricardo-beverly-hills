@@ -6,6 +6,5 @@ Replace Order
 @endsection
 
 @section('content')
-<div class="pdf row top-line">
-</div>
+
 @endsection

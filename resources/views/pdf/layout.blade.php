@@ -130,9 +130,9 @@ Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
             </div>
             <div class="col-xs-9">
                 <p>
-                    {{ $claim[0]->cust_address }}
+                    {{ $claim[0]->cust_address }}<br />
                     @if($claim[0]->cust_address_2)
-                        {{ $claim[0]->cust_address_2 }}
+                        {{ $claim[0]->cust_address_2 }}<br />
                     @endif
                     {{ $claim[0]->cust_city }}, {{ $claim[0]->cust_state }} {{ $claim[0]->cust_zip }}
                 </p>

@@ -12,6 +12,7 @@ class CustomerMail extends Mailable
     use Queueable, SerializesModels;
 
     private $claim;
+    private $claimPdf;
     private $claimMessage;
     private $claimType;
 
@@ -20,12 +21,13 @@ class CustomerMail extends Mailable
      *
      * @param $claim
      */
-    public function __construct($claim)
+    public function __construct($claim, $claimPdf)
     {
         $this->claim = $claim;
         $this->claimMessage = 'Your warranty claim has been processed and a replacement bag will be 
             sent to the address you provide with your claim. You will receive an email with a 
             tracking number when the bag ships.';
+        $this->claimPdf = $claimPdf;
         $this->claimType = 'Replace Order';
     }
 
@@ -42,6 +44,9 @@ class CustomerMail extends Mailable
                 'claim'        => $this->claim,
                 'claimMessage' => $this->claimMessage,
                 'claimType'    => $this->claimType,
+            ])
+            ->attachData($this->claimPdf, $this->claimType . ' ' . $this->claim[0]->claim_id . '.pdf', [
+                'mime' => 'application/pdf',
             ]);
     }
 }

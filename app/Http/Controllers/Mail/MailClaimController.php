@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Mail;
-
+use PDF;
 use App\Http\Controllers\Controller;
 use App\Models\ClaimModel;
 use App\Models\Mail\MailClaimModel;
@@ -14,8 +14,10 @@ class MailClaimController extends Controller
     private $claimId;
     private $claim;
     private $claimComments;
+    private $claimPdf;
     private $customerName;
     private $customerEmail;
+    private $packingSlipPdf;
     private $repairCenterName;
     private $repairCenterEmail;
     private $rbhName;
@@ -33,6 +35,15 @@ class MailClaimController extends Controller
         $this->repairCenterEmail = $this->claim[0]->rc_email;
         $this->rbhName = 'Ricardo Beverly Hills';
         $this->twcName = 'T.W. Carrol & Co.';
+
+        // Create pdf Repair or Replace order claim
+        if ($this->claim[0]->replace_order === 0) {
+            $this->claimPdf = PDF::loadView('pdf.repair-order', ['claim' => $this->claim, 'comments' => $this->claimComments])->download();
+        } else {
+            $this->claimPdf = PDF::loadView('pdf.replace-order', ['claim' => $this->claim, 'comments' => $this->claimComments])->download();
+            //dd($this->claimPdf);
+        }
+        $this->packingSlipPdf = PDF::loadView('pdf.packing-slip', ['claim' => $this->claim]);
     }
 
     /**
@@ -102,7 +113,7 @@ class MailClaimController extends Controller
     private function sendNewWarrantyClaimReplaceMail()
     {
         \Mail::to($this->customerEmail)
-            ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim));
+            ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim, $this->claimPdf));
         $this->repairCenterName = '';
         $this->rbhName = '';
         $this->twcName = '';
