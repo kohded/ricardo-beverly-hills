@@ -25,7 +25,7 @@ class CustomerTrackingMail extends Mailable
     {
         $this->claim = $claim;
         $this->claimMessage = 'Your replacement bag has been shipped. The tracking number is #' . $this->claim[0]->tracking_number . '.';
-        $this->claimPdf = claimPdf;
+        $this->claimPdf = $claimPdf;
         $this->claimType = 'Tracking Number';
     }
 
@@ -43,7 +43,7 @@ class CustomerTrackingMail extends Mailable
                 'claimMessage' => $this->claimMessage,
                 'claimType'    => $this->claimType,
             ])
-            ->attachData($this->claimPdf, $this->claimType . ' ' . $this->claim[0]->claim_id . '.pdf', [
+            ->attachData($this->claimPdf, 'Replace Order ' . $this->claim[0]->claim_id . '.pdf', [
                 'mime' => 'application/pdf',
             ]);
     }

@@ -14,6 +14,7 @@ class RBHMail extends Mailable
     private $claim;
     private $claimComments;
     private $claimMessage;
+    private $claimPdf;
     private $claimType;
 
     /**
@@ -22,12 +23,13 @@ class RBHMail extends Mailable
      * @param $claim
      * @param $claimComments
      */
-    public function __construct($claim, $claimComments)
+    public function __construct($claim, $claimComments, $claimPdf)
     {
         $this->claim = $claim;
         $this->claimComments = $claimComments;
         $this->claimMessage = $this->claim[0]->cust_first_name . ' ' . $this->claim[0]->cust_last_name .
             ' part will be shipped to their address provided with the claim.';
+        $this->claimPdf = $claimPdf;
         $this->claimType = 'Part Order';
     }
 
@@ -45,6 +47,9 @@ class RBHMail extends Mailable
                 'claimComments' => $this->claimComments,
                 'claimMessage'  => $this->claimMessage,
                 'claimType'     => $this->claimType,
+            ])
+            ->attachData($this->claimPdf, $this->claimType . ' ' . $this->claim[0]->claim_id . '.pdf', [
+                'mime' => 'application/pdf',
             ]);
     }
 }

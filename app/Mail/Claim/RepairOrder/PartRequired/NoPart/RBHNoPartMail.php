@@ -14,6 +14,7 @@ class RBHNoPartMail extends Mailable
     private $claim;
     private $claimComments;
     private $claimMessage;
+    private $claimPdf;
     private $claimType;
 
     /**
@@ -22,12 +23,14 @@ class RBHNoPartMail extends Mailable
      * @param $claim
      * @param $claimComments
      */
-    public function __construct($claim, $claimComments)
+    public function __construct($claim, $claimComments, $claimPdf)
     {
         $this->claim = $claim;
         $this->claimComments = $claimComments;
         $this->claimMessage = 'Sorry, there is no part available for '
-            . $this->claim[0]->cust_first_name . ' ' . $this->claim[0]->cust_last_name . '\'s bag.';
+            . $this->claim[0]->cust_first_name . ' ' . $this->claim[0]->cust_last_name . '\'s bag.' .
+            'Please review claim and authorize conversion to a Replace Order.';
+        $this->claimPdf = $claimPdf;
         $this->claimType = 'No Part';
     }
 
@@ -45,6 +48,9 @@ class RBHNoPartMail extends Mailable
                 'claimComments' => $this->claimComments,
                 'claimMessage'  => $this->claimMessage,
                 'claimType'     => $this->claimType,
+            ])
+            ->attachData($this->claimPdf, 'No Parts - Repair Order ' . $this->claim[0]->claim_id . '.pdf', [
+                'mime' => 'application/pdf',
             ]);
     }
 }

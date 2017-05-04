@@ -86,19 +86,19 @@ class MailClaimController extends Controller
         } elseif((int) $this->claim[0]->part_needed === 1) { // Part Required
             if($this->claim[0]->ship_to === 'Customer') {
                 \Mail::to($this->customerEmail)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\CustomerMail($this->claim));
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\CustomerMail($this->claim, $this->claimPdf));
                 \Mail::to($this::RBH_EMAIL)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\RBHMail($this->claim, $this->claimComments));
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\RBHMail($this->claim, $this->claimComments, $this->claimPdf));
                 \Mail::to($this::TWC_EMAIL)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\TWCMail($this->claim, $this->claimComments));
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\TWCMail($this->claim, $this->claimComments, $this->claimPdf));
                 $this->repairCenterName = '';
             } elseif($this->claim[0]->ship_to === 'Repair Center') {
                 \Mail::to($this->customerEmail)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\CustomerMail($this->claim));
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\CustomerMail($this->claim, $this->claimPdf));
                 \Mail::to($this::RBH_EMAIL)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\RBHMail($this->claim, $this->claimComments));
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\RBHMail($this->claim, $this->claimComments, $this->claimPdf));
                 \Mail::to($this->repairCenterEmail)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\RepairCenterMail($this->claim));
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\RepairCenterMail($this->claim, $this->claimPdf));
                 \Mail::to($this::TWC_EMAIL)
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\TWCMail($this->claim, $this->claimComments, $this->claimPdf));
             }
@@ -130,9 +130,9 @@ class MailClaimController extends Controller
             $this->repairCenterName = '';
         } elseif($this->claim[0]->ship_to === 'Repair Center') {
             \Mail::to($this->customerEmail)
-                ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim));
+                ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim, $this->claimPdf));
             \Mail::to($this->repairCenterEmail)
-                ->send(new \App\Mail\Claim\ReplaceOrder\RepairCenterMail($this->claim));
+                ->send(new \App\Mail\Claim\ReplaceOrder\RepairCenterMail($this->claim, $this->claimPdf));
         }
 
         $this->incrementEmailSentCount();
@@ -155,7 +155,7 @@ class MailClaimController extends Controller
     public function sendReplaceOrderTrackingNumberMail()
     {
         \Mail::to($this->customerEmail)
-            ->send(new \App\Mail\Claim\ReplaceOrder\TrackingNumber\CustomerTrackingMail($this->claim));
+            ->send(new \App\Mail\Claim\ReplaceOrder\TrackingNumber\CustomerTrackingMail($this->claim, $this->claimPdf));
 
         $this->incrementEmailSentCount();
 
@@ -208,7 +208,7 @@ class MailClaimController extends Controller
     public function sendNoPartMail()
     {
         \Mail::to($this::RBH_EMAIL)
-            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\NoPart\RBHNoPartMail($this->claim, $this->claimComments));
+            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\NoPart\RBHNoPartMail($this->claim, $this->claimComments, $this->claimPdf));
 
         $this->incrementEmailSentCount();
 

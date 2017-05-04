@@ -58,7 +58,6 @@ class TWCMail extends Mailable
             ])
             ->attachData($this->partOrderPdf, 'Part Order ' . $this->claim[0]->claim_id . '.pdf', [
                 'mime' => 'application/pdf',
-            ])
-            ;
+            ]);
     }
 }
