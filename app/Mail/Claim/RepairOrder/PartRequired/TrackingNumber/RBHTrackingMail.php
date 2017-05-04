@@ -14,6 +14,7 @@ class RBHTrackingMail extends Mailable
     private $claim;
     private $claimComments;
     private $claimMessage;
+    private $claimPdf;
     private $claimType;
 
     /**
@@ -22,10 +23,11 @@ class RBHTrackingMail extends Mailable
      * @param $claim
      * @param $claimComments
      */
-    public function __construct($claim, $claimComments)
+    public function __construct($claim, $claimComments, $claimPdf)
     {
         $this->claim = $claim;
         $this->claimComments = $claimComments;
+        $this->claimPdf = $claimPdf;
         $this->claimType = 'Tracking Number';
 
         if($this->claim[0]->ship_to === 'Customer') {
@@ -51,6 +53,9 @@ class RBHTrackingMail extends Mailable
                 'claimComments' => $this->claimComments,
                 'claimMessage'  => $this->claimMessage,
                 'claimType'     => $this->claimType,
+            ])
+            ->attachData($this->claimPdf, $this->claimType . ' - Repair Order ' . $this->claim[0]->claim_id . '.pdf', [
+                'mime' => 'application/pdf',
             ]);
     }
 }

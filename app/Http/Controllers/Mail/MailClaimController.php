@@ -177,13 +177,13 @@ class MailClaimController extends Controller
     public function sendPartOrderTrackingNumberMail()
     {
         \Mail::to($this->customerEmail)
-            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\CustomerTrackingMail($this->claim));
+            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\CustomerTrackingMail($this->claim, $this->claimPdf));
         \Mail::to($this::RBH_EMAIL)
-            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RBHTrackingMail($this->claim, $this->claimComments));
+            ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RBHTrackingMail($this->claim, $this->claimComments, $this->claimPdf));
 
         if($this->claim[0]->ship_to === 'Repair Center') {
             \Mail::to($this->repairCenterEmail)
-                ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RepairCenterTrackingMail($this->claim));
+                ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RepairCenterTrackingMail($this->claim, $this->claimPdf));
         } else {
             $this->repairCenterName = '';
         }
