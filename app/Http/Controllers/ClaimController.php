@@ -187,21 +187,21 @@ class ClaimController extends Controller
         $rcModel = new RepairCenterModel();
         $repair_centers = $rcModel->getRepairCenters(null, $request);
 
-        $productModel = new ProductModel;
-        $products = $productModel->getProducts(null, $request);
-
         $claimDetails = new ClaimModel();
         $claimDetails = $claimDetails->getClaim($id);
 
         $customerDetails = new CustomerModel();
         $customerDetails = $customerDetails->getCustomerDetailedData($claimDetails[0]->cust_id);
 
+        $productModel = new ProductModel;
+        $product = $productModel->getProduct($claimDetails[0]->product_style);
+
         return view('claim.claim-edit', [
             'claimDetails' => $claimDetails[0],
             'customerDetails' => $customerDetails,
             'damage_codes' => $damage_codes,
             'repair_centers' => $repair_centers,
-            'products' => $products
+            'product' => $product[0]
         ]);
     }
 
@@ -212,7 +212,7 @@ class ClaimController extends Controller
         //Data from form
         $claimId = $request->input('claim_id');
         $existingCustomerEmail = $request->input('existing_customer_email');
-        $product = $request->input('products');
+        $product = $request->input('product-style');
         $repairCenter = $request->input('repair_center');
         $damageCode = $request->input('damage_code');
         $claimType = $request->input('replace_order');

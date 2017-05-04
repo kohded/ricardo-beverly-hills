@@ -116,23 +116,10 @@
                 {{--Product--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-product">Product</label>
-                    <select class="form-control" id="claim-product" name="products">
-                        @foreach ($products as $product)
-                            @if($product->style != $claimDetails->product_style)
-                                <option value="{{ $product->style }}">
-                                    {{ $product->style }} -
-                                    {{ $product->collection }} -
-                                    {{ $product->color }}
-                                </option>
-                            @else
-                                <option value="{{ $product->style }}" selected>
-                                    {{ $product->style }} -
-                                    {{ $product->collection }} -
-                                    {{ $product->color }}
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control product-autocomplete" id="claim-product" name="products"
+                           value="{{ old('products', $product->collection . ' - ' . $product->style . ' - ' . $product->color) }}">
+                    <input type="text"  class="product-style" name="product-style"
+                           value="{{ old('product-style', $product->style) }}" hidden>
                 </div>
                 {{--Damage Code--}}
                 <div class="form-group col-xs-12">
