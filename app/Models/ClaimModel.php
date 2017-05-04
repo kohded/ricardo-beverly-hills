@@ -291,6 +291,20 @@ class ClaimModel
         return DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
     }
 
+    public function getLatestClaimIdByEmail($email)
+    {
+        $claimId = DB::table('claim_customer')
+            ->join('customer', 'claim_customer.customer_id', '=', 'customer.id')
+            ->select(
+                'claim_customer.claim_id as id'
+            )
+            ->where('customer.email', '=', $email)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        return $claimId;
+    }
+
     public function deleteClaim($id)
     {
         DB::table('claim')->where('id', '=', $id)->delete();

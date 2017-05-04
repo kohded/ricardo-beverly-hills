@@ -191,11 +191,8 @@ class ClaimController extends Controller {
     }
 
     // Edit claim view
-    public function editClaim($id, Request $request)
+    public function editClaim($id)
     {
-        $rcModel = new RepairCenterModel();
-        $repair_centers = $rcModel->getRepairCenters(null, $request);
-
         $claimDetails = new ClaimModel();
         $claimDetails = $claimDetails->getClaim($id);
 
@@ -208,7 +205,6 @@ class ClaimController extends Controller {
         return view('claim.claim-edit', [
             'claimDetails' => $claimDetails[0],
             'customerDetails' => $customerDetails,
-            'repair_centers' => $repair_centers,
             'product' => $product[0]
         ]);
     }

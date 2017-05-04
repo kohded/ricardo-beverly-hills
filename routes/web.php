@@ -180,6 +180,9 @@ Route::group(['middleware' => 'auth'], function() {
             // Customer Email
             Route::get('/customer-email', 'Autocomplete\AutocompleteController@getCustomerEmail')
                 ->name('autocomplete.customer-email');
+            // Customer Email - Edit claim get latest claim id
+            Route::get('/customer-latest-claim-id', 'Autocomplete\AutocompleteController@getCustomerLatestClaimId')
+                ->name('autocomplete.customer-latest-claim-id');
             // Damage Code
             Route::get('/damage-code', 'Autocomplete\AutocompleteController@getDamageCode')
                 ->name('autocomplete.damage-code');

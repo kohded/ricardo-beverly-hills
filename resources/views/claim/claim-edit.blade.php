@@ -37,9 +37,9 @@
                     {{--Email--}}
                     <div class="form-group col-xs-12">
                         <label for="existing-customer-email">Email</label>
-                        <input type="text" class="form-control" id="existing-customer-email"
-                               name="existing_customer_email"
-                               value="{{ $customerDetails['customer'][0]->email }}">
+                        <input type="text" class="form-control customer-email-autocomplete"
+                               id="existing-customer-email" name="existing_customer_email"
+                               value="{{ old('existing_customer_email', $customerDetails['customer'][0]->email) }}">
                     </div>
                 </div>
                 {{--New Customer Fields--}}

@@ -29,6 +29,25 @@ if ($('#claim-create') || $('#claim-edit')) {
       });
     },
     lookupLimit: 6,
+    onSelect(email) {
+      // Run only in claim edit page.
+      if ($('#claim-edit').length) {
+        $.ajax({
+          data: { email: email.value },
+          dataType: 'json',
+          type: 'GET',
+          url: '/autocomplete/customer-latest-claim-id',
+          success(claimId) {
+            // Redirect to claim edit by claim id.
+            window.location.href = `/claim/edit/${claimId}`;
+          },
+          error(error) {
+            console.log(`Error: ${error}`);
+          },
+        });
+      }
+    },
+    triggerSelectOnValidInput: false,
   });
 
   /**
