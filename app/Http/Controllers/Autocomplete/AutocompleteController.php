@@ -32,4 +32,17 @@ class AutocompleteController extends Controller
 
         return $product->getProduct($request->input('product'));
     }
+
+    /**
+     * Return results of matching repair center.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return string
+     */
+    public function getRepairCenter(\Illuminate\Http\Request $request)
+    {
+        $repairCenter = new AutocompleteModel();
+
+        return $repairCenter->getRepairCenter($request->input('rc'));
+    }
 }

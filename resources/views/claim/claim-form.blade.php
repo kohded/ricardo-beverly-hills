@@ -156,17 +156,10 @@
                 {{--Repair Center--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-repair-center">Repair Center</label>
-                    <select class="form-control" id="claim-repair-center" name="repair_center">
-                        @foreach ($repair_centers as $rc)
-                            <option value="{{ $rc->id }}"
-                                @if (old('repair_center') === (string) $rc->id)
-                                    selected="selected"
-                                @endif
-                                >
-                                {{ $rc->name }} - {{ $rc->streetName }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control repair-center-autocomplete"
+                           id="claim-repair-center" name="repair_center" value="{{ old('repair_center') }}">
+                    <input type="text"  class="repair-center-id" name="repair-center-id"
+                           value="{{ old('repair-center-id') }}" hidden>
                 </div>
                 {{--Claim Type--}}
                 <div class="form-group col-xs-12">

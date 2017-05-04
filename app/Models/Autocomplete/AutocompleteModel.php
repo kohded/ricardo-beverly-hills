@@ -50,4 +50,26 @@ class AutocompleteModel extends Model
 
         return json_encode($products);
     }
+
+    /**
+     * Return results of matching repair center from database.
+     *
+     * @param $repairCenter
+     * @return string
+     */
+    public function getRepairCenter($repairCenter)
+    {
+        $repairCenters = \DB::table('repair_center')
+            ->select(
+                \DB::raw('CONCAT(name, " - ", address) as value'),
+                'id as data'
+            )
+            ->where('name', 'like', '%' . $repairCenter . '%')
+            ->orWhere('address', 'like', '%' . $repairCenter . '%')
+            ->limit(6)
+            ->orderBy('name', 'asc')
+            ->get();
+
+        return json_encode($repairCenters);
+    }
 }

@@ -10,4 +10,5 @@ require('devbridge-autocomplete');
 // Files
 require('./customer-email');
 require('./product');
+require('./repair-center');
 require('./state');

@@ -183,6 +183,9 @@ Route::group(['middleware' => 'auth'], function() {
             // Product
             Route::get('/product', 'Autocomplete\AutocompleteController@getProduct')
                 ->name('autocomplete.product');
+            // Repair Center
+            Route::get('/repair-center', 'Autocomplete\AutocompleteController@getRepairCenter')
+                ->name('autocomplete.repair-center');
         });
     });
 
