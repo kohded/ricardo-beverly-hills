@@ -211,7 +211,7 @@ class ClaimController extends Controller
         $claimId = $request->input('claim_id');
         $existingCustomerEmail = $request->input('existing_customer_email');
         $product = $request->input('product-style');
-        $repairCenter = $request->input('repair_center');
+        $repairCenter = $request->input('repair-center-id');
         $damageCode = $request->input('damage-code-id');
         $claimType = $request->input('replace_order');
         $partsRequired = $request->input('part_needed');

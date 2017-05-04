@@ -128,29 +128,14 @@
                            value="{{ old('damage_code', $claimDetails->dc_id . ' - ' . $claimDetails->dc_part) }}">
                     <input type="text"  class="damage-code-id" name="damage-code-id"
                            value="{{ old('damage-code-id', $claimDetails->dc_id) }}" hidden>
-                    {{--<select class="form-control" id="claim-damage-code" name="damage_code">--}}
-                        {{--@foreach ($damage_codes as $dc)--}}
-                            {{--@if($dc->id != $claimDetails->dc_id)--}}
-                                {{--<option value="{{ $dc->id }}">{{ $dc->id . '-' . $dc->part }}</option>--}}
-                            {{--@else--}}
-                                {{--<option value="{{ $dc->id }}"--}}
-                                        {{--selected>{{ $dc->id . '-' . $dc->part }}</option>--}}
-                            {{--@endif--}}
-                        {{--@endforeach--}}
-                    {{--</select>--}}
                 </div>
                 {{--Repair Center--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-repair-center">Repair Center</label>
-                    <select class="form-control" id="claim-repair-center" name="repair_center">
-                        @foreach ($repair_centers as $rc)
-                            @if($rc->id != $claimDetails->rc_id)
-                                <option value="{{ $rc->id }}">{{ $rc->name }}</option>
-                            @else
-                                <option value="{{ $rc->id }}" selected>{{ $rc->name }}</option>
-                            @endif
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control repair-center-autocomplete" id="claim-repair-center" name="repair_center"
+                           value="{{ old('repair_center', $claimDetails->rc_name . ' - ' . $claimDetails->rc_address) }}">
+                    <input type="text"  class="repair-center-id" name="repair-center-id"
+                           value="{{ old('repair-center-id', $claimDetails->rc_id) }}" hidden>
                 </div>
                 {{--Claim Type--}}
                 <div class="form-group col-xs-12">
