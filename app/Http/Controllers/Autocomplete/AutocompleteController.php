@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Autocomplete;
 
-use App\Models\Autocomplete\AutocompleteModel;
 use App\Http\Controllers\Controller;
+use App\Models\Autocomplete\AutocompleteModel;
+use App\Models\ClaimModel;
 
 class AutocompleteController extends Controller
 {
@@ -57,5 +58,19 @@ class AutocompleteController extends Controller
         $repairCenter = new AutocompleteModel();
 
         return $repairCenter->getRepairCenter($request->input('rc'));
+    }
+
+    /**
+     * Return customer latest claim id.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return mixed
+     */
+    public function getCustomerLatestClaimId(\Illuminate\Http\Request $request)
+    {
+        $claimIdModel = new ClaimModel();
+        $claimId = $claimIdModel->getLatestClaimIdByEmail($request->input('email'));
+
+        return $claimId->id;
     }
 }
