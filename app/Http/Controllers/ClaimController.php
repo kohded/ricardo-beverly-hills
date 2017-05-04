@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Mail\MailClaimController;
+use App\Models\DamageCodeModel;
 use DB;
 use PDF;
 use Illuminate\Http\Request;
@@ -182,8 +183,6 @@ class ClaimController extends Controller
 
     public function editClaim($id, Request $request)
     {
-        $damage_codes = DB::table('damage_code')->get();
-
         $rcModel = new RepairCenterModel();
         $repair_centers = $rcModel->getRepairCenters(null, $request);
 
@@ -199,7 +198,6 @@ class ClaimController extends Controller
         return view('claim.claim-edit', [
             'claimDetails' => $claimDetails[0],
             'customerDetails' => $customerDetails,
-            'damage_codes' => $damage_codes,
             'repair_centers' => $repair_centers,
             'product' => $product[0]
         ]);
@@ -214,7 +212,7 @@ class ClaimController extends Controller
         $existingCustomerEmail = $request->input('existing_customer_email');
         $product = $request->input('product-style');
         $repairCenter = $request->input('repair_center');
-        $damageCode = $request->input('damage_code');
+        $damageCode = $request->input('damage-code-id');
         $claimType = $request->input('replace_order');
         $partsRequired = $request->input('part_needed');
         $partsNeeded = $request->input('parts_needed');
