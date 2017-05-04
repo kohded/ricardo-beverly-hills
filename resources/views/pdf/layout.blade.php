@@ -63,24 +63,40 @@ Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
 
             {{--Ship To Customer--}}
             @if($claim[0]->ship_to == "Customer")
-            <div class="col-xs-3">
-                <p class="bold-text pull-right">Ship To</span></p>
-            </div>
-            <div class="col-xs-3">
-                <p>{{ $claim[0]->cust_first_name }} {{ $claim[0]->cust_last_name }}</p>
+            <div class="pdf row">
+                <div class="col-xs-3">
+                    <p class="bold-text pull-right">Ship To</span></p>
+                </div>
+                <div class="col-xs-3">
+                    <p>{{ $claim[0]->cust_first_name }} {{ $claim[0]->cust_last_name }}</p>
+                </div>
             </div>
 
             {{--Ship To Repair Center--}}            
             @elseif ($claim[0]->ship_to == "Repair Center")
-            <div class="col-xs-3">
-                <p class="bold-text pull-right">Ship To</span></p>
+            <div class="pdf row">
+                <div class="col-xs-3">
+                    <p class="bold-text pull-right">Ship To</span></p>
+                </div>
+                <div class="col-xs-9">
+                    <p>
+                        {{$claim[0]->rc_name}}<br />
+                        {{ $claim[0]->rc_address }}<br />
+                        {{ $claim[0]->rc_city }}, {{ $claim[0]->rc_state }} {{ $claim[0]->rc_zip }}
+                    </p>
+                </div>
             </div>
-            <div class="col-xs-9">
-                <p>
-                    {{$claim[0]->rc_name}}<br />
-                    {{ $claim[0]->rc_address }}<br />
-                    {{ $claim[0]->rc_city }}, {{ $claim[0]->rc_state }} {{ $claim[0]->rc_zip }}
-                </p>
+            @endif
+            @if(isset($claim[0]->tracking_number))
+            <div class="pdf row">
+                <div class="col-xs-3">
+                    <p class="bold-text pull-right">Tracking Number</span></p>
+                </div>
+                <div class="col-xs-9">
+                    <p>
+                        {{$claim[0]->tracking_number}}
+                    </p>
+                </div>
             </div>
             @endif
         </div>

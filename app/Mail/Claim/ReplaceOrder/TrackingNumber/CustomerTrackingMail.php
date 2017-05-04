@@ -13,6 +13,7 @@ class CustomerTrackingMail extends Mailable
 
     private $claim;
     private $claimMessage;
+    private $claimPdf;
     private $claimType;
 
     /**
@@ -20,10 +21,11 @@ class CustomerTrackingMail extends Mailable
      *
      * @param $claim
      */
-    public function __construct($claim)
+    public function __construct($claim, $claimPdf)
     {
         $this->claim = $claim;
         $this->claimMessage = 'Your replacement bag has been shipped. The tracking number is #' . $this->claim[0]->tracking_number . '.';
+        $this->claimPdf = claimPdf;
         $this->claimType = 'Tracking Number';
     }
 
@@ -40,6 +42,9 @@ class CustomerTrackingMail extends Mailable
                 'claim'        => $this->claim,
                 'claimMessage' => $this->claimMessage,
                 'claimType'    => $this->claimType,
+            ])
+            ->attachData($this->claimPdf, $this->claimType . ' ' . $this->claim[0]->claim_id . '.pdf', [
+                'mime' => 'application/pdf',
             ]);
     }
 }

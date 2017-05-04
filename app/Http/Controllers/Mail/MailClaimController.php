@@ -126,7 +126,7 @@ class MailClaimController extends Controller
     {
         if($this->claim[0]->ship_to === 'Customer') {
             \Mail::to($this->customerEmail)
-                ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim));
+                ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim, $this->claimPdf));
             $this->repairCenterName = '';
         } elseif($this->claim[0]->ship_to === 'Repair Center') {
             \Mail::to($this->customerEmail)
