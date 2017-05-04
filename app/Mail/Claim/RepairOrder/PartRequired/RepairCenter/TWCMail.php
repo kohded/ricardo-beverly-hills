@@ -17,6 +17,7 @@ class TWCMail extends Mailable
     private $claimMessage;
     private $claimType;
     private $packingSlipPdf;
+    private $partOrderPdf;
 
     /**
      * TWCMail constructor.
@@ -34,6 +35,7 @@ class TWCMail extends Mailable
         $this->claimType = 'Part Order';
         // Create packing slip pdf
         $this->packingSlipPdf = PDF::loadView('pdf.packing-slip', ['claim' => $this->claim])->download();
+        $this->partOrderPdf = PDF::loadView('pdf.part-order', ['claim' => $this->claim])->download();
     }
 
     /**
@@ -53,6 +55,10 @@ class TWCMail extends Mailable
             ])
             ->attachData($this->packingSlipPdf, 'Packing Slip ' . $this->claim[0]->claim_id . '.pdf', [
                 'mime' => 'application/pdf',
-            ]);
+            ])
+            ->attachData($this->partOrderPdf, 'Part Order ' . $this->claim[0]->claim_id . '.pdf', [
+                'mime' => 'application/pdf',
+            ])
+            ;
     }
 }
