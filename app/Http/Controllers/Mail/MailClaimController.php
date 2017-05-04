@@ -66,21 +66,12 @@ class MailClaimController extends Controller
     private function sendNewWarrantyClaimRepairMail()
     {
         if((int) $this->claim[0]->part_needed === 0) { // Part Not Required
-            if($this->claim[0]->ship_to === 'Customer') {
-                \Mail::to($this->customerEmail)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\Customer\CustomerMail($this->claim));
-                \Mail::to($this::RBH_EMAIL)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\Customer\RBHMail($this->claim, $this->claimComments));
-                // Clear name so it doesn't show in claim.blade.php
-                $this->repairCenterName = '';
-            } elseif($this->claim[0]->ship_to === 'Repair Center') {
-                \Mail::to($this->customerEmail)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\CustomerMail($this->claim));
-                \Mail::to($this::RBH_EMAIL)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RBHMail($this->claim, $this->claimComments));
-                \Mail::to($this->repairCenterEmail)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RepairCenterMail($this->claim));
-            }
+            \Mail::to($this->customerEmail)
+                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\CustomerMail($this->claim));
+            \Mail::to($this::RBH_EMAIL)
+                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RBHMail($this->claim, $this->claimComments));
+            \Mail::to($this->repairCenterEmail)
+                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RepairCenterMail($this->claim));
 
             $this->twcName = '';
         } elseif((int) $this->claim[0]->part_needed === 1) { // Part Required
