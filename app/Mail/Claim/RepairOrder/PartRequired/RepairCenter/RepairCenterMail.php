@@ -13,6 +13,7 @@ class RepairCenterMail extends Mailable
 
     private $claim;
     private $claimMessage;
+    private $claimPdf;
     private $claimType;
 
     /**
@@ -20,11 +21,12 @@ class RepairCenterMail extends Mailable
      *
      * @param $claim
      */
-    public function __construct($claim)
+    public function __construct($claim, $claimPdf)
     {
         $this->claim = $claim;
         $this->claimMessage = $this->claim[0]->cust_first_name . ' ' . $this->claim[0]->cust_last_name .
             ' will be bringing in there bag for repair. TWC has been notified for part order.';
+        $this->claimPdf = $claimPdf;
         $this->claimType = 'Repair Order';
     }
 
@@ -41,6 +43,9 @@ class RepairCenterMail extends Mailable
                 'claim'        => $this->claim,
                 'claimMessage' => $this->claimMessage,
                 'claimType'    => $this->claimType,
+            ])
+            ->attachData($this->claimPdf, $this->claimType . ' ' . $this->claim[0]->claim_id . '.pdf', [
+                'mime' => 'application/pdf',
             ]);
     }
 }
