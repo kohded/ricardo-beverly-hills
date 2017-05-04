@@ -133,3 +133,18 @@ table {
     margin-top: 10px;
   }
 }
+
+// PDF Styles
+body.pdf {
+  background-color: #FFF;
+  color: #000;
+}
+
+#pdf-address {
+  padding-top:7px;
+}
+
+.pdf.row.top-line {
+  border-top: 1px solid #AAA;
+  padding-top:10px;
+}

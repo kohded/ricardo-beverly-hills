@@ -239,13 +239,13 @@ class ClaimController extends Controller
         $claim = $claimModel->getClaim($id);
         $comments = $claimModel->getComments($id);
 
-        //PDF::loadView('pdf.invoice', $data);
-        //$pdf = PDF::loadView('claim.claim', ['claim' => $claim, 'comments' => $comments]);
-        //return $pdf->download('invoice.pdf');
-        //return PDF::loadView('claim.claim', ['claim' => $claim, 'comments' => $comments])
-        return PDF::loadView('pdf.test')
-        //return PDF::loadFile('http://www.github.com')
+        if($claim[0]->replace_order == 1) {
+        return PDF::loadView('pdf.replace-order', ['claim' => $claim, 'comments' => $comments])
             ->inline('claim.pdf');
+        } else {
+            return PDF::loadView('pdf.repair-order', ['claim' => $claim, 'comments' => $comments])
+                ->inline('claim.pdf');            
+        }
     }
 
     public function setFilter($filterType, $filterOrder, Request $request){
