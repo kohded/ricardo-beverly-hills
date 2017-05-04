@@ -52,42 +52,42 @@
                             </th>
                             <th>   
                                 <span class="fa fa-mobile" aria-hidden="true"></span>
-                                @if(session::get('filterTypeRC') == 'contact_name' && session::get('filterOrder') == 'desc')
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'asc' ]) }}">Phone</a>
+                                @if(session::get('filterTypeRC') == 'phone' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'phone', 'filterOrder' => 'asc' ]) }}">Phone</a>
                                 @else
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'desc' ]) }}">Phone</a>
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'phone', 'filterOrder' => 'desc' ]) }}">Phone</a>
                                 @endif
                             </th>
                             <th>
                                 <span class="fa fa-envelope" aria-hidden="true"></span>
-                                @if(session::get('filterTypeRC') == 'contact_name' && session::get('filterOrder') == 'desc')
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'asc' ]) }}">Email</a>
+                                @if(session::get('filterTypeRC') == 'email' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'email', 'filterOrder' => 'asc' ]) }}">Email</a>
                                 @else
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'desc' ]) }}">Email</a>
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'email', 'filterOrder' => 'desc' ]) }}">Email</a>
                                 @endif
                             </th>
                             <th>
                                 <span class="fa fa-home" aria-hidden="true"></span>
-                                @if(session::get('filterTypeRC') == 'contact_name' && session::get('filterOrder') == 'desc')
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'asc' ]) }}">Address</a>
+                                @if(session::get('filterTypeRC') == 'address' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'address', 'filterOrder' => 'asc' ]) }}">Address</a>
                                 @else
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'desc' ]) }}">Address</a>
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'address', 'filterOrder' => 'desc' ]) }}">Address</a>
                                 @endif
                             </th>
                             <th>
                             	<span class="fa fa-map-marker" aria-hidden="true"></span>
-                                @if(session::get('filterTypeRC') == 'contact_name' && session::get('filterOrder') == 'desc')
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'asc' ]) }}">City</a>
+                                @if(session::get('filterTypeRC') == 'city' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'city', 'filterOrder' => 'asc' ]) }}">City</a>
                                 @else
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'desc' ]) }}">City</a>
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'city', 'filterOrder' => 'desc' ]) }}">City</a>
                                 @endif
                             </th>
                             <th>
                             	<span class="fa fa-map-marker" aria-hidden="true"></span>
-                                @if(session::get('filterTypeRC') == 'contact_name' && session::get('filterOrder') == 'desc')
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'asc' ]) }}">State</a>
+                                @if(session::get('filterTypeRC') == 'state' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'state', 'filterOrder' => 'asc' ]) }}">State</a>
                                 @else
-                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'contact_name', 'filterOrder' => 'desc' ]) }}">State</a>
+                                    <a href="{{ URL::route('repair-center-filter-index', ['filterType' => 'state', 'filterOrder' => 'desc' ]) }}">State</a>
                                 @endif
                             </th>
                             <th></th>
