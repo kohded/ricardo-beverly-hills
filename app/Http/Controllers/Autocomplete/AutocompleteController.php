@@ -21,6 +21,19 @@ class AutocompleteController extends Controller
     }
 
     /**
+     * Return results of matching damage code.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return string
+     */
+    public function getDamageCode(\Illuminate\Http\Request $request)
+    {
+        $damageCode = new AutocompleteModel();
+
+        return $damageCode->getDamageCode($request->input('dc'));
+    }
+
+    /**
      * Return results of matching product.
      *
      * @param \Illuminate\Http\Request $request

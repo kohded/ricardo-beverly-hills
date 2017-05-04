@@ -141,17 +141,10 @@
                 {{--Damage Code--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-damage-code">Damage Code</label>
-                    <select class="form-control" id="claim-damage-code" name="damage_code">
-                        @foreach ($damage_codes as $dc)
-                            <option value="{{ $dc->id }}"
-                                @if (old('damage_code') === (string) $dc->id)
-                                    selected="selected"
-                                @endif
-                                >
-                                {{ $dc->id . '-' . $dc->part }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control damage-code-autocomplete"
+                           id="claim-damage-code" name="damage_code" value="{{ old('damage_code') }}">
+                    <input type="text"  class="damage-code-id" name="damage-code-id"
+                           value="{{ old('damage-code-id') }}" hidden>
                 </div>
                 {{--Repair Center--}}
                 <div class="form-group col-xs-12">

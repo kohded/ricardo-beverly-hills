@@ -27,6 +27,29 @@ class AutocompleteModel extends Model
     }
 
     /**
+     * Return results of matching damage code from database.
+     *
+     * @param $damageCode
+     * @return string
+     */
+    public function getDamageCode($damageCode)
+    {
+        $damageCodes = \DB::table('damage_code')
+            ->select(
+                \DB::raw('CONCAT(id, " - ", part) as value'),
+                'id as data'
+            )
+            ->where('id', 'like', '%' . $damageCode . '%')
+            ->orWhere('part', 'like', '%' . $damageCode . '%')
+            ->limit(6)
+            ->orderBy('id', 'asc')
+            ->orderBy('part', 'asc')
+            ->get();
+
+        return json_encode($damageCodes);
+    }
+
+    /**
      * Return results of matching product from database.
      *
      * @param $product
