@@ -1,6 +1,13 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
+/*
+Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
+@author Arnold Koh <arnold@kohded.com>
+@author Chris Knoll <cknoll3@gmail.com>
+@author Peter Kim <peterlk.dev@gmail.com>
+@version 1.0, developed 1/17/17
+@url http://rbh.greenrivertech.net
+ClaimController.php - Controller for Claim related pages
+*/
 
 use App\Http\Controllers\Mail\MailClaimController;
 use App\Models\DamageCodeModel;
@@ -12,8 +19,8 @@ use App\Models\ProductModel;
 use App\Models\RepairCenterModel;
 use App\Models\CustomerModel;
 
-class ClaimController extends Controller
-{
+class ClaimController extends Controller {
+    // List page displaying all claims
     public function getClaimIndex(Request $request)
     {
         $claimModel = new ClaimModel();
@@ -31,12 +38,24 @@ class ClaimController extends Controller
             'repair_centers' => $repair_centers
         ]);
     }
+    
+    // Filter for list sorting
+    public function setFilter($filterType, $filterOrder, Request $request
+    {
 
+        $request->session()->flash('filterTypeClaims', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getClaimIndex($request);
+    }
+
+    // View for new claim form
     public function getCreateView(Request $request)
     {
         return view('claim.claim-form');
     }
 
+    // More-detail claim page
     public function getClaimDetails($id)
     {
         $claimModel = new ClaimModel();
@@ -50,6 +69,7 @@ class ClaimController extends Controller
         ]);
     }
 
+    // Add new claim to database after form is submitted
     public function addClaim(Request $request)
     {
         // Strip everything but numbers
@@ -103,6 +123,7 @@ class ClaimController extends Controller
         return redirect()->route('claim', ['id' => $claimId]);
     }
 
+    // Insert comment into database
     public function addComment(Request $request)
     {
         $claimModel = new ClaimModel();
@@ -115,7 +136,9 @@ class ClaimController extends Controller
             ->with('message', 'Comment successfully added to claim.');
     }
 
-    public function convertToReplaceOrder(Request $request) {
+    // When RBH clicks convert to replace order
+    public function convertToReplaceOrder(Request $request) 
+    {
         $claimId = $request->input('claim_id');
         $claimModel = new ClaimModel();
         $claimModel->convertToReplaceOrder($claimId);
@@ -128,7 +151,9 @@ class ClaimController extends Controller
             ->with('message', 'Claim successfully converted to a Replace Order.');
     }
 
-    public function enterTrackingNumber(Request $request) {
+    // When RBH / Part Company enter a tracking number
+    public function enterTrackingNumber(Request $request) 
+    {
         $claimId = $request->input('claim_id');
         $partsAvailable = $request->input('parts_available');
         $trackingNumber = $request->input('tracking_number');
@@ -144,6 +169,7 @@ class ClaimController extends Controller
             ->with('message', 'Added tracking number to claim.');            
     }
 
+    // Closing the claim
     public function closeClaim($id) {
         $claimModel = new ClaimModel();
         $claimModel->closeClaim($id);
@@ -152,6 +178,7 @@ class ClaimController extends Controller
             ->with('message', 'Successfully closed claim!');
     }
 
+    // Deleting a claim
     public function deleteClaim(Request $request)
     {
         $claimId = $request->input('claim_id');
@@ -163,6 +190,7 @@ class ClaimController extends Controller
             ->with('message', 'Deleted claim ' . $claimId . '.');
     }
 
+    // Edit claim view
     public function editClaim($id, Request $request)
     {
         $rcModel = new RepairCenterModel();
@@ -185,6 +213,7 @@ class ClaimController extends Controller
         ]);
     }
 
+    // Update claim after edit claim form is submitted
     public function updateClaim(Request $request) 
     {
         $this->validate($request, $this->getExistingCustomerValidationRules());
@@ -214,29 +243,27 @@ class ClaimController extends Controller
     }
 
     // Display PDF version of claim if clicked on in claim details
-    public function displayClaimPDF($id) {
+    public function displayClaimPDF($id) 
+    {
         $claimModel = new ClaimModel();
         $claim = $claimModel->getClaim($id);
         $comments = $claimModel->getComments($id);
 
-        if($claim[0]->replace_order == 1) {
-        return PDF::loadView('pdf.replace-order', ['claim' => $claim, 'comments' => $comments])
-            ->inline('replace-order-' . $id . '.pdf');
-        } else {
+        if($claim[0]->replace_order == 1) 
+        {
+            return PDF::loadView('pdf.replace-order', ['claim' => $claim, 'comments' => $comments])
+                ->inline('replace-order-' . $id . '.pdf');
+        } 
+        else 
+        {
             return PDF::loadView('pdf.repair-order', ['claim' => $claim, 'comments' => $comments])
                 ->inline('repair-order-' . $id . '.pdf');            
         }
     }
 
-    public function setFilter($filterType, $filterOrder, Request $request){
-
-        $request->session()->flash('filterTypeClaims', $filterType);
-        $request->session()->flash('filterOrder', $filterOrder);
-
-        return $this->getClaimIndex($request);
-    }
-
-    private function getExistingCustomerValidationRules() {
+    // Validation rules for claim with existing customer
+    private function getExistingCustomerValidationRules() 
+    {
         return [
             'existing_customer_email' => 'required|max:50|exists:customer,email',
             'comments' => 'nullable',
@@ -250,7 +277,9 @@ class ClaimController extends Controller
         ];
     }
 
-    private function getNewCustomerValidationRules() {
+    // Validation rules for claim new customer
+    private function getNewCustomerValidationRules() 
+    {
         return [
             'firstname' => 'required|min:2|max:40',
             'lastname' => 'required|min:2|max:40',

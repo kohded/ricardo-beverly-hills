@@ -1,13 +1,21 @@
-<?php
+<?php namespace App\Http\Controllers\Mail;
+/*
+Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
+@author Arnold Koh <arnold@kohded.com>
+@author Chris Knoll <cknoll3@gmail.com>
+@author Peter Kim <peterlk.dev@gmail.com>
+@version 1.0, developed 1/17/17
+@url http://rbh.greenrivertech.net
+MailClaimController.php - Controller for all the different auto-generated emails
+the system sends out.
+*/
 
-namespace App\Http\Controllers\Mail;
 use PDF;
 use App\Http\Controllers\Controller;
 use App\Models\ClaimModel;
 use App\Models\Mail\MailClaimModel;
 
-class MailClaimController extends Controller
-{
+class MailClaimController extends Controller {
     private const RBH_EMAIL = 'ricardobevhills@gmail.com';
     // REPLACE WITH TWC EMAIL IN PRODUCTION.
     private const TWC_EMAIL = 'twc@gmail.com';
@@ -37,9 +45,12 @@ class MailClaimController extends Controller
         $this->twcName = 'T.W. Carrol & Co.';
 
         // Create pdf Repair or Replace order claim
-        if ($this->claim[0]->replace_order === 0) {
+        if ($this->claim[0]->replace_order === 0) 
+        {
             $this->claimPdf = PDF::loadView('pdf.repair-order', ['claim' => $this->claim, 'comments' => $this->claimComments])->download();
-        } else {
+        } 
+        else 
+        {
             $this->claimPdf = PDF::loadView('pdf.replace-order', ['claim' => $this->claim, 'comments' => $this->claimComments])->download();
         }
     }
@@ -51,9 +62,12 @@ class MailClaimController extends Controller
      */
     public function sendNewWarrantyClaimMail()
     {
-        if((int) $this->claim[0]->replace_order === 0) { // Repair Order
+        if((int) $this->claim[0]->replace_order === 0) 
+        { // Repair Order
             $this->sendNewWarrantyClaimRepairMail();
-        } elseif((int) $this->claim[0]->replace_order === 1) { // Replace Order
+        } 
+        elseif((int) $this->claim[0]->replace_order === 1) 
+        { // Replace Order
             $this->sendNewWarrantyClaimReplaceMail();
         }
 
@@ -74,7 +88,8 @@ class MailClaimController extends Controller
      */
     private function sendNewWarrantyClaimRepairMail()
     {
-        if((int) $this->claim[0]->part_needed === 0) { // Part Not Required
+        if((int) $this->claim[0]->part_needed === 0) 
+        { // Part Not Required
             \Mail::to($this->customerEmail)
                 ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\CustomerMail($this->claim, $this->claimPdf));
             \Mail::to($this::RBH_EMAIL)
@@ -83,7 +98,9 @@ class MailClaimController extends Controller
                 ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RepairCenterMail($this->claim, $this->claimPdf));
 
             $this->twcName = '';
-        } elseif((int) $this->claim[0]->part_needed === 1) { // Part Required
+        } 
+        elseif((int) $this->claim[0]->part_needed === 1) 
+        { // Part Required
             if($this->claim[0]->ship_to === 'Customer') {
                 \Mail::to($this->customerEmail)
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\CustomerMail($this->claim, $this->claimPdf));
@@ -92,7 +109,9 @@ class MailClaimController extends Controller
                 \Mail::to($this::TWC_EMAIL)
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\Customer\TWCMail($this->claim, $this->claimComments, $this->claimPdf));
                 $this->repairCenterName = '';
-            } elseif($this->claim[0]->ship_to === 'Repair Center') {
+            } 
+            elseif($this->claim[0]->ship_to === 'Repair Center') 
+            {
                 \Mail::to($this->customerEmail)
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\CustomerMail($this->claim, $this->claimPdf));
                 \Mail::to($this::RBH_EMAIL)
@@ -124,11 +143,14 @@ class MailClaimController extends Controller
      */
     public function sendConvertToReplaceOrderMail()
     {
-        if($this->claim[0]->ship_to === 'Customer') {
+        if($this->claim[0]->ship_to === 'Customer') 
+        {
             \Mail::to($this->customerEmail)
                 ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim, $this->claimPdf));
             $this->repairCenterName = '';
-        } elseif($this->claim[0]->ship_to === 'Repair Center') {
+        } 
+        elseif($this->claim[0]->ship_to === 'Repair Center') 
+        {
             \Mail::to($this->customerEmail)
                 ->send(new \App\Mail\Claim\ReplaceOrder\CustomerMail($this->claim, $this->claimPdf));
             \Mail::to($this->repairCenterEmail)
@@ -181,10 +203,13 @@ class MailClaimController extends Controller
         \Mail::to($this::RBH_EMAIL)
             ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RBHTrackingMail($this->claim, $this->claimComments, $this->claimPdf));
 
-        if($this->claim[0]->ship_to === 'Repair Center') {
+        if($this->claim[0]->ship_to === 'Repair Center') 
+        {
             \Mail::to($this->repairCenterEmail)
                 ->send(new \App\Mail\Claim\RepairOrder\PartRequired\TrackingNumber\RepairCenterTrackingMail($this->claim, $this->claimPdf));
-        } else {
+        } 
+        else 
+        {
             $this->repairCenterName = '';
         }
 

@@ -1,12 +1,19 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
+/*
+Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
+@author Arnold Koh <arnold@kohded.com>
+@author Chris Knoll <cknoll3@gmail.com>
+@author Peter Kim <peterlk.dev@gmail.com>
+@version 1.0, developed 1/17/17
+@url http://rbh.greenrivertech.net
+CustomerController.php - Controller for Customer related pages
+*/
 
 use Illuminate\Http\Request;
 use App\Models\CustomerModel;
 
-class CustomerController extends Controller
-{
+class CustomerController extends Controller {
+    // List of customers view
     public function getCustomerIndex(Request $request)
     {
         $customersModel = new CustomerModel();
@@ -16,11 +23,23 @@ class CustomerController extends Controller
         return view('customer.index', ['customers' => $customers]);
     }
 
+    // Filter for sorting list of customers
+    public function setFilter($filterType, $filterOrder, Request $request)
+    {
+
+        $request->session()->flash('filterTypeCustomer', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getCustomerIndex($request);
+    }
+
+    // New customer form
     public function getCreateView()
     {
         return view('customer.customer-form');
     }
 
+    // Add new customer after form is submitted
     public function addCustomer(Request $request)
     {
         // Strip everything but numbers
@@ -46,6 +65,7 @@ class CustomerController extends Controller
             ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' added.');
     }
 
+    // Edit customer view
     public function getEditView($customerId)
     {
         $getCustomerDetail = new CustomerModel();
@@ -55,6 +75,7 @@ class CustomerController extends Controller
         return view('customer.edit-form', ['customerDetails' => $customerDetail]);
     }
 
+    // Edit customer after form is submitted
     public function editCustomer(Request $request)
     {
         // Strip everything but numbers
@@ -93,7 +114,9 @@ class CustomerController extends Controller
             ->with('message', $request->input('firstname') . ' ' . $request->input('lastname') . ' edited.');
     }
 
-    public function getCustomerDetails($customerId){
+    // More-details page for customer
+    public function getCustomerDetails($customerId)
+    {
         $getCustomerDetail = new CustomerModel();
 
         $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId)['customer'];
@@ -105,7 +128,9 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function deleteCustomer(Request $request){
+    // Delete a customer
+    public function deleteCustomer(Request $request)
+    {
         $customerId = $request->customer_id;
         $customerName = $request->customer_name;
 
@@ -116,15 +141,9 @@ class CustomerController extends Controller
             ->with('message', 'Customer ' . $customerName . ' with ID ' . $customerId . ' deleted.');
     }
 
-    public function setFilter($filterType, $filterOrder, Request $request){
-
-        $request->session()->flash('filterTypeCustomer', $filterType);
-        $request->session()->flash('filterOrder', $filterOrder);
-
-        return $this->getCustomerIndex($request);
-    }
-
-    private function getValidationRules(){
+    // Validation rules for adding or editing a customer
+    private function getValidationRules()
+    {
         return [
             'firstname' => 'required|min:2|max:40',
             'lastname' => 'required|min:2|max:40',
