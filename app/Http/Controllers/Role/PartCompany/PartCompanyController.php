@@ -23,10 +23,10 @@ class PartCompanyController extends Controller
     	$claimModel = new ClaimModel();
         $claims = $claimModel->getClaims(20, $request, "partCompany");
         $rcModel = new RepairCenterModel();
-        $repair_centers = $rcModel->getRepairCenters();
+        $repair_centers = $rcModel->getRepairCenters(null, $request);
 
         $productModel = new ProductModel;
-        $products = $productModel->getProducts();
+        $products = $productModel->getProducts(null, $request);
 
         return view('role.part-company.list', [
             'claims' => $claims,
