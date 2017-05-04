@@ -31,7 +31,7 @@
     </div>
 
 
-    <div class="form-group form-inline">
+    <div class="form-group form-inline search-inputs">
         <label for="search">
             <span class="fa fa-search" aria-hidden="true"></span>
         </label>
