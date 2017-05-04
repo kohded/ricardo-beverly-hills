@@ -1,8 +1,8 @@
 @extends('pdf.layout')
 
 @section('title')
-<span class="fa fa-wrench"></span>    
-Repair Order
+<span class="fa fa-cog"></span>    
+Part Order
 @endsection
 
 @section('content')

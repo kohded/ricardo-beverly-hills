@@ -41,9 +41,7 @@ class MailClaimController extends Controller
             $this->claimPdf = PDF::loadView('pdf.repair-order', ['claim' => $this->claim, 'comments' => $this->claimComments])->download();
         } else {
             $this->claimPdf = PDF::loadView('pdf.replace-order', ['claim' => $this->claim, 'comments' => $this->claimComments])->download();
-            //dd($this->claimPdf);
         }
-        $this->packingSlipPdf = PDF::loadView('pdf.packing-slip', ['claim' => $this->claim]);
     }
 
     /**
@@ -102,7 +100,7 @@ class MailClaimController extends Controller
                 \Mail::to($this->repairCenterEmail)
                     ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\RepairCenterMail($this->claim));
                 \Mail::to($this::TWC_EMAIL)
-                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\TWCMail($this->claim, $this->claimComments));
+                    ->send(new \App\Mail\Claim\RepairOrder\PartRequired\RepairCenter\TWCMail($this->claim, $this->claimComments, $this->claimPdf));
             }
         }
     }
