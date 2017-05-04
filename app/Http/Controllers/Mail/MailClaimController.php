@@ -76,11 +76,11 @@ class MailClaimController extends Controller
     {
         if((int) $this->claim[0]->part_needed === 0) { // Part Not Required
             \Mail::to($this->customerEmail)
-                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\CustomerMail($this->claim));
+                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\CustomerMail($this->claim, $this->claimPdf));
             \Mail::to($this::RBH_EMAIL)
-                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RBHMail($this->claim, $this->claimComments));
+                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RBHMail($this->claim, $this->claimComments, $this->claimPdf));
             \Mail::to($this->repairCenterEmail)
-                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RepairCenterMail($this->claim));
+                ->send(new \App\Mail\Claim\RepairOrder\PartNotRequired\RepairCenter\RepairCenterMail($this->claim, $this->claimPdf));
 
             $this->twcName = '';
         } elseif((int) $this->claim[0]->part_needed === 1) { // Part Required
