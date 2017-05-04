@@ -34,25 +34,7 @@ class ClaimController extends Controller
 
     public function getCreateView(Request $request)
     {
-        $damage_codes = DB::table('damage_code')->get();
-
-        $rcModel = new RepairCenterModel();
-        $repair_centers = $rcModel->getRepairCenters(null, $request);
-
-        foreach ($repair_centers as $repair_center)
-        {
-            $street = substr($repair_center->address, strpos($repair_center->address, " "), 10);
-            $repair_center->streetName = $street;
-        }
-
-        $productModel = new ProductModel;
-        $products = $productModel->getProducts(null, $request);
-
-        return view('claim.claim-form', [
-            'damage_codes' => $damage_codes,
-            'repair_centers' => $repair_centers,
-            'products' => $products
-        ]);
+        return view('claim.claim-form');
     }
 
     public function getClaimDetails($id)
