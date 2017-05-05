@@ -45,23 +45,6 @@ $(function() {
     });
 });
 
-// New / exisitng customer buttons for claims
-if (document.getElementById("existing-customer")) {
-    var existingCustomerBTN = document.getElementById("existing-customer");
-    var editCustomerBTN = document.getElementById("edit-customer-info");
-    var editTypeSwitchHDL = document.getElementById("edit-type-switch");
-
-    existingCustomerBTN.onclick = function () {
-        $('#claim-new-customer').collapse('hide');
-        editTypeSwitchHDL.setAttribute("value", 1);
-    }
-
-    editCustomerBTN.onclick = function () {
-        $('#existing-customer-field').collapse('hide');
-        editTypeSwitchHDL.setAttribute("value", 0);
-    }
-}
-
 // Hide / show parts information based on if user clicks replace or repair order
 $(function() {
     var partsInputs = $('#partsInputs');
@@ -95,5 +78,61 @@ $(function() {
             partDetails.show();
         }
     });
-})
+
+    // New / exisitng customer buttons for claims
+    if (document.getElementById("existing-customer")) {
+        var existingCustomerBTN = document.getElementById("existing-customer");
+        var editCustomerBTN = document.getElementById("edit-customer-info");
+        var editTypeSwitchHDL = document.getElementById("edit-type-switch");
+
+        existingCustomerBTN.onclick = function () {
+            $('#claim-new-customer').collapse('hide');
+            editTypeSwitchHDL.setAttribute("value", 1);
+        };
+
+        editCustomerBTN.onclick = function () {
+            $('#existing-customer-field').collapse('hide');
+            editTypeSwitchHDL.setAttribute("value", 0);
+        };
+    }
+
+    // Claim list icon popovers
+    $('#action-needed-icons').popover({
+        content: `<div class="row">
+                    <div class="col-xs-12">
+                    <p>
+                      <span class="fa fa-suitcase text-warning" aria-hidden="true"></span>
+                       : Authorize Replace Order
+                    </p>
+                    <p>
+                      <span class="fa fa-truck text-warning" aria-hidden="true"></span>
+                       : Enter Tracking Number
+                    </p>
+                    </div>
+                  </div>`,
+        html: true,
+        placement: 'right',
+        title: 'Action Needed Icons',
+        trigger: 'hover',
+    });
+
+    $('#claim-icons').popover({
+        content: `<div class="row">
+                    <div class="col-xs-12">
+                    <p>
+                      <span class="fa fa-wrench text-primary" aria-hidden="true"></span>
+                       : Repair Order
+                    </p>
+                    <p>
+                      <span class="fa fa-suitcase text-primary" aria-hidden="true"></span>
+                       : Replace Order
+                    </p>
+                    </div>
+                  </div>`,
+        html: true,
+        placement: 'right',
+        title: 'Claim Icons',
+        trigger: 'hover',
+    });
+});
 

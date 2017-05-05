@@ -34,10 +34,14 @@
                         <thead>
                         <tr>
                             <th>
-                                <a><span class="fa fa-exclamation-triangle" aria-hidden="true" title="Action needed!"></span></a>
+                                <a>
+                                    <span class="fa fa-exclamation-triangle" id="action-needed-icons" aria-hidden="true"
+                                          data-toggle="popover"></span>
+                                </a>
                             </th>
                             <th>
-                                <span class="fa fa-file-text" aria-hidden="true"></span>
+                                <span class="fa fa-file-text" id="claim-icons" aria-hidden="true"
+                                      data-toggle="popover"></span>
                                 @if(session::get('filterTypeClaims') == 'claim_id' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'asc' ]) }}">Claim</a>
                                 @else
@@ -97,11 +101,11 @@
                                     <td>
                                         <!-- Ricardo needs to authorize replace order -->
                                         @if ($claim->part_needed && isset($claim->parts_available) && $claim->parts_available == 0 && !$claim->replace_order)
-                                            <span class="fa fa-suitcase text-warning" aria-hidden="true" title="Action Needed!"></span>
+                                            <span class="fa fa-suitcase text-warning" aria-hidden="true" title="Authorize Replace Order"></span>
                                         @endif
                                         <!-- Ricardo needs to enter tracking # -->
                                         @if ($claim->replace_order && !isset($claim->tracking_number))
-                                            <span class="fa fa-truck text-warning" aria-hidden="true" title="Action Needed!"></span>
+                                            <span class="fa fa-truck text-warning" aria-hidden="true" title="Enter Tracking Number"></span>
                                         @endif
                                     </td>
                                     <td>
