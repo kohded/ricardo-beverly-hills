@@ -118,7 +118,8 @@ class RepairCenterSeeder extends Seeder
             ['name' => 'ABA Semar', 'address' => '5464 N Port Washington Rd.', 'city' => 'Glendale', 'state' => 'WI', 'zip' => '53217', 'phone' => '4143320600', 'contact_name' => 'Paul', 'email' => 'paul@abasemar.com', 'preferred' => '1'],
             ['name' => 'ABA Semar', 'address' => '1516 Wisconsin Ave', 'city' => 'Grafton', 'state' => 'WI', 'zip' => '53024', 'phone' => '4143759870', 'contact_name' => 'Paul', 'email' => 'paul@abasemar.com', 'preferred' => '0'],
             ['name' => 'Shoe Repair Plus', 'address' => '862 Morris Ave', 'city' => 'Greenbay', 'state' => 'WI', 'zip' => '54304', 'phone' => '9204995458', 'contact_name' => 'Paul', 'email' => 'paul@shoerepairplus.com', 'preferred' => '1'],
-            ['name' => 'Traveling Bags Luggage Repair', 'address' => '3314 W Loomis Rd', 'city' => 'Greenfield', 'state' => 'WI', 'zip' => '53221', 'phone' => '4148170222', 'contact_name' => 'Peggy', 'email' => 'pbradleyw@gmail.com', 'preferred' => '1'],            
+            ['name' => 'Traveling Bags Luggage Repair', 'address' => '3314 W Loomis Rd', 'city' => 'Greenfield', 'state' => 'WI', 'zip' => '53221', 'phone' => '4148170222', 'contact_name' => 'Peggy', 'email' => 'pbradleyw@gmail.com', 'preferred' => '1'],
+            ['name' => 'Customer Order', 'address' => 'Customer Order', 'city' => 'Customer', 'state' => 'CO', 'zip' => '00000', 'phone' => '0000000000', 'contact_name' => 'Customer', 'email' => 'customer@email.com', 'preferred' => '0'],             
         ]);                
         
         // Seed Repair Center Comment Table
