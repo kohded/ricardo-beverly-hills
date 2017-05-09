@@ -257,6 +257,16 @@ class ClaimController extends Controller {
         }
     }
 
+    // Display PDF version of claim if clicked on in claim details
+    public function displayPackingSlipPDF($id) 
+    {
+        $claimModel = new ClaimModel();
+        $claim = $claimModel->getClaim($id);
+
+        return PDF::loadView('pdf.packing-slip', ['claim' => $claim])
+            ->inline('packing-slip-' . $id . '.pdf');            
+    }
+
     // Validation rules for claim with existing customer
     private function getExistingCustomerValidationRules() 
     {

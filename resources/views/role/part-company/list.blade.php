@@ -32,7 +32,11 @@
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                                Claim
+                                @if(session::get('filterTypeClaims') == 'claim_id' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'asc' ]) }}">Claim</a>
+                                @else
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'desc' ]) }}">Claim</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>

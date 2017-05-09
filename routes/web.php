@@ -58,9 +58,12 @@ Route::group(['middleware' => 'auth'], function() {
     	    // Detail
     	    Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')
     	        ->name('claim');
-            // Create claim PDF
+            // Claim PDF
             Route::get('/pdf/{id}', 'ClaimController@displayClaimPDF')
-                ->name('claim-pdf');            
+                ->name('claim-pdf');   
+            // Packing Slip PDF
+            Route::get('/ps-pdf/{id}', 'ClaimController@displayPackingSlipPDF')
+                ->name('packing-slip-pdf');           
     	    // edit
     	    Route::get('/edit/{id}', 'ClaimController@editClaim')
     	        ->name('claim.edit');
@@ -202,15 +205,22 @@ Route::group(['middleware' => 'auth'], function() {
             // List
             Route::get('/', 'Role\PartCompany\PartCompanyController@getListView')
                 ->name('pc-claim-list');
+            Route::get('/filtered/{filterType}/{filterOrder}', 'Role\PartCompany\PartCompanyController@setFilter')
+                ->name('pc-claim-filter-index');
+
+            // Claim Details
             Route::get('/more-details/{id}', 'Role\PartCompany\PartCompanyController@getClaimDetails')
                 ->name('pc-claim-details');
+            // Packing Slip PDF
+            Route::get('/ps-pdf/{id}', 'Role\PartCompany\PartCompanyController@displayPackingSlipPDF')
+                ->name('pc-packing-slip-pdf'); 
     	    // Add part availability (TWC)
     	    Route::post('/enter-part-availability', 'Role\PartCompany\PartCompanyController@enterPartAvailability')
     	        ->name('pc-enter-part-availability'); 
     	    // Add tracking (TWC)
     	    Route::post('/enter-tracking-number', 'Role\PartCompany\PartCompanyController@enterTrackingNumber')
     	        ->name('pc-enter-tracking-number'); 
-    	   	    // Add a new comment
+    	    // Add a new comment
     	    Route::post('/add-comment', 'Role\PartCompany\PartCompanyController@addComment')
     	        ->name('pc-add-comment');
         });

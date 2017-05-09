@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers\Role\PartCompany;
+<?php namespace App\Http\Controllers\Role\PartCompany;
 
 use App\Http\Controllers\Mail\MailClaimController;
 use Illuminate\Http\Request;
@@ -8,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\ClaimModel;
 use App\Models\RepairCenterModel;
 use App\Models\ProductModel;
+use PDF;
 
-
-
-class PartCompanyController extends Controller
-{
+class PartCompanyController extends Controller {
     /**
      * Get list view populated with claims for this part company.
      *
@@ -33,6 +29,16 @@ class PartCompanyController extends Controller
             'products' => $products,
             'repair_centers' => $repair_centers
         ]);
+    }
+
+    // Filter for list sorting
+    public function setFilter($filterType, $filterOrder, Request $request)
+    {
+
+        $request->session()->flash('filterTypeClaims', $filterType);
+        $request->session()->flash('filterOrder', $filterOrder);
+
+        return $this->getListView($request);
     }
 
     public function getClaimDetails($id)
@@ -56,7 +62,8 @@ class PartCompanyController extends Controller
         $claimModel = new ClaimModel();
         $claimModel->enterPartAvailability($claimId, $partsAvailable, $partCompanyComment);
 
-        if($partsAvailable === '0') {
+        if($partsAvailable === '0') 
+        {
             // Send no part mail.
             $request->request->add(['claim-id' => $claimId]);
             (new MailClaimController($request))->sendNoPartMail();
@@ -66,7 +73,8 @@ class PartCompanyController extends Controller
             ->with('message', 'Added part availability information to claim.');        
     }
 
-    public function enterTrackingNumber(Request $request) {
+    public function enterTrackingNumber(Request $request) 
+    {
         $claimId = $request->input('claim_id');
         $partsAvailable = $request->input('parts_available');
         $trackingNumber = $request->input('tracking_number');
@@ -94,11 +102,13 @@ class PartCompanyController extends Controller
             ->with('message', 'Comment successfully added to claim.');
     }
 
-    public function setFilter($filterType, $filterOrder, Request $request){
+    // Display PDF version of claim if clicked on in claim details
+    public function displayPackingSlipPDF($id) 
+    {
+        $claimModel = new ClaimModel();
+        $claim = $claimModel->getClaim($id);
 
-        $request->session()->flash('filterType', $filterType);
-        $request->session()->flash('filterOrder', $filterOrder);
-
-        return $this->getListView($request);
+        return PDF::loadView('pdf.packing-slip', ['claim' => $claim])
+            ->inline('packing-slip-' . $id . '.pdf');            
     }
 }

@@ -7,6 +7,12 @@
                 <h2>
                     <span class="fa fa-file-text" aria-hidden="true"></span>
                     Claim #{{ $claim[0]->claim_id }}
+
+                    {{--Packing Slip PDF--}}
+                    <a id="close-claim" href="{{ URL::route('pc-packing-slip-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
+                        <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                        Packing Slip PDF
+                    </a>
                 </h2>
                 <hr>
             </div>
