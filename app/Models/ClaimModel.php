@@ -186,7 +186,7 @@ class ClaimModel
         return $claim;
     }
 
-    public function insertClaim($existing_customer_email, $customerData ,$comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed, $updateSwitch){
+    public function insertClaim($existing_customer_email, $customerData ,$comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed, $updateSwitch, $purchaseOrder){
 
 
         DB::beginTransaction();
@@ -247,7 +247,8 @@ class ClaimModel
                 'replace_order'    => $replace_order,
                 'ship_to'          => $ship_to,
                 'part_needed'      => $part_needed,
-                'parts_needed'     => $parts_needed
+                'parts_needed'     => $parts_needed,
+                'purchase_order'   => $purchaseOrder ? $purchaseOrder : NULL
             ]);
 
             $claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();

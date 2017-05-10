@@ -12,7 +12,7 @@ class ClaimSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        
+
         // Seed Claim Table
         foreach(range(1, 101) as $index) {
             DB::table('claim')->insert([
@@ -25,7 +25,8 @@ class ClaimSeeder extends Seeder
                 'ship_to'          => $faker->randomElement($array = array('Customer', 'Repair Center')),
                 'part_needed'      => $faker->randomElement($array = array(0, 1)),
                 'parts_needed'     => $faker->randomElement($array = array('None', 'Need 2 wheels', 'Need main bag zipper', 'Need one wheel and new zipper tag')),
-                'parts_available'  => $faker->randomElement($array = array(NULL, 0, 1))
+                'parts_available'  => $faker->randomElement($array = array(NULL, 0, 1)),
+                'purchase_order'   => $faker->randomElement($array = array(NULL, 'PO123456789123456789'))
             ]);
         }
 

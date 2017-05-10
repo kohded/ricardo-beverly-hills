@@ -111,7 +111,8 @@ class ClaimController extends Controller {
             $request->input('ship_to'),
             $request->input('part_needed'),
             $request->input('parts_needed'),
-            $request->input('edit_type_switch')
+            $request->input('edit_type_switch'),
+            $request->input('purchase-order')
         );
 
         $claimId = $claimModel->getMostRecentClaimId();

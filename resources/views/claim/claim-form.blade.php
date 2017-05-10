@@ -235,7 +235,12 @@
                         </div>
                     </div>
                 </div>
-
+                {{--Purchase Order--}}
+                <div class="form-group col-xs-12">
+                    <label for="purchase-order">Purchase Order</label>
+                    <input type="text" class="form-control" id="purchase-order"
+                           name="purchase-order" value="{{ old('purchase-order') }}">
+                </div>
                 {{--Comment--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-comment">Comment</label>
