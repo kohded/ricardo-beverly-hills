@@ -153,6 +153,7 @@ class ClaimModel
                 'claim.parts_needed as parts_needed',
                 'claim.parts_available as parts_available',
                 'claim.tracking_number as tracking_number',
+                'claim.purchase_order as purchase_order',
                 'claim.part_company_comment as part_company_comment',
                 'customer.address as cust_address',
                 'customer.address_2 as cust_address_2',

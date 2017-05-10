@@ -166,6 +166,20 @@
                                 <p>{{ $claim[0]->claim_created_at }}</p>
                             </div>
                         </div>
+                        {{--Purchase Order--}}
+                        @if ($claim[0]->purchase_order)
+                            <div class="row">
+                                <div class="col-sm-3 col-md-4">
+                                    <p class="detail-label bold-text">
+                                        <span class="fa fa-file-text" aria-hidden="true"></span>
+                                        Purchase Order
+                                    </p>
+                                </div>
+                                <div class="col-sm-9 col-md-8">
+                                    <p>{{ $claim[0]->purchase_order }}</p>
+                                </div>
+                            </div>
+                        @endif
                         {{--Closed Date--}}
                         @if ($claim[0]->claim_date_closed)
                             <div class="row">
