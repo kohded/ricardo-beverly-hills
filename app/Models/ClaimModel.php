@@ -331,7 +331,7 @@ class ClaimModel
 
     public function updateClaim($claimId, $customerId, $product, $repairCenter, 
                                 $damageCode, $claimType, $partsRequired, $partsNeeded, 
-                                $shipPartsTo) {
+                                $shipPartsTo, $purchaseOrder) {
 
         DB::table('claim')
             ->where('id', '=', $claimId)
@@ -343,7 +343,8 @@ class ClaimModel
                 'replace_order' => $claimType,
                 'part_needed' => $partsRequired,
                 'parts_needed' => $partsNeeded,
-                'ship_to' => $shipPartsTo
+                'ship_to' => $shipPartsTo,
+                'purchase_order' => $purchaseOrder ? $purchaseOrder : NULL
         ]);
     }
 

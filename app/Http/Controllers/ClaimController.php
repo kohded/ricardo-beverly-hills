@@ -225,6 +225,7 @@ class ClaimController extends Controller {
         $partsRequired = $request->input('part_needed');
         $partsNeeded = $request->input('parts_needed');
         $shipPartsTo = $request->input('ship_to');
+        $purchaseOrder = $request->input('purchase-order');
 
         // Get the customer id using their email
         $customerModel = new CustomerModel();
@@ -233,7 +234,7 @@ class ClaimController extends Controller {
         $claimModel = new ClaimModel();
         $claimModel->updateClaim($claimId, $customerId->id, $product, $repairCenter, 
                                  $damageCode, $claimType, $partsRequired, $partsNeeded, 
-                                 $shipPartsTo);
+                                 $shipPartsTo, $purchaseOrder);
 
         return redirect()->route('claim', ['id' => $claimId])
             ->with('message', 'Successfully edited claim.');

@@ -215,6 +215,12 @@
                         </label>
                     </div>
                 </div>
+                {{--Purchase Order--}}
+                <div class="form-group col-xs-12">
+                    <label for="purchase-order">Purchase Order</label>
+                    <input type="text" class="form-control" id="purchase-order"
+                           name="purchase-order" value="{{ $claimDetails->purchase_order }}">
+                </div>
                 <input type="hidden" name="claim_id" value="{{ $claimDetails->claim_id}}">
                 <input type="hidden" name="customer_id"
                        value="{{ $customerDetails['customer'][0]->id}}">
