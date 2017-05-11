@@ -140,6 +140,17 @@ if ($('#claim-create') || $('#claim-edit')) {
     lookupLimit: 6,
     onSelect(suggestion) {
       $('.repair-center-id').val(suggestion.data);
+      checkIfCustomerOrder();
     },
   });
+}
+
+// If Customer Order then display courtesy / charge option
+function checkIfCustomerOrder() {
+  var courtesyOrCharge = $('#courtesy_or_charge')
+  if($('.repair-center-autocomplete').val() === "Customer Order - Customer Order") {
+    courtesyOrCharge.removeClass("hidden");
+  } else {
+    courtesyOrCharge.addClass("hidden");
+  }
 }

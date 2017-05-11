@@ -154,6 +154,36 @@
                     <input type="text"  class="repair-center-id" name="repair-center-id"
                            value="{{ old('repair-center-id') }}" hidden>
                 </div>
+
+
+                {{--Courtesy or Charged (only on Customer Orders)--}}
+                <div id="courtesy_or_charge" class="form-group col-xs-12 hidden">
+                    <label for="charge_radio">Charge Customer?</label>
+                    <div id="charge_radio">
+                        <label class="radio-inline">
+                            <input type="radio" name="courtesy_charge" value="Courtesy"
+                                @if (old('courtesy_charge') === 'Courtesy')
+                                        checked="checked"
+                                @endif
+                                >
+                            Courtesy
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="courtesy_charge" value="Charge"
+                                @if (old('courtesy_charge') === 'Charge')
+                                    checked="checked"
+                                @endif
+                                >
+                            Charge
+                        </label>
+                        <span id="charge_btn"
+                            class="btn btn-primary btn-sm ml-10 hidden"
+                            data-toggle="modal" data-target="#creditCardModal">
+                            Enter & Print Credit Card Info
+                        </span>
+                    </div>
+                </div>
+
                 {{--Claim Type--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-type">Claim Type</label>
@@ -267,4 +297,5 @@
     </div>
 
     @include('claim.new-claim-confirm-modal')
+    @include('claim.credit-card-modal')
 @endsection

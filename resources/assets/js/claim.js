@@ -136,3 +136,22 @@ $(function() {
     });
 });
 
+// If Charge is selected, unhide credit card button
+$(function() {
+    var courtesyOrCharge = $('input[name=courtesy_charge]');
+    var chargeBtn = $('#charge_btn');
+    courtesyOrCharge.change(function() {
+        if($('input[name=courtesy_charge]:checked').val() == "Charge") {
+            chargeBtn.removeClass("hidden");
+        } else {
+            chargeBtn.addClass("hidden");
+        }
+    });
+});
+
+// Hook up Credit Card button to modal.
+$(function() {
+    $('#creditCardModal').on("show.bs.modal", function (e) {
+        
+    });
+});
