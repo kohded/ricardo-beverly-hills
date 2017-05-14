@@ -97,41 +97,32 @@ $(function() {
     }
 
     // Claim list icon popovers
-    $('#action-needed-icons').popover({
+    $('#icon-legend').popover({
         content: `<div class="row">
                     <div class="col-xs-12">
-                    <p>
-                      <span class="fa fa-suitcase text-warning" aria-hidden="true"></span>
-                       : Authorize Replace Order
-                    </p>
-                    <p>
-                      <span class="fa fa-truck text-warning" aria-hidden="true"></span>
-                       : Enter Tracking Number
-                    </p>
+                        <h5><u>Action Needed</u></h5>
+                        <p>
+                          <span class="fa fa-suitcase text-warning" aria-hidden="true"></span>
+                           : Authorize Replace Order
+                        </p>
+                        <p>
+                          <span class="fa fa-truck text-warning" aria-hidden="true"></span>
+                           : Enter Tracking Number
+                        </p>
+                        <h5><u>Claim</u></h5>
+                        <p>
+                          <span class="fa fa-wrench text-primary" aria-hidden="true"></span>
+                           : Repair Order
+                        </p>
+                        <p>
+                          <span class="fa fa-suitcase text-primary" aria-hidden="true"></span>
+                           : Replace Order
+                        </p>
                     </div>
                   </div>`,
         html: true,
-        placement: 'right',
-        title: 'Action Needed Icons',
-        trigger: 'hover',
-    });
-
-    $('#claim-icons').popover({
-        content: `<div class="row">
-                    <div class="col-xs-12">
-                    <p>
-                      <span class="fa fa-wrench text-primary" aria-hidden="true"></span>
-                       : Repair Order
-                    </p>
-                    <p>
-                      <span class="fa fa-suitcase text-primary" aria-hidden="true"></span>
-                       : Replace Order
-                    </p>
-                    </div>
-                  </div>`,
-        html: true,
-        placement: 'right',
-        title: 'Claim Icons',
+        placement: 'left',
+        title: 'Icon Legend',
         trigger: 'hover',
     });
 });

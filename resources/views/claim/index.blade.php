@@ -35,13 +35,11 @@
                         <tr>
                             <th>
                                 <a>
-                                    <span class="fa fa-exclamation-triangle" id="action-needed-icons" aria-hidden="true"
-                                          data-toggle="popover"></span>
+                                    <span class="fa fa-exclamation-triangle" aria-hidden="true" title="Action needed"></span>
                                 </a>
                             </th>
                             <th>
-                                <span class="fa fa-file-text" id="claim-icons" aria-hidden="true"
-                                      data-toggle="popover"></span>
+                                <span class="fa fa-file-text" aria-hidden="true"></span>
                                 @if(session::get('filterTypeClaims') == 'claim_id' && session::get('filterOrder') == 'desc')
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'claim_id', 'filterOrder' => 'asc' ]) }}">Claim</a>
                                 @else
@@ -90,7 +88,10 @@
                                 @endif
                             </th>
                             <!-- For edit / delete button <td>s -->
-                            <th></th><th></th>
+                            <th></th>
+                            <th>
+                                 <span class="fa fa-info-circle" id="icon-legend" aria-hidden="true" data-toggle="popover"></span>
+                            </th>
                         </tr>
                         </thead>
 
