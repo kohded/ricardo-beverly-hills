@@ -40,23 +40,43 @@
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                Customer
+                                @if(session::get('filterTypeClaims') == 'last' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'last', 'filterOrder' => 'asc' ]) }}">Customer</a>
+                                @else
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'last', 'filterOrder' => 'desc' ]) }}">Customer</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
-                                Product Style
+                                @if(session::get('filterTypeClaims') == 'style' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'style', 'filterOrder' => 'asc' ]) }}">Product Style</a>
+                                @else
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'style', 'filterOrder' => 'desc' ]) }}">Product Style</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                                Repair Center
+                                @if(session::get('filterTypeClaims') == 'repair_center' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'repair_center', 'filterOrder' => 'asc' ]) }}">Repair Center</a>
+                                @else
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'repair_center', 'filterOrder' => 'desc' ]) }}">Repair Center</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                Date Opened
+                                @if(session::get('filterTypeClaims') == 'created_at' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'created_at', 'filterOrder' => 'asc' ]) }}">Date Opened</a>
+                                @else
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'created_at', 'filterOrder' => 'desc' ]) }}">Date Opened</a>
+                                @endif
                             </th>
                             <th>
                                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                Date Closed
+                                @if(session::get('filterTypeClaims') == 'closed_at' && session::get('filterOrder') == 'desc')
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'asc' ]) }}">Date Closed</a>
+                                @else
+                                    <a href="{{ URL::route('pc-claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'desc' ]) }}">Date Closed</a>
+                                @endif
                             </th>
                         </tr>
                         </thead>

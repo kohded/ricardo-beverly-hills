@@ -84,7 +84,7 @@
                             <th>
                                 <span class="fa fa-calendar" aria-hidden="true"></span>
                                 @if(session::get('filterTypeClaims') == 'closed_at' && session::get('filterOrder') == 'desc')
-                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'asc' ]) }}">Date Opened</a>
+                                    <a href="{{ URL::route('claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'asc' ]) }}">Date Closed</a>
                                 @else
                                     <a href="{{ URL::route('claim-filter-index', ['filterType' => 'closed_at', 'filterOrder' => 'desc' ]) }}">Date Opened</a>
                                 @endif
