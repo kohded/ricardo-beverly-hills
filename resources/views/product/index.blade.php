@@ -65,10 +65,10 @@
 								</th>
 								<th>
 									<span class="fa fa-list" aria-hidden="true"></span>
-									@if(session::get('filterTypeProduct') == 'collection' && session::get('filterOrder') == 'desc')
-										<a href="{{ URL::route('product-filter-index', ['filterType' => 'collection', 'filterOrder' => 'asc' ]) }}">Description</a>
+									@if(session::get('filterTypeProduct') == 'description' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'description', 'filterOrder' => 'asc' ]) }}">Description</a>
 									@else
-										<a href="{{ URL::route('product-filter-index', ['filterType' => 'collection', 'filterOrder' => 'desc' ]) }}">Description</a>
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'description', 'filterOrder' => 'desc' ]) }}">Description</a>
 									@endif
 								</th>
 								<th>
