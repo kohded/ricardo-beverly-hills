@@ -7847,4 +7847,18 @@ body.pdf {
   padding-top: 10px;
 }
 
+.comment-container {
+  position: relative;
+}
+
+.comment-edit-links {
+  position: absolute;
+  bottom: -30px;
+  right: 30px;
+}
+
+.comment-cancel-edit {
+  margin-left: 3px;
+}
+
 /*# sourceMappingURL=app.css.map */

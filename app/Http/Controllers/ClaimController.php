@@ -137,6 +137,16 @@ class ClaimController extends Controller {
             ->with('message', 'Comment successfully added to claim.');
     }
 
+
+    public function editClaimComment(Request $request) {
+        $claimModel = new ClaimModel();
+        $claimModel->editComment($request->input('comment_id'), $request->input('comment'));
+
+        return redirect()->route('claim', ['id' => $request->input('claim_id')])
+            ->with('message', 'Comment successfully edited.');
+    }
+
+
     // When RBH clicks convert to replace order
     public function convertToReplaceOrder(Request $request) 
     {

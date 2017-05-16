@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth'], function() {
     	    // Detail
     	    Route::get('/more-details/{id}', 'ClaimController@getClaimDetails')
     	        ->name('claim');
+    	    // Update Claim Comment
+            Route::post('/edit-comment', 'ClaimController@editClaimComment')
+                ->name('edit-claim-comment');
             // Claim PDF
             Route::get('/pdf/{id}', 'ClaimController@displayClaimPDF')
                 ->name('claim-pdf');   

@@ -45,14 +45,35 @@
                             {{ $comment->created_at }}
                         </p>
                     </div>
-                    <div class="col-sm-9 col-md-7 col-lg-8">
-                        <p>
+                    <div class="comment-container col-sm-9 col-md-7 col-lg-8">
+                        <p class="original-comment" id="original-comment-{{$comment->id}}">
                             <span class="fa fa-comment" aria-hidden="true"></span>
                             {{ $comment->comment }}
                         </p>
+                        @if(Auth::user()->id == $comment->author_id)
+                            <button id="comment-edit-link-{{$comment->id}}" class="comment-edit-links" effected-id="{{$comment->id}}" >Edit</button>
+                            <form id="comment-form-{{$comment->id}}" class="hidden" action="{{route('edit-claim-comment')}}" method="post">
+                                {{--Comment--}}
+                                <div class="form-group col-xs-12">
+                                    <textarea class="form-control" id="comment-comment" name="comment"
+                                  placeholder="Enter new comment..." required>{{ $comment->comment }}</textarea>
+                                </div>
+                                {{--Submit--}}
+                                <div class="form-group col-xs-12 mb-10">
+                                    <button id="comment-cancel-edit-{{$comment->id}}" class="comment-cancel-edit btn btn-danger pull-right" effected-id="{{$comment->id}}">Cancel</button>
+                                    <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                                </div>
+                                {{--Id--}}
+                                <input name="comment_id" value="{{ $comment->id }}" type="hidden">
+                                <input name="claim_id" value="{{ $claim[0]->claim_id }}" type="hidden">
+                                {{--Token--}}
+                                {{ csrf_field() }}
+                            </form>
+                        @endif
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
 </div>
+

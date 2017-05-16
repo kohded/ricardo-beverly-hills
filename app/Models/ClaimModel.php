@@ -283,6 +283,7 @@ class ClaimModel
     {
             DB::table('claim_comment')->insert([
                 'author' => Auth::user()->name,
+                'author_id' => Auth::user()->id,
                 'claim_id' => $claimID,
                 'comment' => $comment
             ]);
@@ -318,7 +319,9 @@ class ClaimModel
         $comments = DB::table('claim_comment')
             ->where('claim_id', '=', $id)
             ->select(
+                'id as id',
                 'author as author',
+                'author_id as author_id',
                 'created_at as created', // Alias for orderBy only.
                 \DB::raw('DATE_FORMAT(created_at, "%m/%d/%Y %h:%i%p") as created_at'),
                 'comment as comment'
@@ -327,6 +330,12 @@ class ClaimModel
             ->get();
 
         return $comments;
+    }
+
+    public function editComment($id, $newComment){
+        DB::table('claim_comment')
+            ->where('id', '=', $id)
+            ->update(['comment' => $newComment]);
     }
 
     public function updateClaim($claimId, $customerId, $product, $repairCenter, 

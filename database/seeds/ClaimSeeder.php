@@ -36,6 +36,7 @@ class ClaimSeeder extends Seeder
                 'claim_id'   => $faker->numberBetween($min = 1000, $max = 1099),
                 'created_at' => $faker->dateTime(),
                 'author'     => $faker->lastName,
+                'author_id'     => $faker->numberBetween($min = 1, $max = 1099),
                 'comment'    => $faker->sentence($nbWords = 15, $variableNbWords = true),
             ]);
         }
