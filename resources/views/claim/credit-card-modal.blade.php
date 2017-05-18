@@ -1,4 +1,4 @@
-<div class="modal fade" id="creditCardModal" 
+<div class="modal fade hidden-print" id="creditCardModal" 
      tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -19,37 +19,37 @@
         {{--Billing Name--}}
         <div class="form-group col-sm-12">
             <label for="ccname">Name (Exactly as it appears on card)</label>
-            <input type="text" class="form-control" id="customer-first-name"
+            <input type="text" class="form-control" id="ccname"
                    name="ccname">
         </div>
         {{--CC Number--}}
         <div class="form-group col-sm-12">
-            <label for="ccname">Credit Card Number</label>
-            <input type="text" class="form-control" id="customer-first-name"
-                   name="ccname">
+            <label for="ccnumber">Credit Card Number</label>
+            <input type="text" class="form-control" id="ccnumber"
+                   name="ccnumber">
         </div>
         {{--Expiration--}}
         <div class="form-group col-sm-3">
-            <label for="ccname">Expiration</label>
-            <input type="text" class="form-control" id="customer-first-name"
-                   name="ccname" placeholder="##/##">
+            <label for="ccexp">Expiration</label>
+            <input type="text" class="form-control" id="ccexp"
+                   name="ccexp" placeholder="##/##">
         </div>
         {{--Security Code--}}
         <div class="form-group col-sm-3">
-            <label for="ccname">Security Code</label>
-            <input type="text" class="form-control" id="customer-first-name"
-                   name="ccname" placeholder="###">
+            <label for="ccsec">Security Code</label>
+            <input type="text" class="form-control" id="ccsec"
+                   name="ccsec" placeholder="###">
         </div>
         {{--Address 1--}}
         <div class="form-group col-xs-12">
             <label for="ccaddress1">Billing Address 1</label>
-            <input type="text" class="form-control" id="customer-address1"
+            <input type="text" class="form-control" id="ccaddress1"
                    name="ccaddress1">
         </div>
         {{--Address 2--}}
         <div class="form-group col-xs-12">
             <label for="ccaddress2">Billing Address 2</label>
-            <input type="text" class="form-control" id="customer-address2"
+            <input type="text" class="form-control" id="ccaddress2"
                    name="ccaddress2">
         </div>
         {{--City--}}
@@ -67,7 +67,7 @@
         {{--Zip--}}
         <p><div class="form-group col-xs-6 col-sm-3">
             <label for="cczip">Zip</label>
-            <input type="text" class="form-control" id="customer-zip"
+            <input type="text" class="form-control" id="cczip"
                    name="cczip">
         </div>
       </div>
@@ -80,7 +80,7 @@
           </button>
         </span>
         <span class="pull-right">
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" id="printbtn">
               <span class="fa fa-print" aria-hidden="true"></span>
               Print
           </button>

@@ -1,7 +1,7 @@
 @extends('layouts.master-narrow')
 
 @section('content')
-    <div id="claim-create">
+    <div id="claim-create" class="hidden-print">
         <div class="row">
             <div class="col-xs-12">
                 <h2>Create Claim</h2>

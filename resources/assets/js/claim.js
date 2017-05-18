@@ -142,10 +142,30 @@ $(function() {
     });
 });
 
-// Hook up Credit Card button to modal.
+// Pull in customer name and address on modal open
 $(function() {
     $('#creditCardModal').on("show.bs.modal", function (e) {
-        
+        $('#ccname').val(function() {
+            return $('#customer-first-name').val() + " " + $('#customer-last-name').val();
+        });
+        $('#ccaddress1').val(function() {
+            return $('#customer-address1').val();
+        });
+        $('#ccaddress2').val(function() {
+            return $('#customer-address2').val();
+        });
+        $('#cccity').val(function() {
+            return $('#customer-city').val();
+        });
+        $('#ccstate').val(function() {
+            return $('#customer-state').val();
+        });
+        $('#cczip').val(function() {
+            return $('#customer-zip').val();
+        });
+
+        // Hook up print button to print
+        $('#printbtn').click(function() { window.print() });
     });
 });
 
