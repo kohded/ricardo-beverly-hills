@@ -257,6 +257,7 @@ class ClaimModel
             DB::table('claim_comment')->insert([
                 'claim_id' => $claimID,
                 'author' => Auth::user()->id . ' : ' . Auth::user()->name,
+                'author_id' => Auth::user()->id,
                 'comment' => $comment
             ]);
 
