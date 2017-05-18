@@ -86,13 +86,15 @@ $(function() {
         var editTypeSwitchHDL = document.getElementById("edit-type-switch");
 
         existingCustomerBTN.onclick = function () {
+            $('#claim-order-details').collapse('show');
             $('#claim-new-customer').collapse('hide');
-            editTypeSwitchHDL.setAttribute("value", 1);
+            editTypeSwitchHDL.setAttribute('value', 1);
         };
 
         editCustomerBTN.onclick = function () {
+            $('#claim-order-details').collapse('show');
             $('#existing-customer-field').collapse('hide');
-            editTypeSwitchHDL.setAttribute("value", 0);
+            editTypeSwitchHDL.setAttribute('value', 0);
         };
     }
 
