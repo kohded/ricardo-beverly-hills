@@ -20,8 +20,6 @@ class CreateClaimCommentTable extends Migration
             $table->unsignedInteger('author_id');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->text('comment');
-
-            $table->foreign('author_id')->references('id')->on('users');
         });
     }
 
