@@ -164,8 +164,37 @@ $(function() {
             return $('#customer-zip').val();
         });
 
-        // Hook up print button to print
-        $('#printbtn').click(function() { window.print() });
+        // Hook up print button to print and create print view
+        $('#printbtn').click(function() { 
+            $('#print-name').text(function() {
+                return $('#ccname').val();
+            });
+            $('#print-ccnum').text(function() {
+                return $('#ccnumber').val();
+            });
+            $('#print-exp').text(function() {
+                return $('#ccexp').val();
+            });
+            $('#print-sec').text(function() {
+                return $('#ccsec').val();
+            });
+            $('#print-address1').text(function() {
+                return $('#ccaddress1').val();
+            });
+            $('#print-address2').text(function() {
+                return $('#ccaddress2').val();
+            });
+            $('#print-city').text(function() {
+                return $('#cccity').val();
+            });
+            $('#print-state').text(function() {
+                return $('#ccstate').val();
+            });
+            $('#print-zip').text(function() {
+                return $('#cczip').val();
+            });
+            window.print();
+        });
     });
 });
 

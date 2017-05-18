@@ -299,4 +299,5 @@
 
     @include('claim.new-claim-confirm-modal')
     @include('claim.credit-card-modal')
+    @include('claim.cc-print')
 @endsection
