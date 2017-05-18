@@ -135,7 +135,7 @@
                     <div class="form-group col-xs-12">
                         <label for="claim-product">Product</label>
                         <input type="text" class="form-control product-autocomplete"
-                               id="claim-product" name="products" value="{{ old('products') }}">
+                               id="claim-product" name="products" value="{{ old('products') }}" placeholder="Enter Product...">
                         <input type="text"  class="product-style" name="product-style"
                                value="{{ old('product-style') }}" hidden>
                     </div>
@@ -143,7 +143,7 @@
                     <div class="form-group col-xs-12">
                         <label for="claim-damage-code">Damage Code</label>
                         <input type="text" class="form-control damage-code-autocomplete"
-                               id="claim-damage-code" name="damage_code" value="{{ old('damage_code') }}">
+                               id="claim-damage-code" name="damage_code" value="{{ old('damage_code') }}" placeholder="Enter Damage Code...">
                         <input type="text"  class="damage-code-id" name="damage-code-id"
                                value="{{ old('damage-code-id') }}" hidden>
                     </div>
@@ -151,7 +151,7 @@
                     <div class="form-group col-xs-12">
                         <label for="claim-repair-center">Repair Center</label>
                         <input type="text" class="form-control repair-center-autocomplete"
-                               id="claim-repair-center" name="repair_center" value="{{ old('repair_center') }}">
+                               id="claim-repair-center" name="repair_center" value="{{ old('repair_center') }}" placeholder="Enter Repair Center...">
                         <input type="text"  class="repair-center-id" name="repair-center-id"
                                value="{{ old('repair-center-id') }}" hidden>
                     </div>
