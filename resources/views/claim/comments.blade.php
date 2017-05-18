@@ -46,12 +46,12 @@
                         </p>
                     </div>
                     <div class="comment-container col-sm-9 col-md-7 col-lg-8">
-                        <p class="original-comment" id="original-comment-{{$comment->id}}">
+                        <p class="original-comment col-md-10" id="original-comment-{{$comment->id}}">
                             <span class="fa fa-comment" aria-hidden="true"></span>
                             {{ $comment->comment }}
                         </p>
                         @if(Auth::user()->id == $comment->author_id)
-                            <button id="comment-edit-link-{{$comment->id}}" class="comment-edit-links" effected-id="{{$comment->id}}" >Edit</button>
+                            <button id="comment-edit-link-{{$comment->id}}" class="comment-edit-links col-md-2 pull-right" effected-id="{{$comment->id}}" >Edit</button>
                             <form id="comment-form-{{$comment->id}}" class="hidden" action="{{route('edit-claim-comment')}}" method="post">
                                 {{--Comment--}}
                                 <div class="form-group col-xs-12">

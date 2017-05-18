@@ -7821,6 +7821,8 @@ table th {
   .search-inputs {
     margin-left: 30px;
   }
+
+
 }
 
 @media only screen and (min-width: 0px) and (max-width: 767px) {
@@ -7831,6 +7833,8 @@ table th {
     float: right;
     margin-top: 10px;
   }
+
+
 }
 
 body.pdf {
@@ -7845,16 +7849,6 @@ body.pdf {
 .pdf.row.top-line {
   border-top: 1px solid #AAA;
   padding-top: 10px;
-}
-
-.comment-container {
-  position: relative;
-}
-
-.comment-edit-links {
-  position: absolute;
-  bottom: -30px;
-  right: 30px;
 }
 
 .comment-cancel-edit {
