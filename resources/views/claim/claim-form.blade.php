@@ -83,7 +83,7 @@
                     {{--Phone--}}
                     <div class="form-group col-sm-6">
                         <label for="customer-phone">Phone</label>
-                        <input type="text" class="form-control" id="customer-phone" name="phone"
+                        <input type="tel" class="form-control" id="customer-phone" name="phone"
                                placeholder="##########"
                                value="{{ old('phone') }}">
                     </div>

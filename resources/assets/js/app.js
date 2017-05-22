@@ -12,3 +12,4 @@ require('./customer.js');
 require('./repair-center.js');
 require('./damage-code.js');
 require('./claim-comment.js');
+require('./phone-format.js');

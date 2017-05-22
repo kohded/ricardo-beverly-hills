@@ -49,7 +49,7 @@
                 {{--Phone--}}
                 <div class="form-group col-sm-6">
                     <label for="inputCustomerPhone">Phone</label>
-                    <input type="text" class="form-control" 
+                    <input type="tel" class="form-control" 
                         id="inputCustomerPhone" name="phone"
                         value="{{ $customerDetails['customer'][0]->phone }}">
                 </div>
