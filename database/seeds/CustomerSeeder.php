@@ -22,7 +22,7 @@ class CustomerSeeder extends Seeder
                 'state'      => $faker->stateAbbr,
                 'zip'        => substr($faker->postcode, 0, 5),
                 'phone'      => $faker->numberBetween($min = 1000000000, $max = 9999999999),
-                'email'      => $faker->email
+                'email'      => 'ricardoparts@ricardobeverlyhills.com'
             ]);
         }
     }
