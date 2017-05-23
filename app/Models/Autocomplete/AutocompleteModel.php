@@ -84,12 +84,15 @@ class AutocompleteModel extends Model
     {
         $repairCenters = \DB::table('repair_center')
             ->select(
-                \DB::raw('CONCAT(name, " - ", address) as value'),
+                \DB::raw('CONCAT(name, " - ", address, " ", city, ", ", state, " ", zip) as value'),
                 'id as data'
             )
             ->where('name', 'like', '%' . $repairCenter . '%')
             ->orWhere('address', 'like', '%' . $repairCenter . '%')
-            ->limit(6)
+            ->orWhere('city', 'like', '%' . $repairCenter . '%')
+            ->orWhere('state', 'like', '%' . $repairCenter . '%')
+            ->orWhere('zip', 'like', '%' . $repairCenter . '%')
+            ->limit(60)
             ->orderBy('name', 'asc')
             ->get();
 

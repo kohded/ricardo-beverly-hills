@@ -103,11 +103,6 @@ if ($('#claim-create') || $('#claim-edit')) {
       });
     },
     lookupLimit: 60,
-    onChange(value, data) {
-      console.log(value);
-      console.log(data);
-
-    },
     onSelect(suggestion) {
       $('.product-style').val(suggestion.data);
     },
@@ -137,11 +132,12 @@ if ($('#claim-create') || $('#claim-edit')) {
         },
       });
     },
-    lookupLimit: 6,
+    lookupLimit: 60,
     onSelect(suggestion) {
       $('.repair-center-id').val(suggestion.data);
       checkIfCustomerOrder();
     },
+    maxHeight: 302,
   });
 }
 
