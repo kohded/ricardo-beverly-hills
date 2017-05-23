@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'service@ricardobeverlyhills.com',
+        'address' => 'ricardoparts@ricardobeverlyhills.com',
         'name' => 'Ricardo Beverly Hills',
     ],
 
