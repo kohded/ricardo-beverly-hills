@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use app\Log\UserActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -225,6 +226,10 @@ class ClaimModel
 
                 $customerID = DB::table('customer')->where('customer.email', '=', $customerData['email'])->pluck('id')[0];
 
+                //Stores User Activity Log Data into the DB
+                $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Customer Inserted');
+                $UALog->insertAllValues(array_keys($customerData), array_values($customerData));
+
             } else if(!empty($existing_customer_email) && $isCustomerInDB && empty($customerData['email'])){
 
                 $output = new \Symfony\Component\Console\Output\ConsoleOutput(2);
@@ -240,7 +245,7 @@ class ClaimModel
                 return redirect()->route('claim-index')->withErrors('Customer with that email already exists.');
             }
 
-            DB::table('claim')->insert([
+            $claimValuesForInsert = [
                 'customer_id'      => $customerID,
                 'product_style'    => $products,
                 'damage_code_id'   => $damage_code,
@@ -249,17 +254,29 @@ class ClaimModel
                 'ship_to'          => $ship_to,
                 'part_needed'      => $part_needed,
                 'parts_needed'     => $parts_needed,
-                'purchase_order'   => $purchaseOrder ? $purchaseOrder : NULL
-            ]);
+                'purchase_order' => $purchaseOrder ? $purchaseOrder : NULL
+            ];
+
+            DB::table('claim')->insert($claimValuesForInsert);
 
             $claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
 
-            DB::table('claim_comment')->insert([
+            //Stores User Activity Log Data into the DB
+            $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Claim Inserted');
+            $UALog->insertAllValues(array_keys($claimValuesForInsert), array_values($claimValuesForInsert));
+
+            $claimCommentValuesForInsert = [
                 'claim_id' => $claimID,
                 'author' => Auth::user()->id . ' : ' . Auth::user()->name,
                 'author_id' => Auth::user()->id,
                 'comment' => $comment
-            ]);
+            ];
+
+            DB::table('claim_comment')->insert($claimCommentValuesForInsert);
+
+            //Stores User Activity Log Data into the DB
+            $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Claim Comment Inserted');
+            $UALog->insertAllValues(array_keys($claimCommentValuesForInsert), array_values($claimCommentValuesForInsert));
 
             DB::table('claim_customer')->insert([
                 'claim_id' => $claimID,
@@ -282,12 +299,18 @@ class ClaimModel
 
     public function insertComment($claimID, $comment)
     {
-            DB::table('claim_comment')->insert([
-                'author' => Auth::user()->name,
-                'author_id' => Auth::user()->id,
-                'claim_id' => $claimID,
-                'comment' => $comment
-            ]);
+        $insertCommentValues = [
+            'author' => Auth::user()->name,
+            'author_id' => Auth::user()->id,
+            'claim_id' => $claimID,
+            'comment' => $comment
+        ];
+
+        DB::table('claim_comment')->insert($insertCommentValues);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Claim Comment Inserted');
+        $UALog->insertAllValues(array_keys($insertCommentValues), array_values($insertCommentValues));
     }
 
     public function getMostRecentClaimId()
@@ -311,7 +334,15 @@ class ClaimModel
 
     public function deleteClaim($id)
     {
+        $deletedClaimValues = (array) DB::table('claim')->where('id', '=', $id)->get()[0];
+
         DB::table('claim')->where('id', '=', $id)->delete();
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Deleted');
+        $UALog->insertAllValues(array_keys($deletedClaimValues), array_values($deletedClaimValues));
+
+
     }
 
     // Get comments for a claim
@@ -334,9 +365,18 @@ class ClaimModel
     }
 
     public function editComment($id, $newComment){
+
+
+
         DB::table('claim_comment')
             ->where('id', '=', $id)
             ->update(['comment' => $newComment]);
+
+        $editCommentValues = (array) DB::table('claim_comment')->where('id', '=', $id)->get()[0];
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Comment Edited');
+        $UALog->insertAllValues(array_keys($editCommentValues), array_values($editCommentValues));
     }
 
     public function updateClaim($claimId, $customerId, $product, $repairCenter, 
@@ -355,7 +395,13 @@ class ClaimModel
                 'parts_needed' => $partsNeeded,
                 'ship_to' => $shipPartsTo,
                 'purchase_order' => $purchaseOrder ? $purchaseOrder : NULL
-        ]);
+            ]);
+
+        $updateClaimValues = (array) DB::table('claim')->where('id', '=', $claimId)->get()[0];
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Edited');
+        $UALog->insertAllValues(array_keys($updateClaimValues), array_values($updateClaimValues));
     }
 
     public function convertToReplaceOrder($id)
@@ -363,6 +409,12 @@ class ClaimModel
         DB::table('claim')
             ->where('id', '=', $id)
             ->update(['replace_order' => 1]);
+
+        $convertToReplaceOrderClaimValues = (array) DB::table('claim')->where('id', '=', $id)->get()[0];
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Convert To Replace Order');
+        $UALog->insertAllValues(array_keys($convertToReplaceOrderClaimValues), array_values($convertToReplaceOrderClaimValues));
     }
 
     public function enterPartAvailability($id, $partsAvailable, $partCompanyComment) 
@@ -373,6 +425,14 @@ class ClaimModel
                 'parts_available' => $partsAvailable,
                 'part_company_comment' => $partCompanyComment
             ]);
+
+        $partAvailabilityClaimValues = (array) DB::table('claim')->where('id', '=', $id)->get()[0];
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Part Availability entered');
+        $UALog->insertAllValues(array_keys($partAvailabilityClaimValues), array_values($partAvailabilityClaimValues));
+
+
     }
 
     public function enterTrackingNumber($id, $trackingNumber) 
@@ -382,6 +442,10 @@ class ClaimModel
             ->update([
                 'tracking_number' => $trackingNumber
             ]);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Tracking Number Entered');
+        $UALog->insertAllValues((array) 'tracking_number', (array) $trackingNumber);
     }
 
     public function closeClaim($id)
@@ -391,5 +455,11 @@ class ClaimModel
             ->update([
                 'date_closed' => Carbon::now()
             ]);
+
+        $closeClaimValues = (array) DB::table('claim')->where('id', '=', $id)->get()[0];
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim closed');
+        $UALog->insertAllValues($closeClaimValues, $closeClaimValues);
     }
 }

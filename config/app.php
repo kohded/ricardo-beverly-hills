@@ -238,6 +238,8 @@ return [
         
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+
+        'UserActivityLog' => 'app\Log\UserActivityLog'
     ],
 
 ];
