@@ -16,9 +16,9 @@ use App\Models\ClaimModel;
 use App\Models\Mail\MailClaimModel;
 
 class MailClaimController extends Controller {
-    private const RBH_EMAIL = 'ricardobevhills@gmail.com';
+    private const RBH_EMAIL = 'ricardoparts@ricardobeverlyhills.com';
     // REPLACE WITH TWC EMAIL IN PRODUCTION.
-    private const TWC_EMAIL = 'twc@gmail.com';
+    private const TWC_EMAIL = 'ricardoparts@ricardobeverlyhills.com';
     private $claimId;
     private $claim;
     private $claimComments;
