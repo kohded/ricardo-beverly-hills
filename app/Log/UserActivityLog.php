@@ -40,6 +40,11 @@ class UserActivityLog
         }
     }
 
+    public static function getResultsAsArr($table, $id) {
+
+        return (array) DB::table($table)->where('id', '=', $id)->get()[0];
+    }
+
     private function storeValues($valueType, $value) {
         DB::table('log_values_xref')->insert([
             'log_id' => $this->log_id,

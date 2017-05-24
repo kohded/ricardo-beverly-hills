@@ -212,7 +212,7 @@ class ClaimModel
 
             if(!$isCustomerInDB && $updateSwitch == 0) {
 
-                DB::table('customer')->insert([
+                $customerID = DB::table('customer')->insertGetId([
                     'first_name' => $customerData['first_name'],
                     'last_name' => $customerData['last_name'],
                     'address' => $customerData['address'],
@@ -224,11 +224,13 @@ class ClaimModel
                     'email' => $customerData['email']
                 ]);
 
-                $customerID = DB::table('customer')->where('customer.email', '=', $customerData['email'])->pluck('id')[0];
+                //$customerID = DB::table('customer')->where('customer.email', '=', $customerData['email'])->pluck('id')[0];
+
+                $claimCustomerInsertValues = (array) DB::table('customer')->where('id', '=', $customerID)->get()[0];
 
                 //Stores User Activity Log Data into the DB
                 $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Customer Inserted');
-                $UALog->insertAllValues(array_keys($customerData), array_values($customerData));
+                $UALog->insertAllValues(array_keys($claimCustomerInsertValues), array_values($claimCustomerInsertValues));
 
             } else if(!empty($existing_customer_email) && $isCustomerInDB && empty($customerData['email'])){
 
@@ -245,7 +247,7 @@ class ClaimModel
                 return redirect()->route('claim-index')->withErrors('Customer with that email already exists.');
             }
 
-            $claimValuesForInsert = [
+            $claimId = DB::table('claim')->insertGetId([
                 'customer_id'      => $customerID,
                 'product_style'    => $products,
                 'damage_code_id'   => $damage_code,
@@ -255,18 +257,18 @@ class ClaimModel
                 'part_needed'      => $part_needed,
                 'parts_needed'     => $parts_needed,
                 'purchase_order' => $purchaseOrder ? $purchaseOrder : NULL
-            ];
+            ]);
 
-            DB::table('claim')->insert($claimValuesForInsert);
+            //$claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
 
-            $claimID = DB::table('claim')->orderBy('claim.id', 'Desc')->pluck('claim.id')->first();
+            $claimValuesForInsert = (array) DB::table('claim')->where('id', '=', $claimId)->get()[0];
 
             //Stores User Activity Log Data into the DB
             $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Claim Inserted');
             $UALog->insertAllValues(array_keys($claimValuesForInsert), array_values($claimValuesForInsert));
 
             $claimCommentValuesForInsert = [
-                'claim_id' => $claimID,
+                'claim_id' => $claimId,
                 'author' => Auth::user()->id . ' : ' . Auth::user()->name,
                 'author_id' => Auth::user()->id,
                 'comment' => $comment
@@ -279,7 +281,7 @@ class ClaimModel
             $UALog->insertAllValues(array_keys($claimCommentValuesForInsert), array_values($claimCommentValuesForInsert));
 
             DB::table('claim_customer')->insert([
-                'claim_id' => $claimID,
+                'claim_id' => $claimId,
                 'customer_id' => $customerID
             ]);
 

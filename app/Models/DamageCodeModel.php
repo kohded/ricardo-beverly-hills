@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use app\Log\UserActivityLog;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DamageCodeModel
 {
@@ -37,6 +39,10 @@ class DamageCodeModel
             'id'   => $id,
             'part' => $part
         ]);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Damage Code Created');
+        $UALog->insertAllValues((array) $id, (array) $part);
     }
 
     public function editDamageCode($oldId, $newId, $part)
@@ -45,10 +51,21 @@ class DamageCodeModel
             'id'   => $newId,
             'part' => $part
         ]);
+
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Damage Code Edited');
+        $UALog->insertAllValues((array) $newId, (array) $part);
     }
 
     public function deleteDamageCode($id)
     {
+        //Get values before they are deleted
+        $deleteDamageCodeValues = UserActivityLog::getResultsAsArr('damage_code', $id);
+
         DB::table('damage_code')->delete($id);
+
+        //Stores User Activity Log Data into the DB
+
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Damage Code Deleted');
+        $UALog->insertAllValues(array_keys($deleteDamageCodeValues), array_values($deleteDamageCodeValues));
     }
 }

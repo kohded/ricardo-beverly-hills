@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use app\Log\UserActivityLog;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -116,35 +118,55 @@ class ProductModel
 	// Insert new product
 	public function createProduct($style, $description, $brand, $warranty, $color, $collection, $launch)
 	{
-		DB::table('product')->insert([
-			'style' 		       => $style,
-			'description' 	       => $description,
-			'brand'                => $brand,
-            'warranty_years'       => $warranty,
-            'color'                => $color,
-            'collection'           => $collection,
-            'launch_date'          => $launch
-		]);
-	}
-
-	// Edit product by style
-	public function editProduct($style, $description, $brand, $warranty, $color, $collection, $launch)
-	{
-		DB::table('product')->where('style', $style)->update([
-			'style' => $style,
-			'description' => $description,
+	    $createProductValues = [
+            'style' 		       => $style,
+            'description' 	       => $description,
             'brand'                => $brand,
             'warranty_years'       => $warranty,
             'color'                => $color,
             'collection'           => $collection,
             'launch_date'          => $launch
-		]);
+        ];
+
+		DB::table('product')->insert($createProductValues);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Product Created');
+        $UALog->insertAllValues(array_keys($createProductValues), array_values($createProductValues));
+	}
+
+	// Edit product by style
+	public function editProduct($style, $description, $brand, $warranty, $color, $collection, $launch)
+	{
+
+        $editProductValues = [
+            'style' 		       => $style,
+            'description' 	       => $description,
+            'brand'                => $brand,
+            'warranty_years'       => $warranty,
+            'color'                => $color,
+            'collection'           => $collection,
+            'launch_date'          => $launch
+        ];
+
+		DB::table('product')->where('style', $style)->update($editProductValues);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Product Edited');
+        $UALog->insertAllValues(array_keys($editProductValues), array_values($editProductValues));
 	}
 
 	// Delete product
 	public function deleteProduct($style)
 	{
+        $deleteCustomerValues = (array) DB::table('product')->where('style', '=', $style)->get()[0];
+
 		DB::table('product')->where('style', '=', $style)->delete();
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Product Deleted');
+        $UALog->insertAllValues(array_keys($deleteCustomerValues), array_values($deleteCustomerValues));
+
 	}
 
 

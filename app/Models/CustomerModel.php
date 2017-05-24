@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use app\Log\UserActivityLog;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerModel
 {
@@ -88,7 +90,7 @@ class CustomerModel
 
     public function insertCustomerData($first_name, $last_name, $address, $address_2, $city, $state, $zip, $phone, $email)
     {
-        DB::table('customer')->insert([
+        $customerId = DB::table('customer')->insertGetId([
             'first_name' => $first_name,
             'last_name' => $last_name,
             'address' => $address,
@@ -99,6 +101,11 @@ class CustomerModel
             'phone' => $phone,
             'email' => $email
         ]);
+
+        //Stores User Activity Log Data into the DB
+        $customerInsertValues = UserActivityLog::getResultsAsArr('customer', $customerId);
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Customer Inserted');
+        $UALog->insertAllValues(array_keys($customerInsertValues), array_values($customerInsertValues));
     }
 
     public function getCustomerDetailedData($customerId)
@@ -130,8 +137,7 @@ class CustomerModel
     public function editCustomerData($customerId, $first_name, $last_name, $address, 
                                      $address_2, $city, $state, $zip, $phone, $email)
     {
-
-        DB::table('customer')->where('id', '=', $customerId)->update([
+        $editCustomerValues = [
             'id' => $customerId,
             'first_name' => $first_name,
             'last_name' => $last_name,
@@ -142,12 +148,24 @@ class CustomerModel
             'zip' => $zip,
             'phone' => $phone,
             'email' => $email
-        ]);
+        ];
+
+        DB::table('customer')->where('id', '=', $customerId)->update($editCustomerValues);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Customer Edited');
+        $UALog->insertAllValues(array_keys($editCustomerValues), array_values($editCustomerValues));
     }
 
     public function deleteCustomer($customerId)
     {
+        $customerDeleteValues = UserActivityLog::getResultsAsArr('customer', $customerId);
+
         DB::table('customer')->delete($customerId);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Customer Deleted');
+        $UALog->insertAllValues(array_keys($customerDeleteValues), array_values($customerDeleteValues));
     }
 
     public function getCustomerIdByEmail($email)

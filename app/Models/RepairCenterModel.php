@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use app\Log\UserActivityLog;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RepairCenterModel
@@ -143,7 +145,7 @@ class RepairCenterModel
             $preferred = 0;
         }
 
-        DB::table('repair_center')->insert([
+        $rCId = DB::table('repair_center')->insertGetId([
             'name'         => $name,
             'contact_name' => $contactName,
             'phone'        => $phone,
@@ -154,6 +156,11 @@ class RepairCenterModel
             'zip'          => $zip,
             'preferred'    => $preferred
         ]);
+
+        //Stores User Activity Log Data into the DB
+        $rCInsertValues = UserActivityLog::getResultsAsArr('repair_center', $rCId);
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'New Repair Center Inserted');
+        $UALog->insertAllValues(array_keys($rCInsertValues), array_values($rCInsertValues));
     }
 
     /**
@@ -176,7 +183,7 @@ class RepairCenterModel
             $preferred = 0;
         }
 
-        DB::table('repair_center')->where('id', $id)->update([
+        $rCEditValues = [
             'name'         => $name,
             'contact_name' => $contactName,
             'phone'        => $phone,
@@ -187,7 +194,13 @@ class RepairCenterModel
             'zip'          => $zip,
             'preferred'    => $preferred,
             'id'           => $id,
-        ]);
+        ];
+
+        DB::table('repair_center')->where('id', $id)->update($rCEditValues);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Repair Center Edited');
+        $UALog->insertAllValues(array_keys($rCEditValues), array_values($rCEditValues));
     }
 
     /**
@@ -197,6 +210,13 @@ class RepairCenterModel
      */
     public function deleteRepairCenter($id)
     {
+        //get Repair center data before it is deleted to store in logs
+        $rCInsertValues = UserActivityLog::getResultsAsArr('repair_center', $id);
+
         DB::table('repair_center')->delete($id);
+
+        //Stores User Activity Log Data into the DB
+        $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Repair Center Deleted');
+        $UALog->insertAllValues(array_keys($rCInsertValues), array_values($rCInsertValues));
     }
 }
