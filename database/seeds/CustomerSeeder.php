@@ -21,7 +21,7 @@ class CustomerSeeder extends Seeder
                 'city'       => $faker->city,
                 'state'      => $faker->stateAbbr,
                 'zip'        => substr($faker->postcode, 0, 5),
-                'phone'      => $faker->numberBetween($min = 1000000000, $max = 9999999999),
+                'phone'      => 206 . $faker->numberBetween($min = 1000000, $max = 9999999),
                 'email'      => 'ricardoparts@ricardobeverlyhills.com'
             ]);
         }
