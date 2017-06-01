@@ -29,6 +29,17 @@ $(function() {
     });
 });
 
+// Update invoice amount modal
+$(function() {
+    $('#updateInvoiceAmountModal').on("show.bs.modal", function (e) {
+        var claimNumber = $(e.relatedTarget).data('claim');
+        $(".claimId").html(claimNumber);
+        $("#claimNumber").attr("value", claimNumber);
+
+        $("#trackingNumber").html($(e.relatedTarget).data('tracking'));
+    });
+});
+
 // Delete button on claim list - modal
 $(function() {
     $('#deleteClaimModal').on("show.bs.modal", function (e) {

@@ -87,6 +87,9 @@ Route::group(['middleware' => 'auth'], function() {
     	    // Add tracking (RBH)
     	    Route::post('/enter-tracking-number', 'ClaimController@enterTrackingNumber')
     	        ->name('claim.enter-tracking-number');
+            // Update invoice amount (RBH)
+            Route::post('/update-invoice-amount', 'ClaimController@updateInvoiceAmount')
+                ->name('claim.update-invoice-amount');
     	    // Close claim
     	    Route::get('/close/{id}', 'ClaimController@closeClaim')
     	        ->name('close-claim');	            

@@ -187,6 +187,18 @@ class ClaimController extends Controller {
             ->with('message', 'Added tracking number to claim.');            
     }
 
+    public function updateInvoiceAmount(Request $request) 
+    {
+        $claimId = $request->input('claim_id');
+        $invoiceAmount = $request->input('invoice_amount');
+
+        $claimModel = new ClaimModel();
+        $claimModel->updateInvoiceAmount($claimId, $invoiceAmount);
+
+        return redirect()->route('claim', ['id' => $claimId])
+            ->with('message', 'Updated invoice amount.');            
+    }
+
     // Closing the claim
     public function closeClaim($id) {
         $claimModel = new ClaimModel();

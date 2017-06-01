@@ -3,7 +3,9 @@ window.addEventListener("load", function() {
     // Assign focus events to the phone textbox
     var phone = document.querySelector('input[type="tel"]');
 
-    phone.onkeypress = updatePhone;
+    if (phone) {
+        phone.onkeypress = updatePhone;
+    }
 });
 
 function updatePhone(event) {

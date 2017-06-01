@@ -44,7 +44,7 @@ Ricardo Beverly Hills - Parts, Repair, & Warranty Management System
         </div>
 
         <div class="pdf row top-line">
-            <p>Please send payment of $$$$ to:</p>
+            <p>Please send payment of <b>${{ number_format($claim[0]->invoice_amount, 2) }}</b> to:</p>
         </div>
         {{--Repair Center Info--}}
         <div class="pdf row">

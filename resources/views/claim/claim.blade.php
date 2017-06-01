@@ -56,6 +56,7 @@
         @if(Session::has('message'))
             <div class="row">
                 <div class="col-xs-12">
+                    <br>
                     <p class="alert alert-success">
                         {{ Session::get('message') }}
                     </p>
@@ -225,6 +226,27 @@
                                         No
                                     @endif
                                 </p>
+                            </div>
+                        </div>
+
+                        {{--Invoice Amount--}}
+                        <div class="row">
+                            <div class="col-sm-3 col-md-4">
+                                <p class="detail-label bold-text">
+                                    <span class="fa fa-money" aria-hidden="true"></span>
+                                    Invoice Amount
+                                </p>
+                            </div>
+                            <div class="col-sm-9 col-md-8">
+                                ${{ number_format($claim[0]->invoice_amount, 2) }}<br>
+                                {{--Update Invoice Amount--}}
+                                <button type="button" id="enter-tracking"
+                                        class="btn btn-warning btn-xs"
+                                        data-claim="{{ $claim[0]->claim_id }}"
+                                        data-toggle="modal"
+                                        data-target="#updateInvoiceAmountModal">
+                                    Update Invoice Amount
+                                </button>
                             </div>
                         </div>
                         <hr class="mt-10">
@@ -538,4 +560,5 @@
     <!-- Include modal views -->
     @include('claim.repl-order-modal')
     @include('claim.tracking-number-modal')
+    @include('claim.invoice-amount-modal')
 @endsection

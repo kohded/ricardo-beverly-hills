@@ -159,9 +159,11 @@ class ClaimModel
                         'claim.purchase_order as purchase_order',
                         'claim.part_company_comment as part_company_comment',
                         'customer.address as cust_address',
+                        'claim.invoice_amount as invoice_amount',
                         'customer.address_2 as cust_address_2',
                         'customer.city as cust_city',
                         'customer.email as cust_email',
+                        'claim.invoice_amount as invoice_amount',
                         'customer.first_name as cust_first_name',
                         'customer.last_name as cust_last_name',
                         \DB::raw("CONCAT('(', SUBSTRING(customer.phone, 1, 3), ') ',
@@ -188,11 +190,6 @@ class ClaimModel
                     ->get();
 
                 return $claim;
-
-
-
-
-
     }
 
     public function insertClaim($existing_customer_email, $customerData ,$comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed, $updateSwitch, $purchaseOrder){
@@ -455,6 +452,19 @@ class ClaimModel
         //Stores User Activity Log Data into the DB
         $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Tracking Number Entered');
         $UALog->insertAllValues((array) 'tracking_number', (array) $trackingNumber);
+    }
+
+    public function updateInvoiceAmount($id, $invoiceAmount) 
+    {
+        DB::table('claim')
+            ->where('id', '=', $id)
+            ->update([
+                'invoice_amount' => $invoiceAmount
+            ]);
+
+        //Stores User Activity Log Data into the DB
+        // $UALog = new UserActivityLog(Auth::user()->id, Auth::user()->name, 'Claim Tracking Number Entered');
+        // $UALog->insertAllValues((array) 'tracking_number', (array) $trackingNumber);
     }
 
     public function closeClaim($id)
