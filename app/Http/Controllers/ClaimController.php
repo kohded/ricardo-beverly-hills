@@ -279,6 +279,16 @@ class ClaimController extends Controller {
             ->inline('packing-slip-' . $id . '.pdf');            
     }
 
+    // Display PDF version of invoice if clicked on in claim details
+    public function displayInvoicePDF($id) 
+    {
+        $claimModel = new ClaimModel();
+        $claim = $claimModel->getClaim($id);
+
+        return PDF::loadView('pdf.invoice', ['claim' => $claim])
+            ->inline('invoice-' . $id . '.pdf');            
+    }
+
     // Validation rules for claim with existing customer
     private function getExistingCustomerValidationRules() 
     {

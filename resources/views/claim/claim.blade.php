@@ -10,25 +10,31 @@
                     Claim #{{ $claim[0]->claim_id }}
                     
                     {{--Close Claim button--}}
-                    <a id="close-claim" href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
+                    <a href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
                         <span class="fa fa-check-circle" aria-hidden="true"></span>
                         Close Claim
                     </a>
 
                     {{--Edit Claim button--}}
-                    <a id="close-claim" href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
+                    <a href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
                         <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
                         Edit Claim
                     </a>
 
                     {{--Claim PDF--}}
-                    <a id="close-claim" href="{{ URL::route('claim-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
+                    <a href="{{ URL::route('claim-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
                         <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
                         Claim PDF
                     </a>
 
+                    {{--Invoice PDF--}}
+                    <a href="{{ URL::route('invoice-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
+                        <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                        Invoice PDF
+                    </a>
+
                     {{--Packing Slip PDF--}}
-                    <a id="close-claim" href="{{ URL::route('packing-slip-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
+                    <a href="{{ URL::route('packing-slip-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
                         <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
                         Packing Slip PDF
                     </a>

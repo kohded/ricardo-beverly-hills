@@ -64,6 +64,9 @@ Route::group(['middleware' => 'auth'], function() {
             // Claim PDF
             Route::get('/pdf/{id}', 'ClaimController@displayClaimPDF')
                 ->name('claim-pdf');   
+            // Invoice PDF
+            Route::get('/invoice-pdf/{id}', 'ClaimController@displayInvoicePDF')
+                ->name('invoice-pdf');   
             // Packing Slip PDF
             Route::get('/ps-pdf/{id}', 'ClaimController@displayPackingSlipPDF')
                 ->name('packing-slip-pdf');           
