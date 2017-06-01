@@ -11,6 +11,7 @@ CustomerController.php - Controller for Customer related pages
 
 use Illuminate\Http\Request;
 use App\Models\CustomerModel;
+use App\Exceptions\IdDoesntExistException;
 
 class CustomerController extends Controller {
     // List of customers view
@@ -72,7 +73,11 @@ class CustomerController extends Controller {
 
         $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId);
 
-        return view('customer.edit-form', ['customerDetails' => $customerDetail]);
+        if(count($customerDetail['customer']) > 0) {
+            return view('customer.edit-form', ['customerDetails' => $customerDetail]);
+        } else {
+            throw new IdDoesntExistException($customerId, 'Customer');
+        }
     }
 
     // Edit customer after form is submitted
@@ -121,11 +126,17 @@ class CustomerController extends Controller {
 
         $customerDetail = $getCustomerDetail->getCustomerDetailedData($customerId)['customer'];
         $customerClaims = $getCustomerDetail->getCustomerDetailedData($customerId)['claim-customer'];
+
+        if(count($customerDetail) > 0) {
+
         return view('customer.more-detail', [
             'id' => $customerId,
             'customerDetail' => $customerDetail, 
             'customerClaims' => $customerClaims
         ]);
+        } else {
+         throw new IdDoesntExistException($customerId, 'Customer');
+        }
     }
 
     // Delete a customer

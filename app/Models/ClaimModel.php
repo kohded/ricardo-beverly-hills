@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Exceptions\IdDoesntExistException;
 use app\Log\UserActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Database\QueryException;
 
 class ClaimModel
 {
@@ -136,56 +138,61 @@ class ClaimModel
     // Select claim by ID
     public function getClaim($id)
     {
-        //$claim = DB::table('claim')->where('id', '=', $id)->get();
-        $claim = DB::table('claim')
-            ->join('customer', 'claim.customer_id', '=', 'customer.id')
-            ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
-            ->join('damage_code', 'claim.damage_code_id', '=', 'damage_code.id')
-            ->join('product', 'claim.product_style', '=', 'product.style')
-            ->select(
-                'claim.id as claim_id',
-                'claim.customer_id as cust_id',
-                \DB::raw('DATE_FORMAT(claim.created_at, "%m/%d/%Y") as claim_created_at'),
-                \DB::raw('DATE_FORMAT(claim.date_closed, "%m/%d/%Y") as claim_date_closed'),
-                'claim.email_sent as claim_email_sent',
-                'claim.replace_order as replace_order',
-                'claim.ship_to as ship_to',
-                'claim.part_needed as part_needed',
-                'claim.parts_needed as parts_needed',
-                'claim.parts_available as parts_available',
-                'claim.tracking_number as tracking_number',
-                'claim.purchase_order as purchase_order',
-                'claim.part_company_comment as part_company_comment',
-                'customer.address as cust_address',
-                'customer.address_2 as cust_address_2',
-                'customer.city as cust_city',
-                'customer.email as cust_email',
-                'customer.first_name as cust_first_name',
-                'customer.last_name as cust_last_name',
-                \DB::raw("CONCAT('(', SUBSTRING(customer.phone, 1, 3), ') ',
+                //$claim = DB::table('claim')->where('id', '=', $id)->get();
+                $claim = DB::table('claim')
+                    ->join('customer', 'claim.customer_id', '=', 'customer.id')
+                    ->join('repair_center', 'claim.repair_center_id', '=', 'repair_center.id')
+                    ->join('damage_code', 'claim.damage_code_id', '=', 'damage_code.id')
+                    ->join('product', 'claim.product_style', '=', 'product.style')
+                    ->select(
+                        'claim.id as claim_id',
+                        'claim.customer_id as cust_id',
+                        \DB::raw('DATE_FORMAT(claim.created_at, "%m/%d/%Y") as claim_created_at'),
+                        \DB::raw('DATE_FORMAT(claim.date_closed, "%m/%d/%Y") as claim_date_closed'),
+                        'claim.email_sent as claim_email_sent',
+                        'claim.replace_order as replace_order',
+                        'claim.ship_to as ship_to',
+                        'claim.part_needed as part_needed',
+                        'claim.parts_needed as parts_needed',
+                        'claim.parts_available as parts_available',
+                        'claim.tracking_number as tracking_number',
+                        'claim.purchase_order as purchase_order',
+                        'claim.part_company_comment as part_company_comment',
+                        'customer.address as cust_address',
+                        'customer.address_2 as cust_address_2',
+                        'customer.city as cust_city',
+                        'customer.email as cust_email',
+                        'customer.first_name as cust_first_name',
+                        'customer.last_name as cust_last_name',
+                        \DB::raw("CONCAT('(', SUBSTRING(customer.phone, 1, 3), ') ',
                                       SUBSTRING(customer.phone, 4, 3), '-',
                                       SUBSTRING(customer.phone, 7, 4)) as cust_phone"),
-                'customer.state as cust_state',
-                'customer.zip as cust_zip',
-                'product.style as product_style',
-                'repair_center.id as rc_id',
-                'repair_center.address as rc_address',
-                'repair_center.name as rc_name',
-                'repair_center.city as rc_city',
-                'repair_center.state as rc_state',
-                'repair_center.contact_name as rc_contact',
-                \DB::raw("CONCAT('(', SUBSTRING(repair_center.phone, 1, 3), ') ',
+                        'customer.state as cust_state',
+                        'customer.zip as cust_zip',
+                        'product.style as product_style',
+                        'repair_center.id as rc_id',
+                        'repair_center.address as rc_address',
+                        'repair_center.name as rc_name',
+                        'repair_center.city as rc_city',
+                        'repair_center.state as rc_state',
+                        'repair_center.contact_name as rc_contact',
+                        \DB::raw("CONCAT('(', SUBSTRING(repair_center.phone, 1, 3), ') ',
                                       SUBSTRING(repair_center.phone, 4, 3), '-',
                                       SUBSTRING(repair_center.phone, 7, 4)) as rc_phone"),
-                'repair_center.email as rc_email',
-                'repair_center.zip as rc_zip',
-                'damage_code.id as dc_id',
-                'damage_code.part as dc_part'
-            )
-            ->where('claim.id', '=', $id)
-            ->get();
+                        'repair_center.email as rc_email',
+                        'repair_center.zip as rc_zip',
+                        'damage_code.id as dc_id',
+                        'damage_code.part as dc_part'
+                    )
+                    ->where('claim.id', '=', $id)
+                    ->get();
 
-        return $claim;
+                return $claim;
+
+
+
+
+
     }
 
     public function insertClaim($existing_customer_email, $customerData ,$comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed, $updateSwitch, $purchaseOrder){

@@ -18,6 +18,7 @@ use App\Models\ClaimModel;
 use App\Models\ProductModel;
 use App\Models\RepairCenterModel;
 use App\Models\CustomerModel;
+use App\Exceptions\IdDoesntExistException;
 
 class ClaimController extends Controller {
     // List page displaying all claims
@@ -58,15 +59,21 @@ class ClaimController extends Controller {
     // More-detail claim page
     public function getClaimDetails($id)
     {
-        $claimModel = new ClaimModel();
-        $claim = $claimModel->getClaim($id);
-        $comments = $claimModel->getComments($id);
+            $claimModel = new ClaimModel();
+            $claim = $claimModel->getClaim($id);
+            $comments = $claimModel->getComments($id);
 
+        if(count($claim) > 0) {
 
-        return view('claim.claim', [
-            'claim' => $claim,
-            'comments' => $comments
-        ]);
+            return view('claim.claim', [
+                'claim' => $claim,
+                'comments' => $comments
+            ]);
+
+        } else {
+            throw new IdDoesntExistException($id, 'Claim');
+        }
+
     }
 
     // Add new claim to database after form is submitted
@@ -207,17 +214,26 @@ class ClaimController extends Controller {
         $claimDetails = new ClaimModel();
         $claimDetails = $claimDetails->getClaim($id);
 
+        if(count($claimDetails) > 0) {
         $customerDetails = new CustomerModel();
         $customerDetails = $customerDetails->getCustomerDetailedData($claimDetails[0]->cust_id);
 
         $productModel = new ProductModel;
         $product = $productModel->getProduct($claimDetails[0]->product_style);
 
-        return view('claim.claim-edit', [
-            'claimDetails' => $claimDetails[0],
-            'customerDetails' => $customerDetails,
-            'product' => $product[0]
-        ]);
+
+
+            return view('claim.claim-edit', [
+                'claimDetails' => $claimDetails[0],
+                'customerDetails' => $customerDetails,
+                'product' => $product[0]
+            ]);
+
+        } else {
+            throw new IdDoesntExistException($id, 'Claim');
+        }
+
+
     }
 
     // Update claim after edit claim form is submitted

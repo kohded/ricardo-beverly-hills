@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Exceptions\IdDoesntExistException;
 
 class Handler extends ExceptionHandler
 {
@@ -65,6 +66,10 @@ class Handler extends ExceptionHandler
         }
         else
         {
+            if($exception instanceof IdDoesntExistException){
+                return redirect()->route('error.iddoesntexist', ['id' => $exception->getId(), 'type' => $exception->getType()]);
+            }
+
             return parent::render($request, $exception);
         }
     }

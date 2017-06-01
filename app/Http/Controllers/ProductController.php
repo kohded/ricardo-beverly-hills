@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\IdDoesntExistException;
 use App\Models\Auth\User;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
@@ -75,7 +76,11 @@ class ProductController extends Controller
         $product = new ProductModel();
         $product = $product->getProduct($style);
 
-        return view('product.edit', ['product' => $product]);
+        if(count($product) > 0) {
+            return view('product.edit', ['product' => $product]);
+        } else {
+            throw new IdDoesntExistException($style, 'Product');
+        }
     }
 
     // Edit a product

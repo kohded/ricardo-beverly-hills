@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\IdDoesntExistException;
 use App\Models\Auth\User;
 use App\Models\RepairCenterModel;
 use Illuminate\Http\Request;
@@ -95,7 +96,11 @@ class RepairCenterController extends Controller
         $repairCenter = new RepairCenterModel();
         $repairCenter = $repairCenter->getRepairCenter($id);
 
-        return view('repair-center.edit', ['repairCenter' => $repairCenter]);
+        if(count($repairCenter) > 0) {
+            return view('repair-center.edit', ['repairCenter' => $repairCenter]);
+        } else {
+            throw new IdDoesntExistException($id, 'Repair Center');
+        }
     }
 
     /**

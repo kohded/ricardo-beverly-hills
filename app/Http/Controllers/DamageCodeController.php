@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\IdDoesntExistException;
 use Illuminate\Http\Request;
 use App\Models\DamageCodeModel;
 
@@ -56,7 +57,11 @@ class DamageCodeController extends Controller
         $damageCode = new damageCodeModel();
         $damageCode = $damageCode->getDamageCode($id);
 
-        return view('damage-code.edit', ['damageCode' => $damageCode]);
+        if(count($damageCode) > 0) {
+            return view('damage-code.edit', ['damageCode' => $damageCode]);
+        } else {
+            throw new IdDoesntExistException($id, 'Damage Code');
+        }
     }
 
     public function editDamageCode(Request $request)

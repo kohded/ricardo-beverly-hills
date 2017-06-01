@@ -204,6 +204,10 @@ Route::group(['middleware' => 'auth'], function() {
         });
     });
 
+    Route::group(['prefix' => 'error'], function() {
+        Route::get('/id-doesnt-exist/{id}/{type}', 'ErrorController@idDoesntExist')->name('error.iddoesntexist');
+    });
+
 
     // Part Company Role
     Route::group(['middleware' => 'role:part-company'], function() {
