@@ -7842,6 +7842,11 @@ body.pdf {
   padding-top: 7px;
 }
 
+.claim-btn {
+  width: 105px;
+  margin-top: 3px;
+}
+
 .top-line {
   border-top: 1px solid #AAA;
   padding-top: 10px;

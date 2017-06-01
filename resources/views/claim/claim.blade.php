@@ -4,42 +4,51 @@
     <div id="claim-more-details">
 
         <div class="row">
+            {{--Title--}}
             <div class="col-xs-12">
                 <h2>
                 	<span class="fa fa-file-text" aria-hidden="true"></span>
                     Claim #{{ $claim[0]->claim_id }}
-                    
-                    {{--Close Claim button--}}
-                    <a href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
-                        <span class="fa fa-check-circle" aria-hidden="true"></span>
-                        Close Claim
-                    </a>
-
-                    {{--Edit Claim button--}}
-                    <a href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" class="btn btn-primary pull-right ml-10">
-                        <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
-                        Edit Claim
-                    </a>
-
-                    {{--Claim PDF--}}
-                    <a href="{{ URL::route('claim-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
-                        <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
-                        Claim PDF
-                    </a>
-
-                    {{--Invoice PDF--}}
-                    <a href="{{ URL::route('invoice-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
-                        <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
-                        Invoice PDF
-                    </a>
-
-                    {{--Packing Slip PDF--}}
-                    <a href="{{ URL::route('packing-slip-pdf', ['id' => $claim[0]->claim_id]) }}" class="btn btn-default pull-right ml-10">
-                        <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
-                        Packing Slip PDF
-                    </a>
                 </h2>
                 <hr>
+            </div>
+
+            {{--Buttons--}}
+            <div class="col-xs-12">
+                {{--Claim PDF--}}
+                <a href="{{ URL::route('claim-pdf', ['id' => $claim[0]->claim_id]) }}" 
+                    class="btn btn-sm btn-default claim-btn" target="_blank">
+                    <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                    Claim PDF
+                </a>
+
+                {{--Invoice PDF--}}
+                <a href="{{ URL::route('invoice-pdf', ['id' => $claim[0]->claim_id]) }}" 
+                    class="btn btn-sm btn-default claim-btn" target="_blank">
+                    <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                    Invoice PDF
+                </a>
+
+                {{--Packing Slip PDF--}}
+                <a href="{{ URL::route('packing-slip-pdf', ['id' => $claim[0]->claim_id]) }}" 
+                    class="btn btn-sm btn-default claim-btn" target="_blank">
+                    <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                    Packing Slip PDF
+                </a>
+
+                {{--Edit Claim button--}}
+                <a href="{{ URL::route('claim.edit', ['id' => $claim[0]->claim_id]) }}" 
+                    class="btn btn-sm btn-primary claim-btn">
+                    <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
+                    Edit Claim
+                </a>
+
+                {{--Close Claim button--}}
+                <a href="{{ URL::route('close-claim', ['id' => $claim[0]->claim_id]) }}" 
+                    class="btn btn-sm btn-primary claim-btn">
+                    <span class="fa fa-check-circle" aria-hidden="true"></span>
+                    Close Claim
+                </a>
             </div>
         </div>
 
