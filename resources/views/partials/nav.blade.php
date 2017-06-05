@@ -87,6 +87,9 @@
                             <li>
                                 <a href="{{ url('/register') }}">Register User</a>
                             </li>
+                            <li>
+                                <a href="{{ route('ua-log') }}">User Activity Log</a>
+                            </li>
                             @endrole
 
                             <li>

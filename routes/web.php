@@ -41,6 +41,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/dashboard', 'DashboardController@getDashboardView')
             ->name('dashboard');
 
+        // User Activity Log
+        Route::get('/user-activity-log', 'UALogController@getUALogView')->name('ua-log');
+
+        Route::get('/user-activity-log/{id}', 'UALogController@getUALogDetail')->name('ua-log-details');
+
 
     	// Claim
     	Route::group(['prefix' => 'claim'], function() {
