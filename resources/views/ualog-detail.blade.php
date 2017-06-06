@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>UA LOG</h1>
-    <p>If a value was deleted then this page will show you the data that was deleted. Other wise this page will show you the new values that where added or changed.</p>
+    <p>If a value was deleted then this page will show you the data that was deleted. Otherwise this page will show you the new values that where added or changed.</p>
 
     <div class="table-responsive">
         <table class="table table-hover table-condensed">
