@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+
+  <div>
+
   <h1>UA LOG</h1>
 
   <div class="table-responsive">
@@ -48,4 +51,12 @@
     </tbody>
     </table>
   </div>
+
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      {{ $logs->links() }}
+    </div>
+  </div>
+
+  <div>
 @endsection

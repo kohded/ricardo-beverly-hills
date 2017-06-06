@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 class UALogModel
 {
     public function getAllUserActivity() {
-        return DB::table('user_activity_log')->orderby('id', 'DESC')->get();
+        return DB::table('user_activity_log')->orderBy('id', 'DESC')->paginate(20);
     }
 
     public function getUserActivity($id) {
