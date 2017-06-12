@@ -16,7 +16,7 @@
           <p>Enter Invoice Amount for Claim #<span class="claimId"></span></p>
 
           <div class="form-group">
-            <input type="text" class="form-control" name="invoice_amount" placeholder="Enter Invoice Amount...">
+            <input type="number" class="form-control" name="invoice_amount" placeholder="Enter Invoice Amount...">
           </div>
         </div>
         <div class="modal-footer">

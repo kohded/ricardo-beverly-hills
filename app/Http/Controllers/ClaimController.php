@@ -189,6 +189,8 @@ class ClaimController extends Controller {
 
     public function updateInvoiceAmount(Request $request) 
     {
+         $this->validate($request, ['invoice_amount' => 'required|numeric']);
+
         $claimId = $request->input('claim_id');
         $invoiceAmount = $request->input('invoice_amount');
 
@@ -232,8 +234,6 @@ class ClaimController extends Controller {
 
         $productModel = new ProductModel;
         $product = $productModel->getProduct($claimDetails[0]->product_style);
-
-
 
             return view('claim.claim-edit', [
                 'claimDetails' => $claimDetails[0],
