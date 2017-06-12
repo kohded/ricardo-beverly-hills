@@ -17,6 +17,7 @@ class ClaimSeeder extends Seeder
         foreach(range(1, 101) as $index) {
             DB::table('claim')->insert([
                 'created_at'       => date_sub(new DateTime(), date_interval_create_from_date_string(102 - $index . ' days')),
+                'created_by'       => "Duante",
                 'customer_id'      => $index,
                 'product_style'    => DB::table('product')->inRandomOrder()->first()->style,
                 'damage_code_id'   => DB::table('damage_code')->inRandomOrder()->first()->id,

@@ -120,6 +120,17 @@
                                 <p>{{ $claim[0]->claim_id }}</p>
                             </div>
                         </div>
+                        {{--Created By--}}
+                        <div class="row">
+                            <div class="col-sm-3 col-md-4">
+                                <p class="detail-label bold-text">
+                                    Created By
+                                </p>
+                            </div>
+                            <div class="col-sm-9 col-md-8">
+                                <p>{{ $claim[0]->created_by }}</p>
+                            </div>
+                        </div>
                         {{--Status--}}
                         <div class="row">
                             <div class="col-sm-3 col-md-4">

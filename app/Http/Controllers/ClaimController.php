@@ -111,6 +111,7 @@ class ClaimController extends Controller {
             $request->input('existing_customer_email'),
             $customerData,
             $request->input('comment'),
+            $request->input('created-by'),
             $request->input('product-style'),
             $request->input('damage-code-id'),
             $request->input('repair-center-id'),

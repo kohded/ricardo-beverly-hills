@@ -131,6 +131,14 @@
                     </div>
                 </div>
                 <div id="claim-order-details" class="collapse">
+                    {{--Created By--}}
+                    <div class="form-group col-xs-12">
+                        <label for="created-by">Created By</label>
+                        <input type="text" class="form-control"
+                               id="created-by" name="created-by" value="{{ old('created-by') }}" placeholder="Created by...">
+                        <input type="text"  class="created-by" name="created-by"
+                               value="{{ old('created-by') }}" hidden>
+                    </div>
                     {{--Product--}}
                     <div class="form-group col-xs-12">
                         <label for="claim-product">Product</label>

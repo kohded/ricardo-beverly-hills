@@ -158,6 +158,7 @@ class ClaimModel
                         'claim.tracking_number as tracking_number',
                         'claim.purchase_order as purchase_order',
                         'claim.part_company_comment as part_company_comment',
+                        'claim.created_by as created_by',
                         'customer.address as cust_address',
                         'claim.invoice_amount as invoice_amount',
                         'customer.address_2 as cust_address_2',
@@ -192,7 +193,7 @@ class ClaimModel
                 return $claim;
     }
 
-    public function insertClaim($existing_customer_email, $customerData ,$comment, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed, $updateSwitch, $purchaseOrder){
+    public function insertClaim($existing_customer_email, $customerData ,$comment, $createdBy, $products, $damage_code, $repair_center, $replace_order, $ship_to, $part_needed, $parts_needed, $updateSwitch, $purchaseOrder){
 
 
         DB::beginTransaction();
@@ -253,6 +254,7 @@ class ClaimModel
 
             $claimId = DB::table('claim')->insertGetId([
                 'customer_id'      => $customerID,
+                'created_by'       => $createdBy,
                 'product_style'    => $products,
                 'damage_code_id'   => $damage_code,
                 'repair_center_id' => $repair_center,
