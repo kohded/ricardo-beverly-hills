@@ -111,4 +111,23 @@ class PartCompanyController extends Controller {
         return PDF::loadView('pdf.packing-slip', ['claim' => $claim])
             ->inline('packing-slip-' . $id . '.pdf');            
     }
+
+    // Display PDF version of claim if clicked on in claim details
+    public function displayClaimPDF($id) 
+    {
+        $claimModel = new ClaimModel();
+        $claim = $claimModel->getClaim($id);
+        $comments = $claimModel->getComments($id);
+
+        if($claim[0]->replace_order == 1) 
+        {
+            return PDF::loadView('pdf.replace-order', ['claim' => $claim, 'comments' => $comments])
+                ->inline('replace-order-' . $id . '.pdf');
+        } 
+        else 
+        {
+            return PDF::loadView('pdf.repair-order', ['claim' => $claim, 'comments' => $comments])
+                ->inline('repair-order-' . $id . '.pdf');            
+        }
+    }
 }

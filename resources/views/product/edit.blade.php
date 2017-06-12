@@ -67,10 +67,16 @@
                                value="{{ $info->launch_date }}">
                     </div>
                     {{--Warranty--}}
-                    <div class="form-group col-xs-6">
+                    <div class="form-group col-xs-3">
                         <label for="product-warranty-years">Warranty</label>
                         <input type="text" class="form-control" id="product-warranty-years"
                                name="warranty" placeholder="" value="{{ $info->warranty_years }}">
+                    </div>
+                    {{--Guarantee--}}
+                    <div class="form-group col-xs-3">
+                        <label for="product-guarantee-years">Guarantee</label>
+                        <input type="text" class="form-control" id="product-guarantee-years"
+                               name="guarantee" placeholder="" value="{{ $info->guarantee_years }}">
                     </div>
                     {{--Description--}}
                     <div class="form-group col-xs-12">

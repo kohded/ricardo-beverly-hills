@@ -52,6 +52,7 @@ class ProductModel
                 'description',
                 'brand',
                 'warranty_years',
+                'guarantee_years',
                 'color',
                 'collection',
                 \DB::raw('DATE_FORMAT(launch_date, "%m/%d/%Y") as launch_date')
@@ -116,13 +117,14 @@ class ProductModel
 	}
 
 	// Insert new product
-	public function createProduct($style, $description, $brand, $warranty, $color, $collection, $launch)
+	public function createProduct($style, $description, $brand, $warranty, $guarantee, $color, $collection, $launch)
 	{
 	    $createProductValues = [
             'style' 		       => $style,
             'description' 	       => $description,
             'brand'                => $brand,
             'warranty_years'       => $warranty,
+            'guarantee_years'      => $guarantee,
             'color'                => $color,
             'collection'           => $collection,
             'launch_date'          => $launch
@@ -136,7 +138,7 @@ class ProductModel
 	}
 
 	// Edit product by style
-	public function editProduct($style, $description, $brand, $warranty, $color, $collection, $launch)
+	public function editProduct($style, $description, $brand, $warranty, $guarantee, $color, $collection, $launch)
 	{
 
         $editProductValues = [
@@ -144,6 +146,7 @@ class ProductModel
             'description' 	       => $description,
             'brand'                => $brand,
             'warranty_years'       => $warranty,
+            'guarantee_years'      => $guarantee,
             'color'                => $color,
             'collection'           => $collection,
             'launch_date'          => $launch

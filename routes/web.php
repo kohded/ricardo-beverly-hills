@@ -232,6 +232,10 @@ Route::group(['middleware' => 'auth'], function() {
             // Packing Slip PDF
             Route::get('/ps-pdf/{id}', 'Role\PartCompany\PartCompanyController@displayPackingSlipPDF')
                 ->name('pc-packing-slip-pdf'); 
+            // Packing Slip PDF
+            Route::get('/claim-pdf/{id}', 
+                'Role\PartCompany\PartCompanyController@displayClaimPDF')
+                ->name('pc-claim-pdf');
     	    // Add part availability (TWC)
     	    Route::post('/enter-part-availability', 'Role\PartCompany\PartCompanyController@enterPartAvailability')
     	        ->name('pc-enter-part-availability'); 

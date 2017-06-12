@@ -72,11 +72,17 @@
 									@endif
 								</th>
 								<th>
-									<span class="fa fa-file-text" aria-hidden="true"></span>
 									@if(session::get('filterTypeProduct') == 'warranty_years' && session::get('filterOrder') == 'desc')
-										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'asc' ]) }}">Warranty</a>
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'asc' ]) }}">Wnty</a>
 									@else
-										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'desc' ]) }}">Warranty</a>
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'desc' ]) }}">Wnty</a>
+									@endif
+								</th>
+								<th>
+									@if(session::get('filterTypeProduct') == 'guarantee_years' && session::get('filterOrder') == 'desc')
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'asc' ]) }}">Guar</a>
+									@else
+										<a href="{{ URL::route('product-filter-index', ['filterType' => 'warranty_years', 'filterOrder' => 'desc' ]) }}">Guar</a>
 									@endif
 								</th>
 								<th>
@@ -101,6 +107,7 @@
 								<td>{{ $product->color }}</td>
 								<td>{{ $product->description }}</td>
 								<td>{{ $product->warranty_years }}</td>
+								<td>{{ $product->guarantee_years }}</td>
 								<td>{{ $product->launch_date }}</td>
 								<td class="table-data-wrap">
 									<a id="product-edit" href="{{ route('product.edit', ['style' => $product->style]) }}">

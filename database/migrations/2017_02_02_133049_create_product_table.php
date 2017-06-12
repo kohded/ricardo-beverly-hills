@@ -18,6 +18,7 @@ class CreateProductTable extends Migration
             $table->string('description', 80);
             $table->string('brand', 40);
             $table->tinyInteger('warranty_years');
+            $table->tinyInteger('guarantee_years');
             $table->string('color', 20);
             $table->string('collection', 40);
             $table->date('launch_date');

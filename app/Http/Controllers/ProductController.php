@@ -47,6 +47,7 @@ class ProductController extends Controller
             'description'   => 'required',
             'brand'         => 'required',
             'warranty'      => 'required|integer',
+            'guarantee'     => 'required|integer',
             'color'         => 'required',
             'collection'    => 'required',
             'launch'        => 'required'
@@ -61,6 +62,7 @@ class ProductController extends Controller
             $request->input('description'),
             $request->input('brand'),
             $request->input('warranty'),
+            $request->input('guarantee'),
             $request->input('color'),
             $request->input('collection'),
             $launch_date
@@ -91,6 +93,7 @@ class ProductController extends Controller
             'description'   => 'required',
             'brand'         => 'required',
             'warranty'      => 'required|integer',
+            'guarantee'     => 'required|integer',
             'color'         => 'required',
             'collection'    => 'required',
             'launch'        => 'required'
@@ -105,6 +108,7 @@ class ProductController extends Controller
             $request->input('description'),
             $request->input('brand'),
             $request->input('warranty'),
+            $request->input('guarantee'),
             $request->input('color'),
             $request->input('collection'),
             $launch_date
