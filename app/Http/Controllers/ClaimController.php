@@ -324,6 +324,7 @@ class ClaimController extends Controller {
         return [
             'existing_customer_email' => 'required|max:50|exists:customer,email',
             'comments' => 'nullable',
+            'create_by' => 'required',
             'products' => 'required',
             'damage_code' => 'required',
             'repair_center' => 'required',
@@ -348,6 +349,7 @@ class ClaimController extends Controller {
             'phone' => 'required|size:10',
             'email' => 'required|max:50|unique:customer,email',
             'comments' => 'nullable',
+            'create_by' => 'required',
             'products' => 'required',
             'damage_code' => 'required',
             'repair_center' => 'required',
