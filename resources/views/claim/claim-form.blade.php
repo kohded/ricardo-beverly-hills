@@ -136,7 +136,7 @@
                         <label for="created-by">Created By</label>
                         <input type="text" class="form-control"
                                id="created-by" name="created-by" value="{{ old('created-by') }}" placeholder="Created by...">
-                        <input type="text"  class="created-by" name="created-by"
+                        <input type="text"  class="created" name="created"
                                value="{{ old('created-by') }}" hidden>
                     </div>
                     {{--Product--}}
