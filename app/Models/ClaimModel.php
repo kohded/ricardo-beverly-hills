@@ -387,7 +387,7 @@ class ClaimModel
         $UALog->insertAllValues(array_keys($editCommentValues), array_values($editCommentValues));
     }
 
-    public function updateClaim($claimId, $customerId, $product, $repairCenter, 
+    public function updateClaim($claimId, $customerId, $createdBy, $product, $repairCenter, 
                                 $damageCode, $claimType, $partsRequired, $partsNeeded, 
                                 $shipPartsTo, $purchaseOrder) {
 
@@ -395,6 +395,7 @@ class ClaimModel
             ->where('id', '=', $claimId)
             ->update([
                 'customer_id' => $customerId,
+                'created_by' => $createdBy,
                 'product_style' => $product,
                 'repair_center_id' => $repairCenter,
                 'damage_code_id' => $damageCode,

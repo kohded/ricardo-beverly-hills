@@ -113,6 +113,12 @@
                                disabled>
                     </div>
                 </div>
+                {{--Created By--}}
+                <div class="form-group col-xs-12">
+                    <label for="created-by">Created By</label>
+                    <input type="text" class="form-control"
+                           id="created-by" name="created-by" value="{{ $claimDetails->created_by }}" placeholder="Created by...">
+                </div>
                 {{--Product--}}
                 <div class="form-group col-xs-12">
                     <label for="claim-product">Product</label>

@@ -257,6 +257,7 @@ class ClaimController extends Controller {
         //Data from form
         $claimId = $request->input('claim_id');
         $existingCustomerEmail = $request->input('existing_customer_email');
+        $createdBy = $request->input('created-by');
         $product = $request->input('product-style');
         $repairCenter = $request->input('repair-center-id');
         $damageCode = $request->input('damage-code-id');
@@ -271,7 +272,7 @@ class ClaimController extends Controller {
         $customerId = $customerModel->getCustomerIdByEmail($existingCustomerEmail);
 
         $claimModel = new ClaimModel();
-        $claimModel->updateClaim($claimId, $customerId->id, $product, $repairCenter, 
+        $claimModel->updateClaim($claimId, $customerId->id, $createdBy, $product, $repairCenter,
                                  $damageCode, $claimType, $partsRequired, $partsNeeded, 
                                  $shipPartsTo, $purchaseOrder);
 
